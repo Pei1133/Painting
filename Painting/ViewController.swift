@@ -26,9 +26,8 @@ class ViewController: UIViewController {
 
 //        showSVG()
         drawPaths()
-//        drawColorPaths()
 
-     // Step 1 :- Initialize Tap Event on view where your UIBeizerPath Added.
+     // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
         // Catch layer by tap detection
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapDetected(tapRecognizer:)))
         self.view.addGestureRecognizer(tapRecognizer)
@@ -52,75 +51,6 @@ class ViewController: UIViewController {
             layer.fillColor = UIColor.white.cgColor
 //            layer.frame = self.view.bounds
             self.view.layer.addSublayer(layer)
-        }
-    }
-
-    func drawColorPaths() {
-
-        let fillColors: [CGColor] = [UIColor.red.cgColor,
-                                     UIColor.orange.cgColor,
-                                     UIColor.yellow.cgColor,
-                                     UIColor.green.cgColor,
-                                     UIColor.blue.cgColor,
-                                     UIColor.purple.cgColor]
-
-        var index = 0
-
-        for path in paths {
-            // Create a layer for each path
-            let layer = CAShapeLayer()
-            layer.path = path.cgPath
-
-            layer.fillRule = kCAFillRuleNonZero
-
-            // Default Settings
-            var strokeWidth = CGFloat(1.0)
-            var strokeColor = UIColor.black.cgColor
-            var fillColor = fillColors[index]
-
-            // Inspect the SVG Path Attributes
-            print("path.svgAttributes = \(path.svgAttributes)")
-
-            if let strokeValue = path.svgAttributes["stroke-width"] {
-                if let strokeN = NumberFormatter().number(from: strokeValue as! String) {
-                    strokeWidth = CGFloat(truncating: strokeN)
-                }
-            }
-
-            layer.fillRule = kCAFillRuleEvenOdd
-            layer.lineCap = kCALineCapButt
-            layer.lineDashPattern = nil
-            layer.lineDashPhase = 0.0
-            layer.lineJoin = kCALineJoinMiter
-            layer.miterLimit = 10.0
-
-            if let strokeValue = path.svgAttributes["stroke"] {
-                strokeColor = strokeValue as! CGColor
-            }
-
-            if let fillColorVal = path.svgAttributes["fill"] {
-                fillColor = fillColorVal as! CGColor
-            }
-
-            // Set its display properties
-            layer.lineWidth = strokeWidth
-            layer.strokeColor = strokeColor
-            layer.fillColor = fillColor
-            layer.lineDashPattern = []
-
-            // Add it to the layer hierarchy
-            self.view.layer.addSublayer(layer)
-
-//            // Simple Animation
-//            let animation = CABasicAnimation(keyPath:"strokeEnd")
-//            animation.duration = 4.0
-//            animation.fromValue = 0.0
-//            animation.toValue = 1.0
-//            animation.fillMode = kCAFillModeForwards
-//            animation.isRemovedOnCompletion = false
-//            layer.add(animation, forKey: "strokeEndAnimation")
-
-            index += 1
         }
     }
 
