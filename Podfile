@@ -6,6 +6,7 @@ target 'Painting' do
   use_frameworks!
 
   # Pods for Painting
+
   pod 'PocketSVG'
-  
+
 end
