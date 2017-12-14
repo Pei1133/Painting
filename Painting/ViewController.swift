@@ -12,7 +12,7 @@ import PocketSVG
 class ViewController: UIViewController {
 
     var paths = [SVGBezierPath]()
-    let url = Bundle.main.url(forResource: "hat", withExtension: "svg")!
+    let url = Bundle.main.url(forResource: "chicken", withExtension: "svg")!
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -49,7 +49,10 @@ class ViewController: UIViewController {
             layer.lineWidth = strokeWidth
             layer.strokeColor = strokeColor
             layer.fillColor = UIColor.white.cgColor
+
 //            layer.frame = self.view.bounds
+//            print(layer.frame)
+//            layer.contentsGravity = kCAGravityCenter
             self.view.layer.addSublayer(layer)
         }
     }
@@ -66,13 +69,13 @@ class ViewController: UIViewController {
         for path in paths {
             if path.contains(tapLocation) {
                 print("I am in \(path.svgAttributes)")
+                let strokeWidth = CGFloat(2.0)
+                let strokeColor = UIColor.gray.cgColor
+
                 let layer = CAShapeLayer()
                 layer.path = path.cgPath
-                layer.fillColor = UIColor.blue.cgColor
-
-                let strokeWidth = CGFloat(2.0)
-                let strokeColor = UIColor.blue.cgColor
                 layer.lineWidth = strokeWidth
+                layer.fillColor = UIColor.blue.cgColor
                 layer.strokeColor = strokeColor
 
                 self.view.layer.addSublayer(layer)
