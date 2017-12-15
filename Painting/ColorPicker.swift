@@ -14,16 +14,16 @@ import UIKit
 class ColorPicker: UIView {
     var currentSelectionX: CGFloat = 0
     var selectedColor: UIColor!
-    var delegate: colorDelegate!
+    weak var delegate: colorDelegate?
 
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
         UIColor.black.set()
         var tempYPlace = self.currentSelectionX
-        if (tempYPlace < CGFloat (0.0)) {
+        if tempYPlace < CGFloat (0.0) {
             tempYPlace = CGFloat (0.0)
-        } else if (tempYPlace >= self.frame.size.width) {
+        }else if tempYPlace >= self.frame.size.width {
             tempYPlace = self.frame.size.width - 1.0
         }
         let temp = CGRect(x: 0.0, y: tempYPlace, width: 1.0, height: self.frame.size.height)
@@ -42,7 +42,7 @@ class ColorPicker: UIView {
 
     //Changes the selected color, updates the UI, and notifies the delegate.
     func selectedColor(sColor: UIColor) {
-        if (sColor != selectedColor) {
+        if sColor != selectedColor {
             var hue: CGFloat = 0
             var saturation: CGFloat = 0
             var brightness: CGFloat = 0
@@ -54,7 +54,7 @@ class ColorPicker: UIView {
 
             }
             selectedColor = sColor
-            self.delegate.pickedColor!(color: selectedColor)
+            self.delegate?.pickedColor!(color: selectedColor)
         }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -73,7 +73,7 @@ class ColorPicker: UIView {
     func updateColor(touch: UITouch) {
         currentSelectionX = (touch.location(in: self).x)
         selectedColor = UIColor(hue: (currentSelectionX / self.frame.size.width), saturation: 1.0, brightness: 1.0, alpha: 1.0)
-        self.delegate.pickedColor!(color: selectedColor)
+        self.delegate?.pickedColor!(color: selectedColor)
         self.setNeedsDisplay()
     }
 }
