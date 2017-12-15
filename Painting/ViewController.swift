@@ -19,15 +19,18 @@ class ViewController: UIViewController {
     var green: CGFloat = 0.0
     var blue: CGFloat = 0.0
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func colorsPicked(_ sender: AnyObject) {
+        if sender.tag == 0 {
+            (red, green, blue) = (1, 0, 0)
+        }else if sender.tag == 1 {
+            (red, green, blue) = (0, 0, 1)
+        }
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let paths = SVGBezierPath.pathsFromSVG(at: url)
         self.paths = paths
-
 //        showSVG()
         renderPaths()
 
@@ -80,7 +83,6 @@ class ViewController: UIViewController {
                 layer.path = path.cgPath
                 layer.lineWidth = strokeWidth
                 layer.strokeColor = strokeColor
-//                layer.fillColor = UIColor.blue.cgColor
                 layer.fillColor = UIColor(red: red, green: green, blue: blue, alpha: 1.0).cgColor
 
                 self.view.layer.addSublayer(layer)
@@ -90,11 +92,9 @@ class ViewController: UIViewController {
             }
         }
     }
-    @IBAction func colorsPicked(_ sender: AnyObject) {
-        if sender.tag == 0 {
-            (red, green, blue) = (1, 0, 0)
-        }else if sender.tag == 1 {
-            (red, green, blue) = (0, 0, 1)
-        }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 }
