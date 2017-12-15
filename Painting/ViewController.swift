@@ -14,13 +14,17 @@ class ViewController: UIViewController {
     var paths = [SVGBezierPath]()
     let url = Bundle.main.url(forResource: "chicken", withExtension: "svg")!
 
+    @IBOutlet weak var imageView: UIImageView!
+    var red: CGFloat = 0.0
+    var green: CGFloat = 0.0
+    var blue: CGFloat = 0.0
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
         let paths = SVGBezierPath.pathsFromSVG(at: url)
         self.paths = paths
 
@@ -75,14 +79,22 @@ class ViewController: UIViewController {
                 let layer = CAShapeLayer()
                 layer.path = path.cgPath
                 layer.lineWidth = strokeWidth
-                layer.fillColor = UIColor.blue.cgColor
                 layer.strokeColor = strokeColor
+//                layer.fillColor = UIColor.blue.cgColor
+                layer.fillColor = UIColor(red: red, green: green, blue: blue, alpha: 1.0).cgColor
 
                 self.view.layer.addSublayer(layer)
 
             } else {
                 print("ooops! taped on other position in view!!")
             }
+        }
+    }
+    @IBAction func colorsPicked(_ sender: AnyObject) {
+        if sender.tag == 0 {
+            (red, green, blue) = (1, 0, 0)
+        }else if sender.tag == 1 {
+            (red, green, blue) = (0, 0, 1)
         }
     }
 }
