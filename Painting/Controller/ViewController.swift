@@ -9,8 +9,10 @@
 import UIKit
 import PocketSVG
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, colorDelegate {
 
+    @IBOutlet weak var colorPicker: ColorPicker!
+    var pickedColor: UIColor = UIColor.black
     var paths = [SVGBezierPath]()
     let url = Bundle.main.url(forResource: "chicken", withExtension: "svg")!
 
@@ -31,13 +33,18 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         let paths = SVGBezierPath.pathsFromSVG(at: url)
         self.paths = paths
-//        showSVG()
+        colorPicker.delegate = self
         renderPaths()
+//        showSVG()
 
      // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
         // Catch layer by tap detection
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapDetected(tapRecognizer:)))
         self.view.addGestureRecognizer(tapRecognizer)
+    }
+
+    func pickedColor(color: UIColor) {
+        self.pickedColor = color
     }
 
     func showSVG() {
@@ -83,8 +90,8 @@ class ViewController: UIViewController {
                 layer.path = path.cgPath
                 layer.lineWidth = strokeWidth
                 layer.strokeColor = strokeColor
-                layer.fillColor = UIColor(red: red, green: green, blue: blue, alpha: 1.0).cgColor
-
+//                layer.fillColor = UIColor(red: red, green: green, blue: blue, alpha: 1.0).cgColor
+                layer.fillColor = pickedColor.cgColor
                 self.view.layer.addSublayer(layer)
 
             } else {
@@ -92,7 +99,6 @@ class ViewController: UIViewController {
             }
         }
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
