@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         self.paths = paths
 
 //        showSVG()
-        drawPaths()
+        renderPaths()
 
      // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
         // Catch layer by tap detection
@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         view.addSubview(svgImageView)
     }
 
-    func drawPaths() {
+    func renderPaths() {
         let strokeWidth = CGFloat(1.0)
         let strokeColor = UIColor.black.cgColor
 
