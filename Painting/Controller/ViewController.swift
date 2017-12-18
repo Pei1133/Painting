@@ -43,7 +43,7 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
      // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
         // Catch layer by tap detection
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapDetected(tapRecognizer:)))
-        self.view.addGestureRecognizer(tapRecognizer)
+        self.imageView.addGestureRecognizer(tapRecognizer)
     }
 
     func pickedColor(color: UIColor) {
@@ -62,21 +62,21 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
 
         for path in paths {
             let layer = CAShapeLayer()
+            
             layer.path = path.cgPath
             layer.lineWidth = strokeWidth
             layer.strokeColor = strokeColor
             layer.fillColor = UIColor.white.cgColor
-
-//            layer.frame = self.view.bounds
-//            print(layer.frame)
+//            layer.frame = self.imageView.bounds
 //            layer.contentsGravity = kCAGravityCenter
-            self.view.layer.addSublayer(layer)
+            self.imageView.layer.addSublayer(layer)
+            print(layer.bounds)
         }
     }
 
     // Step 2 :- Make "tapDetected" method
     @objc public func tapDetected(tapRecognizer: UITapGestureRecognizer) {
-        let tapLocation: CGPoint = tapRecognizer.location(in: self.view)
+        let tapLocation: CGPoint = tapRecognizer.location(in: self.imageView)
         self.hitTest(tapLocation: CGPoint(x: tapLocation.x, y: tapLocation.y))
     }
 
@@ -111,10 +111,11 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
         imageView.isUserInteractionEnabled = true
 
         // Set up ScrollView
-        scrollView = UIScrollView(frame: CGRect(x: 0.0, y: 0.0, width: view.bounds.width, height: view.bounds.height - 180))
-        scrollView.zoomScale = 1.0
-        scrollView.contentSize = imageView.bounds.size
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 375, height: 487))
+//        scrollView.contentSize = imageView.bounds.size
         scrollView.backgroundColor = UIColor.lightGray
+        scrollView.alwaysBounceVertical = true
+        scrollView.alwaysBounceHorizontal = true
 
         // Add subviews
         view.addSubview(scrollView)
@@ -122,38 +123,45 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
 
         // ZoomScale Setting
         scrollView.delegate = self
+        scrollView.setZoomScale(0.5, animated: false)
+//        scrollView.zoomScale = 0.5
+        scrollView.minimumZoomScale = 0.5
         scrollView.maximumZoomScale = 2.0
+        
 
     }
 
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
-    fileprivate func updateMinZoomScaleForSize(_ size: CGSize) {
-        let widthScale = size.width / imageView.bounds.width
-        let heightScale = size.height / imageView.bounds.height
 
-        let minScale = min(widthScale, heightScale)
-        scrollView.minimumZoomScale = minScale
-        scrollView.zoomScale = minScale
-    }
     override func viewWillLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        updateMinZoomScaleForSize(view.bounds.size)
-        scrollViewDidZoom(scrollView)
-    }
-    func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        let imageViewSize = imageView.frame.size
-        let scrollViewSize = scrollView.bounds.size
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
 
-        let verticalPadding = imageViewSize.height < scrollViewSize.height ? (scrollViewSize.height - imageViewSize.height) / 2 : 0
-        let horizontalPadding = imageViewSize.width < scrollViewSize.width ? (scrollViewSize.width - imageViewSize.width) / 2 : 0
+        // ScrollView
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150.0).isActive = true
 
-        scrollView.contentInset = UIEdgeInsets(top: verticalPadding, left: horizontalPadding, bottom: verticalPadding, right: horizontalPadding)
+        // ImageView
+        imageView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        imageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        imageView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        imageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+        imageView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor).isActive = true
+        
+        print("---------")
+        print(self.imageView.layer.frame)
+        print(self.scrollView.layer.frame)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
 }
