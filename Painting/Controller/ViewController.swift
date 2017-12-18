@@ -18,6 +18,7 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
 
     var scrollView: UIScrollView!
     var imageView = UIImageView()
+    var fullSize: CGSize!
 
 //    var red: CGFloat = 0.0
 //    var green: CGFloat = 0.0
@@ -33,6 +34,7 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        fullSize = UIScreen.main.bounds.size
         let paths = SVGBezierPath.pathsFromSVG(at: url)
         self.paths = paths
         colorPicker.delegate = self
@@ -62,13 +64,13 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
 
         for path in paths {
             let layer = CAShapeLayer()
-            
             layer.path = path.cgPath
             layer.lineWidth = strokeWidth
             layer.strokeColor = strokeColor
             layer.fillColor = UIColor.white.cgColor
+//            layer.transform = CATransform3DMakeScale(0.5, 0.5, 0.5)
 //            layer.frame = self.imageView.bounds
-//            layer.contentsGravity = kCAGravityCenter
+//            layer.contentsGravity = kCAGravityResizeAspect
             self.imageView.layer.addSublayer(layer)
             print(layer.bounds)
         }
@@ -93,12 +95,12 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
                 layer.path = path.cgPath
                 layer.lineWidth = strokeWidth
                 layer.strokeColor = strokeColor
+//                layer.transform = CATransform3DMakeScale(0.5, 0.5, 0.5)
 //                layer.fillColor = UIColor(red: red, green: green, blue: blue, alpha: 1.0).cgColor
                 layer.fillColor = pickedColor.cgColor
-//                self.view.layer.addSublayer(layer)
                 self.imageView.layer.addSublayer(layer)
             } else {
-                print("ooops! taped on other position in view!!")
+                print("no color!!")
             }
         }
     }
@@ -106,16 +108,19 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
     func setUpScrollViewAndImageView() {
 
         // Set up ImageView
-        imageView.image = UIImage(named: "icon_photo")
+//        imageView.image = UIImage(named: "icon_photo")
         imageView.contentMode = .center
         imageView.isUserInteractionEnabled = true
 
         // Set up ScrollView
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 375, height: 487))
 //        scrollView.contentSize = imageView.bounds.size
+//        scrollView.contentSize = CGSize(width: fullSize.width * 2, height: fullSize.height)
         scrollView.backgroundColor = UIColor.lightGray
         scrollView.alwaysBounceVertical = true
         scrollView.alwaysBounceHorizontal = true
+//        scrollView.contentMode = .scaleAspectFit
+//        scrollView.isScrollEnabled = false
 
         // Add subviews
         view.addSubview(scrollView)
@@ -123,12 +128,14 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
 
         // ZoomScale Setting
         scrollView.delegate = self
-        scrollView.setZoomScale(0.5, animated: false)
-//        scrollView.zoomScale = 0.5
+//        scrollView.setZoomScale(0.5, animated: false)
+        scrollView.zoomScale = 0.8
         scrollView.minimumZoomScale = 0.5
         scrollView.maximumZoomScale = 2.0
-        
 
+        print("---------")
+        print(imageView.frame.size.width)
+        print(scrollView.frame.size)
     }
 
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -153,10 +160,7 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
         imageView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         imageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         imageView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor).isActive = true
-        
-        print("---------")
-        print(self.imageView.layer.frame)
-        print(self.scrollView.layer.frame)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -164,4 +168,30 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+    func calculateScaleFactor() -> CGFloat {
+
+        let boundingBoxAspectRatio = scrollView.contentSize.width/scrollView.contentSize.height
+        let viewAspectRatio = self.view.bounds.width/(self.view.bounds.height - 110)
+
+        let scaleFactor: CGFloat
+        if boundingBoxAspectRatio > viewAspectRatio {
+            // Width is limiting factor
+            scaleFactor = self.view.bounds.width/scrollView.contentSize.width
+        } else {
+            // Height is limiting factor
+            scaleFactor = (self.view.bounds.height - 110)/scrollView.contentSize.height
+        }
+
+        return scaleFactor
+
+        //        let scaleFactor = transformRatio()
+        //
+        //        var affineTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+        //
+        //        let transformedPath = (path.cgPath).copy(using: &affineTransform)
+        //
+        //        let layer = CAShapeLayer()
+        //        layer.path = transformedPath
+
+    }
 }
