@@ -68,18 +68,18 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
             layer.lineWidth = strokeWidth
             layer.strokeColor = strokeColor
             layer.fillColor = UIColor.white.cgColor
-//            layer.transform = CATransform3DMakeScale(0.5, 0.5, 0.5)
+            layer.transform = CATransform3DMakeScale(0.5, 0.5, 0.5)
 //            layer.frame = self.imageView.bounds
 //            layer.contentsGravity = kCAGravityResizeAspect
             self.imageView.layer.addSublayer(layer)
-            print(layer.bounds)
+            print(layer.frame)
         }
     }
 
     // Step 2 :- Make "tapDetected" method
     @objc public func tapDetected(tapRecognizer: UITapGestureRecognizer) {
         let tapLocation: CGPoint = tapRecognizer.location(in: self.imageView)
-        self.hitTest(tapLocation: CGPoint(x: tapLocation.x, y: tapLocation.y))
+        self.hitTest(tapLocation: CGPoint(x: (tapLocation.x * 2), y: (tapLocation.y * 2)))
     }
 
     // Step 3 :- Make "hitTest" final method
@@ -95,12 +95,12 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
                 layer.path = path.cgPath
                 layer.lineWidth = strokeWidth
                 layer.strokeColor = strokeColor
-//                layer.transform = CATransform3DMakeScale(0.5, 0.5, 0.5)
+                layer.transform = CATransform3DMakeScale(0.5, 0.5, 0.5)
 //                layer.fillColor = UIColor(red: red, green: green, blue: blue, alpha: 1.0).cgColor
                 layer.fillColor = pickedColor.cgColor
                 self.imageView.layer.addSublayer(layer)
             } else {
-                print("no color!!")
+                print("no color!")
             }
         }
     }
@@ -115,7 +115,6 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
         // Set up ScrollView
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 375, height: 487))
 //        scrollView.contentSize = imageView.bounds.size
-//        scrollView.contentSize = CGSize(width: fullSize.width * 2, height: fullSize.height)
         scrollView.backgroundColor = UIColor.lightGray
         scrollView.alwaysBounceVertical = true
         scrollView.alwaysBounceHorizontal = true
@@ -131,11 +130,11 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
 //        scrollView.setZoomScale(0.5, animated: false)
         scrollView.zoomScale = 0.8
         scrollView.minimumZoomScale = 0.5
-        scrollView.maximumZoomScale = 2.0
+        scrollView.maximumZoomScale = 3.0
 
         print("---------")
-        print(imageView.frame.size.width)
-        print(scrollView.frame.size)
+        print(imageView.layer.frame)
+        print(scrollView.frame)
     }
 
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
