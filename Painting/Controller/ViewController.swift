@@ -14,7 +14,7 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
     @IBOutlet weak var colorPicker: ColorPicker!
     var pickedColor: UIColor = UIColor.black
     var paths = [SVGBezierPath]()
-    let url = Bundle.main.url(forResource: "hat", withExtension: "svg")!
+    let url = Bundle.main.url(forResource: "chicken", withExtension: "svg")!
 
     var scrollView: UIScrollView!
     var imageView = UIImageView()
@@ -38,9 +38,9 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
         let paths = SVGBezierPath.pathsFromSVG(at: url)
         self.paths = paths
         colorPicker.delegate = self
+        setUpScrollViewAndImageView()
         renderPaths()
 //        showSVG()
-        setUpScrollViewAndImageView()
 
      // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
         // Catch layer by tap detection
@@ -54,8 +54,11 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
 
     func showSVG() {
         let svgImageView = SVGImageView.init(contentsOf: url)
+//        svgImageView.frame = svgImageView.bounds
         svgImageView.frame = self.view.bounds
         view.addSubview(svgImageView)
+        print("svgImageView.bounds:\(svgImageView.bounds)")
+        print("svgImageView.frame:\(svgImageView.frame)")
     }
 
     func renderPaths() {
@@ -72,6 +75,8 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
 //            layer.frame = self.imageView.bounds
 //            layer.contentsGravity = kCAGravityResizeAspect
             self.imageView.layer.addSublayer(layer)
+            print("renderimageView.bounds:\(self.imageView.bounds)")
+            print("renderimageView.frame:\(self.imageView.frame)")
         }
     }
 
@@ -99,9 +104,6 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
 //                layer.fillColor = UIColor(red: red, green: green, blue: blue, alpha: 1.0).cgColor
                 layer.fillColor = pickedColor.cgColor
                 self.imageView.layer.addSublayer(layer)
-                print("---------")
-                print("imageView.bounds:\(self.imageView.bounds)")
-                print("imageView.frame:\(self.imageView.frame)")
             } else {
                 print("no color!")
             }
