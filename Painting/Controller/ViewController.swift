@@ -14,7 +14,7 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
     @IBOutlet weak var colorPicker: ColorPicker!
     var pickedColor: UIColor = UIColor.black
     var paths = [SVGBezierPath]()
-    let url = Bundle.main.url(forResource: "hat", withExtension: "svg")!
+    let url = Bundle.main.url(forResource: "chicken", withExtension: "svg")!
 
     var scrollView = UIScrollView()
     var imageView = UIImageView()
@@ -33,6 +33,7 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
 //    }
 
     override func viewDidLoad() {
+
         super.viewDidLoad()
         let paths = SVGBezierPath.pathsFromSVG(at: url)
         self.paths = paths
@@ -45,26 +46,32 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
         // Catch layer by tap detection
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapDetected(tapRecognizer:)))
         self.imageView.addGestureRecognizer(tapRecognizer)
+
     }
 
     func pickedColor(color: UIColor) {
+
         self.pickedColor = color
     }
 
     func showSVG() {
+
         let svgImageView = SVGImageView.init(contentsOf: url)
 //        svgImageView.frame = svgImageView.bounds
         svgImageView.frame = self.view.bounds
         view.addSubview(svgImageView)
         print("svgImageView.bounds:\(svgImageView.bounds)")
         print("svgImageView.frame:\(svgImageView.frame)")
+
     }
 
     func renderPaths() {
+
         let strokeWidth = CGFloat(1.0)
         let strokeColor = UIColor.black.cgColor
 
         for path in paths {
+
             let layer = CAShapeLayer()
             self.calculatePictureBounds(rect: path.cgPath.boundingBox)
             layer.path = path.cgPath
@@ -72,32 +79,39 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
             layer.strokeColor = strokeColor
             layer.fillColor = UIColor.white.cgColor
 //            layer.transform = CATransform3DMakeScale(0.5, 0.5, 0.5)
-//            layer.frame = self.imageView.bounds
 //            layer.contentsGravity = kCAGravityResizeAspect
             self.imageView.layer.addSublayer(layer)
+
         }
+
     }
 
     func calculatePictureBounds(rect: CGRect) {
+
         let maxX = rect.maxX
         let maxY = rect.maxY
 
         self.pictureSize.width = self.pictureSize.width > maxX ? self.pictureSize.width: maxX
         self.pictureSize.height = self.pictureSize.height > maxY ? self.pictureSize.height : maxY
+
     }
 
     // Step 2 :- Make "tapDetected" method
     @objc public func tapDetected(tapRecognizer: UITapGestureRecognizer) {
+
         let tapLocation: CGPoint = tapRecognizer.location(in: self.imageView)
-//        self.hitTest(tapLocation: CGPoint(x: (tapLocation.x * 2), y: (tapLocation.y * 2)))
         self.hitTest(tapLocation: CGPoint(x: (tapLocation.x), y: (tapLocation.y)))
+//        self.hitTest(tapLocation: CGPoint(x: (tapLocation.x * 2), y: (tapLocation.y * 2)))
+
     }
 
     // Step 3 :- Make "hitTest" final method
     private func hitTest(tapLocation: CGPoint) {
 
         for path in paths {
+
             if path.contains(tapLocation) {
+
 //                print("I am in \(path.svgAttributes)")
                 let strokeWidth = CGFloat(2.0)
                 let strokeColor = UIColor.gray.cgColor
@@ -110,8 +124,11 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
 //                layer.fillColor = UIColor(red: red, green: green, blue: blue, alpha: 1.0).cgColor
                 layer.fillColor = pickedColor.cgColor
                 self.imageView.layer.addSublayer(layer)
+
             } else {
+
                 print("no color!")
+
             }
         }
     }
@@ -144,9 +161,11 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
         print("imageView.frame:\(self.imageView.frame)")
         print("scrollView.bounds:\(self.scrollView.bounds)")
         print("scrollView.frame:\(self.scrollView.frame)")
+
     }
 
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+
         return imageView
     }
 
@@ -171,21 +190,29 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
 
 //    }
 
+    // 為了讓圖片縮小填滿且有Aspect Fit
     fileprivate func updateMinZoomScaleForSize(_ size: CGSize) {
+
         let widthScale = size.width / imageView.bounds.width
         let heightScale = size.height / imageView.bounds.height
 
         let minScale = min(widthScale, heightScale)
         scrollView.minimumZoomScale = minScale
         scrollView.zoomScale = minScale
+
     }
 
+    // 呼叫updateMinZoomScaleForSize
     override func viewWillLayoutSubviews() {
+
         super.viewDidLayoutSubviews()
         updateMinZoomScaleForSize(view.bounds.size)
+
     }
 
+    // 讓圖片置中,每次縮放之後會被呼叫
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
+
         let imageViewSize = imageView.frame.size
         let scrollViewSize = scrollView.bounds.size
 
@@ -193,13 +220,14 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
         let horizontalPadding = imageViewSize.width < scrollViewSize.width ? (scrollViewSize.width - imageViewSize.width) / 2 : 0
 
         scrollView.contentInset = UIEdgeInsets(top: verticalPadding, left: horizontalPadding, bottom: verticalPadding, right: horizontalPadding)
+
     }
 
     override func didReceiveMemoryWarning() {
+
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
     func calculateScaleFactor() -> CGFloat {
 
