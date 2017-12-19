@@ -9,13 +9,14 @@
 /* Begin PBXBuildFile section */
 		9247765BA685684EFFE5F75D /* Pods_Painting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76721B4B1CCB252FA8ED0565 /* Pods_Painting.framework */; };
 		AB1E41CC1FE3CB7E00D3B4B8 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */; };
-		AB8EC82C1FE90C2500C19F60 /* LibraryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC82A1FE90C2500C19F60 /* LibraryCollectionViewController.swift */; };
-		AB8EC82D1FE90C2500C19F60 /* LibraryCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8EC82B1FE90C2500C19F60 /* LibraryCollectionViewController.xib */; };
+		AB8EC82F1FE90D4C00C19F60 /* LibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC82E1FE90D4C00C19F60 /* LibraryCollectionViewCell.swift */; };
+		AB8EC8321FE90D9B00C19F60 /* LibraryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC8311FE90D9B00C19F60 /* LibraryCollectionViewController.swift */; };
 		AB9FA58E1FE2A99300055C50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */; };
 		AB9FA5901FE2A99300055C50 /* PaintingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9FA58F1FE2A99300055C50 /* PaintingViewController.swift */; };
 		AB9FA5931FE2A99300055C50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9FA5911FE2A99300055C50 /* Main.storyboard */; };
 		AB9FA5951FE2A99300055C50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9FA5941FE2A99300055C50 /* Assets.xcassets */; };
 		AB9FA5981FE2A99300055C50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9FA5961FE2A99300055C50 /* LaunchScreen.storyboard */; };
+		ABBAF1C91FE90F7200676426 /* LibraryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABBAF1C81FE90F7200676426 /* LibraryCollectionViewCell.xib */; };
 		ABF8F5A71FE2AF4D00117AB8 /* chicken.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */; };
 		ABF8F5A91FE2AF5C00117AB8 /* cloud.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */; };
 		ABF8F5AB1FE2AF6800117AB8 /* hat.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5AA1FE2AF6800117AB8 /* hat.svg */; };
@@ -26,8 +27,8 @@
 		76721B4B1CCB252FA8ED0565 /* Pods_Painting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Painting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C76A4F43C507D2665D62989 /* Pods-Painting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Painting.release.xcconfig"; path = "Pods/Target Support Files/Pods-Painting/Pods-Painting.release.xcconfig"; sourceTree = "<group>"; };
 		AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
-		AB8EC82A1FE90C2500C19F60 /* LibraryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewController.swift; sourceTree = "<group>"; };
-		AB8EC82B1FE90C2500C19F60 /* LibraryCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryCollectionViewController.xib; sourceTree = "<group>"; };
+		AB8EC82E1FE90D4C00C19F60 /* LibraryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewCell.swift; sourceTree = "<group>"; };
+		AB8EC8311FE90D9B00C19F60 /* LibraryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewController.swift; sourceTree = "<group>"; };
 		AB9FA58A1FE2A99300055C50 /* Painting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Painting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB9FA58F1FE2A99300055C50 /* PaintingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintingViewController.swift; sourceTree = "<group>"; };
@@ -35,6 +36,7 @@
 		AB9FA5941FE2A99300055C50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB9FA5971FE2A99300055C50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB9FA5991FE2A99300055C50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABBAF1C81FE90F7200676426 /* LibraryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryCollectionViewCell.xib; sourceTree = "<group>"; };
 		ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = chicken.svg; sourceTree = "<group>"; };
 		ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cloud.svg; sourceTree = "<group>"; };
 		ABF8F5AA1FE2AF6800117AB8 /* hat.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = hat.svg; sourceTree = "<group>"; };
@@ -63,8 +65,9 @@
 		AB1E41CD1FE3CC3200D3B4B8 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				AB8EC82A1FE90C2500C19F60 /* LibraryCollectionViewController.swift */,
-				AB8EC82B1FE90C2500C19F60 /* LibraryCollectionViewController.xib */,
+				AB8EC8311FE90D9B00C19F60 /* LibraryCollectionViewController.swift */,
+				AB8EC82E1FE90D4C00C19F60 /* LibraryCollectionViewCell.swift */,
+				ABBAF1C81FE90F7200676426 /* LibraryCollectionViewCell.xib */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -193,12 +196,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB8EC82D1FE90C2500C19F60 /* LibraryCollectionViewController.xib in Resources */,
 				ABF8F5AB1FE2AF6800117AB8 /* hat.svg in Resources */,
 				AB9FA5981FE2A99300055C50 /* LaunchScreen.storyboard in Resources */,
 				AB9FA5951FE2A99300055C50 /* Assets.xcassets in Resources */,
 				ABF8F5A71FE2AF4D00117AB8 /* chicken.svg in Resources */,
 				AB9FA5931FE2A99300055C50 /* Main.storyboard in Resources */,
+				ABBAF1C91FE90F7200676426 /* LibraryCollectionViewCell.xib in Resources */,
 				ABF8F5A91FE2AF5C00117AB8 /* cloud.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,8 +280,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB8EC82C1FE90C2500C19F60 /* LibraryCollectionViewController.swift in Sources */,
+				AB8EC82F1FE90D4C00C19F60 /* LibraryCollectionViewCell.swift in Sources */,
 				AB9FA5901FE2A99300055C50 /* PaintingViewController.swift in Sources */,
+				AB8EC8321FE90D9B00C19F60 /* LibraryCollectionViewController.swift in Sources */,
 				AB9FA58E1FE2A99300055C50 /* AppDelegate.swift in Sources */,
 				AB1E41CC1FE3CB7E00D3B4B8 /* ColorPicker.swift in Sources */,
 			);
