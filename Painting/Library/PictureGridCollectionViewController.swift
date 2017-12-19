@@ -1,5 +1,5 @@
 //
-//  LibraryCollectionViewController.swift
+//  PictureGridCollectionViewController.swift
 //  Painting
 //
 //  Created by 黃珮鈞 on 2017/12/19.
@@ -10,7 +10,7 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class LibraryCollectionViewController: UICollectionViewController {
+class PictureGridCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

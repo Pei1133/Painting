@@ -1,5 +1,5 @@
 //
-//  LibraryCollectionViewCell.swift
+//  PictureGridCollectionViewCell.swift
 //  Painting
 //
 //  Created by 黃珮鈞 on 2017/12/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LibraryCollectionViewCell: UICollectionViewCell {
+class PictureGridCollectionViewCell: UICollectionViewCell {
 
     // MARK: Property
 
