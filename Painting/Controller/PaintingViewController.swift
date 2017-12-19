@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PaintingViewController.swift
 //  Painting
 //
 //  Created by 黃珮鈞 on 2017/12/14.
@@ -9,7 +9,7 @@
 import UIKit
 import PocketSVG
 
-class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
+class PaintingViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
 
     @IBOutlet weak var colorPicker: ColorPicker!
     var pickedColor: UIColor = UIColor.black
@@ -44,7 +44,7 @@ class ViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
 
      // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
         // Catch layer by tap detection
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapDetected(tapRecognizer:)))
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(PaintingViewController.tapDetected(tapRecognizer:)))
         self.imageView.addGestureRecognizer(tapRecognizer)
 
     }
