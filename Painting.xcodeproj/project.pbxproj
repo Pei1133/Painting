@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9247765BA685684EFFE5F75D /* Pods_Painting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76721B4B1CCB252FA8ED0565 /* Pods_Painting.framework */; };
 		AB1E41CC1FE3CB7E00D3B4B8 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */; };
+		AB8EC82C1FE90C2500C19F60 /* LibraryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC82A1FE90C2500C19F60 /* LibraryCollectionViewController.swift */; };
+		AB8EC82D1FE90C2500C19F60 /* LibraryCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8EC82B1FE90C2500C19F60 /* LibraryCollectionViewController.xib */; };
 		AB9FA58E1FE2A99300055C50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */; };
 		AB9FA5901FE2A99300055C50 /* PaintingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9FA58F1FE2A99300055C50 /* PaintingViewController.swift */; };
 		AB9FA5931FE2A99300055C50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9FA5911FE2A99300055C50 /* Main.storyboard */; };
@@ -24,6 +26,8 @@
 		76721B4B1CCB252FA8ED0565 /* Pods_Painting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Painting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C76A4F43C507D2665D62989 /* Pods-Painting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Painting.release.xcconfig"; path = "Pods/Target Support Files/Pods-Painting/Pods-Painting.release.xcconfig"; sourceTree = "<group>"; };
 		AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
+		AB8EC82A1FE90C2500C19F60 /* LibraryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewController.swift; sourceTree = "<group>"; };
+		AB8EC82B1FE90C2500C19F60 /* LibraryCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryCollectionViewController.xib; sourceTree = "<group>"; };
 		AB9FA58A1FE2A99300055C50 /* Painting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Painting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB9FA58F1FE2A99300055C50 /* PaintingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintingViewController.swift; sourceTree = "<group>"; };
@@ -56,12 +60,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		AB1E41CD1FE3CC3200D3B4B8 /* Controller */ = {
+		AB1E41CD1FE3CC3200D3B4B8 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				AB9FA58F1FE2A99300055C50 /* PaintingViewController.swift */,
+				AB8EC82A1FE90C2500C19F60 /* LibraryCollectionViewController.swift */,
+				AB8EC82B1FE90C2500C19F60 /* LibraryCollectionViewController.xib */,
 			);
-			path = Controller;
+			path = Library;
 			sourceTree = "<group>";
 		};
 		AB1E41CE1FE3CC6000D3B4B8 /* SVG */ = {
@@ -72,6 +77,15 @@
 				ABF8F5AA1FE2AF6800117AB8 /* hat.svg */,
 			);
 			path = SVG;
+			sourceTree = "<group>";
+		};
+		AB8EC8291FE90BAF00C19F60 /* Painting */ = {
+			isa = PBXGroup;
+			children = (
+				AB9FA58F1FE2A99300055C50 /* PaintingViewController.swift */,
+				AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */,
+			);
+			path = Painting;
 			sourceTree = "<group>";
 		};
 		AB9FA5811FE2A99300055C50 = {
@@ -95,11 +109,11 @@
 		AB9FA58C1FE2A99300055C50 /* Painting */ = {
 			isa = PBXGroup;
 			children = (
-				AB1E41CD1FE3CC3200D3B4B8 /* Controller */,
+				AB1E41CD1FE3CC3200D3B4B8 /* Library */,
+				AB8EC8291FE90BAF00C19F60 /* Painting */,
 				AB1E41CE1FE3CC6000D3B4B8 /* SVG */,
 				AB9FA5941FE2A99300055C50 /* Assets.xcassets */,
 				AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */,
-				AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */,
 				AB9FA5911FE2A99300055C50 /* Main.storyboard */,
 				AB9FA5961FE2A99300055C50 /* LaunchScreen.storyboard */,
 				AB9FA5991FE2A99300055C50 /* Info.plist */,
@@ -179,6 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB8EC82D1FE90C2500C19F60 /* LibraryCollectionViewController.xib in Resources */,
 				ABF8F5AB1FE2AF6800117AB8 /* hat.svg in Resources */,
 				AB9FA5981FE2A99300055C50 /* LaunchScreen.storyboard in Resources */,
 				AB9FA5951FE2A99300055C50 /* Assets.xcassets in Resources */,
@@ -262,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB8EC82C1FE90C2500C19F60 /* LibraryCollectionViewController.swift in Sources */,
 				AB9FA5901FE2A99300055C50 /* PaintingViewController.swift in Sources */,
 				AB9FA58E1FE2A99300055C50 /* AppDelegate.swift in Sources */,
 				AB1E41CC1FE3CB7E00D3B4B8 /* ColorPicker.swift in Sources */,
