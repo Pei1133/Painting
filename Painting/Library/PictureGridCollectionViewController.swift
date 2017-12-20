@@ -21,6 +21,8 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         super.viewDidLoad()
 
+        collectionView?.allowsSelection = true
+
         fullScreenSize = UIScreen.main.bounds.size
 
         setUpCollectionView()
@@ -75,36 +77,35 @@ class PictureGridCollectionViewController: UICollectionViewController {
             return PictureGridCollectionViewCell() }
 
         let picture = pictures[indexPath.row]
+
         let url = picture.imageURL
+
         let svgImageView = SVGImageView.init(contentsOf: url)
+
 //        cell.previewImageView.image = svgImageView.
 
         return cell
+
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        let picture = pictures[indexPath.row]
+
+        let name = picture.name
+
+        let url = picture.imageURL
+
+        let paintingViewController = PaintingViewController(name: name, url: url)
+
+        self.present(paintingViewController, animated: true, completion: nil)
+
+//        self.navigationController?.pushViewController(paintingViewController, animated: true)
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
-//    // UICollectionViewDelegateFlowLayout
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: 154, height: 160)
-//    }
-//
-//    // 设置每一个cell的列间距
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 5.0
-//    }
-//
-//    // 设置每一个cell最小行间距
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 5.0
-//    }
-//
-//     // 设置cell和视图边的间距
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//
-//        return UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5) // margin between cells
-//    }
 }

@@ -14,11 +14,24 @@ class PaintingViewController: UIViewController, colorDelegate, UIScrollViewDeleg
     @IBOutlet weak var colorPicker: ColorPicker!
     var pickedColor: UIColor = UIColor.black
     var paths = [SVGBezierPath]()
-    let url = Bundle.main.url(forResource: "chicken", withExtension: "svg")!
+
+    var name: String
+    var url: URL
+//    let url = Bundle.main.url(forResource: "chicken", withExtension: "svg")!
 
     var scrollView = UIScrollView()
     var imageView = UIImageView()
     var pictureSize = CGSize.zero
+
+    init(name: String, url: URL) {
+        self.name = name
+        self.url = url
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
 //    var red: CGFloat = 0.0
 //    var green: CGFloat = 0.0
@@ -35,9 +48,10 @@ class PaintingViewController: UIViewController, colorDelegate, UIScrollViewDeleg
     override func viewDidLoad() {
 
         super.viewDidLoad()
+        
         let paths = SVGBezierPath.pathsFromSVG(at: url)
         self.paths = paths
-        colorPicker.delegate = self
+//        colorPicker.delegate = self
         renderPaths()
         setUpScrollViewAndImageView()
 //        showSVG()
@@ -55,7 +69,7 @@ class PaintingViewController: UIViewController, colorDelegate, UIScrollViewDeleg
     }
 
     func showSVG() {
-
+        
         let svgImageView = SVGImageView.init(contentsOf: url)
         svgImageView.frame = self.view.bounds
         view.addSubview(svgImageView)

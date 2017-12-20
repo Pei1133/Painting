@@ -15,21 +15,21 @@ public struct Picture {
     // MARK: Property
 
     public let name: String
-    
+
     public let imageURL: URL
 
 //    public let creatorID: ProductID
-    
+
     // MARK: Init
-    
+
     public init(
         name: String
     ) {
-        
+
         self.name = name
-        
-        self.imageURL = Bundle.main.url(forResource: "name", withExtension: "svg")!
-        
+
+        self.imageURL = Bundle.main.url(forResource: "\(name)", withExtension: "svg")!
+
     }
 
 }
@@ -41,5 +41,3 @@ public let pictures = [
     Picture(name: "sketch"),
     Picture(name: "snowman")
 ]
-
-
