@@ -17,6 +17,8 @@
 		AB9FA5951FE2A99300055C50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9FA5941FE2A99300055C50 /* Assets.xcassets */; };
 		AB9FA5981FE2A99300055C50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9FA5961FE2A99300055C50 /* LaunchScreen.storyboard */; };
 		ABBAF1C91FE90F7200676426 /* PictureGridCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABBAF1C81FE90F7200676426 /* PictureGridCollectionViewCell.xib */; };
+		ABBAF1CB1FE9186800676426 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBAF1CA1FE9186800676426 /* Picture.swift */; };
+		ABBAF1CD1FE95A2100676426 /* TestCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBAF1CC1FE95A2100676426 /* TestCollectionViewController.swift */; };
 		ABF8F5A71FE2AF4D00117AB8 /* chicken.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */; };
 		ABF8F5A91FE2AF5C00117AB8 /* cloud.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */; };
 		ABF8F5AB1FE2AF6800117AB8 /* hat.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5AA1FE2AF6800117AB8 /* hat.svg */; };
@@ -37,6 +39,8 @@
 		AB9FA5971FE2A99300055C50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB9FA5991FE2A99300055C50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABBAF1C81FE90F7200676426 /* PictureGridCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PictureGridCollectionViewCell.xib; sourceTree = "<group>"; };
+		ABBAF1CA1FE9186800676426 /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
+		ABBAF1CC1FE95A2100676426 /* TestCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewController.swift; sourceTree = "<group>"; };
 		ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = chicken.svg; sourceTree = "<group>"; };
 		ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cloud.svg; sourceTree = "<group>"; };
 		ABF8F5AA1FE2AF6800117AB8 /* hat.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = hat.svg; sourceTree = "<group>"; };
@@ -65,6 +69,7 @@
 		AB1E41CD1FE3CC3200D3B4B8 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				ABBAF1CA1FE9186800676426 /* Picture.swift */,
 				AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */,
 				AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */,
 				ABBAF1C81FE90F7200676426 /* PictureGridCollectionViewCell.xib */,
@@ -112,14 +117,15 @@
 		AB9FA58C1FE2A99300055C50 /* Painting */ = {
 			isa = PBXGroup;
 			children = (
+				AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */,
 				AB1E41CD1FE3CC3200D3B4B8 /* Library */,
 				AB8EC8291FE90BAF00C19F60 /* Painting */,
 				AB1E41CE1FE3CC6000D3B4B8 /* SVG */,
 				AB9FA5941FE2A99300055C50 /* Assets.xcassets */,
-				AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */,
 				AB9FA5911FE2A99300055C50 /* Main.storyboard */,
 				AB9FA5961FE2A99300055C50 /* LaunchScreen.storyboard */,
 				AB9FA5991FE2A99300055C50 /* Info.plist */,
+				ABBAF1CC1FE95A2100676426 /* TestCollectionViewController.swift */,
 			);
 			path = Painting;
 			sourceTree = "<group>";
@@ -280,11 +286,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABBAF1CB1FE9186800676426 /* Picture.swift in Sources */,
 				AB8EC82F1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift in Sources */,
 				AB9FA5901FE2A99300055C50 /* PaintingViewController.swift in Sources */,
 				AB8EC8321FE90D9B00C19F60 /* PictureGridCollectionViewController.swift in Sources */,
 				AB9FA58E1FE2A99300055C50 /* AppDelegate.swift in Sources */,
 				AB1E41CC1FE3CB7E00D3B4B8 /* ColorPicker.swift in Sources */,
+				ABBAF1CD1FE95A2100676426 /* TestCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
