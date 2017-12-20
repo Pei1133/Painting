@@ -8,29 +8,43 @@
 
 import UIKit
 
-class PictureGridCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class PictureGridCollectionViewController: UICollectionViewController {
 
     var fullScreenSize: CGSize!
 
-    var flowLayout: UICollectionViewFlowLayout?
+    var flowLayout = UICollectionViewFlowLayout()
 
     private let reuseIdentifier = "PictureGridCollectionViewCell"
 
     override func viewDidLoad() {
 
         super.viewDidLoad()
-
-        self.collectionView?.backgroundColor = UIColor.yellow
-
-        self.flowLayout = UICollectionViewFlowLayout()
+//        self.flowLayout = UICollectionViewFlowLayout()
 
         fullScreenSize = UIScreen.main.bounds.size
 
 //        setUpLayout()
+        flowLayout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        flowLayout.minimumLineSpacing = 5
+
+        flowLayout.itemSize = CGSize(width: CGFloat(fullScreenSize.width)/3 - 10.0, height: CGFloat(fullScreenSize.width)/3 - 10.0)
+
+        flowLayout.headerReferenceSize = CGSize(
+            width: fullScreenSize.width, height: 40)
+        flowLayout.footerReferenceSize = CGSize(
+            width: fullScreenSize.width, height: 40)
+        print(collectionView?.frame)
+
+        self.collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 200, height: 200), collectionViewLayout: flowLayout)
+
+        print(collectionView?.frame)
+
+        self.collectionView?.backgroundColor = UIColor.yellow
 
         // Register cell
         let nib = UINib(nibName: "PictureGridCollectionViewCell", bundle: nil)
         self.collectionView?.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,11 +59,16 @@ class PictureGridCollectionViewController: UICollectionViewController, UICollect
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
-    }
 
+        return 6
+
+    }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PictureGridCollectionViewCell else { return PictureGridCollectionViewCell() }
+
+        print("+++++")
+
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PictureGridCollectionViewCell else {
+            return PictureGridCollectionViewCell() }
 
         cell.previewImageView.backgroundColor = UIColor.red
 
@@ -57,6 +76,7 @@ class PictureGridCollectionViewController: UICollectionViewController, UICollect
     }
 
     // UICollectionViewDelegateFlowLayout
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 154, height: 160)
     }
@@ -73,8 +93,7 @@ class PictureGridCollectionViewController: UICollectionViewController, UICollect
 
      // 设置cell和视图边的间距
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        //        let frame : CGRect = self.view.frame
-        //        let margin  = (frame.width - 90 * 3) / 6.0
+
         return UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5) // margin between cells
     }
 
