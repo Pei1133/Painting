@@ -10,46 +10,53 @@ import UIKit
 
 class PictureGridCollectionViewController: UICollectionViewController {
 
-    var fullScreenSize: CGSize!
+    private let reuseIdentifier = "Cell"
+
+    var fullScreenSize = CGSize()
 
     var flowLayout = UICollectionViewFlowLayout()
-
-    private let reuseIdentifier = "PictureGridCollectionViewCell"
 
     override func viewDidLoad() {
 
         super.viewDidLoad()
-//        self.flowLayout = UICollectionViewFlowLayout()
 
         fullScreenSize = UIScreen.main.bounds.size
 
-//        setUpLayout()
-        flowLayout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        flowLayout.minimumLineSpacing = 5
+        setUpCollectionView()
 
-        flowLayout.itemSize = CGSize(width: CGFloat(fullScreenSize.width)/3 - 10.0, height: CGFloat(fullScreenSize.width)/3 - 10.0)
+        setUpLayout()
 
-        flowLayout.headerReferenceSize = CGSize(
-            width: fullScreenSize.width, height: 40)
-        flowLayout.footerReferenceSize = CGSize(
-            width: fullScreenSize.width, height: 40)
-        print(collectionView?.frame)
+    }
 
-        self.collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 200, height: 200), collectionViewLayout: flowLayout)
+    func setUpCollectionView() {
 
-        print(collectionView?.frame)
+        self.collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: flowLayout)
 
-        self.collectionView?.backgroundColor = UIColor.yellow
+        self.collectionView?.backgroundColor = UIColor.lightGray
 
         // Register cell
         let nib = UINib(nibName: "PictureGridCollectionViewCell", bundle: nil)
+
         self.collectionView?.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
 
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func setUpLayout() {
+
+        // 設置 section 的間距 四個數值分別代表 上、左、下、右 的間距
+        flowLayout.sectionInset = UIEdgeInsets(top: 35, left: 15, bottom: 5, right: 15)
+
+        // 設置每個 cell 的尺寸
+        flowLayout.itemSize = CGSize(width: CGFloat(fullScreenSize.width)/2 - 20, height: CGFloat(fullScreenSize.width)/2 - 20)
+        print(flowLayout.itemSize)
+
+        // 設置每一行的間距
+        //        flowLayout.minimumLineSpacing = 25
+
+        // 設置 header 及 footer 的尺寸
+//        flowLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: 40)
+//        flowLayout.footerReferenceSize = CGSize(width: fullScreenSize.width, height: 40)
+
     }
 
     // MARK: UICollectionViewDataSource
@@ -59,54 +66,42 @@ class PictureGridCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
         return 6
-
     }
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        print("+++++")
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PictureGridCollectionViewCell else {
             return PictureGridCollectionViewCell() }
 
-        cell.previewImageView.backgroundColor = UIColor.red
+        cell.previewImageView.backgroundColor = UIColor.white
 
         return cell
     }
 
-    // UICollectionViewDelegateFlowLayout
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 154, height: 160)
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
 
-    // 设置每一个cell的列间距
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 5.0
-    }
-
-    // 设置每一个cell最小行间距
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 5.0
-    }
-
-     // 设置cell和视图边的间距
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-
-        return UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5) // margin between cells
-    }
-
-    func setUpLayout() {
-        let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        layout.minimumLineSpacing = 5
-
-        layout.itemSize = CGSize(width: CGFloat(fullScreenSize.width)/3 - 10.0, height: CGFloat(fullScreenSize.width)/3 - 10.0)
-
-        layout.headerReferenceSize = CGSize(
-            width: fullScreenSize.width, height: 40)
-        layout.footerReferenceSize = CGSize(
-            width: fullScreenSize.width, height: 40)
-    }
+//    // UICollectionViewDelegateFlowLayout
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: 154, height: 160)
+//    }
+//
+//    // 设置每一个cell的列间距
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return 5.0
+//    }
+//
+//    // 设置每一个cell最小行间距
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 5.0
+//    }
+//
+//     // 设置cell和视图边的间距
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//
+//        return UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5) // margin between cells
+//    }
 }
