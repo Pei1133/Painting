@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PocketSVG
 
 class PictureGridCollectionViewController: UICollectionViewController {
 
@@ -48,10 +49,9 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         // 設置每個 cell 的尺寸
         flowLayout.itemSize = CGSize(width: CGFloat(fullScreenSize.width)/2 - 20, height: CGFloat(fullScreenSize.width)/2 - 20)
-        print(flowLayout.itemSize)
 
         // 設置每一行的間距
-        //        flowLayout.minimumLineSpacing = 25
+//        flowLayout.minimumLineSpacing = 25
 
         // 設置 header 及 footer 的尺寸
 //        flowLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: 40)
@@ -66,7 +66,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return pictures.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -74,7 +74,10 @@ class PictureGridCollectionViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PictureGridCollectionViewCell else {
             return PictureGridCollectionViewCell() }
 
-        cell.previewImageView.backgroundColor = UIColor.white
+        let picture = pictures[indexPath.row]
+        let url = picture.imageURL
+        let svgImageView = SVGImageView.init(contentsOf: url)
+//        cell.previewImageView.image = svgImageView.
 
         return cell
     }

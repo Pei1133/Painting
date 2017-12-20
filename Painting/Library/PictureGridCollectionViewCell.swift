@@ -42,9 +42,10 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
 
         imageView.layer.borderWidth = 0.2
 
+        imageView.backgroundColor = UIColor.white
+
 //        imageView.layer.cornerRadius = 1.0
 
-        imageView.backgroundColor = UIColor.green
     }
 
 }

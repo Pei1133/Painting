@@ -57,7 +57,6 @@ class PaintingViewController: UIViewController, colorDelegate, UIScrollViewDeleg
     func showSVG() {
 
         let svgImageView = SVGImageView.init(contentsOf: url)
-//        svgImageView.frame = svgImageView.bounds
         svgImageView.frame = self.view.bounds
         view.addSubview(svgImageView)
         print("svgImageView.bounds:\(svgImageView.bounds)")
