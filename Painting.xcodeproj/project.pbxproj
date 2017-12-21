@@ -15,6 +15,7 @@
 		AB6F05AB1FEA88FE00ADF4EB /* snowman.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB6F05A81FEA88FE00ADF4EB /* snowman.svg */; };
 		AB8EC82F1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */; };
 		AB8EC8321FE90D9B00C19F60 /* PictureGridCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */; };
+		AB9A80881FEBAF5E000434E7 /* plant.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80871FEBAF5E000434E7 /* plant.svg */; };
 		AB9FA58E1FE2A99300055C50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */; };
 		AB9FA5901FE2A99300055C50 /* PaintingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9FA58F1FE2A99300055C50 /* PaintingViewController.swift */; };
 		AB9FA5931FE2A99300055C50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9FA5911FE2A99300055C50 /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 		AB6F05A81FEA88FE00ADF4EB /* snowman.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = snowman.svg; sourceTree = "<group>"; };
 		AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGridCollectionViewCell.swift; sourceTree = "<group>"; };
 		AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGridCollectionViewController.swift; sourceTree = "<group>"; };
+		AB9A80871FEBAF5E000434E7 /* plant.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = plant.svg; sourceTree = "<group>"; };
 		AB9FA58A1FE2A99300055C50 /* Painting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Painting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB9FA58F1FE2A99300055C50 /* PaintingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintingViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */,
+				AB9A80871FEBAF5E000434E7 /* plant.svg */,
 				ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */,
 				ABF8F5AA1FE2AF6800117AB8 /* hat.svg */,
 				AB6F05A71FEA88FE00ADF4EB /* robot.svg */,
@@ -222,6 +225,7 @@
 				ABF8F5AB1FE2AF6800117AB8 /* hat.svg in Resources */,
 				AB9FA5981FE2A99300055C50 /* LaunchScreen.storyboard in Resources */,
 				AB6F05A91FEA88FE00ADF4EB /* sketch.svg in Resources */,
+				AB9A80881FEBAF5E000434E7 /* plant.svg in Resources */,
 				AB6F05AA1FEA88FE00ADF4EB /* robot.svg in Resources */,
 				AB9FA5951FE2A99300055C50 /* Assets.xcassets in Resources */,
 				ABF8F5A71FE2AF4D00117AB8 /* chicken.svg in Resources */,

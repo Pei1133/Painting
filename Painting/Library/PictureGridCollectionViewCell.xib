@@ -18,21 +18,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="154" height="160"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M5T-rd-aBU">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hz1-fo-7HY">
                         <rect key="frame" x="0.0" y="0.0" width="154" height="160"/>
-                    </view>
+                    </imageView>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="M5T-rd-aBU" secondAttribute="trailing" id="HlI-H3-OUF"/>
-                <constraint firstAttribute="bottom" secondItem="M5T-rd-aBU" secondAttribute="bottom" id="rQ1-8t-GES"/>
-                <constraint firstItem="M5T-rd-aBU" firstAttribute="top" secondItem="HzV-Ef-f47" secondAttribute="top" id="sIm-nc-x0Z"/>
-                <constraint firstItem="M5T-rd-aBU" firstAttribute="leading" secondItem="HzV-Ef-f47" secondAttribute="leading" id="xjf-c7-Hp9"/>
+                <constraint firstItem="hz1-fo-7HY" firstAttribute="leading" secondItem="HzV-Ef-f47" secondAttribute="leading" id="Ifd-B8-HEP"/>
+                <constraint firstAttribute="bottom" secondItem="hz1-fo-7HY" secondAttribute="bottom" id="Wxa-Ll-xck"/>
+                <constraint firstAttribute="trailing" secondItem="hz1-fo-7HY" secondAttribute="trailing" id="krZ-M2-7VM"/>
+                <constraint firstItem="hz1-fo-7HY" firstAttribute="top" secondItem="HzV-Ef-f47" secondAttribute="top" id="zWV-sy-3ci"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Mf9-Qz-PFU"/>
             <size key="customSize" width="95" height="89"/>
             <connections>
-                <outlet property="pictureView" destination="M5T-rd-aBU" id="I4q-lN-lpw"/>
+                <outlet property="pictureImageView" destination="hz1-fo-7HY" id="cBY-oe-dGU"/>
             </connections>
             <point key="canvasLocation" x="-141" y="-22"/>
         </collectionViewCell>
