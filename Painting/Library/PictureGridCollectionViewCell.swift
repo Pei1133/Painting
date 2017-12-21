@@ -12,37 +12,42 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
 
     // MARK: Property
 
-    @IBOutlet private(set) weak var previewImageView: UIImageView!
-
+    @IBOutlet private(set) weak var pictureView: UIView!
+    
     // MARK: Life Cycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        setUpPreviewImageView()
+        setUpPictureView()
 
     }
 
     // MARK: Set Up
 
-    private func setUpPreviewImageView() {
+    private func setUpPictureView() {
 
-        let imageView = previewImageView!
+        let view = pictureView!
 
-        imageView.clipsToBounds = true
+        view.clipsToBounds = true
 
-        imageView.contentMode = .scaleAspectFill
+        view.contentMode = .center
 
-        imageView.layer.borderColor = UIColor(
+        view.layer.borderColor = UIColor(
             red: 0.0 / 255.0,
             green: 0.0 / 255.0,
             blue: 0.0 / 255.0,
             alpha: 1.0
             ).cgColor
 
-        imageView.layer.borderWidth = 0.2
+        view.layer.borderWidth = 0.2
 
-        imageView.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor(
+            red: 255.0 / 255.0,
+            green: 255.0 / 255.0,
+            blue: 201.0 / 255.0,
+            alpha: 1.0
+            )
 
 //        imageView.layer.cornerRadius = 1.0
 

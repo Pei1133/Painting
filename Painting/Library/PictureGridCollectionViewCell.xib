@@ -18,22 +18,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="154" height="160"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Lo-fc-9ps">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M5T-rd-aBU">
                         <rect key="frame" x="0.0" y="0.0" width="154" height="160"/>
-                        <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </imageView>
+                    </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="5Lo-fc-9ps" secondAttribute="trailing" id="1oi-5S-GQF"/>
-                <constraint firstAttribute="bottom" secondItem="5Lo-fc-9ps" secondAttribute="bottom" id="fAr-oZ-0PX"/>
-                <constraint firstItem="5Lo-fc-9ps" firstAttribute="top" secondItem="HzV-Ef-f47" secondAttribute="top" id="rVs-iL-RkQ"/>
-                <constraint firstItem="5Lo-fc-9ps" firstAttribute="leading" secondItem="HzV-Ef-f47" secondAttribute="leading" id="smT-qW-6qR"/>
+                <constraint firstAttribute="trailing" secondItem="M5T-rd-aBU" secondAttribute="trailing" id="HlI-H3-OUF"/>
+                <constraint firstAttribute="bottom" secondItem="M5T-rd-aBU" secondAttribute="bottom" id="rQ1-8t-GES"/>
+                <constraint firstItem="M5T-rd-aBU" firstAttribute="top" secondItem="HzV-Ef-f47" secondAttribute="top" id="sIm-nc-x0Z"/>
+                <constraint firstItem="M5T-rd-aBU" firstAttribute="leading" secondItem="HzV-Ef-f47" secondAttribute="leading" id="xjf-c7-Hp9"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Mf9-Qz-PFU"/>
             <size key="customSize" width="95" height="89"/>
             <connections>
-                <outlet property="previewImageView" destination="5Lo-fc-9ps" id="ei7-oJ-Lyb"/>
+                <outlet property="pictureView" destination="M5T-rd-aBU" id="I4q-lN-lpw"/>
             </connections>
             <point key="canvasLocation" x="-141" y="-22"/>
         </collectionViewCell>

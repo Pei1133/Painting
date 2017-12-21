@@ -82,7 +82,9 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         let svgImageView = SVGImageView.init(contentsOf: url)
 
-//        cell.previewImageView.image = svgImageView.
+        svgImageView.frame = cell.pictureView.bounds
+
+        cell.pictureView.addSubview(svgImageView)
 
         return cell
 
@@ -98,9 +100,9 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         let paintingViewController = PaintingViewController(name: name, url: url)
 
-        self.present(paintingViewController, animated: true, completion: nil)
+//        self.present(paintingViewController, animated: true, completion: nil)
 
-//        self.navigationController?.pushViewController(paintingViewController, animated: true)
+        self.navigationController?.pushViewController(paintingViewController, animated: true)
 
     }
 
