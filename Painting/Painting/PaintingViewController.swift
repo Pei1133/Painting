@@ -12,7 +12,7 @@ import PocketSVG
 class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDelegate {
 
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
-    var pickedColor: UIColor?
+    var pickedColor: UIColor = UIColor.brown
     var paths = [SVGBezierPath]()
     var scrollView = UIScrollView()
     var imageView = UIImageView()
@@ -41,9 +41,9 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 
         view.bringSubview(toFront: colorPicker)
 
-        ColorPicker.shared.delegate = self
-//        ColorPicker.shared.selectedColor(sColor: ColorPicker.shared.selectedColor)
         view.backgroundColor = UIColor.white
+        ColorPicker.shared.delegate = self
+        ColorPicker.shared.selectedColor(sColor: ColorPicker.shared.selectedColor)
 
         let paths = SVGBezierPath.pathsFromSVG(at: url!)
         self.paths = paths
@@ -63,8 +63,12 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
     }
 
     func pickedColor(color: UIColor) {
-
-        self.pickedColor = color
+        
+        DispatchQueue.main.async {
+            self.pickedColor = color
+            self.loadView()
+        }
+ 
     }
 
     func showSVG() {
@@ -100,7 +104,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
                 layer.path = path.cgPath
                 layer.lineWidth = strokeWidth
                 layer.strokeColor = strokeColor
-                layer.fillColor = pickedColor?.cgColor
+                layer.fillColor = pickedColor.cgColor
                 self.imageView.layer.addSublayer(layer)
 
             } else {
