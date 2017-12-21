@@ -44,7 +44,7 @@ class PathProvider {
 
         return CGSize(width: newsizeWidth, height: newsizeHeight)
     }
-    
+
 //    func calculateScaleFactor() -> CGFloat {
 //
 //        let boundingBoxAspectRatio = self..width/scrollView.contentSize.height

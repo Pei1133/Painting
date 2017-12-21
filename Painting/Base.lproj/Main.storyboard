@@ -12,7 +12,7 @@
         <!--Painting View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="PaintingViewController" customModule="Painting" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Painting" id="BYZ-38-t0r" customClass="PaintingViewController" customModule="Painting" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -54,7 +54,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="colorPicker" destination="JbJ-D3-8sX" id="Et2-lB-kfR"/>
+                        <outlet property="colorPicker" destination="JbJ-D3-8sX" id="23L-T0-FWG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

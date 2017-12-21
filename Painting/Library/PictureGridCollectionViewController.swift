@@ -88,12 +88,11 @@ class PictureGridCollectionViewController: UICollectionViewController {
         let renderParameter = PathProvider.renderPaths(url: url, imageView: cell.pictureImageView)
         cell.pictureImageView = renderParameter.imageView
         cell.pictureImageView.layer.frame = CGRect(x: 0, y: 0, width: renderParameter.pictureSize.width, height: renderParameter.pictureSize.height)
-        
+
 //        cell.pictureImageView.layer.transform = CATransform3DMakeScale(0.4, 0.4, 0.4)
 //        cell.pictureImageView.frame = cell.pictureView.bounds
 //        cell.pictureView.addSubview(cell.pictureImageView)
 //        svgImageView.frame = self.view.bounds
-        
 
 //        let svgImageView = SVGImageView.init(contentsOf: url)
 //        svgImageView.frame = cell.pictureImageView.bounds
@@ -107,11 +106,16 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         let picture = pictures[indexPath.row]
 
-        let name = picture.name
+//        let name = picture.name
+//        let url = picture.imageURL
 
-        let url = picture.imageURL
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let paintingViewController = storyboard.instantiateViewController(withIdentifier: "Painting") as? PaintingViewController else { return }
+        
+        paintingViewController.name = picture.name
+        paintingViewController.url = picture.imageURL
 
-        let paintingViewController = PaintingViewController(name: name, url: url)
+//        let paintingViewController = PaintingViewController(name: name, url: url)
 
 //        self.present(paintingViewController, animated: true, completion: nil)
 
@@ -122,6 +126,5 @@ class PictureGridCollectionViewController: UICollectionViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
 
 }

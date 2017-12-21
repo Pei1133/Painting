@@ -11,16 +11,16 @@ import PocketSVG
 
 class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDelegate {
 
-    @IBOutlet weak var colorPicker: ColorPicker!
-    var pickedColor: UIColor = UIColor.black
+    @IBOutlet private(set) weak var colorPicker: ColorPicker!
+    var pickedColor: UIColor?
     var paths = [SVGBezierPath]()
     var scrollView = UIScrollView()
     var imageView = UIImageView()
     var pictureSize = CGSize.zero
 
-    var name: String
-    var url: URL
-
+    var name: String?
+    var url: URL?
+/*
     init(name: String, url: URL) {
 
         self.name = name
@@ -34,21 +34,23 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         fatalError("init(coder:) has not been implemented")
 
     }
-
+*/
     override func viewDidLoad() {
 
         super.viewDidLoad()
 
-        let paths = SVGBezierPath.pathsFromSVG(at: url)
+        ColorPicker.shared.delegate = self
+        ColorPicker.shared.selectedColor(sColor: ColorPicker.shared)
+        view.backgroundColor = UIColor.white
+
+        let paths = SVGBezierPath.pathsFromSVG(at: url!)
         self.paths = paths
 
-        let renderParameter = PathProvider.renderPaths(url: url, imageView: imageView)
+        let renderParameter = PathProvider.renderPaths(url: url!, imageView: imageView)
         self.imageView = renderParameter.imageView
         self.pictureSize = renderParameter.pictureSize
-//        self.imageView = PathProvider.renderPaths(url: url, imageView: imageView)
-        setUpScrollViewAndImageView()
 
-//        colorPicker.delegate = self
+        setUpScrollViewAndImageView()
 //        showSVG()
 
      // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
@@ -65,7 +67,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 
     func showSVG() {
 
-        let svgImageView = SVGImageView.init(contentsOf: url)
+        let svgImageView = SVGImageView.init(contentsOf: url!)
         svgImageView.frame = self.view.bounds
         view.addSubview(svgImageView)
         print("svgImageView.bounds:\(svgImageView.bounds)")
@@ -96,7 +98,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
                 layer.path = path.cgPath
                 layer.lineWidth = strokeWidth
                 layer.strokeColor = strokeColor
-                layer.fillColor = pickedColor.cgColor
+                layer.fillColor = pickedColor?.cgColor
                 self.imageView.layer.addSublayer(layer)
 
             } else {
