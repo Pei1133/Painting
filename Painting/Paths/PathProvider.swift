@@ -11,7 +11,7 @@ import PocketSVG
 
 class PathProvider {
 
-    static func renderPaths(url: URL, imageView: UIImageView) -> UIImageView {
+    static func renderPaths(url: URL, imageView: UIImageView) -> (pictureSize: CGSize, imageView: UIImageView) {
 
         var pictureSize = CGSize.zero
         let strokeWidth = CGFloat(1.0)
@@ -27,11 +27,11 @@ class PathProvider {
             layer.strokeColor = strokeColor
             layer.fillColor = UIColor.white.cgColor
 
-            imageView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
+//            imageView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
             imageView.layer.addSublayer(layer)
 
         }
-        return imageView
+        return (pictureSize: pictureSize, imageView: imageView)
     }
 
     static func calculatePictureBounds(pictureSize size: CGSize, rect: CGRect) -> CGSize {

@@ -47,7 +47,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
     func setUpLayout() {
 
         // 設置 section 的間距 四個數值分別代表 上、左、下、右 的間距
-        flowLayout.sectionInset = UIEdgeInsets(top: 35, left: 15, bottom: 5, right: 15)
+        flowLayout.sectionInset = UIEdgeInsets(top: 25, left: 15, bottom: 5, right: 15)
 
         // 設置每個 cell 的尺寸
         flowLayout.itemSize = CGSize(width: CGFloat(fullScreenSize.width)/2 - 20, height: CGFloat(fullScreenSize.width)/2 - 20)
@@ -80,11 +80,29 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         let url = picture.imageURL
 
-        cell.pictureImageView = PathProvider.renderPaths(url: url, imageView: cell.pictureImageView)
+    print("1:\(cell.pictureImageView.frame.size)")
+    print("2:\(cell.pictureImageView.bounds.size)")
+    print("3:\(cell.pictureImageView.layer.frame.size)")
+    print("4:\(cell.pictureImageView.layer.bounds.size)")
+
+        let renderParameter = PathProvider.renderPaths(url: url, imageView: cell.pictureImageView)
+
+        cell.pictureImageView = renderParameter.imageView
+        cell.pictureImageView.frame = cell.pictureView.bounds
+        cell.pictureView.addSubview(cell.pictureImageView)
+//        svgImageView.frame = self.view.bounds
+    print("5:\(cell.pictureImageView.frame.size)")
+    print("6:\(cell.pictureImageView.bounds.size)")
+    print("7:\(cell.pictureImageView.layer.frame.size)")
+    print("8:\(cell.pictureImageView.layer.bounds.size)")
+
+//        cell.pictureImageView.layer.frame = CGRect(x: 0, y: 0, width: renderParameter.pictureSize.width, height: renderParameter.pictureSize.height)
+        
+//        cell.pictureImageView = PathProvider.renderPaths(url: url, imageView: cell.pictureImageView)
 
 //        let svgImageView = SVGImageView.init(contentsOf: url)
 //
-//        svgImageView.frame = cell.pictureView.bounds
+//        svgImageView.frame = cell.pictureImageView.bounds
 
 //        cell.pictureView.addSubview(svgImageView)
 

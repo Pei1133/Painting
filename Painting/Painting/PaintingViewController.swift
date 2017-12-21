@@ -16,6 +16,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
     var paths = [SVGBezierPath]()
     var scrollView = UIScrollView()
     var imageView = UIImageView()
+    var pictureSize = CGSize.zero
 
     var name: String
     var url: URL
@@ -40,7 +41,11 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 
         let paths = SVGBezierPath.pathsFromSVG(at: url)
         self.paths = paths
-        self.imageView = PathProvider.renderPaths(url: url, imageView: imageView)
+
+        let renderParameter = PathProvider.renderPaths(url: url, imageView: imageView)
+        self.imageView = renderParameter.imageView
+        self.pictureSize = renderParameter.pictureSize
+//        self.imageView = PathProvider.renderPaths(url: url, imageView: imageView)
         setUpScrollViewAndImageView()
 
 //        colorPicker.delegate = self
@@ -107,6 +112,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         // Set up ImageView
         imageView.contentMode = .center
         imageView.isUserInteractionEnabled = true
+        imageView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
 
         // Set up ScrollView
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 150))
