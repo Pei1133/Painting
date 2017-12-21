@@ -14,7 +14,6 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet private(set) weak var pictureView: UIView!
 
-
     // MARK: Life Cycle
 
     override func awakeFromNib() {
@@ -33,7 +32,7 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
         view.clipsToBounds = true
 
         view.layer.cornerRadius = 1.0
-        
+
         view.layer.borderWidth = 0.2
 
         view.backgroundColor = UIColor(

@@ -40,5 +40,5 @@ public let pictures = [
     Picture(name: "robot"),
     Picture(name: "sketch"),
     Picture(name: "snowman"),
-    Picture(name: "chicken")
+    Picture(name: "cloud")
 ]

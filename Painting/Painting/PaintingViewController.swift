@@ -14,36 +14,23 @@ class PaintingViewController: UIViewController, colorDelegate, UIScrollViewDeleg
     @IBOutlet weak var colorPicker: ColorPicker!
     var pickedColor: UIColor = UIColor.black
     var paths = [SVGBezierPath]()
+    var scrollView = UIScrollView()
+    var imageView = UIImageView()
 
     var name: String
     var url: URL
-//    let url = Bundle.main.url(forResource: "chicken", withExtension: "svg")!
-
-    var scrollView = UIScrollView()
-    var imageView = UIImageView()
-    var pictureSize = CGSize.zero
 
     init(name: String, url: URL) {
+
         self.name = name
         self.url = url
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
+
         fatalError("init(coder:) has not been implemented")
     }
-
-//    var red: CGFloat = 0.0
-//    var green: CGFloat = 0.0
-//    var blue: CGFloat = 0.0
-//
-//    @IBAction func colorsPicked(_ sender: AnyObject) {
-//        if sender.tag == 0 {
-//            (red, green, blue) = (1, 0, 0)
-//        }else if sender.tag == 1 {
-//            (red, green, blue) = (0, 0, 1)
-//        }
-//    }
 
     override func viewDidLoad() {
 
@@ -51,8 +38,9 @@ class PaintingViewController: UIViewController, colorDelegate, UIScrollViewDeleg
 
         let paths = SVGBezierPath.pathsFromSVG(at: url)
         self.paths = paths
+        self.imageView = PathProvider.renderPaths(url: url, imageView: imageView)
+
 //        colorPicker.delegate = self
-        renderPaths()
         setUpScrollViewAndImageView()
 //        showSVG()
 
@@ -78,43 +66,11 @@ class PaintingViewController: UIViewController, colorDelegate, UIScrollViewDeleg
 
     }
 
-    func renderPaths() {
-
-        let strokeWidth = CGFloat(1.0)
-        let strokeColor = UIColor.black.cgColor
-
-        for path in paths {
-
-            let layer = CAShapeLayer()
-            self.calculatePictureBounds(rect: path.cgPath.boundingBox)
-            layer.path = path.cgPath
-            layer.lineWidth = strokeWidth
-            layer.strokeColor = strokeColor
-            layer.fillColor = UIColor.white.cgColor
-//            layer.transform = CATransform3DMakeScale(0.5, 0.5, 0.5)
-//            layer.contentsGravity = kCAGravityResizeAspect
-            self.imageView.layer.addSublayer(layer)
-
-        }
-
-    }
-
-    func calculatePictureBounds(rect: CGRect) {
-
-        let maxX = rect.maxX
-        let maxY = rect.maxY
-
-        self.pictureSize.width = self.pictureSize.width > maxX ? self.pictureSize.width: maxX
-        self.pictureSize.height = self.pictureSize.height > maxY ? self.pictureSize.height : maxY
-
-    }
-
     // Step 2 :- Make "tapDetected" method
     @objc public func tapDetected(tapRecognizer: UITapGestureRecognizer) {
 
         let tapLocation: CGPoint = tapRecognizer.location(in: self.imageView)
         self.hitTest(tapLocation: CGPoint(x: (tapLocation.x), y: (tapLocation.y)))
-//        self.hitTest(tapLocation: CGPoint(x: (tapLocation.x * 2), y: (tapLocation.y * 2)))
 
     }
 
@@ -133,8 +89,6 @@ class PaintingViewController: UIViewController, colorDelegate, UIScrollViewDeleg
                 layer.path = path.cgPath
                 layer.lineWidth = strokeWidth
                 layer.strokeColor = strokeColor
-//                layer.transform = CATransform3DMakeScale(0.5, 0.5, 0.5)
-//                layer.fillColor = UIColor(red: red, green: green, blue: blue, alpha: 1.0).cgColor
                 layer.fillColor = pickedColor.cgColor
                 self.imageView.layer.addSublayer(layer)
 
@@ -151,11 +105,10 @@ class PaintingViewController: UIViewController, colorDelegate, UIScrollViewDeleg
         // Set up ImageView
         imageView.contentMode = .center
         imageView.isUserInteractionEnabled = true
-        imageView.frame = CGRect(x: 0, y: 0, width: self.pictureSize.width, height: self.pictureSize.height)
 
         // Set up ScrollView
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 150))
-        scrollView.contentSize = self.pictureSize
+        scrollView.contentSize = imageView.frame.size
         scrollView.backgroundColor = UIColor.lightGray
         scrollView.alwaysBounceVertical = true
         scrollView.alwaysBounceHorizontal = true
@@ -170,38 +123,12 @@ class PaintingViewController: UIViewController, colorDelegate, UIScrollViewDeleg
         scrollView.minimumZoomScale = 0.5
         scrollView.maximumZoomScale = 3.0
 
-        print("imageView.bounds:\(self.imageView.bounds)")
-        print("imageView.frame:\(self.imageView.frame)")
-        print("scrollView.bounds:\(self.scrollView.bounds)")
-        print("scrollView.frame:\(self.scrollView.frame)")
-
     }
 
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
 
         return imageView
     }
-
-//    override func viewWillLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        scrollView.translatesAutoresizingMaskIntoConstraints = false
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//
-//        // ScrollView
-//        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-//        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-//        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-//        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150.0).isActive = true
-//
-//        // ImageView
-//        imageView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-//        imageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-//        imageView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
-//        imageView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-//        imageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-//        imageView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor).isActive = true
-
-//    }
 
     // 為了讓圖片縮小填滿且有Aspect Fit
     fileprivate func updateMinZoomScaleForSize(_ size: CGSize) {
@@ -236,36 +163,31 @@ class PaintingViewController: UIViewController, colorDelegate, UIScrollViewDeleg
 
     }
 
+//    override func viewWillLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        scrollView.translatesAutoresizingMaskIntoConstraints = false
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
+//
+//        // ScrollView
+//        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+//        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+//        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+//        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150.0).isActive = true
+//
+//        // ImageView
+//        imageView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+//        imageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+//        imageView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+//        imageView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+//        imageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+//        imageView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor).isActive = true
+//
+//    }
+
     override func didReceiveMemoryWarning() {
 
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    func calculateScaleFactor() -> CGFloat {
-
-        let boundingBoxAspectRatio = scrollView.contentSize.width/scrollView.contentSize.height
-        let viewAspectRatio = self.view.bounds.width/(self.view.bounds.height - 110)
-
-        let scaleFactor: CGFloat
-        if boundingBoxAspectRatio > viewAspectRatio {
-            // Width is limiting factor
-            scaleFactor = self.view.bounds.width/scrollView.contentSize.width
-        } else {
-            // Height is limiting factor
-            scaleFactor = (self.view.bounds.height - 110)/scrollView.contentSize.height
-        }
-
-        return scaleFactor
-
-        //        let scaleFactor = transformRatio()
-        //
-        //        var affineTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
-        //
-        //        let transformedPath = (path.cgPath).copy(using: &affineTransform)
-        //
-        //        let layer = CAShapeLayer()
-        //        layer.path = transformedPath
-
-    }
 }
