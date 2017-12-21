@@ -9,7 +9,7 @@
 import UIKit
 import PocketSVG
 
-class PaintingViewController: UIViewController, colorDelegate, UIScrollViewDelegate {
+class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDelegate {
 
     @IBOutlet weak var colorPicker: ColorPicker!
     var pickedColor: UIColor = UIColor.black
@@ -25,11 +25,13 @@ class PaintingViewController: UIViewController, colorDelegate, UIScrollViewDeleg
         self.name = name
         self.url = url
         super.init(nibName: nil, bundle: nil)
+
     }
 
     required init?(coder aDecoder: NSCoder) {
 
         fatalError("init(coder:) has not been implemented")
+
     }
 
     override func viewDidLoad() {
@@ -39,9 +41,9 @@ class PaintingViewController: UIViewController, colorDelegate, UIScrollViewDeleg
         let paths = SVGBezierPath.pathsFromSVG(at: url)
         self.paths = paths
         self.imageView = PathProvider.renderPaths(url: url, imageView: imageView)
+        setUpScrollViewAndImageView()
 
 //        colorPicker.delegate = self
-        setUpScrollViewAndImageView()
 //        showSVG()
 
      // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.

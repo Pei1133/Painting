@@ -43,6 +43,6 @@ class PathProvider {
         let newsizeHeight = size.height > maxY ? size.height : maxY
 
         return CGSize(width: newsizeWidth, height: newsizeHeight)
+    }
 
-        }
 }
