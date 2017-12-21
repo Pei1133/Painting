@@ -86,24 +86,17 @@ class PictureGridCollectionViewController: UICollectionViewController {
     print("4:\(cell.pictureImageView.layer.bounds.size)")
 
         let renderParameter = PathProvider.renderPaths(url: url, imageView: cell.pictureImageView)
-
         cell.pictureImageView = renderParameter.imageView
-        cell.pictureImageView.frame = cell.pictureView.bounds
-        cell.pictureView.addSubview(cell.pictureImageView)
-//        svgImageView.frame = self.view.bounds
-    print("5:\(cell.pictureImageView.frame.size)")
-    print("6:\(cell.pictureImageView.bounds.size)")
-    print("7:\(cell.pictureImageView.layer.frame.size)")
-    print("8:\(cell.pictureImageView.layer.bounds.size)")
-
-//        cell.pictureImageView.layer.frame = CGRect(x: 0, y: 0, width: renderParameter.pictureSize.width, height: renderParameter.pictureSize.height)
+        cell.pictureImageView.layer.frame = CGRect(x: 0, y: 0, width: renderParameter.pictureSize.width, height: renderParameter.pictureSize.height)
         
-//        cell.pictureImageView = PathProvider.renderPaths(url: url, imageView: cell.pictureImageView)
+//        cell.pictureImageView.layer.transform = CATransform3DMakeScale(0.4, 0.4, 0.4)
+//        cell.pictureImageView.frame = cell.pictureView.bounds
+//        cell.pictureView.addSubview(cell.pictureImageView)
+//        svgImageView.frame = self.view.bounds
+        
 
 //        let svgImageView = SVGImageView.init(contentsOf: url)
-//
 //        svgImageView.frame = cell.pictureImageView.bounds
-
 //        cell.pictureView.addSubview(svgImageView)
 
         return cell
@@ -129,5 +122,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+
 
 }

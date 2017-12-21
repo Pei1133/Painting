@@ -12,7 +12,6 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
 
     // MARK: Property
 
-    @IBOutlet weak var pictureView: UIView!
     @IBOutlet weak var pictureImageView: UIImageView!
 
     // MARK: Life Cycle
