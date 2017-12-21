@@ -39,8 +39,10 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 
         super.viewDidLoad()
 
+        view.bringSubview(toFront: colorPicker)
+
         ColorPicker.shared.delegate = self
-        ColorPicker.shared.selectedColor(sColor: ColorPicker.shared)
+//        ColorPicker.shared.selectedColor(sColor: ColorPicker.shared.selectedColor)
         view.backgroundColor = UIColor.white
 
         let paths = SVGBezierPath.pathsFromSVG(at: url!)
