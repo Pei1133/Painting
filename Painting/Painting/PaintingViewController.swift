@@ -48,7 +48,7 @@ class PaintingViewController: UIViewController, colorDelegate, UIScrollViewDeleg
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        
+
         let paths = SVGBezierPath.pathsFromSVG(at: url)
         self.paths = paths
 //        colorPicker.delegate = self

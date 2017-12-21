@@ -35,7 +35,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         self.collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: flowLayout)
 
-        self.collectionView?.backgroundColor = UIColor.lightGray
+        self.collectionView?.backgroundColor = UIColor.blue
 
         // Register cell
         let nib = UINib(nibName: "PictureGridCollectionViewCell", bundle: nil)
@@ -53,7 +53,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
         flowLayout.itemSize = CGSize(width: CGFloat(fullScreenSize.width)/2 - 20, height: CGFloat(fullScreenSize.width)/2 - 20)
 
         // 設置每一行的間距
-//        flowLayout.minimumLineSpacing = 25
+        flowLayout.minimumLineSpacing = 0
 
         // 設置 header 及 footer 的尺寸
 //        flowLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: 40)

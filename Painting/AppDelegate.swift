@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let layout = UICollectionViewLayout()
         let vc = PictureGridCollectionViewController(collectionViewLayout: layout)
         let pictureGridCollectionViewController = UINavigationController(rootViewController: vc)
-        
+
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = pictureGridCollectionViewController
         window?.makeKeyAndVisible()

@@ -13,7 +13,8 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
     // MARK: Property
 
     @IBOutlet private(set) weak var pictureView: UIView!
-    
+
+
     // MARK: Life Cycle
 
     override func awakeFromNib() {
@@ -31,15 +32,8 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
 
         view.clipsToBounds = true
 
-        view.contentMode = .center
-
-        view.layer.borderColor = UIColor(
-            red: 0.0 / 255.0,
-            green: 0.0 / 255.0,
-            blue: 0.0 / 255.0,
-            alpha: 1.0
-            ).cgColor
-
+        view.layer.cornerRadius = 1.0
+        
         view.layer.borderWidth = 0.2
 
         view.backgroundColor = UIColor(
@@ -47,10 +41,15 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
             green: 255.0 / 255.0,
             blue: 201.0 / 255.0,
             alpha: 1.0
-            )
+        )
 
-//        imageView.layer.cornerRadius = 1.0
+//        view.contentMode = .scaleAspectFill
+//        view.layer.borderColor = UIColor(
+//            red: 0.0 / 255.0,
+//            green: 0.0 / 255.0,
+//            blue: 0.0 / 255.0,
+//            alpha: 1.0
+//            ).cgColor
 
     }
-
 }
