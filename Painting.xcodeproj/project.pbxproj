@@ -10,12 +10,12 @@
 		9247765BA685684EFFE5F75D /* Pods_Painting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76721B4B1CCB252FA8ED0565 /* Pods_Painting.framework */; };
 		AB171D371FEB8E5B00CCFB7F /* PathProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB171D361FEB8E5B00CCFB7F /* PathProvider.swift */; };
 		AB1E41CC1FE3CB7E00D3B4B8 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */; };
-		AB6F05A91FEA88FE00ADF4EB /* sketch.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB6F05A61FEA88FD00ADF4EB /* sketch.svg */; };
 		AB6F05AA1FEA88FE00ADF4EB /* robot.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB6F05A71FEA88FE00ADF4EB /* robot.svg */; };
-		AB6F05AB1FEA88FE00ADF4EB /* snowman.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB6F05A81FEA88FE00ADF4EB /* snowman.svg */; };
 		AB8EC82F1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */; };
 		AB8EC8321FE90D9B00C19F60 /* PictureGridCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */; };
 		AB9A80881FEBAF5E000434E7 /* plant.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80871FEBAF5E000434E7 /* plant.svg */; };
+		AB9A80941FECE61B000434E7 /* startup.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80931FECE61B000434E7 /* startup.svg */; };
+		AB9A80961FECE6CE000434E7 /* snowman.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80951FECE6CD000434E7 /* snowman.svg */; };
 		AB9FA58E1FE2A99300055C50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */; };
 		AB9FA5901FE2A99300055C50 /* PaintingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9FA58F1FE2A99300055C50 /* PaintingViewController.swift */; };
 		AB9FA5931FE2A99300055C50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9FA5911FE2A99300055C50 /* Main.storyboard */; };
@@ -25,7 +25,6 @@
 		ABBAF1CB1FE9186800676426 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBAF1CA1FE9186800676426 /* Picture.swift */; };
 		ABF8F5A71FE2AF4D00117AB8 /* chicken.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */; };
 		ABF8F5A91FE2AF5C00117AB8 /* cloud.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */; };
-		ABF8F5AB1FE2AF6800117AB8 /* hat.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5AA1FE2AF6800117AB8 /* hat.svg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,12 +33,12 @@
 		7C76A4F43C507D2665D62989 /* Pods-Painting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Painting.release.xcconfig"; path = "Pods/Target Support Files/Pods-Painting/Pods-Painting.release.xcconfig"; sourceTree = "<group>"; };
 		AB171D361FEB8E5B00CCFB7F /* PathProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathProvider.swift; sourceTree = "<group>"; };
 		AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
-		AB6F05A61FEA88FD00ADF4EB /* sketch.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sketch.svg; sourceTree = "<group>"; };
 		AB6F05A71FEA88FE00ADF4EB /* robot.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = robot.svg; sourceTree = "<group>"; };
-		AB6F05A81FEA88FE00ADF4EB /* snowman.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = snowman.svg; sourceTree = "<group>"; };
 		AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGridCollectionViewCell.swift; sourceTree = "<group>"; };
 		AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGridCollectionViewController.swift; sourceTree = "<group>"; };
 		AB9A80871FEBAF5E000434E7 /* plant.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = plant.svg; sourceTree = "<group>"; };
+		AB9A80931FECE61B000434E7 /* startup.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = startup.svg; sourceTree = "<group>"; };
+		AB9A80951FECE6CD000434E7 /* snowman.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = snowman.svg; sourceTree = "<group>"; };
 		AB9FA58A1FE2A99300055C50 /* Painting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Painting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB9FA58F1FE2A99300055C50 /* PaintingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintingViewController.swift; sourceTree = "<group>"; };
@@ -51,7 +50,6 @@
 		ABBAF1CA1FE9186800676426 /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
 		ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = chicken.svg; sourceTree = "<group>"; };
 		ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cloud.svg; sourceTree = "<group>"; };
-		ABF8F5AA1FE2AF6800117AB8 /* hat.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = hat.svg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,11 +96,10 @@
 			children = (
 				ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */,
 				AB9A80871FEBAF5E000434E7 /* plant.svg */,
+				AB9A80931FECE61B000434E7 /* startup.svg */,
+				AB9A80951FECE6CD000434E7 /* snowman.svg */,
 				ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */,
-				ABF8F5AA1FE2AF6800117AB8 /* hat.svg */,
 				AB6F05A71FEA88FE00ADF4EB /* robot.svg */,
-				AB6F05A61FEA88FD00ADF4EB /* sketch.svg */,
-				AB6F05A81FEA88FE00ADF4EB /* snowman.svg */,
 			);
 			path = SVG;
 			sourceTree = "<group>";
@@ -222,16 +219,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABF8F5AB1FE2AF6800117AB8 /* hat.svg in Resources */,
+				AB9A80941FECE61B000434E7 /* startup.svg in Resources */,
 				AB9FA5981FE2A99300055C50 /* LaunchScreen.storyboard in Resources */,
-				AB6F05A91FEA88FE00ADF4EB /* sketch.svg in Resources */,
 				AB9A80881FEBAF5E000434E7 /* plant.svg in Resources */,
 				AB6F05AA1FEA88FE00ADF4EB /* robot.svg in Resources */,
 				AB9FA5951FE2A99300055C50 /* Assets.xcassets in Resources */,
 				ABF8F5A71FE2AF4D00117AB8 /* chicken.svg in Resources */,
 				AB9FA5931FE2A99300055C50 /* Main.storyboard in Resources */,
 				ABBAF1C91FE90F7200676426 /* PictureGridCollectionViewCell.xib in Resources */,
-				AB6F05AB1FEA88FE00ADF4EB /* snowman.svg in Resources */,
+				AB9A80961FECE6CE000434E7 /* snowman.svg in Resources */,
 				ABF8F5A91FE2AF5C00117AB8 /* cloud.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

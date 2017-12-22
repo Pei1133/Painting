@@ -100,7 +100,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         imageView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
 
         // Set up ScrollView
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 150))
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 120))
         scrollView.contentSize = imageView.frame.size
         scrollView.backgroundColor = UIColor.lightGray
         scrollView.alwaysBounceVertical = true

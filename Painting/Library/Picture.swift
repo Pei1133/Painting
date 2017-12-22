@@ -37,16 +37,14 @@ public struct Picture {
 //fake picture
 
 public let pictures = [
-    Picture(name: "robot"),
-    Picture(name: "sketch"),
+    Picture(name: "chicken"),
     Picture(name: "snowman"),
+    Picture(name: "robot"),
+    Picture(name: "startup"),
     Picture(name: "plant"),
-    Picture(name: "robot"),
-    Picture(name: "sketch"),
+    Picture(name: "chicken"),
     Picture(name: "snowman"),
-    Picture(name: "plant"),
     Picture(name: "robot"),
-    Picture(name: "sketch"),
-    Picture(name: "snowman"),
+    Picture(name: "startup"),
     Picture(name: "plant")
 ]
