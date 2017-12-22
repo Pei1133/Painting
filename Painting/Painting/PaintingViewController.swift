@@ -10,16 +10,13 @@ import UIKit
 import PocketSVG
 
 class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDelegate {
-    
+
     func pickedColor(color: UIColor) {
-//        DispatchQueue.main.async {
             self.pickedColor = color
-//            self.loadView()
-//        }
     }
-    
+
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
-    var pickedColor = UIColor.black
+    var pickedColor: UIColor?
     var paths = [SVGBezierPath]()
     var scrollView = UIScrollView()
     var imageView = UIImageView()
@@ -32,20 +29,16 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 
         super.viewDidLoad()
 
-        view.bringSubview(toFront: colorPicker)
-
         view.backgroundColor = UIColor.white
-        ColorPicker.shared.delegate = self
-        ColorPicker.shared.selectedColor(sColor: ColorPicker.shared.selectedColor)
+        colorPicker.delegate = self
 
         let paths = SVGBezierPath.pathsFromSVG(at: url!)
         self.paths = paths
 
-//        let renderParameter = PathProvider.renderPaths(url: url!, imageView: imageView)
-//        self.imageView = renderParameter.imageView
-//        self.pictureSize = renderParameter.pictureSize
+        let renderParameter = PathProvider.renderPaths(url: url!, imageView: imageView)
+        self.imageView = renderParameter.imageView
+        self.pictureSize = renderParameter.pictureSize
 
-        renderPaths()
         setUpScrollViewAndImageView()
 //        showSVG()
 
@@ -81,7 +74,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 
             if path.contains(tapLocation) {
 
-//                print("I am in \(path.svgAttributes)")
+                print("I am in \(path.svgAttributes)")
                 let strokeWidth = CGFloat(2.0)
                 let strokeColor = UIColor.gray.cgColor
 
@@ -89,7 +82,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
                 layer.path = path.cgPath
                 layer.lineWidth = strokeWidth
                 layer.strokeColor = strokeColor
-                layer.fillColor = pickedColor.cgColor
+                layer.fillColor = pickedColor?.cgColor
                 self.imageView.layer.addSublayer(layer)
             } else {
 
@@ -97,35 +90,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 
             }
         }
-    }
-
-    func renderPaths() {
-
-        let strokeWidth = CGFloat(1.0)
-        let strokeColor = UIColor.black.cgColor
-
-        for path in paths {
-
-            let layer = CAShapeLayer()
-            self.calculatePictureBounds(rect: path.cgPath.boundingBox)
-            layer.path = path.cgPath
-            layer.lineWidth = strokeWidth
-            layer.strokeColor = strokeColor
-            layer.fillColor = UIColor.white.cgColor
-            self.imageView.layer.addSublayer(layer)
-
-        }
-
-    }
-
-    func calculatePictureBounds(rect: CGRect) {
-
-        let maxX = rect.maxX
-        let maxY = rect.maxY
-
-        self.pictureSize.width = self.pictureSize.width > maxX ? self.pictureSize.width: maxX
-        self.pictureSize.height = self.pictureSize.height > maxY ? self.pictureSize.height : maxY
-
     }
 
     func setUpScrollViewAndImageView() {
