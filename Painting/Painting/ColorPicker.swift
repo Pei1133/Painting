@@ -18,7 +18,8 @@ class ColorPicker: UIView {
     static let shared =  ColorPicker()
     weak var delegate: colorDelegate?
     var currentSelectionX: CGFloat = 0
-    var selectedColor: UIColor!
+//    var selectedColor: UIColor!
+    var selectedColor = UIColor.black
 
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -58,7 +59,10 @@ class ColorPicker: UIView {
 
             }
             selectedColor = sColor
-            self.delegate?.pickedColor(color: selectedColor)
+
+            DispatchQueue.main.async {
+                self.delegate?.pickedColor(color: self.selectedColor)
+            }
         }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -77,7 +81,10 @@ class ColorPicker: UIView {
     func updateColor(touch: UITouch) {
         currentSelectionX = (touch.location(in: self).x)
         selectedColor = UIColor(hue: (currentSelectionX / self.frame.size.width), saturation: 1.0, brightness: 1.0, alpha: 1.0)
-        self.delegate?.pickedColor(color: selectedColor)
+
+        DispatchQueue.main.async {
+            self.delegate?.pickedColor(color: self.selectedColor)
+        }
         self.setNeedsDisplay()
     }
 }

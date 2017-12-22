@@ -111,7 +111,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let paintingViewController = storyboard.instantiateViewController(withIdentifier: "Painting") as? PaintingViewController else { return }
-        
+
         paintingViewController.name = picture.name
         paintingViewController.url = picture.imageURL
 

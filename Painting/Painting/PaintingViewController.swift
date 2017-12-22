@@ -10,9 +10,16 @@ import UIKit
 import PocketSVG
 
 class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDelegate {
-
+    
+    func pickedColor(color: UIColor) {
+//        DispatchQueue.main.async {
+            self.pickedColor = color
+//            self.loadView()
+//        }
+    }
+    
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
-    var pickedColor: UIColor = UIColor.brown
+    var pickedColor = UIColor.black
     var paths = [SVGBezierPath]()
     var scrollView = UIScrollView()
     var imageView = UIImageView()
@@ -20,21 +27,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 
     var name: String?
     var url: URL?
-/*
-    init(name: String, url: URL) {
 
-        self.name = name
-        self.url = url
-        super.init(nibName: nil, bundle: nil)
-
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-
-        fatalError("init(coder:) has not been implemented")
-
-    }
-*/
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -48,10 +41,11 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         let paths = SVGBezierPath.pathsFromSVG(at: url!)
         self.paths = paths
 
-        let renderParameter = PathProvider.renderPaths(url: url!, imageView: imageView)
-        self.imageView = renderParameter.imageView
-        self.pictureSize = renderParameter.pictureSize
+//        let renderParameter = PathProvider.renderPaths(url: url!, imageView: imageView)
+//        self.imageView = renderParameter.imageView
+//        self.pictureSize = renderParameter.pictureSize
 
+        renderPaths()
         setUpScrollViewAndImageView()
 //        showSVG()
 
@@ -60,15 +54,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(PaintingViewController.tapDetected(tapRecognizer:)))
         self.imageView.addGestureRecognizer(tapRecognizer)
 
-    }
-
-    func pickedColor(color: UIColor) {
-        
-        DispatchQueue.main.async {
-            self.pickedColor = color
-            self.loadView()
-        }
- 
     }
 
     func showSVG() {
@@ -106,13 +91,41 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
                 layer.strokeColor = strokeColor
                 layer.fillColor = pickedColor.cgColor
                 self.imageView.layer.addSublayer(layer)
-
             } else {
 
                 print("no color!")
 
             }
         }
+    }
+
+    func renderPaths() {
+
+        let strokeWidth = CGFloat(1.0)
+        let strokeColor = UIColor.black.cgColor
+
+        for path in paths {
+
+            let layer = CAShapeLayer()
+            self.calculatePictureBounds(rect: path.cgPath.boundingBox)
+            layer.path = path.cgPath
+            layer.lineWidth = strokeWidth
+            layer.strokeColor = strokeColor
+            layer.fillColor = UIColor.white.cgColor
+            self.imageView.layer.addSublayer(layer)
+
+        }
+
+    }
+
+    func calculatePictureBounds(rect: CGRect) {
+
+        let maxX = rect.maxX
+        let maxY = rect.maxY
+
+        self.pictureSize.width = self.pictureSize.width > maxX ? self.pictureSize.width: maxX
+        self.pictureSize.height = self.pictureSize.height > maxY ? self.pictureSize.height : maxY
+
     }
 
     func setUpScrollViewAndImageView() {

@@ -14,7 +14,7 @@ class PathProvider {
     static func renderPaths(url: URL, imageView: UIImageView) -> (pictureSize: CGSize, imageView: UIImageView) {
 
         var pictureSize = CGSize.zero
-        let strokeWidth = CGFloat(1.0)
+        let strokeWidth = CGFloat(2.0)
         let strokeColor = UIColor.black.cgColor
 
         let paths = SVGBezierPath.pathsFromSVG(at: url)
