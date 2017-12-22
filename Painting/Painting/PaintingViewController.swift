@@ -29,7 +29,12 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor(
+            red: 255.0 / 255.0,
+            green: 255.0 / 255.0,
+            blue: 201.0 / 255.0,
+            alpha: 1.0
+        )
         colorPicker.delegate = self
 
         let paths = SVGBezierPath.pathsFromSVG(at: url!)
