@@ -21,6 +21,10 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hz1-fo-7HY">
                         <rect key="frame" x="0.0" y="0.0" width="154" height="160"/>
                     </imageView>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3y2-eq-YCa">
+                        <rect key="frame" x="0.0" y="0.0" width="154" height="160"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </view>
                 </subviews>
             </view>
             <constraints>
@@ -33,6 +37,7 @@
             <size key="customSize" width="95" height="89"/>
             <connections>
                 <outlet property="pictureImageView" destination="hz1-fo-7HY" id="cBY-oe-dGU"/>
+                <outlet property="pictureView" destination="3y2-eq-YCa" id="yFj-R1-gRK"/>
             </connections>
             <point key="canvasLocation" x="-141" y="-22"/>
         </collectionViewCell>

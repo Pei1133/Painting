@@ -12,6 +12,8 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
 
     // MARK: Property
 
+    @IBOutlet weak var pictureView: UIView!
+
     @IBOutlet weak var pictureImageView: UIImageView!
 
     // MARK: Life Cycle
@@ -54,4 +56,32 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
 
     }
 
+    private func setUpPictureView() {
+        
+        let view = pictureView!
+        
+        view.clipsToBounds = true
+        
+        view.contentMode = .center
+        
+        view.layer.cornerRadius = 1.0
+        
+        view.layer.borderWidth = 0.2
+        
+        view.backgroundColor = UIColor(
+            red: 255.0 / 255.0,
+            green: 255.0 / 255.0,
+            blue: 201.0 / 255.0,
+            alpha: 1.0
+        )
+        
+        view.layer.shadowColor = UIColor.black.cgColor
+        
+        view.layer.shadowRadius = 1.0
+        
+        view.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        
+        view.layer.shadowOpacity = 0.26
+        
+    }
 }
