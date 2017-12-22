@@ -39,12 +39,14 @@ public struct Picture {
 public let pictures = [
     Picture(name: "chicken"),
     Picture(name: "snowman"),
+    Picture(name: "pinata"),
     Picture(name: "robot"),
-    Picture(name: "startup"),
+    Picture(name: "balloons"),
     Picture(name: "plant"),
     Picture(name: "chicken"),
     Picture(name: "snowman"),
+    Picture(name: "pinata"),
     Picture(name: "robot"),
-    Picture(name: "startup"),
+    Picture(name: "balloons"),
     Picture(name: "plant")
 ]
