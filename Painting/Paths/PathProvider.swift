@@ -14,8 +14,8 @@ class PathProvider {
     static func renderPaths(url: URL, imageView: UIImageView) -> (pictureSize: CGSize, imageView: UIImageView) {
 
         var pictureSize = CGSize.zero
-        let strokeWidth = CGFloat(2.0)
-        let strokeColor = UIColor.black.cgColor
+        let strokeWidth = CGFloat(0.8)
+        let strokeColor = UIColor.lightGray.cgColor
 
         let paths = SVGBezierPath.pathsFromSVG(at: url)
         for path in paths {
@@ -26,8 +26,31 @@ class PathProvider {
             layer.lineWidth = strokeWidth
             layer.strokeColor = strokeColor
             layer.fillColor = UIColor.white.cgColor
+            imageView.layer.addSublayer(layer)
+        }
 
-//            imageView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
+        return (pictureSize: pictureSize, imageView: imageView)
+    }
+
+    static func renderCellPaths(url: URL, imageView: UIImageView) -> (pictureSize: CGSize, imageView: UIImageView) {
+
+        var pictureSize = CGSize.zero
+        let strokeWidth = CGFloat(0.8)
+        let strokeColor = UIColor.lightGray.cgColor
+
+        let paths = SVGBezierPath.pathsFromSVG(at: url)
+        for path in paths {
+
+            let layer = CAShapeLayer()
+            pictureSize = calculatePictureBounds(pictureSize: pictureSize, rect: path.cgPath.boundingBox)
+            let scaleFactor = calculateScaleFactor(pictureSize: pictureSize, imageView: imageView)
+            var affineTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+            let transformedPath = (path.cgPath).copy(using: &affineTransform)
+
+            layer.path = transformedPath
+            layer.lineWidth = strokeWidth
+            layer.strokeColor = strokeColor
+            layer.fillColor = UIColor.white.cgColor
             imageView.layer.addSublayer(layer)
 
         }
@@ -45,31 +68,32 @@ class PathProvider {
         return CGSize(width: newsizeWidth, height: newsizeHeight)
     }
 
-    func calculateScaleFactor() -> CGFloat {
+    static func calculateScaleFactor(pictureSize: CGSize, imageView: UIImageView) -> CGFloat {
 
-        let boundingBoxAspectRatio = self..width/scrollView.contentSize.height
-        let viewAspectRatio = self.view.bounds.width/(self.view.bounds.height - 110)
+        let boundingBoxAspectRatio = pictureSize.width/pictureSize.height
+        let viewAspectRatio = imageView.bounds.width/imageView.bounds.height
 
         let scaleFactor: CGFloat
         if (boundingBoxAspectRatio > viewAspectRatio) {
             // Width is limiting factor
-            scaleFactor = self.view.bounds.width/scrollView.contentSize.width
+            scaleFactor = imageView.bounds.width/pictureSize.width
         } else {
             // Height is limiting factor
-            scaleFactor = (self.view.bounds.height - 110)/scrollView.contentSize.height
+            scaleFactor = imageView.bounds.height/pictureSize.height
         }
 
         return scaleFactor
-
-        //        let scaleFactor = transformRatio()
-        //
-        //        var affineTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
-        //
-        //        let transformedPath = (path.cgPath).copy(using: &affineTransform)
-        //
-        //        let layer = CAShapeLayer()
-        //        layer.path = transformedPath
-
     }
-
+//
+//        let scaleFactor = transformRatio()
+//
+//        var affineTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+//
+//        let transformedPath = (path.cgPath).copy(using: &affineTransform)
+//
+//        let layer = CAShapeLayer()
+//        layer.path = transformedPath
+//
+//    }
+//
 }

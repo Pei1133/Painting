@@ -80,14 +80,18 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         let url = picture.imageURL
 
-    print("1:\(cell.pictureImageView.frame.size)")
-    print("2:\(cell.pictureImageView.bounds.size)")
-    print("3:\(cell.pictureImageView.layer.frame.size)")
-    print("4:\(cell.pictureImageView.layer.bounds.size)")
+        let renderParameter = PathProvider.renderCellPaths(url: url, imageView: cell.pictureImageView)
 
-        let renderParameter = PathProvider.renderPaths(url: url, imageView: cell.pictureImageView)
         cell.pictureImageView = renderParameter.imageView
-        cell.pictureImageView.layer.frame = CGRect(x: 0, y: 0, width: renderParameter.pictureSize.width, height: renderParameter.pictureSize.height)
+
+//        let renderParameter = PathProvider.renderPaths(url: url, imageView: cell.pictureImageView)
+//
+//        let pictureSize = renderParameter.pictureSize
+//        let scaleFactor = PathProvider.calculateScaleFactor(pictureSize: pictureSize, imageView: cell.pictureImageView)
+//        cell.pictureImageView.frame.size = CGSize(width: pictureSize.width * scaleFactor, height: pictureSize.height *  scaleFactor)
+//        cell.pictureImageView = renderParameter.imageView
+
+//        cell.pictureImageView.layer.frame = CGRect(x: 0, y: 0, width: renderParameter.pictureSize.width, height: renderParameter.pictureSize.height)
 
 //        cell.pictureImageView.layer.transform = CATransform3DMakeScale(0.4, 0.4, 0.4)
 //        cell.pictureImageView.frame = cell.pictureView.bounds
@@ -114,6 +118,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         self.navigationController?.pushViewController(paintingViewController, animated: true)
 
+        // Present next viewcontroller
 //        let name = picture.name
 //        let url = picture.imageURL
 //        let paintingViewController = PaintingViewController(name: name, url: url)
