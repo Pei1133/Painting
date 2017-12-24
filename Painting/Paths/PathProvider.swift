@@ -45,31 +45,31 @@ class PathProvider {
         return CGSize(width: newsizeWidth, height: newsizeHeight)
     }
 
-//    func calculateScaleFactor() -> CGFloat {
-//
-//        let boundingBoxAspectRatio = self..width/scrollView.contentSize.height
-//        let viewAspectRatio = self.view.bounds.width/(self.view.bounds.height - 110)
-//
-//        let scaleFactor: CGFloat
-//        if (boundingBoxAspectRatio > viewAspectRatio) {
-//            // Width is limiting factor
-//            scaleFactor = self.view.bounds.width/scrollView.contentSize.width
-//        } else {
-//            // Height is limiting factor
-//            scaleFactor = (self.view.bounds.height - 110)/scrollView.contentSize.height
-//        }
-//
-//        return scaleFactor
-//
-//        //        let scaleFactor = transformRatio()
-//        //
-//        //        var affineTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
-//        //
-//        //        let transformedPath = (path.cgPath).copy(using: &affineTransform)
-//        //
-//        //        let layer = CAShapeLayer()
-//        //        layer.path = transformedPath
-//
-//    }
+    func calculateScaleFactor() -> CGFloat {
+
+        let boundingBoxAspectRatio = self..width/scrollView.contentSize.height
+        let viewAspectRatio = self.view.bounds.width/(self.view.bounds.height - 110)
+
+        let scaleFactor: CGFloat
+        if (boundingBoxAspectRatio > viewAspectRatio) {
+            // Width is limiting factor
+            scaleFactor = self.view.bounds.width/scrollView.contentSize.width
+        } else {
+            // Height is limiting factor
+            scaleFactor = (self.view.bounds.height - 110)/scrollView.contentSize.height
+        }
+
+        return scaleFactor
+
+        //        let scaleFactor = transformRatio()
+        //
+        //        var affineTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+        //
+        //        let transformedPath = (path.cgPath).copy(using: &affineTransform)
+        //
+        //        let layer = CAShapeLayer()
+        //        layer.path = transformedPath
+
+    }
 
 }

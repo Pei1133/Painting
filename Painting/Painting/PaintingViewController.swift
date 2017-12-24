@@ -35,6 +35,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
             blue: 201.0 / 255.0,
             alpha: 1.0
         )
+
         colorPicker.delegate = self
 
         let paths = SVGBezierPath.pathsFromSVG(at: url!)
@@ -59,8 +60,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         let svgImageView = SVGImageView.init(contentsOf: url!)
         svgImageView.frame = self.view.bounds
         view.addSubview(svgImageView)
-        print("svgImageView.bounds:\(svgImageView.bounds)")
-        print("svgImageView.frame:\(svgImageView.frame)")
 
     }
 
@@ -89,6 +88,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
                 layer.strokeColor = strokeColor
                 layer.fillColor = pickedColor?.cgColor
                 self.imageView.layer.addSublayer(layer)
+
             } else {
 
                 print("no color!")

@@ -14,11 +14,9 @@
 		AB8EC82F1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */; };
 		AB8EC8321FE90D9B00C19F60 /* PictureGridCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */; };
 		AB9A80881FEBAF5E000434E7 /* plant.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80871FEBAF5E000434E7 /* plant.svg */; };
-		AB9A80941FECE61B000434E7 /* startup.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80931FECE61B000434E7 /* startup.svg */; };
 		AB9A80981FECE8D9000434E7 /* balloons.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80971FECE8D9000434E7 /* balloons.svg */; };
 		AB9A809F1FECEC8A000434E7 /* pinata.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A809D1FECEC89000434E7 /* pinata.svg */; };
 		AB9A80A01FECEC8A000434E7 /* snowman.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A809E1FECEC89000434E7 /* snowman.svg */; };
-		AB9A80A21FECF4BE000434E7 /* monster.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80A11FECF4BE000434E7 /* monster.svg */; };
 		AB9A80A61FECF5D1000434E7 /* christmas-day.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80A31FECF5D0000434E7 /* christmas-day.svg */; };
 		AB9A80A71FECF5D1000434E7 /* cabin.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80A41FECF5D0000434E7 /* cabin.svg */; };
 		AB9A80A81FECF5D1000434E7 /* nutcracker.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80A51FECF5D1000434E7 /* nutcracker.svg */; };
@@ -47,11 +45,9 @@
 		AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGridCollectionViewCell.swift; sourceTree = "<group>"; };
 		AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGridCollectionViewController.swift; sourceTree = "<group>"; };
 		AB9A80871FEBAF5E000434E7 /* plant.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = plant.svg; sourceTree = "<group>"; };
-		AB9A80931FECE61B000434E7 /* startup.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = startup.svg; sourceTree = "<group>"; };
 		AB9A80971FECE8D9000434E7 /* balloons.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = balloons.svg; sourceTree = "<group>"; };
 		AB9A809D1FECEC89000434E7 /* pinata.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = pinata.svg; sourceTree = "<group>"; };
 		AB9A809E1FECEC89000434E7 /* snowman.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = snowman.svg; sourceTree = "<group>"; };
-		AB9A80A11FECF4BE000434E7 /* monster.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = monster.svg; sourceTree = "<group>"; };
 		AB9A80A31FECF5D0000434E7 /* christmas-day.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "christmas-day.svg"; sourceTree = "<group>"; };
 		AB9A80A41FECF5D0000434E7 /* cabin.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cabin.svg; sourceTree = "<group>"; };
 		AB9A80A51FECF5D1000434E7 /* nutcracker.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = nutcracker.svg; sourceTree = "<group>"; };
@@ -128,8 +124,6 @@
 				AB9A80971FECE8D9000434E7 /* balloons.svg */,
 				AB9A80871FEBAF5E000434E7 /* plant.svg */,
 				ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */,
-				AB9A80A11FECF4BE000434E7 /* monster.svg */,
-				AB9A80931FECE61B000434E7 /* startup.svg */,
 			);
 			path = SVG;
 			sourceTree = "<group>";
@@ -250,7 +244,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB9A80A61FECF5D1000434E7 /* christmas-day.svg in Resources */,
-				AB9A80941FECE61B000434E7 /* startup.svg in Resources */,
 				AB9A809F1FECEC8A000434E7 /* pinata.svg in Resources */,
 				AB9FA5981FE2A99300055C50 /* LaunchScreen.storyboard in Resources */,
 				AB9A80881FEBAF5E000434E7 /* plant.svg in Resources */,
@@ -259,7 +252,6 @@
 				AB9A80981FECE8D9000434E7 /* balloons.svg in Resources */,
 				ABF8F5A71FE2AF4D00117AB8 /* chicken.svg in Resources */,
 				AB9A80AD1FECF67A000434E7 /* snow-globe.svg in Resources */,
-				AB9A80A21FECF4BE000434E7 /* monster.svg in Resources */,
 				AB9A80A71FECF5D1000434E7 /* cabin.svg in Resources */,
 				AB9A80A01FECEC8A000434E7 /* snowman.svg in Resources */,
 				AB9FA5931FE2A99300055C50 /* Main.storyboard in Resources */,

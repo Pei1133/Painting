@@ -18,18 +18,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="154" height="160"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3y2-eq-YCa">
+                        <rect key="frame" x="0.0" y="0.0" width="154" height="160"/>
+                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hz1-fo-7HY">
                         <rect key="frame" x="0.0" y="0.0" width="154" height="160"/>
                     </imageView>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3y2-eq-YCa">
-                        <rect key="frame" x="0.0" y="0.0" width="154" height="160"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </view>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="3y2-eq-YCa" secondAttribute="bottom" id="0W0-tg-Ibi"/>
+                <constraint firstItem="3y2-eq-YCa" firstAttribute="top" secondItem="HzV-Ef-f47" secondAttribute="top" id="1yQ-gv-4jI"/>
                 <constraint firstAttribute="bottom" secondItem="hz1-fo-7HY" secondAttribute="bottom" id="3Gi-5B-pUE"/>
                 <constraint firstAttribute="trailing" secondItem="hz1-fo-7HY" secondAttribute="trailing" id="Bje-LI-QfC"/>
+                <constraint firstItem="3y2-eq-YCa" firstAttribute="leading" secondItem="HzV-Ef-f47" secondAttribute="leading" id="LRW-8m-ekg"/>
+                <constraint firstAttribute="trailing" secondItem="3y2-eq-YCa" secondAttribute="trailing" id="oQc-EM-rlB"/>
                 <constraint firstItem="hz1-fo-7HY" firstAttribute="leading" secondItem="HzV-Ef-f47" secondAttribute="leading" id="reK-hW-5Ia"/>
                 <constraint firstItem="hz1-fo-7HY" firstAttribute="top" secondItem="HzV-Ef-f47" secondAttribute="top" id="sXu-i2-Dmx"/>
             </constraints>
