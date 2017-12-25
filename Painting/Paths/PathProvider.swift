@@ -48,14 +48,13 @@ class PathProvider {
             var affineTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
             let transformedPath = (path.cgPath).copy(using: &affineTransform)
             layer.path = transformedPath
-            
+
 //            layer.path = path.cgPath
 //            layer.transform = CATransform3DMakeScale(scaleFactor, scaleFactor, scaleFactor)
             layer.lineWidth = strokeWidth
             layer.strokeColor = strokeColor
             layer.fillColor = UIColor.white.cgColor
             imageView.layer.addSublayer(layer)
-
 
         }
         return (pictureSize: pictureSize, imageView: imageView)

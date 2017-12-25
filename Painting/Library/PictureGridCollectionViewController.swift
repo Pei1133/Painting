@@ -84,7 +84,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         cell.pictureImageView = renderParameter.imageView
 
-
         // use View to showSVG
 //        let svgImageView = SVGImageView.init(contentsOf: url)
 //        svgImageView.frame = cell.pictureImageView.bounds
