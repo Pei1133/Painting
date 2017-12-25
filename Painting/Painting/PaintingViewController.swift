@@ -45,9 +45,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 //        let renderParameter = PathProvider.renderCellPaths(url: url!, imageView: imageView)
         self.imageView = renderParameter.imageView
         self.pictureSize = renderParameter.pictureSize
-
-//        self.imageView  = PathProvider.renderCellPaths(url: url!, imageView: imageView)
-
         setUpScrollViewAndImageView()
 //        showSVG()
 

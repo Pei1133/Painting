@@ -35,8 +35,8 @@ class PathProvider {
     static func renderCellPaths(url: URL, imageView: UIImageView) -> (pictureSize: CGSize, imageView: UIImageView) {
 
         var pictureSize = CGSize.zero
-        let strokeWidth = CGFloat(0.8)
-        let strokeColor = UIColor.lightGray.cgColor
+        let strokeWidth = CGFloat(0.6)
+        let strokeColor = UIColor.darkGray.cgColor
 
         let paths = SVGBezierPath.pathsFromSVG(at: url)
         for path in paths {
@@ -44,14 +44,18 @@ class PathProvider {
             let layer = CAShapeLayer()
             pictureSize = calculatePictureBounds(pictureSize: pictureSize, rect: path.cgPath.boundingBox)
             let scaleFactor = calculateScaleFactor(pictureSize: pictureSize, imageView: imageView)
+
             var affineTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
             let transformedPath = (path.cgPath).copy(using: &affineTransform)
-
             layer.path = transformedPath
+            
+//            layer.path = path.cgPath
+//            layer.transform = CATransform3DMakeScale(scaleFactor, scaleFactor, scaleFactor)
             layer.lineWidth = strokeWidth
             layer.strokeColor = strokeColor
             layer.fillColor = UIColor.white.cgColor
             imageView.layer.addSublayer(layer)
+
 
         }
         return (pictureSize: pictureSize, imageView: imageView)
@@ -74,7 +78,7 @@ class PathProvider {
         let viewAspectRatio = imageView.bounds.width/imageView.bounds.height
 
         let scaleFactor: CGFloat
-        if (boundingBoxAspectRatio > viewAspectRatio) {
+        if boundingBoxAspectRatio > viewAspectRatio {
             // Width is limiting factor
             scaleFactor = imageView.bounds.width/pictureSize.width
         } else {
@@ -84,16 +88,5 @@ class PathProvider {
 
         return scaleFactor
     }
-//
-//        let scaleFactor = transformRatio()
-//
-//        var affineTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
-//
-//        let transformedPath = (path.cgPath).copy(using: &affineTransform)
-//
-//        let layer = CAShapeLayer()
-//        layer.path = transformedPath
-//
-//    }
-//
+
 }

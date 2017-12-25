@@ -84,18 +84,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         cell.pictureImageView = renderParameter.imageView
 
-//        let renderParameter = PathProvider.renderPaths(url: url, imageView: cell.pictureImageView)
-//
-//        let pictureSize = renderParameter.pictureSize
-//        let scaleFactor = PathProvider.calculateScaleFactor(pictureSize: pictureSize, imageView: cell.pictureImageView)
-//        cell.pictureImageView.frame.size = CGSize(width: pictureSize.width * scaleFactor, height: pictureSize.height *  scaleFactor)
-//        cell.pictureImageView = renderParameter.imageView
-
-//        cell.pictureImageView.layer.frame = CGRect(x: 0, y: 0, width: renderParameter.pictureSize.width, height: renderParameter.pictureSize.height)
-
-//        cell.pictureImageView.layer.transform = CATransform3DMakeScale(0.4, 0.4, 0.4)
-//        cell.pictureImageView.frame = cell.pictureView.bounds
-//        svgImageView.frame = self.view.bounds
 
         // use View to showSVG
 //        let svgImageView = SVGImageView.init(contentsOf: url)
