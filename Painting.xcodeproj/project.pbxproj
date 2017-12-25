@@ -24,6 +24,7 @@
 		AB9A80AD1FECF67A000434E7 /* snow-globe.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80AA1FECF679000434E7 /* snow-globe.svg */; };
 		AB9A80AE1FECF67A000434E7 /* candy-cane.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80AB1FECF67A000434E7 /* candy-cane.svg */; };
 		AB9A80B01FECF73D000434E7 /* confetti.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80AF1FECF73D000434E7 /* confetti.svg */; };
+		AB9A80B51FF0D954000434E7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80B41FF0D953000434E7 /* GoogleService-Info.plist */; };
 		AB9FA58E1FE2A99300055C50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */; };
 		AB9FA5901FE2A99300055C50 /* PaintingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9FA58F1FE2A99300055C50 /* PaintingViewController.swift */; };
 		AB9FA5931FE2A99300055C50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9FA5911FE2A99300055C50 /* Main.storyboard */; };
@@ -55,6 +56,7 @@
 		AB9A80AA1FECF679000434E7 /* snow-globe.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "snow-globe.svg"; sourceTree = "<group>"; };
 		AB9A80AB1FECF67A000434E7 /* candy-cane.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "candy-cane.svg"; sourceTree = "<group>"; };
 		AB9A80AF1FECF73D000434E7 /* confetti.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = confetti.svg; sourceTree = "<group>"; };
+		AB9A80B41FF0D953000434E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AB9FA58A1FE2A99300055C50 /* Painting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Painting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB9FA58F1FE2A99300055C50 /* PaintingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintingViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				AB9FA5911FE2A99300055C50 /* Main.storyboard */,
 				AB9FA5961FE2A99300055C50 /* LaunchScreen.storyboard */,
 				AB9FA5991FE2A99300055C50 /* Info.plist */,
+				AB9A80B41FF0D953000434E7 /* GoogleService-Info.plist */,
 			);
 			path = Painting;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				AB9A80AD1FECF67A000434E7 /* snow-globe.svg in Resources */,
 				AB9A80A71FECF5D1000434E7 /* cabin.svg in Resources */,
 				AB9A80A01FECEC8A000434E7 /* snowman.svg in Resources */,
+				AB9A80B51FF0D954000434E7 /* GoogleService-Info.plist in Resources */,
 				AB9FA5931FE2A99300055C50 /* Main.storyboard in Resources */,
 				AB9A80B01FECF73D000434E7 /* confetti.svg in Resources */,
 				ABBAF1C91FE90F7200676426 /* PictureGridCollectionViewCell.xib in Resources */,
@@ -274,11 +278,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Painting/Pods-Painting-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

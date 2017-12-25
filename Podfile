@@ -8,5 +8,7 @@ target 'Painting' do
   # Pods for Painting
 
   pod 'PocketSVG'
+  pod 'Firebase/Core'
+  pod 'Firebase/Storage'
 
 end
