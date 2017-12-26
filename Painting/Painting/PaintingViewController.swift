@@ -228,13 +228,13 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+
         if !swiped {
             drawLines(fromPoint: lastPoint, toPoint: lastPoint)
         }
-        
+
     }
-    
+
     override func didReceiveMemoryWarning() {
 
         super.didReceiveMemoryWarning()
