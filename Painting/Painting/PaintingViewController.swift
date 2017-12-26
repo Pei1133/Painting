@@ -16,13 +16,16 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
     }
 
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
-    var pickedColor: UIColor?
+    var pickedColor = UIColor.brown
     var paths = [SVGBezierPath]()
     var scrollView = UIScrollView()
     var imageView = UIImageView()
     var pictureSize = CGSize.zero
 
     var url: URL?
+
+    var lastPoint = CGPoint.zero
+    var swiped = false
 
     override func viewDidLoad() {
 
@@ -85,7 +88,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
                 layer.path = path.cgPath
                 layer.lineWidth = strokeWidth
                 layer.strokeColor = strokeColor
-                layer.fillColor = pickedColor?.cgColor
+                layer.fillColor = pickedColor.cgColor
                 self.imageView.layer.addSublayer(layer)
 
             } else {
@@ -107,8 +110,8 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 120))
         scrollView.contentSize = imageView.frame.size
         scrollView.backgroundColor = UIColor.lightGray
-        scrollView.alwaysBounceVertical = true
-        scrollView.alwaysBounceHorizontal = true
+//        scrollView.alwaysBounceVertical = true
+//        scrollView.alwaysBounceHorizontal = true
 
         // Add subviews
         view.addSubview(scrollView)
@@ -180,6 +183,49 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 //        imageView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor).isActive = true
 //
 //    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+
+        swiped = false
+
+        if let touch = touches.first {
+            lastPoint = touch.location(in: self.view)
+        }
+
+    }
+
+    func drawLines(fromPoint: CGPoint, toPoint: CGPoint) {
+
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        imageView.image?.draw(in: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        let context = UIGraphicsGetCurrentContext()
+
+        context?.move(to: CGPoint(x: fromPoint.x, y: fromPoint.y))
+        context?.addLine(to: CGPoint(x: toPoint.x, y: toPoint.y))
+
+        context?.setBlendMode(CGBlendMode.normal)
+        context?.setLineCap(CGLineCap.round)
+        context?.setLineWidth(5)
+        context?.setStrokeColor(pickedColor.cgColor)
+
+        context?.strokePath()
+
+        imageView.image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+    }
+
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+
+        swiped = true
+
+        if let touch = touches.first {
+            let currentPoint = touch.location(in: self.view)
+            drawLines(fromPoint: lastPoint, toPoint: currentPoint)
+
+            lastPoint = currentPoint
+        }
+    }
 
     override func didReceiveMemoryWarning() {
 
