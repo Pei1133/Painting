@@ -8,6 +8,8 @@
 
 import UIKit
 import PocketSVG
+import Firebase
+import SDWebImage
 
 class PictureGridCollectionViewController: UICollectionViewController {
 
@@ -16,6 +18,8 @@ class PictureGridCollectionViewController: UICollectionViewController {
     var fullScreenSize = CGSize()
 
     var flowLayout = UICollectionViewFlowLayout()
+
+    var imageURLs: [String: Any]?
 
     override func viewDidLoad() {
 
@@ -28,7 +32,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
         setUpCollectionView()
 
         setUpLayout()
-
     }
 
     func setUpCollectionView() {
@@ -76,21 +79,43 @@ class PictureGridCollectionViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PictureGridCollectionViewCell else {
             return PictureGridCollectionViewCell() }
 
-        let picture = pictures[indexPath.row]
+//        let picture = pictures[indexPath.row]
 
-        let url = picture.imageURL
+//        let url = picture.imageURL
 
-        let renderParameter = PathProvider.renderCellPaths(url: url, imageView: cell.pictureImageView)
+//        let renderParameter = PathProvider.renderCellPaths(url: url, imageView: cell.pictureImageView)
+//
+//        cell.pictureImageView = renderParameter.imageView
 
-        cell.pictureImageView = renderParameter.imageView
-
-        // use View to showSVG
+//        // use View to showSVG
 //        let svgImageView = SVGImageView.init(contentsOf: url)
 //        svgImageView.frame = cell.pictureImageView.bounds
 //        cell.pictureView.addSubview(svgImageView)
 
-        return cell
+//        // [Firebase] Download in memory
+//        let reference = Storage.storage().reference().child("libraryPictures").child("3.jpg")
+//        reference.getData(maxSize: 1 * 1024 * 1024) { (data, err) in
+//            if let error = err {
+//                print(error)
+//            } else {
+//                let image = UIImage(data: data!)
+//                cell.pictureImageView.image = image
+//            }
+//        }
 
+        // Generate a download URL
+        let reference = Storage.storage().reference().child("libraryPictures").child("2.svg")
+        reference.downloadURL { (url, err) in
+            if let error = err {
+                print(error)
+            } else {
+
+                let renderParameter = PathProvider.renderCellPaths(url: url!, imageView: cell.pictureImageView)
+                cell.pictureImageView = renderParameter.imageView
+
+            }
+        }
+        return cell
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

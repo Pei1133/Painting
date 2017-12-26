@@ -10,5 +10,6 @@ target 'Painting' do
   pod 'PocketSVG'
   pod 'Firebase/Core'
   pod 'Firebase/Storage'
+  pod 'SDWebImage', '~> 4.0'
 
 end

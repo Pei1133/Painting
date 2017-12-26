@@ -28,11 +28,15 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - PocketSVG (2.2.1)
+  - SDWebImage (4.1.2):
+    - SDWebImage/Core (= 4.1.2)
+  - SDWebImage/Core (4.1.2)
 
 DEPENDENCIES:
   - Firebase/Core
   - Firebase/Storage
   - PocketSVG
+  - SDWebImage (~> 4.0)
 
 SPEC CHECKSUMS:
   Firebase: 3e92884a63e8f76d107c43a67d2ab9071e1eda10
@@ -44,7 +48,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   PocketSVG: 51c4d5cb9ae7623d4494f439f69747394bad5d67
+  SDWebImage: cb6f9f266a9977741efcbc21e618e8be3734c774
 
-PODFILE CHECKSUM: 583a4f055c22856cda85e30975f756eb05e8c4db
+PODFILE CHECKSUM: 90f87b90e93ac29d90ecabc27fc669f8bbf3cbdb
 
 COCOAPODS: 1.3.1
