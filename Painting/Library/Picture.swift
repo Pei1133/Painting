@@ -14,11 +14,9 @@ public struct Picture {
 
     // MARK: Property
 
-    public let name: String
+//    public let name: String
 
     public let imageURL: URL
-
-//    public let creatorID: ProductID
 
     // MARK: Init
 
@@ -26,7 +24,7 @@ public struct Picture {
         name: String
     ) {
 
-        self.name = name
+//        self.name = name
 
         self.imageURL = Bundle.main.url(forResource: "\(name)", withExtension: "svg")!
 
@@ -37,18 +35,6 @@ public struct Picture {
 //fake picture
 
 public let pictures = [
-    Picture(name: "cabin"),
-    Picture(name: "snowman"),
-    Picture(name: "robot"),
-    Picture(name: "candy-cane"),
-    Picture(name: "snow-globe"),
-    Picture(name: "balloons"),
-    Picture(name: "plant"),
-    Picture(name: "nutcracker"),
-    Picture(name: "cabin"),
-    Picture(name: "pinata"),
-    Picture(name: "robot"),
-    Picture(name: "candy-cane"),
-    Picture(name: "gift"),
-    Picture(name: "balloons")
+    Picture(name: "chicken"),
+    Picture(name: "cabin")
 ]

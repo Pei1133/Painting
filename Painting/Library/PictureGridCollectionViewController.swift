@@ -19,7 +19,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
     var flowLayout = UICollectionViewFlowLayout()
 
     var imageURLs: [URL] = [] {
-        
+
         didSet {
             self.collectionView?.reloadData()
         }
@@ -38,7 +38,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
         setUpLayout()
 
         downloadLibraryPictures()
-        
+
     }
 
     func setUpCollectionView() {
@@ -105,16 +105,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
         let imageURL = imageURLs[indexPath.row]
         let renderParameter = PathProvider.renderCellPaths(url: imageURL, imageView: cell.pictureImageView)
         cell.pictureImageView = renderParameter.imageView
-        
-//        let picture = pictures[indexPath.row]
-//        let url = picture.imageURL
-//        let renderParameter = PathProvider.renderCellPaths(url: url, imageView: cell.pictureImageView)
-//        cell.pictureImageView = renderParameter.imageView
-
-//        // use View to showSVG
-//        let svgImageView = SVGImageView.init(contentsOf: url)
-//        svgImageView.frame = cell.pictureImageView.bounds
-//        cell.pictureView.addSubview(svgImageView)
 
         // [Firebase] Download to a local file
 //        let islandRef = Storage.storage().reference().child("libraryPictures").child("2.svg")
@@ -131,31 +121,17 @@ class PictureGridCollectionViewController: UICollectionViewController {
 //            }
 //        }
 
-//         [Firebase] Generate a download URL
-//        let reference = Storage.storage().reference().child("libraryPictures").child("2.svg")
-//        reference.downloadURL { (url, err) in
-//            if let error = err {
-//                print(error)
-//            } else {
-//
-//                let renderParameter = PathProvider.renderCellPaths(url: url!, imageView: cell.pictureImageView)
-//                cell.pictureImageView = renderParameter.imageView
-//
-//            }
-//        }
         return cell
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        let picture = pictures[indexPath.row]
+        let imageURL = imageURLs[indexPath.row]
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let paintingViewController = storyboard.instantiateViewController(withIdentifier: "Painting") as? PaintingViewController else { return }
 
-        paintingViewController.name = picture.name
-        paintingViewController.url = picture.imageURL
-
+        paintingViewController.url = imageURL
         self.navigationController?.pushViewController(paintingViewController, animated: true)
 
         // Present next viewcontroller

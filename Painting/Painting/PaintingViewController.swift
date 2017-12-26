@@ -22,7 +22,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
     var imageView = UIImageView()
     var pictureSize = CGSize.zero
 
-    var name: String?
     var url: URL?
 
     override func viewDidLoad() {
