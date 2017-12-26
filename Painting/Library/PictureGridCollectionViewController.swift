@@ -9,7 +9,6 @@
 import UIKit
 import PocketSVG
 import Firebase
-import SDWebImage
 
 class PictureGridCollectionViewController: UICollectionViewController {
 
@@ -19,7 +18,12 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
     var flowLayout = UICollectionViewFlowLayout()
 
-    var imageURLs: [String: Any]?
+    var imageURLs: [URL] = [] {
+        
+        didSet {
+            self.collectionView?.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
 
@@ -32,6 +36,9 @@ class PictureGridCollectionViewController: UICollectionViewController {
         setUpCollectionView()
 
         setUpLayout()
+
+        downloadLibraryPictures()
+        
     }
 
     func setUpCollectionView() {
@@ -64,6 +71,22 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
     }
 
+    func downloadLibraryPictures() {
+
+        for i in 0...14 {
+            let libraryRef = Storage.storage().reference().child("libraryPictures").child("\(i).svg")
+
+                libraryRef.downloadURL { (url, err) in
+                    if let error = err {
+                        print(error)
+                    } else {
+                        guard let url = url else { return }
+                        self.imageURLs.append(url)
+                    }
+                }
+        }
+    }
+
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -71,7 +94,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return pictures.count
+        return imageURLs.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -79,12 +102,13 @@ class PictureGridCollectionViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PictureGridCollectionViewCell else {
             return PictureGridCollectionViewCell() }
 
+        let imageURL = imageURLs[indexPath.row]
+        let renderParameter = PathProvider.renderCellPaths(url: imageURL, imageView: cell.pictureImageView)
+        cell.pictureImageView = renderParameter.imageView
+        
 //        let picture = pictures[indexPath.row]
-
 //        let url = picture.imageURL
-
 //        let renderParameter = PathProvider.renderCellPaths(url: url, imageView: cell.pictureImageView)
-//
 //        cell.pictureImageView = renderParameter.imageView
 
 //        // use View to showSVG
@@ -92,29 +116,33 @@ class PictureGridCollectionViewController: UICollectionViewController {
 //        svgImageView.frame = cell.pictureImageView.bounds
 //        cell.pictureView.addSubview(svgImageView)
 
-//        // [Firebase] Download in memory
-//        let reference = Storage.storage().reference().child("libraryPictures").child("3.jpg")
-//        reference.getData(maxSize: 1 * 1024 * 1024) { (data, err) in
+        // [Firebase] Download to a local file
+//        let islandRef = Storage.storage().reference().child("libraryPictures").child("2.svg")
+//        let localURL = URL(string: "\(islandRef)")!
+//
+//        islandRef.write(toFile: localURL) { (url, err) in
 //            if let error = err {
 //                print(error)
 //            } else {
-//                let image = UIImage(data: data!)
-//                cell.pictureImageView.image = image
+//
+//                let renderParameter = PathProvider.renderCellPaths(url: url!, imageView: cell.pictureImageView)
+//                cell.pictureImageView = renderParameter.imageView
+//
 //            }
 //        }
 
-        // Generate a download URL
-        let reference = Storage.storage().reference().child("libraryPictures").child("2.svg")
-        reference.downloadURL { (url, err) in
-            if let error = err {
-                print(error)
-            } else {
-
-                let renderParameter = PathProvider.renderCellPaths(url: url!, imageView: cell.pictureImageView)
-                cell.pictureImageView = renderParameter.imageView
-
-            }
-        }
+//         [Firebase] Generate a download URL
+//        let reference = Storage.storage().reference().child("libraryPictures").child("2.svg")
+//        reference.downloadURL { (url, err) in
+//            if let error = err {
+//                print(error)
+//            } else {
+//
+//                let renderParameter = PathProvider.renderCellPaths(url: url!, imageView: cell.pictureImageView)
+//                cell.pictureImageView = renderParameter.imageView
+//
+//            }
+//        }
         return cell
     }
 
