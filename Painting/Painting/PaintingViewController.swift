@@ -31,6 +31,14 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 
         super.viewDidLoad()
 
+        //self.view.sendSubvie(toBack: self.
+
+        self.view.bringSubview(toFront: self.imageView)
+
+        self.imageView.backgroundColor = .clear
+
+        //
+
         view.backgroundColor = UIColor(
             red: 255.0 / 255.0,
             green: 255.0 / 255.0,
