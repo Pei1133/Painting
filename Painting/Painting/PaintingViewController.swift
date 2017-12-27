@@ -29,7 +29,12 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
     }
 
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
-    var pickedColor = UIColor.brown
+    var pickedColor = UIColor(
+        red: 255.0 / 255.0,
+        green: 201.0 / 255.0,
+        blue: 255.0 / 255.0,
+        alpha: 1.0
+    )
     var paths = [SVGBezierPath]()
     var scrollView = UIScrollView()
     var pictureView = UIView()
@@ -141,8 +146,10 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 
         // Add subviews
         view.addSubview(scrollView)
+//        scrollView.addSubview(pictureView)
+//        pictureView.addSubview(imageView)
         scrollView.addSubview(pictureView)
-        pictureView.addSubview(imageView)
+        scrollView.addSubview(imageView)
 
         // ZoomScale Setting
         scrollView.delegate = self
@@ -232,7 +239,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         swiped = false
 
         if let touch = touches.first {
-            lastPoint = touch.location(in: self.pictureView)
+            lastPoint = touch.location(in: self.imageView)
         }
 
     }
@@ -240,13 +247,11 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
     func drawLines(fromPoint: CGPoint, toPoint: CGPoint) {
 
         UIGraphicsBeginImageContext(self.pictureView.frame.size)
-        
-//        imageView.layer.addSublayer(drawingLayer)
-        let layer = CAShapeLayer()
-        
-        imageView.image?.draw(in: CGRect(x: 0, y: 0, width: self.pictureView.frame.width, height: self.pictureView.frame.height))
-        let context = UIGraphicsGetCurrentContext()
 
+        let drawingLayer = CAShapeLayer()
+        imageView.image?.draw(in: CGRect(x: 0, y: 0, width: self.pictureView.frame.width, height: self.pictureView.frame.height))
+
+        let context = UIGraphicsGetCurrentContext()
         context?.move(to: CGPoint(x: fromPoint.x, y: fromPoint.y))
         context?.addLine(to: CGPoint(x: toPoint.x, y: toPoint.y))
 
@@ -257,6 +262,10 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         context?.strokePath()
 
         imageView.image = UIGraphicsGetImageFromCurrentImageContext()
+        drawingLayer.contents = imageView.image?.cgImage
+//        imageView.layer.contents = imageView.image?.cgImage
+//        drawingLayer.contents = UIGraphicsGetImageFromCurrentImageContext()
+        imageView.layer.addSublayer(drawingLayer)
         UIGraphicsEndImageContext()
 
     }
@@ -266,7 +275,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         swiped = true
 
         if let touch = touches.first {
-            let currentPoint = touch.location(in: self.pictureView)
+            let currentPoint = touch.location(in: self.imageView)
             drawLines(fromPoint: lastPoint, toPoint: currentPoint)
 
             lastPoint = currentPoint
