@@ -17,15 +17,15 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 
     @IBAction func tapFillColor(_ sender: Any) {
 
-        self.view.sendSubview(toBack: self.brushImageView)
-        self.view.bringSubview(toFront: self.imageView)
+        self.scrollView.sendSubview(toBack: self.brushView)
+        self.scrollView.bringSubview(toFront: self.imageView)
         
     }
 
     @IBAction func tapPaintColor(_ sender: Any) {
 
-        self.view.sendSubview(toBack: self.imageView)
-        self.view.bringSubview(toFront: self.brushView)
+        self.scrollView.sendSubview(toBack: self.imageView)
+        self.scrollView.bringSubview(toFront: self.brushView)
     }
 
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
@@ -127,6 +127,10 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         imageView.isUserInteractionEnabled = true
         imageView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
 
+        // Set up View
+        brushView.frame = CGRect(x: 0, y: 0, width: self.pictureSize.width, height: self.pictureSize.width)
+        brushView.backgroundColor = UIColor.clear
+        
         // Set up ScrollView
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 120))
         scrollView.contentSize = imageView.frame.size
@@ -217,7 +221,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         brushView.backgroundColor = UIColor.clear
 
         // Add subviews
-        self.view.addSubview(brushView)
+        self.scrollView.addSubview(brushView)
         brushView.addSubview(brushImageView)
 
     }
