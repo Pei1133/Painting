@@ -24,6 +24,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 
     var url: URL?
 
+    var brushView = UIView()
     var brushImageView = UIImageView()
     var lastPoint = CGPoint.zero
     var swiped = false
@@ -32,11 +33,8 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 
         super.viewDidLoad()
 
-        //self.view.sendSubvie(toBack: self.
-
-        self.view.bringSubview(toFront: self.imageView)
-
-        //
+//        self.view.sendSubview(toBack: self.imageView)
+//        self.brushView.bringSubview(toFront: self.brushImageView)
 
         view.backgroundColor = UIColor(
             red: 255.0 / 255.0,
@@ -54,9 +52,9 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 //        let renderParameter = PathProvider.renderCellPaths(url: url!, imageView: imageView)
         self.imageView = renderParameter.imageView
         self.pictureSize = renderParameter.pictureSize
-        
+
         setUpScrollViewAndImageView()
-        setUpBrushImageView()
+        setUpBrushViewAndBrushImageView()
 //        showSVG()
 
      // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
@@ -119,7 +117,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         // Set up ScrollView
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 120))
         scrollView.contentSize = imageView.frame.size
-        scrollView.backgroundColor = UIColor.clear
+        scrollView.backgroundColor = UIColor.white
 //        scrollView.alwaysBounceVertical = true
 //        scrollView.alwaysBounceHorizontal = true
 
@@ -194,32 +192,37 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 //
 //    }
 
-    func setUpBrushImageView() {
-        
+    func setUpBrushViewAndBrushImageView() {
+
         // Set up ImageView
         brushImageView.contentMode = .center
         brushImageView.isUserInteractionEnabled = true
-        brushImageView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
-    
+        brushImageView.frame = CGRect(x: 0, y: 0, width: self.pictureSize.width, height: self.pictureSize.height)
+
+        // Set up View
+        brushView.frame = CGRect(x: 0, y: 0, width: self.pictureSize.width, height: self.pictureSize.width)
+        brushView.backgroundColor = UIColor.clear
+
         // Add subviews
-        imageView.addSubview(brushImageView)
-        
+        self.view.addSubview(brushView)
+        brushView.addSubview(brushImageView)
+
     }
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 
         swiped = false
 
         if let touch = touches.first {
-            lastPoint = touch.location(in: self.view)
+            lastPoint = touch.location(in: self.brushView)
         }
 
     }
 
     func drawLines(fromPoint: CGPoint, toPoint: CGPoint) {
 
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        imageView.image?.draw(in: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        UIGraphicsBeginImageContext(self.brushView.frame.size)
+        brushImageView.image?.draw(in: CGRect(x: 0, y: 0, width: self.brushView.frame.width, height: self.brushView.frame.height))
         let context = UIGraphicsGetCurrentContext()
 
         context?.move(to: CGPoint(x: fromPoint.x, y: fromPoint.y))
@@ -229,10 +232,9 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         context?.setLineCap(CGLineCap.round)
         context?.setLineWidth(5)
         context?.setStrokeColor(pickedColor.cgColor)
-
         context?.strokePath()
 
-        imageView.image = UIGraphicsGetImageFromCurrentImageContext()
+        brushImageView.image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
     }
@@ -242,7 +244,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         swiped = true
 
         if let touch = touches.first {
-            let currentPoint = touch.location(in: self.view)
+            let currentPoint = touch.location(in: self.brushImageView)
             drawLines(fromPoint: lastPoint, toPoint: currentPoint)
 
             lastPoint = currentPoint
