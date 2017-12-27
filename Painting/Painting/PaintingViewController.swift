@@ -24,6 +24,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 
     var url: URL?
 
+    var brushImageView = UIImageView()
     var lastPoint = CGPoint.zero
     var swiped = false
 
@@ -34,8 +35,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         //self.view.sendSubvie(toBack: self.
 
         self.view.bringSubview(toFront: self.imageView)
-
-        self.imageView.backgroundColor = .clear
 
         //
 
@@ -55,7 +54,9 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 //        let renderParameter = PathProvider.renderCellPaths(url: url!, imageView: imageView)
         self.imageView = renderParameter.imageView
         self.pictureSize = renderParameter.pictureSize
+        
         setUpScrollViewAndImageView()
+        setUpBrushImageView()
 //        showSVG()
 
      // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
@@ -111,13 +112,14 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 
         // Set up ImageView
         imageView.contentMode = .center
+        imageView.backgroundColor = .clear
         imageView.isUserInteractionEnabled = true
         imageView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
 
         // Set up ScrollView
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 120))
         scrollView.contentSize = imageView.frame.size
-        scrollView.backgroundColor = UIColor.lightGray
+        scrollView.backgroundColor = UIColor.clear
 //        scrollView.alwaysBounceVertical = true
 //        scrollView.alwaysBounceHorizontal = true
 
@@ -192,6 +194,18 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 //
 //    }
 
+    func setUpBrushImageView() {
+        
+        // Set up ImageView
+        brushImageView.contentMode = .center
+        brushImageView.isUserInteractionEnabled = true
+        brushImageView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
+    
+        // Add subviews
+        imageView.addSubview(brushImageView)
+        
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 
         swiped = false

@@ -15,7 +15,7 @@ class PathProvider {
 
         var pictureSize = CGSize.zero
         let strokeWidth = CGFloat(0.8)
-        let strokeColor = UIColor.lightGray.cgColor
+        let strokeColor = UIColor.black.cgColor
 
         let paths = SVGBezierPath.pathsFromSVG(at: url)
         for path in paths {
@@ -25,7 +25,7 @@ class PathProvider {
             layer.path = path.cgPath
             layer.lineWidth = strokeWidth
             layer.strokeColor = strokeColor
-            layer.fillColor = UIColor.white.cgColor
+            layer.fillColor = UIColor.clear.cgColor
             imageView.layer.addSublayer(layer)
         }
 
