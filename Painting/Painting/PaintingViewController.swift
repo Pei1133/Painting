@@ -15,6 +15,19 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
             self.pickedColor = color
     }
 
+    @IBAction func tapFillColor(_ sender: Any) {
+
+        self.view.sendSubview(toBack: self.brushImageView)
+        self.view.bringSubview(toFront: self.imageView)
+        
+    }
+
+    @IBAction func tapPaintColor(_ sender: Any) {
+
+        self.view.sendSubview(toBack: self.imageView)
+        self.view.bringSubview(toFront: self.brushView)
+    }
+
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
     var pickedColor = UIColor.brown
     var paths = [SVGBezierPath]()
