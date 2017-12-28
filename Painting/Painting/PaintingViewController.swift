@@ -19,7 +19,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 
 //        self.scrollView.sendSubview(toBack: self.brushView)
         self.scrollView.bringSubview(toFront: self.imageView)
-        
+
     }
 
     @IBAction func tapPaintColor(_ sender: Any) {
@@ -136,7 +136,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         // Set up View
         pictureView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.width)
         pictureView.backgroundColor = UIColor.clear
-        
+
         // Set up ScrollView
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 120))
         scrollView.contentSize = imageView.frame.size
@@ -249,8 +249,10 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         UIGraphicsBeginImageContext(self.pictureView.frame.size)
 
         let drawingLayer = CAShapeLayer()
+        
         imageView.image?.draw(in: CGRect(x: 0, y: 0, width: self.pictureView.frame.width, height: self.pictureView.frame.height))
-
+        
+        //        let context = CGLayerGetContext(drawingLayer)
         let context = UIGraphicsGetCurrentContext()
         context?.move(to: CGPoint(x: fromPoint.x, y: fromPoint.y))
         context?.addLine(to: CGPoint(x: toPoint.x, y: toPoint.y))
@@ -262,10 +264,10 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         context?.strokePath()
 
         imageView.image = UIGraphicsGetImageFromCurrentImageContext()
-        drawingLayer.contents = imageView.image?.cgImage
+//        drawingLayer.contents = imageView.image?.cgImage
 //        imageView.layer.contents = imageView.image?.cgImage
 //        drawingLayer.contents = UIGraphicsGetImageFromCurrentImageContext()
-        imageView.layer.addSublayer(drawingLayer)
+//        imageView.layer.addSublayer(drawingLayer)
         UIGraphicsEndImageContext()
 
     }
