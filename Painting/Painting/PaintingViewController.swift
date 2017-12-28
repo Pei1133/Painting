@@ -9,6 +9,7 @@
 import UIKit
 import PocketSVG
 
+
 class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDelegate {
 
     func pickedColor(color: UIColor) {
@@ -143,6 +144,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         scrollView.backgroundColor = UIColor.white
 //        scrollView.alwaysBounceVertical = true
 //        scrollView.alwaysBounceHorizontal = true
+        scrollView.isUserInteractionEnabled = false
 
         // Add subviews
         view.addSubview(scrollView)
@@ -248,10 +250,10 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
 
         UIGraphicsBeginImageContext(self.pictureView.frame.size)
 
-        let drawingLayer = CAShapeLayer()
-        
+//        let drawingLayer = CAShapeLayer()
+
         imageView.image?.draw(in: CGRect(x: 0, y: 0, width: self.pictureView.frame.width, height: self.pictureView.frame.height))
-        
+
         //        let context = CGLayerGetContext(drawingLayer)
         let context = UIGraphicsGetCurrentContext()
         context?.move(to: CGPoint(x: fromPoint.x, y: fromPoint.y))

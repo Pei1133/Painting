@@ -11,5 +11,6 @@ target 'Painting' do
   pod 'Firebase/Core'
   pod 'Firebase/Storage'
   pod 'SDWebImage', '~> 4.0'
+  pod 'ChromaColorPicker'
 
 end
