@@ -38,17 +38,12 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     var url: URL?
 
-//    var brushView = UIView()
-//    var brushImageView = UIImageView()
     var lastPoint = CGPoint.zero
     var swiped = false
 
     override func viewDidLoad() {
 
         super.viewDidLoad()
-
-//        self.view.sendSubview(toBack: self.imageView)
-//        self.brushView.bringSubview(toFront: self.brushImageView)
 
         view.backgroundColor = UIColor.white
 //        (
@@ -69,7 +64,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         self.pictureSize = renderParameter.pictureSize
 
         setUpScrollViewAndImageView()
-//        setUpBrushViewAndBrushImageView()
 //        showSVG()
 
      // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
@@ -80,11 +74,9 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     }
 
     func showSVG() {
-
         let svgImageView = SVGImageView.init(contentsOf: url!)
         svgImageView.frame = self.view.bounds
         view.addSubview(svgImageView)
-
     }
 
     // Step 2 :- Make "tapDetected" method
@@ -214,21 +206,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 //
 //    }
 
-//    func setUpBrushViewAndBrushImageView() {
-//
-//        // Set up ImageView
-//        brushImageView.contentMode = .center
-//        brushImageView.isUserInteractionEnabled = true
-//        brushImageView.frame = CGRect(x: 0, y: 0, width: self.pictureSize.width, height: self.pictureSize.height)
-//
-////        // Set up View
-////        brushView.frame = CGRect(x: 0, y: 0, width: self.pictureSize.width, height: self.pictureSize.width)
-////        brushView.backgroundColor = UIColor.clear
-//
-//        // Add subviews
-//        self.pictureView.addSubview(brushImageView)
-//
-//    }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 
