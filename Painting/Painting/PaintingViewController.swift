@@ -9,24 +9,18 @@
 import UIKit
 import PocketSVG
 
-
-class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDelegate {
+class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDelegate {
 
     func pickedColor(color: UIColor) {
             self.pickedColor = color
     }
 
     @IBAction func tapFillColor(_ sender: Any) {
-
-//        self.scrollView.sendSubview(toBack: self.brushView)
-        self.scrollView.bringSubview(toFront: self.imageView)
-
+        scrollView.isUserInteractionEnabled = true
     }
 
     @IBAction func tapPaintColor(_ sender: Any) {
-
-        self.scrollView.sendSubview(toBack: self.imageView)
-//        self.scrollView.bringSubview(toFront: self.brushView)
+        scrollView.isUserInteractionEnabled = false
     }
 
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
@@ -99,7 +93,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         self.hitTest(tapLocation: CGPoint(x: (tapLocation.x), y: (tapLocation.y)))
 
     }
-
+    
     // Step 3 :- Make "hitTest" final method
     private func hitTest(tapLocation: CGPoint) {
 
@@ -144,7 +138,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, colorDeleg
         scrollView.backgroundColor = UIColor.white
 //        scrollView.alwaysBounceVertical = true
 //        scrollView.alwaysBounceHorizontal = true
-        scrollView.isUserInteractionEnabled = false
 
         // Add subviews
         view.addSubview(scrollView)

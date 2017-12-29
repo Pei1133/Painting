@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol colorDelegate: class {
+protocol ColorDelegate: class {
 
     func pickedColor(color: UIColor)
 }
 
 class ColorPicker: UIView {
     static var shared = ColorPicker()
-    weak var delegate: colorDelegate?
+    weak var delegate: ColorDelegate?
     var currentSelectionX: CGFloat = 0
     var selectedColor: UIColor!
 //    var selectedColor = UIColor.black
