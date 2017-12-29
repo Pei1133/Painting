@@ -65,7 +65,7 @@
                                     <action selector="tapPaintColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dfN-0N-1om"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Zlw-5u-cO7">
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Zlw-5u-cO7">
                                 <rect key="frame" x="96" y="546" width="250" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </slider>
@@ -86,6 +86,7 @@
                     </view>
                     <connections>
                         <outlet property="colorPicker" destination="JbJ-D3-8sX" id="23L-T0-FWG"/>
+                        <outlet property="colorSlider" destination="Zlw-5u-cO7" id="2hD-WJ-uaV"/>
                         <outlet property="selectColorView" destination="itC-YM-cwn" id="Evp-P5-aT2"/>
                     </connections>
                 </viewController>

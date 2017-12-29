@@ -25,6 +25,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     }
 
     @IBOutlet weak var selectColorView: UIView!
+    @IBOutlet weak var colorSlider: UISlider!
     
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
     var pickedColor = UIColor(
@@ -68,8 +69,14 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         setUpScrollViewAndImageView()
         setScrollViewMinimumNumberOfTouches()
-//        showSVG()
 //        scrollView.panGestureRecognizer.minimumNumberOfTouches = 2
+        setUpColorSlider()
+        colorSlider.addTarget(
+                    self,
+                    action:
+                    #selector(self.onSliderChange),
+                    for: UIControlEvents.valueChanged)
+//        showSVG()
 
      // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
         // Catch layer by tap detection
@@ -155,7 +162,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     func setScrollViewMinimumNumberOfTouches() {
 
         guard let gestureRecognizers = scrollView.gestureRecognizers else { return }
-print("111")
+        print("111")
         for gestureRecognizer in gestureRecognizers {
             if gestureRecognizer is UIPanGestureRecognizer {
                 guard let gesture = gestureRecognizer as? UIPanGestureRecognizer else { return }
@@ -202,6 +209,15 @@ print("111")
 
     }
 
+    func setUpColorSlider() {
+        colorSlider.isContinuous = true
+    }
+    
+    @objc func onSliderChange() {
+        let alpha = CGFloat(colorSlider.value / colorSlider.maximumValue)
+        pickedColor = pickedColor.withAlphaComponent(alpha)
+    }
+        
 //    override func viewWillLayoutSubviews() {
 //        super.viewDidLayoutSubviews()
 //        scrollView.translatesAutoresizingMaskIntoConstraints = false
