@@ -74,7 +74,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
     func downloadLibraryPictures() {
 
-        for i in 0...14 {
+        for i in 0...13 {
             let libraryRef = Storage.storage().reference().child("libraryPictures").child("\(i).svg")
 
                 libraryRef.downloadURL { (url, err) in
