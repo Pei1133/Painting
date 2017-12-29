@@ -50,12 +50,13 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 //        self.view.sendSubview(toBack: self.imageView)
 //        self.brushView.bringSubview(toFront: self.brushImageView)
 
-        view.backgroundColor = UIColor(
-            red: 255.0 / 255.0,
-            green: 255.0 / 255.0,
-            blue: 201.0 / 255.0,
-            alpha: 1.0
-        )
+        view.backgroundColor = UIColor.white
+//        (
+//            red: 255.0 / 255.0,
+//            green: 255.0 / 255.0,
+//            blue: 255.0 / 255.0,
+//            alpha: 0.8
+//        )
 
         colorPicker.delegate = self
 
