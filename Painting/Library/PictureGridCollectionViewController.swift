@@ -106,6 +106,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
         let imageURL = imageURLs[indexPath.row]
         let renderParameter = PathProvider.renderCellPaths(url: imageURL, imageView: cell.pictureImageView)
         cell.pictureImageView = renderParameter.imageView
+        cell.pictureImageView.image = nil
         cell.pictureImageView.contentMode = .scaleAspectFill
         Nuke.loadImage(with: imageURL, into: cell.pictureImageView)
 

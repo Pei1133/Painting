@@ -65,6 +65,11 @@
                                     <action selector="tapPaintColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dfN-0N-1om"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="itC-YM-cwn" userLabel="selectedColorView">
+                                <rect key="frame" x="16" y="534" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -77,6 +82,7 @@
                     </view>
                     <connections>
                         <outlet property="colorPicker" destination="JbJ-D3-8sX" id="23L-T0-FWG"/>
+                        <outlet property="selectColorView" destination="itC-YM-cwn" id="Evp-P5-aT2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

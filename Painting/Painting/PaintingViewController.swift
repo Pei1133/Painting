@@ -12,15 +12,17 @@ import PocketSVG
 class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDelegate {
 
     func pickedColor(color: UIColor) {
-            self.pickedColor = color
+        self.pickedColor = color
+        self.selectColorView.backgroundColor = color
     }
 
+    @IBOutlet weak var selectColorView: UIView!
     @IBAction func tapFillColor(_ sender: Any) {
         scrollView.isUserInteractionEnabled = true
     }
 
     @IBAction func tapPaintColor(_ sender: Any) {
-        scrollView.isUserInteractionEnabled = false
+//        scrollView.isUserInteractionEnabled = false
     }
 
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
@@ -46,12 +48,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.white
-//        (
-//            red: 255.0 / 255.0,
-//            green: 255.0 / 255.0,
-//            blue: 255.0 / 255.0,
-//            alpha: 0.8
-//        )
+        selectColorView.backgroundColor = pickedColor
 
         colorPicker.delegate = self
 
@@ -66,6 +63,12 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         setUpScrollViewAndImageView()
 //        showSVG()
 
+//        scrollView.panGestureRecognizer.minimumNumberOfTouches = 2
+//        for gestureRecognizer in scrollView.gestureRecognizers! {
+//            if gestureRecognizer is UIPanGestureRecognizer {
+//                gestureRecognizer.minimumNumberOfTouches = 2
+//            }
+//        }
      // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
         // Catch layer by tap detection
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(PaintingViewController.tapDetected(tapRecognizer:)))
