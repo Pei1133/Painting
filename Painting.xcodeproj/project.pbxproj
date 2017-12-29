@@ -13,7 +13,6 @@
 		AB8EC82F1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */; };
 		AB8EC8321FE90D9B00C19F60 /* PictureGridCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */; };
 		AB9A80A71FECF5D1000434E7 /* cabin.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80A41FECF5D0000434E7 /* cabin.svg */; };
-		AB9A80B51FF0D954000434E7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80B41FF0D953000434E7 /* GoogleService-Info.plist */; };
 		AB9FA58E1FE2A99300055C50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */; };
 		AB9FA5901FE2A99300055C50 /* PaintingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9FA58F1FE2A99300055C50 /* PaintingViewController.swift */; };
 		AB9FA5931FE2A99300055C50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9FA5911FE2A99300055C50 /* Main.storyboard */; };
@@ -23,6 +22,8 @@
 		ABBAF1CB1FE9186800676426 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBAF1CA1FE9186800676426 /* Picture.swift */; };
 		ABF8F5A71FE2AF4D00117AB8 /* chicken.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */; };
 		ABF8F5A91FE2AF5C00117AB8 /* cloud.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */; };
+		B815BC301FF66E5B00EDA8C3 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B815BC2F1FF66E5B00EDA8C3 /* UIImageView+Extension.swift */; };
+		B815BC321FF66EB100EDA8C3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B815BC311FF66EB100EDA8C3 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +35,6 @@
 		AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGridCollectionViewCell.swift; sourceTree = "<group>"; };
 		AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGridCollectionViewController.swift; sourceTree = "<group>"; };
 		AB9A80A41FECF5D0000434E7 /* cabin.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cabin.svg; sourceTree = "<group>"; };
-		AB9A80B41FF0D953000434E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AB9FA58A1FE2A99300055C50 /* Painting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Painting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB9FA58F1FE2A99300055C50 /* PaintingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintingViewController.swift; sourceTree = "<group>"; };
@@ -46,6 +46,8 @@
 		ABBAF1CA1FE9186800676426 /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
 		ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = chicken.svg; sourceTree = "<group>"; };
 		ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cloud.svg; sourceTree = "<group>"; };
+		B815BC2F1FF66E5B00EDA8C3 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		B815BC311FF66EB100EDA8C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 		AB9FA5811FE2A99300055C50 = {
 			isa = PBXGroup;
 			children = (
+				B815BC2E1FF66E3B00EDA8C3 /* Extension */,
 				AB9FA58C1FE2A99300055C50 /* Painting */,
 				AB9FA58B1FE2A99300055C50 /* Products */,
 				EFFD386721E880C0C1748A65 /* Pods */,
@@ -136,9 +139,17 @@
 				AB9FA5911FE2A99300055C50 /* Main.storyboard */,
 				AB9FA5961FE2A99300055C50 /* LaunchScreen.storyboard */,
 				AB9FA5991FE2A99300055C50 /* Info.plist */,
-				AB9A80B41FF0D953000434E7 /* GoogleService-Info.plist */,
+				B815BC311FF66EB100EDA8C3 /* GoogleService-Info.plist */,
 			);
 			path = Painting;
+			sourceTree = "<group>";
+		};
+		B815BC2E1FF66E3B00EDA8C3 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B815BC2F1FF66E5B00EDA8C3 /* UIImageView+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		EFFD386721E880C0C1748A65 /* Pods */ = {
@@ -214,10 +225,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB9FA5981FE2A99300055C50 /* LaunchScreen.storyboard in Resources */,
+				B815BC321FF66EB100EDA8C3 /* GoogleService-Info.plist in Resources */,
 				AB9FA5951FE2A99300055C50 /* Assets.xcassets in Resources */,
 				ABF8F5A71FE2AF4D00117AB8 /* chicken.svg in Resources */,
 				AB9A80A71FECF5D1000434E7 /* cabin.svg in Resources */,
-				AB9A80B51FF0D954000434E7 /* GoogleService-Info.plist in Resources */,
 				AB9FA5931FE2A99300055C50 /* Main.storyboard in Resources */,
 				ABBAF1C91FE90F7200676426 /* PictureGridCollectionViewCell.xib in Resources */,
 				ABF8F5A91FE2AF5C00117AB8 /* cloud.svg in Resources */,
@@ -310,6 +321,7 @@
 			files = (
 				ABBAF1CB1FE9186800676426 /* Picture.swift in Sources */,
 				AB171D371FEB8E5B00CCFB7F /* PathProvider.swift in Sources */,
+				B815BC301FF66E5B00EDA8C3 /* UIImageView+Extension.swift in Sources */,
 				AB8EC82F1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift in Sources */,
 				AB9FA5901FE2A99300055C50 /* PaintingViewController.swift in Sources */,
 				AB8EC8321FE90D9B00C19F60 /* PictureGridCollectionViewController.swift in Sources */,
