@@ -26,7 +26,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     @IBOutlet weak var selectColorView: UIView!
     @IBOutlet weak var colorSlider: UISlider!
-    
+
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
     var pickedColor = UIColor(
         red: 255.0 / 255.0,
@@ -210,14 +210,18 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     }
 
     func setUpColorSlider() {
+//        colorSlider.minimumValue = 0
+//        colorSlider.maximumValue = 100
+//        colorSlider.value = 100
         colorSlider.isContinuous = true
     }
-    
+
     @objc func onSliderChange() {
         let alpha = CGFloat(colorSlider.value / colorSlider.maximumValue)
         pickedColor = pickedColor.withAlphaComponent(alpha)
+//        pickedColor.adj
     }
-        
+
 //    override func viewWillLayoutSubviews() {
 //        super.viewDidLayoutSubviews()
 //        scrollView.translatesAutoresizingMaskIntoConstraints = false
