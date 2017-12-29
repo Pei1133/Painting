@@ -93,7 +93,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         self.hitTest(tapLocation: CGPoint(x: (tapLocation.x), y: (tapLocation.y)))
 
     }
-    
+
     // Step 3 :- Make "hitTest" final method
     private func hitTest(tapLocation: CGPoint) {
 

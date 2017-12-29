@@ -9,6 +9,7 @@
 import UIKit
 import PocketSVG
 import Firebase
+import Nuke
 
 class PictureGridCollectionViewController: UICollectionViewController {
 
@@ -105,6 +106,8 @@ class PictureGridCollectionViewController: UICollectionViewController {
         let imageURL = imageURLs[indexPath.row]
         let renderParameter = PathProvider.renderCellPaths(url: imageURL, imageView: cell.pictureImageView)
         cell.pictureImageView = renderParameter.imageView
+        cell.pictureImageView.contentMode = .scaleAspectFill
+        Nuke.loadImage(with: imageURL, into: cell.pictureImageView)
 
         // [Firebase] Download to a local file
 //        let islandRef = Storage.storage().reference().child("libraryPictures").child("2.svg")
