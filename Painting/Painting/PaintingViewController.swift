@@ -24,6 +24,9 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 //        scrollView.isUserInteractionEnabled = false
     }
 
+    @IBOutlet weak var fillColorButton: UIButton!
+    @IBOutlet weak var paintColorButton: UIButton!
+    @IBOutlet weak var eraserButton: UIButton!
     @IBOutlet weak var selectColorView: UIView!
     @IBOutlet weak var colorSlider: UISlider!
 
@@ -63,7 +66,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         self.paths = paths
 
         let renderParameter = PathProvider.renderPaths(url: url!, imageView: imageView)
-//        let renderParameter = PathProvider.renderCellPaths(url: url!, imageView: imageView)
         self.imageView = renderParameter.imageView
         self.pictureSize = renderParameter.pictureSize
 
@@ -76,6 +78,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
                     action:
                     #selector(self.onSliderChange),
                     for: UIControlEvents.valueChanged)
+        setUpButtons()
 //        showSVG()
 
      // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
@@ -135,11 +138,11 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         imageView.delegate = self
 
         // Set up View
-        pictureView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.width)
+        pictureView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
         pictureView.backgroundColor = UIColor.clear
 
         // Set up ScrollView
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 120))
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 150))
         scrollView.contentSize = imageView.frame.size
         scrollView.backgroundColor = UIColor.white
 //        scrollView.alwaysBounceVertical = true
@@ -223,6 +226,30 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 //        pickedColor.adj
     }
 
+    func setUpButtons() {
+
+        let skyBlueColor = UIColor(
+            red: 135.0 / 255.0,
+            green: 206.0 / 255.0,
+            blue: 235.0 / 255.0,
+            alpha: 1.0
+        )
+
+        fillColorButton.tintColor = skyBlueColor
+//        fillColorButton.layer.borderColor = skyBlueColor.cgColor
+//        fillColorButton.layer.borderWidth = 1.0
+        fillColorButton.layer.cornerRadius = fillColorButton.frame.height * 0.5
+        fillColorButton.clipsToBounds = true
+
+        paintColorButton.tintColor = skyBlueColor
+        paintColorButton.layer.cornerRadius = paintColorButton.frame.height * 0.5
+        paintColorButton.clipsToBounds = true
+
+        eraserButton.tintColor = skyBlueColor
+        eraserButton.layer.cornerRadius = eraserButton.frame.height * 0.5
+        eraserButton.clipsToBounds = true
+    }
+
 //    override func viewWillLayoutSubviews() {
 //        super.viewDidLayoutSubviews()
 //        scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -243,7 +270,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 //        imageView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor).isActive = true
 //
 //    }
-
 
     func drawLines(fromPoint: CGPoint, toPoint: CGPoint) {
 

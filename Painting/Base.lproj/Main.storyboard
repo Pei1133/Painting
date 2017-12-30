@@ -17,12 +17,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JbJ-D3-8sX" userLabel="Color Picker" customClass="ColorPicker" customModule="Painting" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="586" width="375" height="32"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JbJ-D3-8sX" userLabel="colorPicker View" customClass="ColorPicker" customModule="Painting" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
                                 <color key="backgroundColor" red="0.015686274510000001" green="0.41960784309999999" blue="0.58431372550000005" alpha="0.5" colorSpace="calibratedRGB"/>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="itC-YM-cwn" userLabel="selectedColorView">
+                                <rect key="frame" x="35" y="546" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="0.5236816406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Zlw-5u-cO7">
+                                <rect key="frame" x="111" y="581" width="250" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVk-ci-Kea" userLabel="fillColor">
-                                <rect key="frame" x="34" y="625" width="32" height="32"/>
+                                <rect key="frame" x="166" y="542" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="fill">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -32,7 +41,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r61-oU-mn1" userLabel="paintColor">
-                                <rect key="frame" x="77" y="625" width="30" height="30"/>
+                                <rect key="frame" x="224" y="542" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="brush">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -41,28 +50,8 @@
                                     <action selector="tapPaintColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hGZ-8m-zJT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bM1-ZM-IPK" userLabel="clean">
-                                <rect key="frame" x="209" y="626" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="clean">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="tapPaintColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dfN-0N-1om"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="itC-YM-cwn" userLabel="selectedColorView">
-                                <rect key="frame" x="35" y="546" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="0.5236816406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Zlw-5u-cO7">
-                                <rect key="frame" x="96" y="546" width="250" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </slider>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVU-Fk-zHv" userLabel="eraser">
-                                <rect key="frame" x="124" y="626" width="32" height="32"/>
+                                <rect key="frame" x="274" y="540" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="erase">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -76,14 +65,17 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="JbJ-D3-8sX" secondAttribute="trailing" id="2Kk-lz-y8u"/>
                             <constraint firstItem="JbJ-D3-8sX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="GdR-62-N0X"/>
-                            <constraint firstItem="JbJ-D3-8sX" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="586" id="fVF-5F-g9B"/>
-                            <constraint firstAttribute="bottom" secondItem="JbJ-D3-8sX" secondAttribute="bottom" constant="49" id="hie-UH-6qU"/>
+                            <constraint firstAttribute="bottom" secondItem="JbJ-D3-8sX" secondAttribute="bottom" id="M8D-Ou-NHP"/>
+                            <constraint firstItem="JbJ-D3-8sX" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="627" id="eaw-Pe-4y7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="colorPicker" destination="JbJ-D3-8sX" id="23L-T0-FWG"/>
                         <outlet property="colorSlider" destination="Zlw-5u-cO7" id="2hD-WJ-uaV"/>
+                        <outlet property="eraserButton" destination="EVU-Fk-zHv" id="ZsD-rf-txn"/>
+                        <outlet property="fillColorButton" destination="kVk-ci-Kea" id="Gb5-8m-Tdl"/>
+                        <outlet property="paintColorButton" destination="r61-oU-mn1" id="4po-Bm-WBM"/>
                         <outlet property="selectColorView" destination="itC-YM-cwn" id="Evp-P5-aT2"/>
                     </connections>
                 </viewController>
