@@ -11,7 +11,7 @@ import PocketSVG
 
 class PathProvider {
 
-    static func renderPaths(url: URL, imageView: UIImageView) -> (pictureSize: CGSize, imageView: UIImageView) {
+    static func renderPaths(url: URL, imageView: CustomImageView) -> (pictureSize: CGSize, imageView: CustomImageView) {
 
         var pictureSize = CGSize.zero
         let strokeWidth = CGFloat(0.8)

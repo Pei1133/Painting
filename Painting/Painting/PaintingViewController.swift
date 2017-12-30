@@ -9,7 +9,7 @@
 import UIKit
 import PocketSVG
 
-class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDelegate {
+class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDelegate, CustomImageViewTouchEventDelegate {
 
     func pickedColor(color: UIColor) {
         self.pickedColor = color
@@ -37,7 +37,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     var paths = [SVGBezierPath]()
     var scrollView = UIScrollView()
     var pictureView = UIView()
-    var imageView = UIImageView()
+    var imageView = CustomImageView()
     var pictureSize = CGSize.zero
 
     var url: URL?
@@ -132,6 +132,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         imageView.backgroundColor = .clear
         imageView.isUserInteractionEnabled = true
         imageView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
+        imageView.delegate = self
 
         // Set up View
         pictureView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.width)
@@ -243,15 +244,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 //
 //    }
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-
-        swiped = false
-
-        if let touch = touches.first {
-            lastPoint = touch.location(in: self.imageView)
-        }
-
-    }
 
     func drawLines(fromPoint: CGPoint, toPoint: CGPoint) {
 
@@ -281,30 +273,25 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     }
 
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    func didTouchesBegan(touches: Set<UITouch>) {
+        swiped = false
+        if let touch = touches.first {
+            lastPoint = touch.location(in: self.imageView)
+        }
+    }
 
+    func didTouchesMoved(touches: Set<UITouch>) {
         swiped = true
-
         if let touch = touches.first {
             let currentPoint = touch.location(in: self.imageView)
             drawLines(fromPoint: lastPoint, toPoint: currentPoint)
-
-            lastPoint = currentPoint
+            self.lastPoint = currentPoint
         }
     }
 
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-
+    func didTouchesEnd() {
         if !swiped {
             drawLines(fromPoint: lastPoint, toPoint: lastPoint)
         }
-
     }
-
-    override func didReceiveMemoryWarning() {
-
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }
