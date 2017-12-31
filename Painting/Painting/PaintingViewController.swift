@@ -240,18 +240,38 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     }
 
     func setUpColorSlider() {
-//        colorSlider.minimumValue = 0
-//        colorSlider.maximumValue = 100
-//        colorSlider.value = 100
+        colorSlider.minimumValue = 0
+        colorSlider.maximumValue = 1
+        colorSlider.value = 0.5
         colorSlider.isContinuous = true
+        colorSlider.currentThumbImage
     }
 
-    @objc func onSliderChange() {
+    @objc func onSliderChange(sender: UISlider) {
         let alpha = CGFloat(colorSlider.value / colorSlider.maximumValue)
-        pickedColor = pickedColor.withAlphaComponent(alpha)
-//        pickedColor.adj
+//        pickedColor = pickedColor.withAlphaComponent(alpha)
+        
+        let tgl = CAGradientLayer()
+        let frame = CGRect(x: 0, y: 0, width: colorSlider.frame.size.width, height: 15)
+        tgl.frame = frame
+//        let c = pickedColor * alpha
+        tgl.colors = [UIColor.green.cgColor, UIColor.yellow.cgColor]
+//        tgl.startPoint = CGPoint(x: 0.0, y: 0.5)
+//        tgl.endPoint = CGPoint(x: 1.0, y: 0.5)
+        
+        UIGraphicsBeginImageContextWithOptions(tgl.frame.size, tgl.isOpaque, 0.0);
+        tgl.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        image?.resizableImage(withCapInsets: UIEdgeInsets.zero)
+        
+//        colorSlider.setMinimumTrackImage(image, for: [])
+//        colorSlider.setMaximumTrackImage(image, for: [])
+
     }
 
+    
 //    override func viewWillLayoutSubviews() {
 //        super.viewDidLayoutSubviews()
 //        scrollView.translatesAutoresizingMaskIntoConstraints = false

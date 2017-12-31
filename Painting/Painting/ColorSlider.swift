@@ -10,13 +10,55 @@ import UIKit
 
 class ColorSlider: UISlider {
 
+//    var currentSelectionX: CGFloat = 0
+
     override func trackRect(forBounds bounds: CGRect) -> CGRect {
-        
-        let rect: CGRect = CGRectMake(0, 0, 100, 30)
+
+        let rect: CGRect = CGRect(x: 0, y: 0, width: 200, height: 15)
         return rect
-        
     }
 
+    func selectedColor(sColor: UIColor) {
+        
+        let precent = CGFloat(self.value / self.maximumValue)
+        var red:CGFloat = 0
+        var green:CGFloat = 0
+        var blue:CGFloat = 0
+        var alpha:CGFloat = 0
+        
+        sColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        let brightness = Int((((red * 299) + (green * 587) + (blue * 114)) * 255) / 1000)
+        
+
+        
+        if sColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
+            //            currentSelectionX = CGFloat (hue * self.frame.size.height)
+            self.setNeedsDisplay()
+            
+        }
+        selectedColor = sColor
+        self.delegate?.pickedColor(color: self.selectedColor)
+    }
+    
+//    override func draw(_ rect: CGRect) {
+//        UIColor.black.set()
+//        var tempYPlace = self.currentSelectionX
+//        if tempYPlace < CGFloat (0.0) {
+//            tempYPlace = CGFloat (0.0)
+//        }else if tempYPlace >= self.frame.size.width {
+//            tempYPlace = self.frame.size.width - 1.0
+//        }
+//        let temp = CGRect(x: 0.0, y: tempYPlace, width: 1.0, height: self.frame.size.height)
+//        UIRectFill(temp)
+//
+//        //draw central bar over it
+//        let width = Int(self.frame.size.width)
+//        for i in 0 ..< width {
+//            UIColor(hue: 1.0, saturation: 1.0, brightness: CGFloat (i)/self.frame.size.width, alpha: 1.0).set()
+//            let temp = CGRect(x: CGFloat(i), y: 0, width: 1.0, height: self.frame.size.height)
+//            UIRectFill(temp)
+//        }
+//    }
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

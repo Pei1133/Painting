@@ -18,7 +18,6 @@ class ColorPicker: UIView {
     weak var delegate: ColorDelegate?
     var currentSelectionX: CGFloat = 0
     var selectedColor: UIColor!
-//    var selectedColor = UIColor.black
 
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -31,7 +30,6 @@ class ColorPicker: UIView {
             tempYPlace = self.frame.size.width - 1.0
         }
         let temp = CGRect(x: 0.0, y: tempYPlace, width: 1.0, height: self.frame.size.height)
-//        let temp = CGRectMake(0.0, tempYPlace, 1.0, self.frame.size.height);
         UIRectFill(temp)
 
         //draw central bar over it
@@ -39,7 +37,6 @@ class ColorPicker: UIView {
         for i in 0 ..< width {
             UIColor(hue: CGFloat (i)/self.frame.size.width, saturation: 1.0, brightness: 1.0, alpha: 1.0).set()
             let temp = CGRect(x: CGFloat(i), y: 0, width: 1.0, height: self.frame.size.height)
-//            let temp = CGRectMake(CGFloat (i), 0, 1.0, self.frame.size.height);
             UIRectFill(temp)
         }
     }
