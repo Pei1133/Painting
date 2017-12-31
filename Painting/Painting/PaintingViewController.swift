@@ -28,7 +28,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @IBOutlet weak var paintColorButton: UIButton!
     @IBOutlet weak var eraserButton: UIButton!
     @IBOutlet weak var selectColorView: UIView!
-    @IBOutlet weak var colorSlider: UISlider!
+    @IBOutlet weak var colorSlider: ColorSlider!
 
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
     var pickedColor = UIColor(

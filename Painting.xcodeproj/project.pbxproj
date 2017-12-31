@@ -21,6 +21,7 @@
 		ABBAF1C91FE90F7200676426 /* PictureGridCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABBAF1C81FE90F7200676426 /* PictureGridCollectionViewCell.xib */; };
 		ABBAF1CB1FE9186800676426 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBAF1CA1FE9186800676426 /* Picture.swift */; };
 		ABE5AED41FF918CA007A96A4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5AED31FF918CA007A96A4 /* Colors.swift */; };
+		ABE5AED61FF927DE007A96A4 /* ColorSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5AED51FF927DE007A96A4 /* ColorSlider.swift */; };
 		ABF8F5A71FE2AF4D00117AB8 /* chicken.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */; };
 		ABF8F5A91FE2AF5C00117AB8 /* cloud.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */; };
 		B815BC301FF66E5B00EDA8C3 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B815BC2F1FF66E5B00EDA8C3 /* UIImageView+Extension.swift */; };
@@ -46,6 +47,7 @@
 		ABBAF1C81FE90F7200676426 /* PictureGridCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PictureGridCollectionViewCell.xib; sourceTree = "<group>"; };
 		ABBAF1CA1FE9186800676426 /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
 		ABE5AED31FF918CA007A96A4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		ABE5AED51FF927DE007A96A4 /* ColorSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSlider.swift; sourceTree = "<group>"; };
 		ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = chicken.svg; sourceTree = "<group>"; };
 		ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cloud.svg; sourceTree = "<group>"; };
 		B815BC2F1FF66E5B00EDA8C3 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			children = (
 				AB9FA58F1FE2A99300055C50 /* PaintingViewController.swift */,
 				AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */,
+				ABE5AED51FF927DE007A96A4 /* ColorSlider.swift */,
 			);
 			path = Painting;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				B815BC301FF66E5B00EDA8C3 /* UIImageView+Extension.swift in Sources */,
 				AB8EC82F1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift in Sources */,
 				AB9FA5901FE2A99300055C50 /* PaintingViewController.swift in Sources */,
+				ABE5AED61FF927DE007A96A4 /* ColorSlider.swift in Sources */,
 				AB8EC8321FE90D9B00C19F60 /* PictureGridCollectionViewController.swift in Sources */,
 				AB9FA58E1FE2A99300055C50 /* AppDelegate.swift in Sources */,
 				AB1E41CC1FE3CB7E00D3B4B8 /* ColorPicker.swift in Sources */,
