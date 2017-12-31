@@ -52,13 +52,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor(
-            red: 255.0 / 255.0,
-            green: 255.0 / 255.0,
-            blue: 201.0 / 255.0,
-            alpha: 1.0
-        )
-        selectColorView.backgroundColor = pickedColor
+        view.backgroundColor = Colors.cream
 
         colorPicker.delegate = self
 
@@ -70,15 +64,16 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         self.pictureSize = renderParameter.pictureSize
 
         setUpScrollViewAndImageView()
-        setScrollViewMinimumNumberOfTouches()
+//        setScrollViewMinimumNumberOfTouches()
 //        scrollView.panGestureRecognizer.minimumNumberOfTouches = 2
+        setUpColorPickerAndView()
+        setUpButton()
         setUpColorSlider()
         colorSlider.addTarget(
                     self,
                     action:
                     #selector(self.onSliderChange),
                     for: UIControlEvents.valueChanged)
-        setUpButtons()
 //        showSVG()
 
      // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
@@ -86,12 +81,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(PaintingViewController.tapDetected(tapRecognizer:)))
         self.imageView.addGestureRecognizer(tapRecognizer)
 
-    }
-
-    func showSVG() {
-        let svgImageView = SVGImageView.init(contentsOf: url!)
-        svgImageView.frame = self.view.bounds
-        view.addSubview(svgImageView)
     }
 
     // Step 2 :- Make "tapDetected" method
@@ -126,6 +115,12 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
             }
         }
+    }
+
+    func showSVG() {
+        let svgImageView = SVGImageView.init(contentsOf: url!)
+        svgImageView.frame = self.view.bounds
+        view.addSubview(svgImageView)
     }
 
     func setUpScrollViewAndImageView() {
@@ -213,6 +208,37 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     }
 
+    func setUpColorPickerAndView() {
+
+        colorPicker.layer.cornerRadius = 5.0
+        colorPicker.clipsToBounds = true
+        colorPicker.layer.shadowColor = UIColor.black.cgColor
+        colorPicker.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        colorPicker.layer.shadowOpacity = 0.3
+        colorPicker.layer.shadowRadius = 2.0
+
+        selectColorView.backgroundColor = pickedColor
+        selectColorView.layer.cornerRadius = selectColorView.frame.height * 0.5
+        selectColorView.clipsToBounds = true
+    }
+
+    func setUpButton() {
+
+        fillColorButton.tintColor = Colors.skyBlue
+//        fillColorButton.layer.borderColor = skyBlueColor.cgColor
+//        fillColorButton.layer.borderWidth = 1.0
+//        fillColorButton.layer.cornerRadius = fillColorButton.frame.height * 0.5
+//        fillColorButton.clipsToBounds = true
+
+        paintColorButton.tintColor = Colors.skyBlue
+//        paintColorButton.layer.cornerRadius = paintColorButton.frame.height * 0.5
+//        paintColorButton.clipsToBounds = true
+
+        eraserButton.tintColor = Colors.skyBlue
+//        eraserButton.layer.cornerRadius = eraserButton.frame.height * 0.5
+//        eraserButton.clipsToBounds = true
+    }
+
     func setUpColorSlider() {
 //        colorSlider.minimumValue = 0
 //        colorSlider.maximumValue = 100
@@ -224,30 +250,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         let alpha = CGFloat(colorSlider.value / colorSlider.maximumValue)
         pickedColor = pickedColor.withAlphaComponent(alpha)
 //        pickedColor.adj
-    }
-
-    func setUpButtons() {
-
-        let skyBlueColor = UIColor(
-            red: 135.0 / 255.0,
-            green: 206.0 / 255.0,
-            blue: 235.0 / 255.0,
-            alpha: 1.0
-        )
-
-        fillColorButton.tintColor = skyBlueColor
-//        fillColorButton.layer.borderColor = skyBlueColor.cgColor
-//        fillColorButton.layer.borderWidth = 1.0
-        fillColorButton.layer.cornerRadius = fillColorButton.frame.height * 0.5
-        fillColorButton.clipsToBounds = true
-
-        paintColorButton.tintColor = skyBlueColor
-        paintColorButton.layer.cornerRadius = paintColorButton.frame.height * 0.5
-        paintColorButton.clipsToBounds = true
-
-        eraserButton.tintColor = skyBlueColor
-        eraserButton.layer.cornerRadius = eraserButton.frame.height * 0.5
-        eraserButton.clipsToBounds = true
     }
 
 //    override func viewWillLayoutSubviews() {

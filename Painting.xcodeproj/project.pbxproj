@@ -20,6 +20,7 @@
 		AB9FA5981FE2A99300055C50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9FA5961FE2A99300055C50 /* LaunchScreen.storyboard */; };
 		ABBAF1C91FE90F7200676426 /* PictureGridCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABBAF1C81FE90F7200676426 /* PictureGridCollectionViewCell.xib */; };
 		ABBAF1CB1FE9186800676426 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBAF1CA1FE9186800676426 /* Picture.swift */; };
+		ABE5AED41FF918CA007A96A4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5AED31FF918CA007A96A4 /* Colors.swift */; };
 		ABF8F5A71FE2AF4D00117AB8 /* chicken.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */; };
 		ABF8F5A91FE2AF5C00117AB8 /* cloud.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */; };
 		B815BC301FF66E5B00EDA8C3 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B815BC2F1FF66E5B00EDA8C3 /* UIImageView+Extension.swift */; };
@@ -44,6 +45,7 @@
 		AB9FA5991FE2A99300055C50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABBAF1C81FE90F7200676426 /* PictureGridCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PictureGridCollectionViewCell.xib; sourceTree = "<group>"; };
 		ABBAF1CA1FE9186800676426 /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
+		ABE5AED31FF918CA007A96A4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = chicken.svg; sourceTree = "<group>"; };
 		ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cloud.svg; sourceTree = "<group>"; };
 		B815BC2F1FF66E5B00EDA8C3 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				AB1E41CD1FE3CC3200D3B4B8 /* Library */,
 				AB8EC8291FE90BAF00C19F60 /* Painting */,
 				AB171D351FEB8E2500CCFB7F /* Paths */,
+				ABE5AED01FF91805007A96A4 /* Colors */,
 				AB1E41CE1FE3CC6000D3B4B8 /* SVG */,
 				AB9FA5941FE2A99300055C50 /* Assets.xcassets */,
 				AB9FA5911FE2A99300055C50 /* Main.storyboard */,
@@ -142,6 +145,14 @@
 				B815BC311FF66EB100EDA8C3 /* GoogleService-Info.plist */,
 			);
 			path = Painting;
+			sourceTree = "<group>";
+		};
+		ABE5AED01FF91805007A96A4 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				ABE5AED31FF918CA007A96A4 /* Colors.swift */,
+			);
+			path = Colors;
 			sourceTree = "<group>";
 		};
 		B815BC2E1FF66E3B00EDA8C3 /* Extension */ = {
@@ -320,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABBAF1CB1FE9186800676426 /* Picture.swift in Sources */,
+				ABE5AED41FF918CA007A96A4 /* Colors.swift in Sources */,
 				AB171D371FEB8E5B00CCFB7F /* PathProvider.swift in Sources */,
 				B815BC301FF66E5B00EDA8C3 /* UIImageView+Extension.swift in Sources */,
 				AB8EC82F1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift in Sources */,
