@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JbJ-D3-8sX" userLabel="colorPicker View" customClass="ColorPicker" customModule="Painting" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                                <rect key="frame" x="10" y="627" width="355" height="25"/>
                                 <color key="backgroundColor" red="0.015686274510000001" green="0.41960784309999999" blue="0.58431372550000005" alpha="0.5" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="itC-YM-cwn" userLabel="selectedColorView">
@@ -63,9 +63,9 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="JbJ-D3-8sX" secondAttribute="trailing" id="2Kk-lz-y8u"/>
-                            <constraint firstItem="JbJ-D3-8sX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="GdR-62-N0X"/>
-                            <constraint firstAttribute="bottom" secondItem="JbJ-D3-8sX" secondAttribute="bottom" id="M8D-Ou-NHP"/>
+                            <constraint firstAttribute="trailing" secondItem="JbJ-D3-8sX" secondAttribute="trailing" constant="10" id="2Kk-lz-y8u"/>
+                            <constraint firstItem="JbJ-D3-8sX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="GdR-62-N0X"/>
+                            <constraint firstAttribute="bottom" secondItem="JbJ-D3-8sX" secondAttribute="bottom" constant="15" id="M8D-Ou-NHP"/>
                             <constraint firstItem="JbJ-D3-8sX" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="627" id="eaw-Pe-4y7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

@@ -18,28 +18,6 @@ class ColorSlider: UISlider {
         return rect
     }
 
-    func selectedColor(sColor: UIColor) {
-        
-        let precent = CGFloat(self.value / self.maximumValue)
-        var red:CGFloat = 0
-        var green:CGFloat = 0
-        var blue:CGFloat = 0
-        var alpha:CGFloat = 0
-        
-        sColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        let brightness = Int((((red * 299) + (green * 587) + (blue * 114)) * 255) / 1000)
-        
-
-        
-        if sColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
-            //            currentSelectionX = CGFloat (hue * self.frame.size.height)
-            self.setNeedsDisplay()
-            
-        }
-        selectedColor = sColor
-        self.delegate?.pickedColor(color: self.selectedColor)
-    }
-    
 //    override func draw(_ rect: CGRect) {
 //        UIColor.black.set()
 //        var tempYPlace = self.currentSelectionX
