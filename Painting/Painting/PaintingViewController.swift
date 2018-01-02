@@ -81,8 +81,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         self.pictureSize = renderParameter.pictureSize
 
         setUpScrollViewAndImageView()
-//        setScrollViewMinimumNumberOfTouches()
-//        scrollView.panGestureRecognizer.minimumNumberOfTouches = 2
         setUpColorPickerAndView()
         setUpButton()
         setUpColorSlider()
@@ -176,18 +174,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     }
 
-    func setScrollViewMinimumNumberOfTouches() {
-
-        guard let gestureRecognizers = scrollView.gestureRecognizers else { return }
-        print("111")
-        for gestureRecognizer in gestureRecognizers {
-            if gestureRecognizer is UIPanGestureRecognizer {
-                guard let gesture = gestureRecognizer as? UIPanGestureRecognizer else { return }
-                gesture.minimumNumberOfTouches = 2
-            }
-        }
-    }
-
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
 
         return imageView
@@ -260,14 +246,16 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     func setUpColorSlider() {
         colorSlider.minimumValue = 0
         colorSlider.maximumValue = 1
-        colorSlider.value = 0.5
+        colorSlider.value = 0.85
         colorSlider.isContinuous = false
         colorSlider.thumbTintColor = pickedColor
         sliderRatio = CGFloat(colorSlider.value / colorSlider.maximumValue)
     }
 
     @objc func onSliderChange(sender: UISlider) {
-        let value = sender.value
+//        let value = CGFloat(sender.value)
+//        adjustColor = self.adjustColor(pickedColor, value)
+        
         let tgl = CAGradientLayer()
         let frame = CGRect(x: 0, y: 0, width: colorSlider.frame.size.width, height: 15)
         tgl.frame = frame
