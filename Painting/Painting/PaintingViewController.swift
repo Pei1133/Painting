@@ -13,15 +13,14 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     func pickedColor(color: UIColor) {
         self.pickedColor = color
-//        self.selectColorView.backgroundColor = color
     }
 
     @IBAction func tapFillColor(_ sender: Any) {
-        scrollView.isUserInteractionEnabled = true
+
     }
 
     @IBAction func tapPaintColor(_ sender: Any) {
-//        scrollView.isUserInteractionEnabled = false
+
     }
 
     @IBOutlet weak var fillColorButton: UIButton!
@@ -31,24 +30,27 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @IBOutlet weak var colorSlider: ColorSlider!
 
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
-    var brightnessColors = [UIColor.white.cgColor, Colors.cream.cgColor]
-    var darknessColors = [Colors.cream.cgColor, UIColor.black.cgColor]
-    var adjustColor = Colors.cream {
+    var brightnessColors = [UIColor.white.cgColor, Colors.littleRed.cgColor]
+    var darknessColors = [Colors.littleRed.cgColor, UIColor.black.cgColor]
+    var adjustColor = Colors.littleRed {
         didSet {
-            self.selectColorView.backgroundColor = adjustColor
             brightnessColors = [UIColor.white.cgColor, adjustColor.cgColor]
             darknessColors = [adjustColor.cgColor, UIColor.black.cgColor]
-            colorSlider.addTarget(
-                self,
-                action:
-                #selector(self.onSliderChange),
-                for: UIControlEvents.valueChanged)
+            onSliderChange(sender: colorSlider)
         }
     }
 
-    var pickedColor = Colors.cream {
+    var pickedColor = Colors.littleRed {
         didSet {
-            adjustColor = self.adjustColor(pickedColor)
+            colorSlider.thumbTintColor = pickedColor
+            adjustColor = self.adjustColor(pickedColor, sliderRatio)
+            self.selectColorView.backgroundColor = pickedColor
+        }
+    }
+
+    var sliderRatio: CGFloat = 0.5 {
+        didSet {
+            adjustColor = self.adjustColor(pickedColor, sliderRatio)
         }
     }
 
@@ -84,6 +86,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         setUpColorPickerAndView()
         setUpButton()
         setUpColorSlider()
+        onSliderChange(sender: colorSlider)
         colorSlider.addTarget(
                     self,
                     action:
@@ -232,7 +235,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         colorPicker.layer.shadowOpacity = 0.3
         colorPicker.layer.shadowRadius = 2.0
 
-        selectColorView.backgroundColor = adjustColor
+        selectColorView.backgroundColor = Colors.littleRed
         selectColorView.layer.cornerRadius = selectColorView.frame.height * 0.5
         selectColorView.clipsToBounds = true
     }
@@ -258,13 +261,13 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         colorSlider.minimumValue = 0
         colorSlider.maximumValue = 1
         colorSlider.value = 0.5
-        colorSlider.isContinuous = true
+        colorSlider.isContinuous = false
+        colorSlider.thumbTintColor = pickedColor
+        sliderRatio = CGFloat(colorSlider.value / colorSlider.maximumValue)
     }
 
     @objc func onSliderChange(sender: UISlider) {
-//        let alpha = CGFloat(colorSlider.value / colorSlider.maximumValue)
-//        pickedColor = pickedColor.withAlphaComponent(alpha)
-
+        let value = sender.value
         let tgl = CAGradientLayer()
         let frame = CGRect(x: 0, y: 0, width: colorSlider.frame.size.width, height: 15)
         tgl.frame = frame
@@ -289,16 +292,16 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     }
 
-    func adjustColor(_ color: UIColor) -> UIColor {
+    func adjustColor(_ color: UIColor, _ ratio: CGFloat) -> UIColor {
 
-        let precent = CGFloat(colorSlider.value / colorSlider.maximumValue)
         var saturation: CGFloat = 0.0
         var brightness: CGFloat = 0.0
         var hue: CGFloat = 0.0
         var alpha: CGFloat = 0.0
 
         color.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
-        let adjustColor = UIColor(hue: hue, saturation: saturation, brightness: brightness * precent, alpha: alpha)
+
+        let adjustColor = UIColor(hue: hue, saturation: saturation, brightness: ratio, alpha: alpha)
 
         return adjustColor
     }

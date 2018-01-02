@@ -22,5 +22,10 @@ struct Colors {
         blue: 201.0 / 255.0,
         alpha: 1.0
     )
-
+    static let littleRed = UIColor(
+        red: 245.0 / 255.0,
+        green: 193.0 / 255.0,
+        blue: 192.0 / 255.0,
+        alpha: 1.0
+    )
 }
