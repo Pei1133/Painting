@@ -28,4 +28,10 @@ struct Colors {
         blue: 192.0 / 255.0,
         alpha: 1.0
     )
+    static let blue = UIColor(
+        red: 0.0 / 255.0,
+        green: 0.0 / 255.0,
+        blue: 255.0 / 255.0,
+        alpha: 1.0
+    )
 }

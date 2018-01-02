@@ -30,19 +30,19 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @IBOutlet weak var colorSlider: ColorSlider!
 
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
-    var brightnessColors = [UIColor.white.cgColor, Colors.littleRed.cgColor]
-    var darknessColors = [Colors.littleRed.cgColor, UIColor.black.cgColor]
-    var adjustColor = Colors.littleRed {
+    var brightnessColors = [UIColor.white.cgColor, Colors.blue.cgColor]
+    var darknessColors = [Colors.blue.cgColor, UIColor.black.cgColor]
+    var adjustColor = Colors.blue {
         didSet {
+            colorSlider.thumbTintColor = adjustColor
             brightnessColors = [UIColor.white.cgColor, adjustColor.cgColor]
             darknessColors = [adjustColor.cgColor, UIColor.black.cgColor]
             onSliderChange(sender: colorSlider)
         }
     }
 
-    var pickedColor = Colors.littleRed {
+    var pickedColor = Colors.blue {
         didSet {
-            colorSlider.thumbTintColor = pickedColor
             adjustColor = self.adjustColor(pickedColor, sliderRatio)
             self.selectColorView.backgroundColor = pickedColor
         }
@@ -86,7 +86,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         setUpColorPickerAndView()
         setUpButton()
         setUpColorSlider()
-        onSliderChange(sender: colorSlider)
+//        onSliderChange(sender: colorSlider)
         colorSlider.addTarget(
                     self,
                     action:
@@ -235,7 +235,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         colorPicker.layer.shadowOpacity = 0.3
         colorPicker.layer.shadowRadius = 2.0
 
-        selectColorView.backgroundColor = Colors.littleRed
+        selectColorView.backgroundColor = Colors.blue
         selectColorView.layer.cornerRadius = selectColorView.frame.height * 0.5
         selectColorView.clipsToBounds = true
     }
@@ -274,7 +274,8 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         tgl.startPoint = CGPoint(x: 0.0, y: 0.5)
         tgl.endPoint = CGPoint(x: 1.0, y: 0.5)
 
-        tgl.colors = brightnessColors
+//        tgl.colors = brightnessColors
+        tgl.colors = [UIColor.white.cgColor, adjustColor.cgColor]
         UIGraphicsBeginImageContextWithOptions(tgl.frame.size, tgl.isOpaque, 0.0)
         tgl.render(in: UIGraphicsGetCurrentContext()!)
         let brightnessImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -282,7 +283,8 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         brightnessImage?.resizableImage(withCapInsets: UIEdgeInsets.zero)
         colorSlider.setMinimumTrackImage(brightnessImage, for: [])
 
-        tgl.colors = darknessColors
+//        tgl.colors = darknessColors
+        tgl.colors = [adjustColor.cgColor, UIColor.black.cgColor]
         UIGraphicsBeginImageContextWithOptions(tgl.frame.size, tgl.isOpaque, 0.0)
         tgl.render(in: UIGraphicsGetCurrentContext()!)
         let darknessImage = UIGraphicsGetImageFromCurrentImageContext()
