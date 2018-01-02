@@ -28,10 +28,11 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @IBOutlet weak var eraserButton: UIButton!
     @IBOutlet weak var selectColorView: UIView!
     @IBOutlet weak var colorSlider: ColorSlider!
+    @IBOutlet weak var sliderView: UIView!
 
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
-//    var brightnessColors = [UIColor.white.cgColor, Colors.blue.cgColor]
-//    var darknessColors = [Colors.blue.cgColor, UIColor.black.cgColor]
+    var brightnessColors = [UIColor.white.cgColor, Colors.littleRed.cgColor]
+    var darknessColors = [Colors.littleRed.cgColor, UIColor.black.cgColor]
 //    var adjustColor = Colors.blue {
 //        didSet {
 //            colorSlider.thumbTintColor = adjustColor
@@ -41,10 +42,13 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 //        }
 //    }
 
-    var pickedColor = Colors.blue {
+    var pickedColor = Colors.littleRed {
         didSet {
 //            adjustColor = self.adjustColor(pickedColor, sliderRatio)
 //            colorSlider.thumbTintColor = pickedColor
+//            brightnessColors = [UIColor.white.cgColor, pickedColor.cgColor]
+//            darknessColors = [pickedColor.cgColor, UIColor.black.cgColor]
+            setUpSliderView(pickedColor)
             self.selectColorView.backgroundColor = pickedColor
         }
     }
@@ -91,6 +95,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
                     action:
                     #selector(self.onSliderChange),
                     for: UIControlEvents.valueChanged)
+        setUpSliderView(pickedColor)
 //        showSVG()
 
      // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
@@ -222,7 +227,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         colorPicker.layer.shadowOpacity = 0.3
         colorPicker.layer.shadowRadius = 2.0
 
-        selectColorView.backgroundColor = Colors.blue
+        selectColorView.backgroundColor = Colors.littleRed
         selectColorView.layer.cornerRadius = selectColorView.frame.height * 0.5
         selectColorView.clipsToBounds = true
     }
@@ -249,7 +254,22 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         colorSlider.maximumValue = 1
         colorSlider.value = 0.85
         colorSlider.isContinuous = false
+
+        colorSlider.maximumTrackTintColor = UIColor.clear
+        colorSlider.minimumTrackTintColor = UIColor.clear
 //        sliderRatio = CGFloat(colorSlider.value / colorSlider.maximumValue)
+    }
+
+    func setUpSliderView(_ pickedColor: UIColor) {
+        let gradient = CAGradientLayer()
+        gradient.frame = sliderView.bounds
+        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+        gradient.colors = [UIColor.white.cgColor, pickedColor.cgColor, UIColor.black.cgColor]
+        self.sliderView.layer.addSublayer(gradient)
+
+        sliderView.layer.cornerRadius = 5.0
+        sliderView.clipsToBounds = true
     }
 
     @objc func onSliderChange(sender: UISlider) {
@@ -257,30 +277,30 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 //        adjustColor = self.adjustColor(pickedColor, value)
         let alpha = CGFloat(colorSlider.value / colorSlider.maximumValue)
         pickedColor = pickedColor.withAlphaComponent(alpha)
-        
-        let tgl = CAGradientLayer()
-        let frame = CGRect(x: 0, y: 0, width: colorSlider.frame.size.width, height: 15)
-        tgl.frame = frame
-        tgl.startPoint = CGPoint(x: 0.0, y: 0.5)
-        tgl.endPoint = CGPoint(x: 1.0, y: 0.5)
 
-//        tgl.colors = brightnessColors
-        tgl.colors = [UIColor.white.cgColor, pickedColor.cgColor]
-        UIGraphicsBeginImageContextWithOptions(tgl.frame.size, tgl.isOpaque, 0.0)
-        tgl.render(in: UIGraphicsGetCurrentContext()!)
-        let brightnessImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        brightnessImage?.resizableImage(withCapInsets: UIEdgeInsets.zero)
-        colorSlider.setMinimumTrackImage(brightnessImage, for: [])
-
-//        tgl.colors = darknessColors
-        tgl.colors = [pickedColor.cgColor, UIColor.black.cgColor]
-        UIGraphicsBeginImageContextWithOptions(tgl.frame.size, tgl.isOpaque, 0.0)
-        tgl.render(in: UIGraphicsGetCurrentContext()!)
-        let darknessImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        darknessImage?.resizableImage(withCapInsets: UIEdgeInsets.zero)
-        colorSlider.setMaximumTrackImage(darknessImage, for: [])
+//        let tgl = CAGradientLayer()
+//        let frame = CGRect(x: 0, y: 0, width: colorSlider.frame.size.width, height: 15)
+//        tgl.frame = frame
+//        tgl.startPoint = CGPoint(x: 0.0, y: 0.5)
+//        tgl.endPoint = CGPoint(x: 1.0, y: 0.5)
+//
+////        tgl.colors = brightnessColors
+//        tgl.colors = [UIColor.white.cgColor, pickedColor.cgColor]
+//        UIGraphicsBeginImageContextWithOptions(tgl.frame.size, tgl.isOpaque, 0.0)
+//        tgl.render(in: UIGraphicsGetCurrentContext()!)
+//        let brightnessImage = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//        brightnessImage?.resizableImage(withCapInsets: UIEdgeInsets.zero)
+//        colorSlider.setMinimumTrackImage(brightnessImage, for: [])
+//
+////        tgl.colors = darknessColors
+//        tgl.colors = [pickedColor.cgColor, UIColor.black.cgColor]
+//        UIGraphicsBeginImageContextWithOptions(tgl.frame.size, tgl.isOpaque, 0.0)
+//        tgl.render(in: UIGraphicsGetCurrentContext()!)
+//        let darknessImage = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//        darknessImage?.resizableImage(withCapInsets: UIEdgeInsets.zero)
+//        colorSlider.setMaximumTrackImage(darknessImage, for: [])
 
     }
 

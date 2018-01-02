@@ -82,6 +82,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
                         print(error)
                     } else {
                         guard let url = url else { return }
+                        print("\(i) : \(url)")
                         self.imageURLs.append(url)
                     }
                 }
