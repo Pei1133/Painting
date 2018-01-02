@@ -31,8 +31,8 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @IBOutlet weak var sliderView: UIView!
 
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
-    var brightnessColors = [UIColor.white.cgColor, Colors.littleRed.cgColor]
-    var darknessColors = [Colors.littleRed.cgColor, UIColor.black.cgColor]
+//    var brightnessColors = [UIColor.white.cgColor, Colors.littleRed.cgColor]
+//    var darknessColors = [Colors.littleRed.cgColor, UIColor.black.cgColor]
 //    var adjustColor = Colors.blue {
 //        didSet {
 //            colorSlider.thumbTintColor = adjustColor
@@ -74,7 +74,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         super.viewDidLoad()
 
-        view.backgroundColor = Colors.cream
+//        view.backgroundColor = Colors.cream
 
         colorPicker.delegate = self
 

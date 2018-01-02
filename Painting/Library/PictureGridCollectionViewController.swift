@@ -23,6 +23,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         didSet {
             self.collectionView?.reloadData()
+            print("AAA:\(imageURLs)")
         }
     }
 
@@ -34,9 +35,9 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         fullScreenSize = UIScreen.main.bounds.size
 
-        setUpCollectionView()
-
         setUpLayout()
+
+        setUpCollectionView()
 
         downloadLibraryPictures()
 
@@ -64,11 +65,11 @@ class PictureGridCollectionViewController: UICollectionViewController {
         flowLayout.itemSize = CGSize(width: CGFloat(fullScreenSize.width)/2 - 20, height: CGFloat(fullScreenSize.width)/2 - 20)
 
         // 設置每一行的間距
-//        flowLayout.minimumLineSpacing = 15
+        flowLayout.minimumLineSpacing = 10
 
         // 設置 header 及 footer 的尺寸
-//        flowLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: 40)
-//        flowLayout.footerReferenceSize = CGSize(width: fullScreenSize.width, height: 40)
+        flowLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: 20)
+        flowLayout.footerReferenceSize = CGSize(width: fullScreenSize.width, height: 20)
 
     }
 
@@ -102,15 +103,19 @@ class PictureGridCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PictureGridCollectionViewCell else {
-            return PictureGridCollectionViewCell() }
+            fatalError() }
 
         let imageURL = imageURLs[indexPath.row]
-        let renderParameter = PathProvider.renderCellPaths(url: imageURL, imageView: cell.pictureImageView)
-        cell.pictureImageView = renderParameter.imageView
-        cell.pictureImageView.image = nil
-        cell.pictureImageView.contentMode = .scaleAspectFill
-        Nuke.loadImage(with: imageURL, into: cell.pictureImageView)
+        if cell.pictureImageView.image == nil {
 
+        let renderParameter = PathProvider.renderCellPaths(url: imageURL, imageView: cell.pictureImageView)
+//        cell.pictureImageView = renderParameter.imageView
+//        cell.pictureImageView.image = #imageLiteral(resourceName: "icon_photo")
+        cell.pictureImageView.contentMode = .scaleAspectFill
+        Nuke.loadImage(with: imageURL, into: renderParameter.imageView)
+        
+        }
+        
         // [Firebase] Download to a local file
 //        let islandRef = Storage.storage().reference().child("libraryPictures").child("2.svg")
 //        let localURL = URL(string: "\(islandRef)")!

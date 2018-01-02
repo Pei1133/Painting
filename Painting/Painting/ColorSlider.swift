@@ -14,7 +14,7 @@ class ColorSlider: UISlider {
 
     override func trackRect(forBounds bounds: CGRect) -> CGRect {
 
-        let rect: CGRect = CGRect(x: 0, y: 0, width: 200, height: 15)
+        let rect: CGRect = CGRect(x: 0, y: 0, width: 200, height: 13)
         return rect
     }
 
