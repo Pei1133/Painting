@@ -122,17 +122,47 @@ class PictureGridCollectionViewController: UICollectionViewController {
                 sublayer.removeFromSuperlayer()
             }
         }
-
-        let layers = PathProvider.renderCellPaths(url: imageURL, targetSize: cell.pictureImageView.bounds.size)
-
-        for layer in layers {
-
-            cell.pictureImageView.layer.addSublayer(layer)
-
+        
+//        let provider = PathProvider()
+        
+        for url in urls {
+        
+            PathProvider.shared.renderCellPaths(
+                url: imageURL,
+                targetSize: cell.pictureImageView.bounds.size,
+                completionHandler: { (paths: [SVGBezierPath]) -> Void in
+                    
+                    for path in paths {
+                        
+                        cell.pictureImageView.layer.addSublayer(path)
+                        
+                    }
+                    
+                }
+            )
+            
         }
+        
+//        PathProvider.renderCellPaths(url: imageURL, targetSize: cell.pictureImageView.bounds.size)
+
+//        for layer in layers {
+//
+//            cell.pictureImageView.layer.addSublayer(layer)
+//
+//        }
 
         return cell
     }
+    
+//    var paths: [CALayer] = []
+//
+//    func provider(_ provider: Provider, didGetPaths paths: [CALayer]) {
+//
+//        self.paths = paths
+//
+//        self.collectionView?.reloadData()
+//
+//    }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
