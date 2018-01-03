@@ -64,7 +64,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 //            adjustColor = self.adjustColor(pickedColor, sliderRatio)
 //        }
 //    }
-
+    let provider = PathProvider()
     var paths = [SVGBezierPath]()
     var scrollView = UIScrollView()
     var pictureView = UIView()
@@ -85,7 +85,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         let paths = SVGBezierPath.pathsFromSVG(at: url!)
         self.paths = paths
 
-        let renderParameter = PathProvider.renderPaths(url: url!, imageView: imageView)
+        let renderParameter = provider.renderPaths(url: url!, imageView: imageView)
         self.imageView = renderParameter.imageView
         self.pictureSize = renderParameter.pictureSize
 

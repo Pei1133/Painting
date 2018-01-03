@@ -10,20 +10,15 @@ import UIKit
 import PocketSVG
 
 class PathProvider {
-    
-    static func renderPaths(url: URL, imageView: CustomImageView) -> (pictureSize: CGSize, imageView: CustomImageView) {
+
+    func renderPaths(url: URL, imageView: CustomImageView) -> (pictureSize: CGSize, imageView: CustomImageView) {
 
         var pictureSize = CGSize.zero
         let strokeWidth = CGFloat(0.8)
         let strokeColor = UIColor.black.cgColor
 
-        
-        
-        
         let paths = SVGBezierPath.pathsFromSVG(at: url)
-        
-        
-        
+
         for path in paths {
 
             let layer = CAShapeLayer()
@@ -38,59 +33,40 @@ class PathProvider {
         return (pictureSize: pictureSize, imageView: imageView)
     }
 
-    static func renderCellPaths(
+    func renderCellPaths(
         url: URL,
         targetSize: CGSize,
-        completionHandler: @escaping (_ paths: [SVGBezierPath] ) -> Void
+        completionHandler: @escaping (_ pathLayers: [CALayer] ) -> Void
     ) {
 
         var pictureSize = CGSize.zero
         let strokeWidth = CGFloat(0.6)
         let strokeColor = UIColor.darkGray.cgColor
-        
-        // async
-        
-        print("1")
-        
-        DispatchQueue.global().async {
-        
-            let paths = SVGBezierPath.pathsFromSVG(at: url)
-            
-//            self.delegate?.provider(self, didGetPath: paths)
-            
-            print("2")
-            
-            completionHandler(paths)
-            
-        }
-        
-        print("3")
-        
-        //
 
-//        var layers = [CALayer]()
-//
-//        for path in paths {
-//
-//            let layer = CAShapeLayer()
-//
-//            pictureSize = calculatePictureBounds(pictureSize: pictureSize, rect: path.cgPath.boundingBox)
-//
-//            let scaleFactor = calculateScaleFactor(pictureSize: pictureSize, targetSize: targetSize)
-//
-//            var affineTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
-//            let transformedPath = (path.cgPath).copy(using: &affineTransform)
-//            layer.path = transformedPath
-//            layer.lineWidth = strokeWidth
-//            layer.strokeColor = strokeColor
-//            layer.fillColor = UIColor.white.cgColor
-//            layers.append(layer)
-//
-//        }
-//        return layers
+        let paths = SVGBezierPath.pathsFromSVG(at: url)
+
+        var pathLayers = [CALayer]()
+
+        for path in paths {
+
+            let layer = CAShapeLayer()
+
+            pictureSize = self.calculatePictureBounds(pictureSize: pictureSize, rect: path.cgPath.boundingBox)
+            let scaleFactor = self.calculateScaleFactor(pictureSize: pictureSize, targetSize: targetSize)
+            var affineTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+            let transformedPath = (path.cgPath).copy(using: &affineTransform)
+
+            layer.path = transformedPath
+            layer.lineWidth = strokeWidth
+            layer.strokeColor = strokeColor
+            layer.fillColor = UIColor.white.cgColor
+            pathLayers.append(layer)
+            completionHandler(pathLayers)
+        }
+
     }
 
-    static func calculatePictureBounds(pictureSize size: CGSize, rect: CGRect) -> CGSize {
+    func calculatePictureBounds(pictureSize size: CGSize, rect: CGRect) -> CGSize {
 
         let maxX = rect.maxX
         let maxY = rect.maxY
@@ -101,7 +77,7 @@ class PathProvider {
         return CGSize(width: newsizeWidth, height: newsizeHeight)
     }
 
-    static func calculateScaleFactor(pictureSize: CGSize, targetSize: CGSize) -> CGFloat {
+    func calculateScaleFactor(pictureSize: CGSize, targetSize: CGSize) -> CGFloat {
 
         let boundingBoxAspectRatio = pictureSize.width/pictureSize.height
         let viewAspectRatio = targetSize.width/targetSize.height
