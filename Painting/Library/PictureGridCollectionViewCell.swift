@@ -37,13 +37,13 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
 
         imageView.contentMode = .center
 
-        imageView.layer.cornerRadius = 1.0
+        imageView.layer.cornerRadius = 8.0
 
         imageView.layer.borderWidth = 0.2
 
         imageView.backgroundColor = UIColor.white
 
-        imageView.layer.shadowColor = UIColor.black.cgColor
+        imageView.layer.shadowColor = Colors.coolGray.cgColor
 
         imageView.layer.shadowRadius = 1.0
 

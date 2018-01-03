@@ -15,7 +15,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
     private let reuseIdentifier = "Cell"
 
-    var fullScreenSize = CGSize()
+    var fullScreenSize = UIScreen.main.bounds.size
 
     var flowLayout = UICollectionViewFlowLayout()
 
@@ -31,9 +31,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
 
         downloadLibraryPictures()
-        fullScreenSize = UIScreen.main.bounds.size
-        collectionView?.allowsSelection = true
-
         setUpLayout()
         setUpCollectionView()
         setUpGradientColor()
@@ -44,14 +41,12 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         self.collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: flowLayout)
 
-        self.collectionView?.backgroundColor = .red
+        self.collectionView?.allowsSelection = true
 
         // Register cell
         let nib = UINib(nibName: "PictureGridCollectionViewCell", bundle: nil)
 
         self.collectionView?.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
-
-//        self.collectionView?.backgroundColor =
 
     }
 
@@ -63,37 +58,22 @@ class PictureGridCollectionViewController: UICollectionViewController {
         gradient.colors = [Colors.paleTurquoise.cgColor, Colors.skyBlue.cgColor]
 
         let backgroundView = UIView()
-
 //        backgroundView.frame = UIScreen.main.bounds
-
         backgroundView.layer.addSublayer(gradient)
-
-//        backgroundView.backgroundColor = .yellow
-
-        print("test", collectionView?.backgroundView)
-
         collectionView?.backgroundView = backgroundView
-//
-//        let layer = CALayer()
-//        
-//        layer.backgroundColor = UIColor.blue.cgColor
-//        
-//        layer.frame = UIScreen.main.bounds
-//        
-//
 
     }
 
     func setUpLayout() {
 
         // 設置 section 的間距 四個數值分別代表 上、左、下、右 的間距
-        flowLayout.sectionInset = UIEdgeInsets(top: 25, left: 15, bottom: 5, right: 15)
+        flowLayout.sectionInset = UIEdgeInsets(top: 25, left: 18, bottom: 5, right: 18)
 
         // 設置每個 cell 的尺寸
-        flowLayout.itemSize = CGSize(width: CGFloat(fullScreenSize.width)/2 - 20, height: CGFloat(fullScreenSize.width)/2 - 20)
+        flowLayout.itemSize = CGSize(width: CGFloat(fullScreenSize.width)/2 - 36, height: CGFloat(fullScreenSize.width)/2 - 36)
 
         // 設置每一行的間距
-        flowLayout.minimumLineSpacing = 15
+        flowLayout.minimumLineSpacing = 20
 
         // 設置 header 及 footer 的尺寸
         flowLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: 60)
@@ -140,9 +120,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
             for sublayer in sublayers {
 
                 sublayer.removeFromSuperlayer()
-
             }
-
         }
 
         let layers = PathProvider.renderCellPaths(url: imageURL, targetSize: cell.pictureImageView.bounds.size)
@@ -152,28 +130,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
             cell.pictureImageView.layer.addSublayer(layer)
 
         }
-
-    //        cell.pictureImageView = renderParameter.imageView
-    //        cell.pictureImageView.image = #imageLiteral(resourceName: "icon_photo")
-//            cell.pictureImageView.contentMode = .scaleAspectFill
-//            Nuke.loadImage(with: imageURL, into: renderParameter.imageView)
-
-//        }
-
-        // [Firebase] Download to a local file
-//        let islandRef = Storage.storage().reference().child("libraryPictures").child("2.svg")
-//        let localURL = URL(string: "\(islandRef)")!
-//
-//        islandRef.write(toFile: localURL) { (url, err) in
-//            if let error = err {
-//                print(error)
-//            } else {
-//
-//                let renderParameter = PathProvider.renderCellPaths(url: url!, imageView: cell.pictureImageView)
-//                cell.pictureImageView = renderParameter.imageView
-//
-//            }
-//        }
 
         return cell
     }

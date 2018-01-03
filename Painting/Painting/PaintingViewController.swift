@@ -80,8 +80,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         super.viewDidLoad()
 
-//        view.backgroundColor = Colors.cream
-
         colorPicker.delegate = self
 
         let paths = SVGBezierPath.pathsFromSVG(at: url!)
@@ -160,6 +158,8 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         imageView.backgroundColor = .clear
         imageView.isUserInteractionEnabled = true
         imageView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
+//        imageView.layer.borderColor = UIColor.red.cgColor
+//        imageView.layer.borderWidth = 3.0
         imageView.delegate = self
 
         // Set up View
@@ -167,7 +167,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         pictureView.backgroundColor = UIColor.clear
 
         // Set up ScrollView
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 150))
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: 20, width: view.bounds.width, height: view.bounds.height - 150))
         scrollView.contentSize = imageView.frame.size
         scrollView.backgroundColor = UIColor.white
 //        scrollView.alwaysBounceVertical = true
@@ -175,8 +175,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         // Add subviews
         view.addSubview(scrollView)
-//        scrollView.addSubview(pictureView)
-//        pictureView.addSubview(imageView)
         scrollView.addSubview(pictureView)
         scrollView.addSubview(imageView)
 
