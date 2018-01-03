@@ -20,7 +20,7 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         self.backgroundColor = .lightGray
 
         setUpPictureImageView()
@@ -64,7 +64,7 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
 
         view.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
 
-        view.layer.shadowOpacity = 0.5
+        view.layer.shadowOpacity = 1
 
     }
 }

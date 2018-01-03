@@ -19,6 +19,8 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
     var flowLayout = UICollectionViewFlowLayout()
 
+    let headerView = UIView()
+
     var imageURLs: [URL] = [] {
 
         didSet {
@@ -34,6 +36,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
         setUpLayout()
         setUpCollectionView()
         setUpGradientColor()
+        setUpNavigationBar()
 
     }
 
@@ -76,7 +79,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
         flowLayout.minimumLineSpacing = 20
 
         // 設置 header 及 footer 的尺寸
-        flowLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: 60)
+        flowLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: 200)
         flowLayout.footerReferenceSize = CGSize(width: fullScreenSize.width, height: 20)
 
     }
@@ -98,6 +101,17 @@ class PictureGridCollectionViewController: UICollectionViewController {
         }
     }
 
+    func setUpNavigationBar() {
+
+        self.navigationItem.title = "Library"
+        let font = UIFont(name: "BradleyHandITCTT-Bold", size: 22)
+        let textAttributes = [
+            NSAttributedStringKey.font: font,
+            NSAttributedStringKey.foregroundColor: Colors.deepCyanBlue
+        ]
+        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+    }
+
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -112,7 +126,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PictureGridCollectionViewCell else {
             fatalError() }
-        
+
         let imageURL = imageURLs[indexPath.row]
 
         if let sublayers = cell.pictureImageView.layer.sublayers {

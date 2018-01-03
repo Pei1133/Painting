@@ -36,6 +36,12 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         fillColorButton.tintColor = Colors.skyBlue
         paintColorButton.tintColor = Colors.littleBlue
     }
+
+//    @IBAction func tapSave(_ sender: Any) {
+//        
+//        UIImageWriteToSavedPhotosAlbum(<#T##image: UIImage##UIImage#>, <#T##completionTarget: Any?##Any?#>, <#T##completionSelector: Selector?##Selector?#>, <#T##contextInfo: UnsafeMutableRawPointer?##UnsafeMutableRawPointer?#>)
+//    }
+
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
 //    var brightnessColors = [UIColor.white.cgColor, Colors.littleRed.cgColor]
 //    var darknessColors = [Colors.littleRed.cgColor, UIColor.black.cgColor]
@@ -89,6 +95,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         self.imageView = renderParameter.imageView
         self.pictureSize = renderParameter.pictureSize
 
+        setUpNavigationBar()
         setUpScrollViewAndImageView()
         setUpColorPickerAndView()
         setUpButton()
@@ -151,6 +158,16 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         view.addSubview(svgImageView)
     }
 
+    func setUpNavigationBar() {
+        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "left-arrow"), style: .plain, target: self, action: #selector(goBack))
+        button.tintColor = Colors.deepCyanBlue
+        self.navigationItem.leftBarButtonItem = button
+    }
+
+    @objc func goBack() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     func setUpScrollViewAndImageView() {
 
         // Set up ImageView
