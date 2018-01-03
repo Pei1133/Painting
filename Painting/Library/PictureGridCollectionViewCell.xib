@@ -18,21 +18,30 @@
                 <rect key="frame" x="0.0" y="0.0" width="154" height="160"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hz1-fo-7HY">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jba-m6-yZ6" userLabel="PictureView">
                         <rect key="frame" x="0.0" y="0.0" width="154" height="160"/>
+                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="0.78971354169999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hz1-fo-7HY">
+                        <rect key="frame" x="2" y="2" width="150" height="156"/>
                     </imageView>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="hz1-fo-7HY" secondAttribute="bottom" id="3Gi-5B-pUE"/>
-                <constraint firstAttribute="trailing" secondItem="hz1-fo-7HY" secondAttribute="trailing" id="Bje-LI-QfC"/>
-                <constraint firstItem="hz1-fo-7HY" firstAttribute="leading" secondItem="HzV-Ef-f47" secondAttribute="leading" id="reK-hW-5Ia"/>
-                <constraint firstItem="hz1-fo-7HY" firstAttribute="top" secondItem="HzV-Ef-f47" secondAttribute="top" id="sXu-i2-Dmx"/>
+                <constraint firstItem="jba-m6-yZ6" firstAttribute="bottom" secondItem="hz1-fo-7HY" secondAttribute="bottom" constant="2" id="3Gi-5B-pUE"/>
+                <constraint firstAttribute="trailing" secondItem="jba-m6-yZ6" secondAttribute="trailing" id="8QJ-p3-yP5"/>
+                <constraint firstItem="jba-m6-yZ6" firstAttribute="trailing" secondItem="hz1-fo-7HY" secondAttribute="trailing" constant="2" id="Bje-LI-QfC"/>
+                <constraint firstAttribute="bottom" secondItem="jba-m6-yZ6" secondAttribute="bottom" id="J9U-zs-C5n"/>
+                <constraint firstItem="jba-m6-yZ6" firstAttribute="leading" secondItem="HzV-Ef-f47" secondAttribute="leading" id="P9S-6a-2uE"/>
+                <constraint firstItem="jba-m6-yZ6" firstAttribute="top" secondItem="HzV-Ef-f47" secondAttribute="top" id="eJF-wA-AZ0"/>
+                <constraint firstItem="hz1-fo-7HY" firstAttribute="leading" secondItem="jba-m6-yZ6" secondAttribute="leading" constant="2" id="reK-hW-5Ia"/>
+                <constraint firstItem="hz1-fo-7HY" firstAttribute="top" secondItem="jba-m6-yZ6" secondAttribute="top" constant="2" id="sXu-i2-Dmx"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Mf9-Qz-PFU"/>
             <size key="customSize" width="95" height="89"/>
             <connections>
                 <outlet property="pictureImageView" destination="hz1-fo-7HY" id="cBY-oe-dGU"/>
+                <outlet property="pictureView" destination="jba-m6-yZ6" id="UyX-ep-W0L"/>
             </connections>
             <point key="canvasLocation" x="-141" y="-22"/>
         </collectionViewCell>
