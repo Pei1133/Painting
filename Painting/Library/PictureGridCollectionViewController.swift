@@ -112,7 +112,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PictureGridCollectionViewCell else {
             fatalError() }
-
+        
         let imageURL = imageURLs[indexPath.row]
 
         if let sublayers = cell.pictureImageView.layer.sublayers {

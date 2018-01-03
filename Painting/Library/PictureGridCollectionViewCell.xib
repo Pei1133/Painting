@@ -19,23 +19,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jba-m6-yZ6" userLabel="PictureView">
-                        <rect key="frame" x="0.0" y="0.0" width="154" height="160"/>
-                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="0.78971354169999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <rect key="frame" x="10" y="10" width="134" height="140"/>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hz1-fo-7HY">
-                        <rect key="frame" x="2" y="2" width="150" height="156"/>
+                        <rect key="frame" x="13" y="13" width="128" height="134"/>
                     </imageView>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="jba-m6-yZ6" firstAttribute="bottom" secondItem="hz1-fo-7HY" secondAttribute="bottom" constant="2" id="3Gi-5B-pUE"/>
-                <constraint firstAttribute="trailing" secondItem="jba-m6-yZ6" secondAttribute="trailing" id="8QJ-p3-yP5"/>
-                <constraint firstItem="jba-m6-yZ6" firstAttribute="trailing" secondItem="hz1-fo-7HY" secondAttribute="trailing" constant="2" id="Bje-LI-QfC"/>
-                <constraint firstAttribute="bottom" secondItem="jba-m6-yZ6" secondAttribute="bottom" id="J9U-zs-C5n"/>
-                <constraint firstItem="jba-m6-yZ6" firstAttribute="leading" secondItem="HzV-Ef-f47" secondAttribute="leading" id="P9S-6a-2uE"/>
-                <constraint firstItem="jba-m6-yZ6" firstAttribute="top" secondItem="HzV-Ef-f47" secondAttribute="top" id="eJF-wA-AZ0"/>
-                <constraint firstItem="hz1-fo-7HY" firstAttribute="leading" secondItem="jba-m6-yZ6" secondAttribute="leading" constant="2" id="reK-hW-5Ia"/>
-                <constraint firstItem="hz1-fo-7HY" firstAttribute="top" secondItem="jba-m6-yZ6" secondAttribute="top" constant="2" id="sXu-i2-Dmx"/>
+                <constraint firstItem="jba-m6-yZ6" firstAttribute="bottom" secondItem="hz1-fo-7HY" secondAttribute="bottom" constant="3" id="3Gi-5B-pUE"/>
+                <constraint firstAttribute="trailing" secondItem="jba-m6-yZ6" secondAttribute="trailing" constant="10" id="8QJ-p3-yP5"/>
+                <constraint firstItem="jba-m6-yZ6" firstAttribute="trailing" secondItem="hz1-fo-7HY" secondAttribute="trailing" constant="3" id="Bje-LI-QfC"/>
+                <constraint firstAttribute="bottom" secondItem="jba-m6-yZ6" secondAttribute="bottom" constant="10" id="J9U-zs-C5n"/>
+                <constraint firstItem="jba-m6-yZ6" firstAttribute="leading" secondItem="HzV-Ef-f47" secondAttribute="leading" constant="10" id="P9S-6a-2uE"/>
+                <constraint firstItem="jba-m6-yZ6" firstAttribute="top" secondItem="HzV-Ef-f47" secondAttribute="top" constant="10" id="eJF-wA-AZ0"/>
+                <constraint firstItem="hz1-fo-7HY" firstAttribute="leading" secondItem="jba-m6-yZ6" secondAttribute="leading" constant="3" id="reK-hW-5Ia"/>
+                <constraint firstItem="hz1-fo-7HY" firstAttribute="top" secondItem="jba-m6-yZ6" secondAttribute="top" constant="3" id="sXu-i2-Dmx"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Mf9-Qz-PFU"/>
             <size key="customSize" width="95" height="89"/>

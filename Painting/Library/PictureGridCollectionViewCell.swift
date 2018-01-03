@@ -20,6 +20,8 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.backgroundColor = .lightGray
 
         setUpPictureImageView()
 
@@ -33,23 +35,13 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
 
         let imageView = pictureImageView!
 
-//        imageView.clipsToBounds = true
+        imageView.clipsToBounds = true
 
         imageView.contentMode = .center
 
-//        imageView.layer.cornerRadius = 8.0
-
-//        imageView.layer.borderWidth = 0.2
+        imageView.layer.cornerRadius = 8.0
 
         imageView.backgroundColor = UIColor.white
-
-//        imageView.layer.shadowColor = Colors.coolGray.cgColor
-
-//        imageView.layer.shadowRadius = 1.0
-
-//        imageView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-
-//        imageView.layer.shadowOpacity = 0.26
 
     }
 
@@ -63,17 +55,16 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
 
         view.layer.cornerRadius = 8.0
 
-        view.layer.borderWidth = 0.2
+        view.backgroundColor = UIColor.white
 
-        view.backgroundColor = Colors.littleBlue
+//        view.layer.shadowColor = Colors.coolGray.cgColor
+        view.layer.shadowColor = UIColor.red.cgColor
 
-        view.layer.shadowColor = UIColor.black.cgColor
-
-        view.layer.shadowRadius = 1.0
+        view.layer.shadowRadius = 10
 
         view.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
 
-        view.layer.shadowOpacity = 0.26
+        view.layer.shadowOpacity = 0.5
 
     }
 }
