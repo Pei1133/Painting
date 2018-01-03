@@ -121,26 +121,28 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     // Step 3 :- Make "hitTest" final method
     private func hitTest(tapLocation: CGPoint) {
+        
+        if isFill == true {
+            for path in paths {
 
-        for path in paths {
+                if path.contains(tapLocation) {
 
-            if path.contains(tapLocation) {
+                    print("I am in \(path.svgAttributes)")
+                    let strokeWidth = CGFloat(2.0)
+                    let strokeColor = UIColor.gray.cgColor
 
-                print("I am in \(path.svgAttributes)")
-                let strokeWidth = CGFloat(2.0)
-                let strokeColor = UIColor.gray.cgColor
+                    let layer = CAShapeLayer()
+                    layer.path = path.cgPath
+                    layer.lineWidth = strokeWidth
+                    layer.strokeColor = strokeColor
+                    layer.fillColor = pickedColor.cgColor
+                    self.imageView.layer.addSublayer(layer)
 
-                let layer = CAShapeLayer()
-                layer.path = path.cgPath
-                layer.lineWidth = strokeWidth
-                layer.strokeColor = strokeColor
-                layer.fillColor = pickedColor.cgColor
-                self.imageView.layer.addSublayer(layer)
+                } else {
 
-            } else {
+                    print("no color!")
 
-                print("no color!")
-
+                }
             }
         }
     }
@@ -347,30 +349,31 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     func drawLines(fromPoint: CGPoint, toPoint: CGPoint) {
 
-        UIGraphicsBeginImageContext(self.pictureView.frame.size)
+        if isFill == false {
+            UIGraphicsBeginImageContext(self.pictureView.frame.size)
 
-//        let drawingLayer = CAShapeLayer()
+    //        let drawingLayer = CAShapeLayer()
 
-        imageView.image?.draw(in: CGRect(x: 0, y: 0, width: self.pictureView.frame.width, height: self.pictureView.frame.height))
+            imageView.image?.draw(in: CGRect(x: 0, y: 0, width: self.pictureView.frame.width, height: self.pictureView.frame.height))
 
-        //        let context = CGLayerGetContext(drawingLayer)
-        let context = UIGraphicsGetCurrentContext()
-        context?.move(to: CGPoint(x: fromPoint.x, y: fromPoint.y))
-        context?.addLine(to: CGPoint(x: toPoint.x, y: toPoint.y))
+            //        let context = CGLayerGetContext(drawingLayer)
+            let context = UIGraphicsGetCurrentContext()
+            context?.move(to: CGPoint(x: fromPoint.x, y: fromPoint.y))
+            context?.addLine(to: CGPoint(x: toPoint.x, y: toPoint.y))
 
-        context?.setBlendMode(CGBlendMode.normal)
-        context?.setLineCap(CGLineCap.round)
-        context?.setLineWidth(5)
-        context?.setStrokeColor(pickedColor.cgColor)
-        context?.strokePath()
+            context?.setBlendMode(CGBlendMode.normal)
+            context?.setLineCap(CGLineCap.round)
+            context?.setLineWidth(5)
+            context?.setStrokeColor(pickedColor.cgColor)
+            context?.strokePath()
 
-        imageView.image = UIGraphicsGetImageFromCurrentImageContext()
-//        drawingLayer.contents = imageView.image?.cgImage
-//        imageView.layer.contents = imageView.image?.cgImage
-//        drawingLayer.contents = UIGraphicsGetImageFromCurrentImageContext()
-//        imageView.layer.addSublayer(drawingLayer)
-        UIGraphicsEndImageContext()
-
+            imageView.image = UIGraphicsGetImageFromCurrentImageContext()
+    //        drawingLayer.contents = imageView.image?.cgImage
+    //        imageView.layer.contents = imageView.image?.cgImage
+    //        drawingLayer.contents = UIGraphicsGetImageFromCurrentImageContext()
+    //        imageView.layer.addSublayer(drawingLayer)
+            UIGraphicsEndImageContext()
+        }
     }
 
     func didTouchesBegan(touches: Set<UITouch>) {
