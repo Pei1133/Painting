@@ -31,15 +31,13 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         super.viewDidLoad()
 
-        collectionView?.allowsSelection = true
-
+        downloadLibraryPictures()
         fullScreenSize = UIScreen.main.bounds.size
+        collectionView?.allowsSelection = true
 
         setUpLayout()
         setUpCollectionView()
         setUpGradientColor()
-
-        downloadLibraryPictures()
 
     }
 

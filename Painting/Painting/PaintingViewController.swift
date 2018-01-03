@@ -15,21 +15,27 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         self.pickedColor = color
     }
 
-    @IBAction func tapFillColor(_ sender: Any) {
-
-    }
-
-    @IBAction func tapPaintColor(_ sender: Any) {
-
-    }
-
     @IBOutlet weak var fillColorButton: UIButton!
     @IBOutlet weak var paintColorButton: UIButton!
     @IBOutlet weak var eraserButton: UIButton!
     @IBOutlet weak var selectColorView: UIView!
     @IBOutlet weak var colorSlider: ColorSlider!
     @IBOutlet weak var sliderView: UIView!
+    var isFill: Bool = true
 
+    @IBAction func tapFillColor(_ sender: Any) {
+
+        isFill = true
+        fillColorButton.tintColor = Colors.littleBlue
+        paintColorButton.tintColor = Colors.skyBlue
+    }
+
+    @IBAction func tapPaintColor(_ sender: Any) {
+
+        isFill = false
+        fillColorButton.tintColor = Colors.skyBlue
+        paintColorButton.tintColor = Colors.littleBlue
+    }
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
 //    var brightnessColors = [UIColor.white.cgColor, Colors.littleRed.cgColor]
 //    var darknessColors = [Colors.littleRed.cgColor, UIColor.black.cgColor]
@@ -234,7 +240,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     func setUpButton() {
 
-        fillColorButton.tintColor = Colors.skyBlue
+        fillColorButton.tintColor = Colors.littleBlue
 //        fillColorButton.layer.borderColor = skyBlueColor.cgColor
 //        fillColorButton.layer.borderWidth = 1.0
 //        fillColorButton.layer.cornerRadius = fillColorButton.frame.height * 0.5
