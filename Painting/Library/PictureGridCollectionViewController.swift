@@ -36,8 +36,8 @@ class PictureGridCollectionViewController: UICollectionViewController {
         fullScreenSize = UIScreen.main.bounds.size
 
         setUpLayout()
-
         setUpCollectionView()
+        setUpGradientColor()
 
         downloadLibraryPictures()
 
@@ -47,12 +47,23 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         self.collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: flowLayout)
 
-        self.collectionView?.backgroundColor = UIColor.lightGray
+        self.collectionView?.backgroundColor = .clear
 
         // Register cell
         let nib = UINib(nibName: "PictureGridCollectionViewCell", bundle: nil)
 
         self.collectionView?.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
+
+    }
+
+    func setUpGradientColor() {
+
+        let gradient = CAGradientLayer()
+        gradient.frame = UIScreen.main.bounds
+        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradient.colors = [Colors.paleTurquoise.cgColor, Colors.skyBlue.cgColor]
+//        self.collectionView?.backgroundView?.layer.addSublayer(gradient)
+        self.collectionView?.layer.addSublayer(gradient)
 
     }
 
@@ -65,10 +76,10 @@ class PictureGridCollectionViewController: UICollectionViewController {
         flowLayout.itemSize = CGSize(width: CGFloat(fullScreenSize.width)/2 - 20, height: CGFloat(fullScreenSize.width)/2 - 20)
 
         // 設置每一行的間距
-        flowLayout.minimumLineSpacing = 10
+        flowLayout.minimumLineSpacing = 15
 
         // 設置 header 及 footer 的尺寸
-        flowLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: 20)
+        flowLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: 60)
         flowLayout.footerReferenceSize = CGSize(width: fullScreenSize.width, height: 20)
 
     }
@@ -106,16 +117,17 @@ class PictureGridCollectionViewController: UICollectionViewController {
             fatalError() }
 
         let imageURL = imageURLs[indexPath.row]
+
         if cell.pictureImageView.image == nil {
 
-        let renderParameter = PathProvider.renderCellPaths(url: imageURL, imageView: cell.pictureImageView)
-//        cell.pictureImageView = renderParameter.imageView
-//        cell.pictureImageView.image = #imageLiteral(resourceName: "icon_photo")
-        cell.pictureImageView.contentMode = .scaleAspectFill
-        Nuke.loadImage(with: imageURL, into: renderParameter.imageView)
-        
+            let renderParameter = PathProvider.renderCellPaths(url: imageURL, imageView: cell.pictureImageView)
+    //        cell.pictureImageView = renderParameter.imageView
+    //        cell.pictureImageView.image = #imageLiteral(resourceName: "icon_photo")
+            cell.pictureImageView.contentMode = .scaleAspectFill
+            Nuke.loadImage(with: imageURL, into: renderParameter.imageView)
+
         }
-        
+
         // [Firebase] Download to a local file
 //        let islandRef = Storage.storage().reference().child("libraryPictures").child("2.svg")
 //        let localURL = URL(string: "\(islandRef)")!
