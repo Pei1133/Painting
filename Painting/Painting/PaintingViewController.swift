@@ -121,7 +121,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     // Step 3 :- Make "hitTest" final method
     private func hitTest(tapLocation: CGPoint) {
-        
+
         if isFill == true {
             for path in paths {
 

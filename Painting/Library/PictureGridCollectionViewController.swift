@@ -23,7 +23,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         didSet {
             self.collectionView?.reloadData()
-            print("AAA:\(imageURLs)")
         }
     }
 
@@ -45,12 +44,14 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         self.collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: flowLayout)
 
-        self.collectionView?.backgroundColor = .clear
+        self.collectionView?.backgroundColor = .red
 
         // Register cell
         let nib = UINib(nibName: "PictureGridCollectionViewCell", bundle: nil)
 
         self.collectionView?.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
+
+//        self.collectionView?.backgroundColor =
 
     }
 
@@ -60,8 +61,26 @@ class PictureGridCollectionViewController: UICollectionViewController {
         gradient.frame = UIScreen.main.bounds
         gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradient.colors = [Colors.paleTurquoise.cgColor, Colors.skyBlue.cgColor]
-//        self.collectionView?.backgroundView?.layer.addSublayer(gradient)
-        self.collectionView?.layer.addSublayer(gradient)
+
+        let backgroundView = UIView()
+
+//        backgroundView.frame = UIScreen.main.bounds
+
+        backgroundView.layer.addSublayer(gradient)
+
+//        backgroundView.backgroundColor = .yellow
+
+        print("test", collectionView?.backgroundView)
+
+        collectionView?.backgroundView = backgroundView
+//
+//        let layer = CALayer()
+//        
+//        layer.backgroundColor = UIColor.blue.cgColor
+//        
+//        layer.frame = UIScreen.main.bounds
+//        
+//
 
     }
 
@@ -116,15 +135,30 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         let imageURL = imageURLs[indexPath.row]
 
-        if cell.pictureImageView.image == nil {
+        if let sublayers = cell.pictureImageView.layer.sublayers {
 
-            let renderParameter = PathProvider.renderCellPaths(url: imageURL, imageView: cell.pictureImageView)
-    //        cell.pictureImageView = renderParameter.imageView
-    //        cell.pictureImageView.image = #imageLiteral(resourceName: "icon_photo")
-            cell.pictureImageView.contentMode = .scaleAspectFill
-            Nuke.loadImage(with: imageURL, into: renderParameter.imageView)
+            for sublayer in sublayers {
+
+                sublayer.removeFromSuperlayer()
+
+            }
 
         }
+
+        let layers = PathProvider.renderCellPaths(url: imageURL, targetSize: cell.pictureImageView.bounds.size)
+
+        for layer in layers {
+
+            cell.pictureImageView.layer.addSublayer(layer)
+
+        }
+
+    //        cell.pictureImageView = renderParameter.imageView
+    //        cell.pictureImageView.image = #imageLiteral(resourceName: "icon_photo")
+//            cell.pictureImageView.contentMode = .scaleAspectFill
+//            Nuke.loadImage(with: imageURL, into: renderParameter.imageView)
+
+//        }
 
         // [Firebase] Download to a local file
 //        let islandRef = Storage.storage().reference().child("libraryPictures").child("2.svg")

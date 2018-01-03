@@ -32,32 +32,36 @@ class PathProvider {
         return (pictureSize: pictureSize, imageView: imageView)
     }
 
-    static func renderCellPaths(url: URL, imageView: UIImageView) -> (pictureSize: CGSize, imageView: UIImageView) {
+    static func renderCellPaths(url: URL, targetSize: CGSize) -> [CALayer] {
 
         var pictureSize = CGSize.zero
         let strokeWidth = CGFloat(0.6)
         let strokeColor = UIColor.darkGray.cgColor
 
+        // async
         let paths = SVGBezierPath.pathsFromSVG(at: url)
+        //
+
+        var layers = [CALayer]()
+
         for path in paths {
 
             let layer = CAShapeLayer()
+
             pictureSize = calculatePictureBounds(pictureSize: pictureSize, rect: path.cgPath.boundingBox)
-            let scaleFactor = calculateScaleFactor(pictureSize: pictureSize, imageView: imageView)
+
+            let scaleFactor = calculateScaleFactor(pictureSize: pictureSize, targetSize: targetSize)
 
             var affineTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
             let transformedPath = (path.cgPath).copy(using: &affineTransform)
             layer.path = transformedPath
-
-//            layer.path = path.cgPath
-//            layer.transform = CATransform3DMakeScale(scaleFactor, scaleFactor, scaleFactor)
             layer.lineWidth = strokeWidth
             layer.strokeColor = strokeColor
             layer.fillColor = UIColor.white.cgColor
-            imageView.layer.addSublayer(layer)
+            layers.append(layer)
 
         }
-        return (pictureSize: pictureSize, imageView: imageView)
+        return layers
     }
 
     static func calculatePictureBounds(pictureSize size: CGSize, rect: CGRect) -> CGSize {
@@ -71,18 +75,18 @@ class PathProvider {
         return CGSize(width: newsizeWidth, height: newsizeHeight)
     }
 
-    static func calculateScaleFactor(pictureSize: CGSize, imageView: UIImageView) -> CGFloat {
+    static func calculateScaleFactor(pictureSize: CGSize, targetSize: CGSize) -> CGFloat {
 
         let boundingBoxAspectRatio = pictureSize.width/pictureSize.height
-        let viewAspectRatio = imageView.bounds.width/imageView.bounds.height
+        let viewAspectRatio = targetSize.width/targetSize.height
 
         let scaleFactor: CGFloat
         if boundingBoxAspectRatio > viewAspectRatio {
             // Width is limiting factor
-            scaleFactor = imageView.bounds.width/pictureSize.width
+            scaleFactor = targetSize.width/pictureSize.width
         } else {
             // Height is limiting factor
-            scaleFactor = imageView.bounds.height/pictureSize.height
+            scaleFactor = targetSize.height/pictureSize.height
         }
 
         return scaleFactor
