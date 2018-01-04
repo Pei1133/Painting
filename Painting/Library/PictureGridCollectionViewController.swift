@@ -80,7 +80,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
     func downloadLibraryPictures() {
 
-        Database.database().reference().child("libraryPictures").observeSingleEvent(of: .value, with: {(snapshot) in
+        Database.database().reference().child("libraryPictures").observe(.value, with: {(snapshot) in
 
             for child in snapshot.children {
                 guard let child = child as? DataSnapshot
