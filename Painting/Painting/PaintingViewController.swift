@@ -160,6 +160,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     func setUpNavigationBar() {
         // title
+        self.navigationController?.navigationBar.barTintColor = UIColor.clear
         self.navigationItem.title = "Color Your Own"
         let font = UIFont(name: "BradleyHandITCTT-Bold", size: 24)
         let textAttributes = [
@@ -167,7 +168,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             NSAttributedStringKey.foregroundColor: Colors.deepCyanBlue
         ]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
-        
+
         // left button
         let button = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-chervon"), style: .plain, target: self, action: #selector(goBack))
         button.tintColor = Colors.deepCyanBlue
@@ -182,7 +183,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradient.colors = [Colors.lightBlue.cgColor, Colors.skyBlue.cgColor]
         self.navigationController?.navigationBar.setBackgroundImage(layerTransImage(fromLayer: gradient), for: .default)
-        
+
         // shadow
         navigationController?.navigationBar.layer.shadowOpacity = 1
         navigationController?.navigationBar.layer.shadowColor = UIColor(red: 53/255.0, green: 184/255.0, blue: 208/255.0, alpha: 0.85).cgColor
@@ -220,7 +221,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         pictureView.backgroundColor = UIColor.clear
 
         // Set up ScrollView
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: 20, width: view.bounds.width, height: view.bounds.height - 150))
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 200))
         scrollView.contentSize = imageView.frame.size
         scrollView.backgroundColor = UIColor.white
 //        scrollView.alwaysBounceVertical = true

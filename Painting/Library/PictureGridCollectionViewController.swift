@@ -61,26 +61,26 @@ class PictureGridCollectionViewController: UICollectionViewController {
         collectionView?.backgroundView = backgroundView
 
     }
-    
+
     func setUpBlurEffect() {
-        
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView?.backgroundView?.insertSubview(blurEffectView, belowSubview: collectionView!)
     }
-    
+
     func setUpLayout() {
 
         // 設置 section 的間距 四個數值分別代表 上、左、下、右 的間距
         flowLayout.sectionInset = UIEdgeInsets(top: 25, left: 18, bottom: 5, right: 18)
 
         // 設置每個 cell 的尺寸
-        flowLayout.itemSize = CGSize(width: CGFloat(fullScreenSize.width)/2 - 36, height: CGFloat(fullScreenSize.width)/2 - 36)
+        flowLayout.itemSize = CGSize(width: CGFloat(fullScreenSize.width)/2 - 25, height: CGFloat(fullScreenSize.width)/2 - 25)
 
         // 設置每一行的間距
-        flowLayout.minimumLineSpacing = 20
+        flowLayout.minimumLineSpacing = 15
 
         // 設置 header 及 footer 的尺寸
         flowLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: CGFloat(fullScreenSize.height)/3)
@@ -130,7 +130,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
             header.headerView.backgroundColor = Colors.skyBlue
             header.headerView.image = #imageLiteral(resourceName: "notebook")
             header.headerView.contentMode = .scaleAspectFill
-            
+
             header.headerView.layer.shadowColor = UIColor.red.cgColor
             header.headerView.layer.shadowRadius = 10
             header.headerView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)

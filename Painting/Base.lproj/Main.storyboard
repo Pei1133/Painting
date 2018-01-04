@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pbG-Dz-Vsn" userLabel="paintingView">
-                                <rect key="frame" x="0.0" y="500" width="375" height="167"/>
+                                <rect key="frame" x="0.0" y="500.5" width="375" height="166.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="itC-YM-cwn" userLabel="selectedColorView">
                                         <rect key="frame" x="98" y="119" width="32" height="32"/>
@@ -70,9 +71,9 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="pbG-Dz-Vsn" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.25" id="AbG-J5-SOc"/>
                             <constraint firstItem="pbG-Dz-Vsn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Mmw-22-rNQ"/>
                             <constraint firstItem="pbG-Dz-Vsn" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="QAp-57-Wmj"/>
-                            <constraint firstItem="pbG-Dz-Vsn" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="500" id="RVw-0w-aWT"/>
                             <constraint firstItem="pbG-Dz-Vsn" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="bbO-ph-m1D"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

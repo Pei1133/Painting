@@ -56,6 +56,10 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
         view.layer.cornerRadius = 8.0
 
         view.backgroundColor = UIColor.white
+        
+        view.layer.borderWidth = 0.5
+        
+        view.layer.borderColor = UIColor.lightGray.cgColor
 
 //        view.layer.shadowColor = Colors.coolGray.cgColor
         view.layer.shadowColor = UIColor.red.cgColor
