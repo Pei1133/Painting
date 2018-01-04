@@ -182,6 +182,12 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradient.colors = [Colors.lightBlue.cgColor, Colors.skyBlue.cgColor]
         self.navigationController?.navigationBar.setBackgroundImage(layerTransImage(fromLayer: gradient), for: .default)
+        
+        // shadow
+        navigationController?.navigationBar.layer.shadowOpacity = 1
+        navigationController?.navigationBar.layer.shadowColor = UIColor(red: 53/255.0, green: 184/255.0, blue: 208/255.0, alpha: 0.85).cgColor
+        navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        navigationController?.navigationBar.layer.shadowRadius = 4
     }
 
     //讓layer轉型成UIImage

@@ -21,7 +21,7 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        self.backgroundColor = .lightGray
+//        self.backgroundColor = .lightGray
 
         setUpPictureImageView()
 

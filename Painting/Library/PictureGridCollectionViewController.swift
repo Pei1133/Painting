@@ -30,6 +30,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
         setUpCollectionView()
         setUpGradientColor()
         setUpNavigationBar()
+        setUpBlurEffect()
 
     }
 
@@ -52,7 +53,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
         let gradient = CAGradientLayer()
         gradient.frame = UIScreen.main.bounds
         gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
-        gradient.colors = [Colors.paleTurquoise.cgColor, Colors.skyBlue.cgColor]
+        gradient.colors = [Colors.paleTurquoise.cgColor, Colors.skyBlue.cgColor, Colors.lightGreen.cgColor, Colors.cream.cgColor, Colors.lightRed.cgColor]
 
         let backgroundView = UIView()
 //        backgroundView.frame = UIScreen.main.bounds
@@ -60,7 +61,16 @@ class PictureGridCollectionViewController: UICollectionViewController {
         collectionView?.backgroundView = backgroundView
 
     }
-
+    
+    func setUpBlurEffect() {
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView?.backgroundView?.insertSubview(blurEffectView, belowSubview: collectionView!)
+    }
+    
     func setUpLayout() {
 
         // 設置 section 的間距 四個數值分別代表 上、左、下、右 的間距
@@ -118,8 +128,13 @@ class PictureGridCollectionViewController: UICollectionViewController {
         case UICollectionElementKindSectionHeader:
 
             header.headerView.backgroundColor = Colors.skyBlue
-            header.headerView.image = #imageLiteral(resourceName: "cloud")
+            header.headerView.image = #imageLiteral(resourceName: "notebook")
             header.headerView.contentMode = .scaleAspectFill
+            
+            header.headerView.layer.shadowColor = UIColor.red.cgColor
+            header.headerView.layer.shadowRadius = 10
+            header.headerView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+            header.headerView.layer.shadowOpacity = 1
             return header
 
         default:
