@@ -167,7 +167,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @objc func goBack() {
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     func setUpScrollViewAndImageView() {
 
         // Set up ImageView

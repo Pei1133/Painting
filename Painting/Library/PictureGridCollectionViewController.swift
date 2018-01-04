@@ -37,6 +37,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
         setUpCollectionView()
         setUpGradientColor()
         setUpNavigationBar()
+//        setUpHeaderView()
 
     }
 
@@ -50,6 +51,12 @@ class PictureGridCollectionViewController: UICollectionViewController {
         let nib = UINib(nibName: "PictureGridCollectionViewCell", bundle: nil)
 
         self.collectionView?.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
+
+//        self.collectionView?.register(
+//            UICollectionReusableView.self,
+//            forSupplementaryViewOfKind:
+//            UICollectionElementKindSectionHeader,
+//            withReuseIdentifier: "Header")
 
     }
 
@@ -80,7 +87,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         // 設置 header 及 footer 的尺寸
         flowLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: 200)
-        flowLayout.footerReferenceSize = CGSize(width: fullScreenSize.width, height: 20)
+//        flowLayout.footerReferenceSize = CGSize(width: fullScreenSize.width, height: 20)
 
     }
 
@@ -112,6 +119,24 @@ class PictureGridCollectionViewController: UICollectionViewController {
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
 
+//    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//
+//        var reusableView = UICollectionReusableView()
+//        let label = UILabel(frame: CGRect(x: 0, y: 0,width: fullScreenSize.width, height: 40))
+//        label.textAlignment = .center
+//        label.text = "Header"
+//        label.textColor = UIColor.white
+//        reusableView.backgroundColor = UIColor.green
+//        reusableView.addSubview(label)
+//        return reusableView
+//    }
+
+    func setUpHeaderView() {
+
+        headerView.frame = CGRect(x: 0, y: 0, width: CGFloat(fullScreenSize.height)/3, height: CGFloat(fullScreenSize.height)/3)
+        headerView.backgroundColor = UIColor.blue
+    }
+
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -129,13 +154,13 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         let imageURL = imageURLs[indexPath.row]
 
-        if let sublayers = cell.pictureImageView.layer.sublayers {
-
-            for sublayer in sublayers {
-
-                sublayer.removeFromSuperlayer()
-            }
-        }
+//        if let sublayers = cell.pictureImageView.layer.sublayers {
+//
+//            for sublayer in sublayers {
+//
+//                sublayer.removeFromSuperlayer()
+//            }
+//        }
 
         let provider = PathProvider()
 
@@ -143,6 +168,14 @@ class PictureGridCollectionViewController: UICollectionViewController {
                 url: imageURL,
                 targetSize: cell.pictureImageView.bounds.size,
                 completionHandler: { (pathLayers: [CALayer]) -> Void in
+
+                    if let sublayers = cell.pictureImageView.layer.sublayers {
+
+                        for sublayer in sublayers {
+
+                            sublayer.removeFromSuperlayer()
+                        }
+                    }
 
                     for pathLayer in pathLayers {
 

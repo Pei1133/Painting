@@ -43,27 +43,29 @@ class PathProvider {
         let strokeWidth = CGFloat(0.6)
         let strokeColor = UIColor.darkGray.cgColor
 
-        let paths = SVGBezierPath.pathsFromSVG(at: url)
+        DispatchQueue.global().async {
 
-        var pathLayers = [CALayer]()
+            let paths = SVGBezierPath.pathsFromSVG(at: url)
 
-        for path in paths {
+            var pathLayers = [CALayer]()
 
-            let layer = CAShapeLayer()
+            for path in paths {
 
-            pictureSize = self.calculatePictureBounds(pictureSize: pictureSize, rect: path.cgPath.boundingBox)
-            let scaleFactor = self.calculateScaleFactor(pictureSize: pictureSize, targetSize: targetSize)
-            var affineTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
-            let transformedPath = (path.cgPath).copy(using: &affineTransform)
+                let layer = CAShapeLayer()
 
-            layer.path = transformedPath
-            layer.lineWidth = strokeWidth
-            layer.strokeColor = strokeColor
-            layer.fillColor = UIColor.white.cgColor
-            pathLayers.append(layer)
+                pictureSize = self.calculatePictureBounds(pictureSize: pictureSize, rect: path.cgPath.boundingBox)
+                let scaleFactor = self.calculateScaleFactor(pictureSize: pictureSize, targetSize: targetSize)
+                var affineTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+                let transformedPath = (path.cgPath).copy(using: &affineTransform)
+
+                layer.path = transformedPath
+                layer.lineWidth = strokeWidth
+                layer.strokeColor = strokeColor
+                layer.fillColor = UIColor.white.cgColor
+                pathLayers.append(layer)
+            }
             completionHandler(pathLayers)
         }
-
     }
 
     func calculatePictureBounds(pictureSize size: CGSize, rect: CGRect) -> CGSize {
