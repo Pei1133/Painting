@@ -49,22 +49,19 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
 
         let view = pictureView!
 
-        view.clipsToBounds = true
-
         view.contentMode = .center
 
         view.layer.cornerRadius = 8.0
 
         view.backgroundColor = UIColor.white
-        
+
         view.layer.borderWidth = 0.5
-        
+
         view.layer.borderColor = UIColor.lightGray.cgColor
 
-//        view.layer.shadowColor = Colors.coolGray.cgColor
-        view.layer.shadowColor = UIColor.red.cgColor
+        view.layer.shadowColor = Colors.coolGray.cgColor
 
-        view.layer.shadowRadius = 10
+        view.layer.shadowRadius = 5
 
         view.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
 

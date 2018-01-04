@@ -133,7 +133,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
             header.headerView.layer.shadowColor = UIColor.red.cgColor
             header.headerView.layer.shadowRadius = 10
-            header.headerView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+            header.headerView.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
             header.headerView.layer.shadowOpacity = 1
             return header
 
