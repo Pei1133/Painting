@@ -20,12 +20,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
     var flowLayout = UICollectionViewFlowLayout()
 
     var imageURLs: [URL] = []
-//    {
-//
-//        didSet {
-//            self.collectionView?.reloadData()
-//        }
-//    }
 
     override func viewDidLoad() {
 
@@ -51,12 +45,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
         self.collectionView?.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
 
         self.collectionView?.register(UINib(nibName: "HeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header")
-//        self.collectionView?.register(
-//            UICollectionReusableView.self,
-//            forSupplementaryViewOfKind:
-//            UICollectionElementKindSectionHeader,
-//            withReuseIdentifier: "Header")
-
     }
 
     func setUpGradientColor() {
@@ -91,54 +79,23 @@ class PictureGridCollectionViewController: UICollectionViewController {
     }
 
     func downloadLibraryPictures() {
-        
-//        Firebase.storage().reference().child("libraryPictures").observerSingleEvent(.ch) { snapshot, error in
-        
-//            let products = snapshot
-//
-//            self.products = products
-//
-//            self.collectionView?.reloadData()
-        
-      
-        Database.database().reference().child("libraryPictures").observeSingleEvent(of: .value, with: {(snapshot) in
-            
-            guard let value = snapshot.value as? NSDictionary,
-                let url = value["imageURL"] as? String
-            else { return }
-            let imageURL = URL(string: url)!
-            self.imageURLs.append(imageURL)
-        })
-        
-        self.collectionView?.reloadData()
-    }
 
-        
-        
-//        for i in 0...13 {
-//            let libraryRef = Storage.storage().reference().child("libraryPictures").child("\(i).svg")
-        
-//        for ref in Storage.storage().reference().child("libraryPictures") {
-//
-//            let url = libraryRef.downloadURL()
-//
-//            imageURLs.append(url)
-//
-//        }
-//
-//        collectionView?.reloadData()
-        
-//
-//                libraryRef.downloadURL { (url, err) in
-//                    if let error = err {
-//                        print(error)
-//                    } else {
-//                        guard let url = url else { return }
-//                        print("\(i) : \(url)")
-//                        self.imageURLs.append(url)
-//                    }
-//                }
-//        }
+        Database.database().reference().child("libraryPictures").observeSingleEvent(of: .value, with: {(snapshot) in
+
+            for child in snapshot.children {
+                guard let child = child as? DataSnapshot
+                    else { return }
+
+                guard let value = child.value as? [String: String],
+                    let url = value["imageURL"]
+                else { return }
+
+                let imageURL = URL(string: url)!
+                self.imageURLs.append(imageURL)
+                self.collectionView?.reloadData()
+            }
+        }, withCancel: nil)
+    }
 
     func setUpNavigationBar() {
 
@@ -190,30 +147,24 @@ class PictureGridCollectionViewController: UICollectionViewController {
             for sublayer in sublayers {
 
                 sublayer.removeFromSuperlayer()
-                
+
             }
         }
-        
-//        product.imageUrl.download { url, error in
-        
-            let provider = PathProvider()
-            
-            provider.renderCellPaths(
-                url: imageURL,
-                targetSize: cell.pictureImageView.bounds.size,
-                completionHandler: { (pathLayers: [CALayer]) -> Void in
-                    
-                    for pathLayer in pathLayers {
-                        
-                        cell.pictureImageView.layer.addSublayer(pathLayer)
-                        
-                    }
-                }
-            )
-            
-//        }
-        
 
+        let provider = PathProvider()
+
+        provider.renderCellPaths(
+            url: imageURL,
+            targetSize: cell.pictureImageView.bounds.size,
+            completionHandler: { (pathLayers: [CALayer]) -> Void in
+
+                for pathLayer in pathLayers {
+
+                    cell.pictureImageView.layer.addSublayer(pathLayer)
+
+                }
+            }
+        )
         return cell
     }
 
@@ -232,7 +183,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
 //        let url = picture.imageURL
 //        let paintingViewController = PaintingViewController(name: name, url: url)
 //        self.present(paintingViewController, animated: true, completion: nil)
-
     }
 
     override func didReceiveMemoryWarning() {
