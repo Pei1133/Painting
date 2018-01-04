@@ -56,13 +56,13 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
 
-    var pickedColor = Colors.littleRed {
+    var pickedColor = Colors.lightSkyBlue {
         didSet {
             setUpSliderView(pickedColor)
             self.selectColorView.backgroundColor = pickedColor
         }
     }
-    var adjustColor = Colors.littleRed {
+    var adjustColor = Colors.lightSkyBlue {
         didSet {
             colorSlider.thumbTintColor = adjustColor
 //            setUpSliderView(pickedColor)
@@ -138,9 +138,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
                     self.imageView.layer.addSublayer(layer)
 
                 } else {
-
                     print("no color!")
-
                 }
             }
         }
@@ -303,6 +301,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         colorSlider.maximumValue = 1.0
         colorSlider.value = 0.5
         colorSlider.isContinuous = true
+        colorSlider.thumbTintColor = adjustColor
 
         colorSlider.maximumTrackTintColor = UIColor.clear
         colorSlider.minimumTrackTintColor = UIColor.clear
