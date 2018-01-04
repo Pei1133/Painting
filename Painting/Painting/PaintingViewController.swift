@@ -15,17 +15,18 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         self.pickedColor = color
     }
 
-    @IBOutlet weak var fillColorButton: UIButton!
-    @IBOutlet weak var paintColorButton: UIButton!
-    @IBOutlet weak var eraserButton: UIButton!
+    @IBOutlet weak var color0: UIButton!
+    @IBOutlet weak var color1: UIButton!
+    @IBOutlet weak var color2: UIButton!
     @IBOutlet weak var selectColorView: UIView!
     @IBOutlet weak var colorSlider: ColorSlider!
     @IBOutlet weak var sliderView: UIView!
+
     @IBAction func tapColorSlider(_ sender: ColorSlider) {
 
         let percentage = CGFloat(colorSlider.value / colorSlider.maximumValue)
-        pickedColor = pickedColor.withAlphaComponent(percentage)
-//
+//        pickedColor = pickedColor.withAlphaComponent(percentage)
+
 //        var red: CGFloat = 0.0
 //        var green: CGFloat = 0.0
 //        var blue: CGFloat = 0.0
@@ -33,38 +34,47 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 //
 //        if pickedColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
 //
-//            self.pickedColor = UIColor(red: min(red + percentage, 1.0),
+//            if percentage>0.5{
+//                self.adjustColor = UIColor(red: red * percentage,
+//                                           green: green * percentage,
+//                                           blue: blue * percentage,
+//                                           alpha: alpha)
+//            }else{
+//                self.adjustColor = UIColor(red: red * -percentage,
+//                                           green: green * -percentage,
+//                                           blue: blue * -percentage,
+//                                           alpha: alpha)
+//            }
+//            self.adjustColor = UIColor(red: min(red + percentage, 1.0),
 //                                       green: min(green + percentage, 1.0),
 //                                       blue: min(blue + percentage, 1.0),
 //                                       alpha: alpha)
 //        }else{
-//            print("adjustedColor error")
+//            print("adjustColor error")
 //        }
 
-//        var saturation: CGFloat = 0.0
-//        var brightness: CGFloat = 0.0
-//        var hue: CGFloat = 0.0
-//        var alpha: CGFloat = 0.0
-//
-//        if self.pickedColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
-//            self.pickedColor = UIColor(hue: hue, saturation: saturation, brightness: percentage, alpha: alpha)
-//        }else {
-//            print("adjustedColor error")
-//        }
+        var saturation: CGFloat = 0.0
+        var brightness: CGFloat = 0.0
+        var hue: CGFloat = 0.0
+        var alpha: CGFloat = 0.0
+
+        if self.pickedColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
+
+            if percentage>0.5 {
+                self.adjustColor = UIColor(hue: hue, saturation: 1-percentage, brightness: percentage, alpha: alpha)
+            }else {
+                self.adjustColor = UIColor(hue: hue, saturation: saturation, brightness: percentage, alpha: alpha)
+            }
+        }else{
+            print("adjustedColor error")
+        }
     }
 
     var isFill: Bool = true
 
-    @IBAction func tapFillColor(_ sender: Any) {
-        isFill = true
-        fillColorButton.tintColor = Colors.littleBlue
-        paintColorButton.tintColor = Colors.skyBlue
-    }
+    @IBAction func tapColor0(_ sender: Any) {
 
-    @IBAction func tapPaintColor(_ sender: Any) {
-        isFill = false
-        fillColorButton.tintColor = Colors.skyBlue
-        paintColorButton.tintColor = Colors.littleBlue
+//        fillColorButton.tintColor = Colors.littleBlue
     }
 
 //    @IBAction func tapSave(_ sender: Any) {
@@ -74,10 +84,16 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
 
-    var pickedColor = Colors.littleRed {
+    var pickedColor = UIColor.blue {
         didSet {
             setUpSliderView(pickedColor)
             self.selectColorView.backgroundColor = pickedColor
+        }
+    }
+    var adjustColor = Colors.littleRed {
+        didSet {
+//            setUpSliderView(pickedColor)
+//            self.selectColorView.backgroundColor = pickedColor
         }
     }
 
@@ -145,7 +161,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
                     layer.path = path.cgPath
                     layer.lineWidth = strokeWidth
                     layer.strokeColor = strokeColor
-                    layer.fillColor = pickedColor.cgColor
+                    layer.fillColor = adjustColor.cgColor
                     self.imageView.layer.addSublayer(layer)
 
                 } else {
@@ -298,15 +314,16 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     }
 
     func setUpButton() {
-        fillColorButton.tintColor = Colors.littleBlue
-        paintColorButton.tintColor = Colors.skyBlue
-        eraserButton.tintColor = Colors.skyBlue
+        color0.backgroundColor = Colors.cream
+
+        color1.backgroundColor = Colors.lightSeeGreen
+        color2.backgroundColor = Colors.littleBlue
     }
 
     func setUpColorSlider() {
-        colorSlider.minimumValue = 0
-        colorSlider.maximumValue = 1
-        colorSlider.value = 0.85
+        colorSlider.minimumValue = 0.0
+        colorSlider.maximumValue = 1.0
+        colorSlider.value = 0.5
         colorSlider.isContinuous = false
 
         colorSlider.maximumTrackTintColor = UIColor.clear
@@ -348,7 +365,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     func drawLines(fromPoint: CGPoint, toPoint: CGPoint) {
 
-        if isFill == false {
+        if isFill == true {
             UIGraphicsBeginImageContext(self.pictureView.frame.size)
 
     //        let drawingLayer = CAShapeLayer()
@@ -363,7 +380,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             context?.setBlendMode(CGBlendMode.normal)
             context?.setLineCap(CGLineCap.round)
             context?.setLineWidth(5)
-            context?.setStrokeColor(pickedColor.cgColor)
+            context?.setStrokeColor(adjustColor.cgColor)
             context?.strokePath()
 
             imageView.image = UIGraphicsGetImageFromCurrentImageContext()

@@ -25,30 +25,24 @@
                                         <rect key="frame" x="98" y="112" width="32" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVk-ci-Kea" userLabel="fillColor">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVk-ci-Kea" userLabel="color0">
                                         <rect key="frame" x="153" y="112" width="32" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="fill">
+                                        <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <action selector="tapFillColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ejj-8c-OS8"/>
-                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r61-oU-mn1" userLabel="paintColor">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r61-oU-mn1" userLabel="color1">
                                         <rect key="frame" x="203" y="112" width="32" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="brush">
+                                        <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <action selector="tapPaintColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hGZ-8m-zJT"/>
-                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVU-Fk-zHv" userLabel="eraser">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVU-Fk-zHv" userLabel="color2">
                                         <rect key="frame" x="253" y="112" width="32" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="erase">
+                                        <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
@@ -82,11 +76,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="color0" destination="kVk-ci-Kea" id="mEu-Gq-ojp"/>
+                        <outlet property="color1" destination="r61-oU-mn1" id="48W-M1-SIe"/>
+                        <outlet property="color2" destination="EVU-Fk-zHv" id="YeU-fp-6Vv"/>
                         <outlet property="colorPicker" destination="JbJ-D3-8sX" id="23L-T0-FWG"/>
                         <outlet property="colorSlider" destination="Zlw-5u-cO7" id="2hD-WJ-uaV"/>
-                        <outlet property="eraserButton" destination="EVU-Fk-zHv" id="ZsD-rf-txn"/>
-                        <outlet property="fillColorButton" destination="kVk-ci-Kea" id="Gb5-8m-Tdl"/>
-                        <outlet property="paintColorButton" destination="r61-oU-mn1" id="4po-Bm-WBM"/>
                         <outlet property="selectColorView" destination="itC-YM-cwn" id="Evp-P5-aT2"/>
                         <outlet property="sliderView" destination="alK-cu-tou" id="gcx-L5-mRh"/>
                     </connections>
@@ -96,9 +90,4 @@
             <point key="canvasLocation" x="437.60000000000002" y="42.728635682158924"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="brush" width="32" height="32"/>
-        <image name="erase" width="32" height="32"/>
-        <image name="fill" width="32" height="32"/>
-    </resources>
 </document>
