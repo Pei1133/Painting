@@ -24,14 +24,12 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     var isFill: Bool = true
 
     @IBAction func tapFillColor(_ sender: Any) {
-
         isFill = true
         fillColorButton.tintColor = Colors.littleBlue
         paintColorButton.tintColor = Colors.skyBlue
     }
 
     @IBAction func tapPaintColor(_ sender: Any) {
-
         isFill = false
         fillColorButton.tintColor = Colors.skyBlue
         paintColorButton.tintColor = Colors.littleBlue
@@ -43,33 +41,14 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 //    }
 
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
-//    var brightnessColors = [UIColor.white.cgColor, Colors.littleRed.cgColor]
-//    var darknessColors = [Colors.littleRed.cgColor, UIColor.black.cgColor]
-//    var adjustColor = Colors.blue {
-//        didSet {
-//            colorSlider.thumbTintColor = adjustColor
-//            brightnessColors = [UIColor.white.cgColor, adjustColor.cgColor]
-//            darknessColors = [adjustColor.cgColor, UIColor.black.cgColor]
-//            onSliderChange(sender: colorSlider)
-//        }
-//    }
 
     var pickedColor = Colors.littleRed {
         didSet {
-//            adjustColor = self.adjustColor(pickedColor, sliderRatio)
-//            colorSlider.thumbTintColor = pickedColor
-//            brightnessColors = [UIColor.white.cgColor, pickedColor.cgColor]
-//            darknessColors = [pickedColor.cgColor, UIColor.black.cgColor]
             setUpSliderView(pickedColor)
             self.selectColorView.backgroundColor = pickedColor
         }
     }
 
-//    var sliderRatio: CGFloat = 0.5 {
-//        didSet {
-//            adjustColor = self.adjustColor(pickedColor, sliderRatio)
-//        }
-//    }
     let provider = PathProvider()
     var paths = [SVGBezierPath]()
     var scrollView = UIScrollView()
@@ -100,7 +79,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         setUpColorPickerAndView()
         setUpButton()
         setUpColorSlider()
-        onSliderChange(sender: colorSlider)
+        onSliderChange(sender: colorSlider, pickedColor)
         colorSlider.addTarget(
                     self,
                     action:
@@ -293,31 +272,19 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     }
 
     func setUpButton() {
-
         fillColorButton.tintColor = Colors.littleBlue
-//        fillColorButton.layer.borderColor = skyBlueColor.cgColor
-//        fillColorButton.layer.borderWidth = 1.0
-//        fillColorButton.layer.cornerRadius = fillColorButton.frame.height * 0.5
-//        fillColorButton.clipsToBounds = true
-
         paintColorButton.tintColor = Colors.skyBlue
-//        paintColorButton.layer.cornerRadius = paintColorButton.frame.height * 0.5
-//        paintColorButton.clipsToBounds = true
-
         eraserButton.tintColor = Colors.skyBlue
-//        eraserButton.layer.cornerRadius = eraserButton.frame.height * 0.5
-//        eraserButton.clipsToBounds = true
     }
 
     func setUpColorSlider() {
         colorSlider.minimumValue = 0
         colorSlider.maximumValue = 1
         colorSlider.value = 0.85
-        colorSlider.isContinuous = false
+        colorSlider.isContinuous = true
 
         colorSlider.maximumTrackTintColor = UIColor.clear
         colorSlider.minimumTrackTintColor = UIColor.clear
-//        sliderRatio = CGFloat(colorSlider.value / colorSlider.maximumValue)
     }
 
     func setUpSliderView(_ pickedColor: UIColor) {
@@ -332,36 +299,19 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         sliderView.clipsToBounds = true
     }
 
-    @objc func onSliderChange(sender: UISlider) {
-//        let value = CGFloat(sender.value)
-//        adjustColor = self.adjustColor(pickedColor, value)
-        let alpha = CGFloat(colorSlider.value / colorSlider.maximumValue)
-        pickedColor = pickedColor.withAlphaComponent(alpha)
+    @objc func onSliderChange(sender: UISlider, _ color: UIColor) {
 
-//        let tgl = CAGradientLayer()
-//        let frame = CGRect(x: 0, y: 0, width: colorSlider.frame.size.width, height: 15)
-//        tgl.frame = frame
-//        tgl.startPoint = CGPoint(x: 0.0, y: 0.5)
-//        tgl.endPoint = CGPoint(x: 1.0, y: 0.5)
-//
-////        tgl.colors = brightnessColors
-//        tgl.colors = [UIColor.white.cgColor, pickedColor.cgColor]
-//        UIGraphicsBeginImageContextWithOptions(tgl.frame.size, tgl.isOpaque, 0.0)
-//        tgl.render(in: UIGraphicsGetCurrentContext()!)
-//        let brightnessImage = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//        brightnessImage?.resizableImage(withCapInsets: UIEdgeInsets.zero)
-//        colorSlider.setMinimumTrackImage(brightnessImage, for: [])
-//
-////        tgl.colors = darknessColors
-//        tgl.colors = [pickedColor.cgColor, UIColor.black.cgColor]
-//        UIGraphicsBeginImageContextWithOptions(tgl.frame.size, tgl.isOpaque, 0.0)
-//        tgl.render(in: UIGraphicsGetCurrentContext()!)
-//        let darknessImage = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//        darknessImage?.resizableImage(withCapInsets: UIEdgeInsets.zero)
-//        colorSlider.setMaximumTrackImage(darknessImage, for: [])
+        let ratio = CGFloat(colorSlider.value / colorSlider.maximumValue)
+//        pickedColor = pickedColor.withAlphaComponent(ratio)
 
+        var saturation: CGFloat = 0.0
+        var brightness: CGFloat = 0.0
+        var hue: CGFloat = 0.0
+        var alpha: CGFloat = 0.0
+
+        color.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+
+        pickedColor = UIColor(hue: hue, saturation: saturation, brightness: ratio, alpha: alpha)
     }
 
 //    func adjustColor(_ color: UIColor, _ ratio: CGFloat) -> UIColor {
