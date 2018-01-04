@@ -19,12 +19,13 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
     var flowLayout = UICollectionViewFlowLayout()
 
-    var imageURLs: [URL] = [] {
-
-        didSet {
-            self.collectionView?.reloadData()
-        }
-    }
+    var imageURLs: [URL] = []
+//    {
+//
+//        didSet {
+//            self.collectionView?.reloadData()
+//        }
+//    }
 
     override func viewDidLoad() {
 
@@ -91,15 +92,26 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
     func downloadLibraryPictures() {
         
-        Firebase.storage().reference().child("libraryPictures").observerSingleEvent(.ch) { snapshot, error in
+//        Firebase.storage().reference().child("libraryPictures").observerSingleEvent(.ch) { snapshot, error in
+        
+//            let products = snapshot
+//
+//            self.products = products
+//
+//            self.collectionView?.reloadData()
+        
+      
+        Database.database().reference().child("libraryPictures").observeSingleEvent(of: .value, with: {(snapshot) in
             
-            let products = snapshot
-            
-            self.products = products
-            
-            self.collectionView?.reloadData()
-            
-        }
+            guard let value = snapshot.value as? NSDictionary,
+                let url = value["imageURL"] as? String
+            else { return }
+            let imageURL = URL(string: url)!
+            self.imageURLs.append(imageURL)
+        })
+        
+        self.collectionView?.reloadData()
+    }
 
         
         
@@ -127,7 +139,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
 //                    }
 //                }
 //        }
-    }
 
     func setUpNavigationBar() {
 
@@ -164,7 +175,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return products.count
+        return imageURLs.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -172,9 +183,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PictureGridCollectionViewCell else {
             fatalError() }
 
-//        let imageURL = imageURLs[indexPath.row]
-        
-        let product = products[indexPath.row]
+        let imageURL = imageURLs[indexPath.row]
 
         if let sublayers = cell.pictureImageView.layer.sublayers {
 
@@ -185,8 +194,8 @@ class PictureGridCollectionViewController: UICollectionViewController {
             }
         }
         
-        product.imageUrl.download { url, error in
-            
+//        product.imageUrl.download { url, error in
+        
             let provider = PathProvider()
             
             provider.renderCellPaths(
@@ -196,16 +205,13 @@ class PictureGridCollectionViewController: UICollectionViewController {
                     
                     for pathLayer in pathLayers {
                         
-                        //                    DispatchQueue.main.async {
-                        
                         cell.pictureImageView.layer.addSublayer(pathLayer)
                         
-                        //                    }
                     }
                 }
             )
             
-        }
+//        }
         
 
         return cell
