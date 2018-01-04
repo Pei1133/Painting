@@ -159,9 +159,39 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     }
 
     func setUpNavigationBar() {
-        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "left-arrow"), style: .plain, target: self, action: #selector(goBack))
+        // title
+        self.navigationItem.title = "Color Your Own"
+        let font = UIFont(name: "BradleyHandITCTT-Bold", size: 24)
+        let textAttributes = [
+            NSAttributedStringKey.font: font ?? UIFont.systemFont(ofSize: 24),
+            NSAttributedStringKey.foregroundColor: Colors.deepCyanBlue
+        ]
+        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+        
+        // left button
+        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-chervon"), style: .plain, target: self, action: #selector(goBack))
         button.tintColor = Colors.deepCyanBlue
         self.navigationItem.leftBarButtonItem = button
+
+        // gradient
+        let gradient = CAGradientLayer()
+        var frameAndStatusBar = self.navigationController?.navigationBar.bounds
+        frameAndStatusBar?.size.height += 20
+        gradient.frame = frameAndStatusBar!
+        gradient.frame = CGRect(x: 0.0, y: 0.0, width: (frameAndStatusBar?.size.width)!, height: (frameAndStatusBar?.size.height)!)
+        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradient.colors = [Colors.lightBlue.cgColor, Colors.skyBlue.cgColor]
+        self.navigationController?.navigationBar.setBackgroundImage(layerTransImage(fromLayer: gradient), for: .default)
+    }
+
+    //讓layer轉型成UIImage
+    func layerTransImage(fromLayer layer: CALayer) -> UIImage {
+        UIGraphicsBeginImageContext(layer.frame.size)
+
+        layer.render(in: UIGraphicsGetCurrentContext()!)
+        let outputImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return outputImage!
     }
 
     @objc func goBack() {

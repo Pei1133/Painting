@@ -99,9 +99,9 @@ class PictureGridCollectionViewController: UICollectionViewController {
     func setUpNavigationBar() {
 
         self.navigationItem.title = "Library"
-        let font = UIFont(name: "BradleyHandITCTT-Bold", size: 22)
+        let font = UIFont(name: "BradleyHandITCTT-Bold", size: 24)
         let textAttributes = [
-            NSAttributedStringKey.font: font ?? UIFont.systemFont(ofSize: 20),
+            NSAttributedStringKey.font: font ?? UIFont.systemFont(ofSize: 24),
             NSAttributedStringKey.foregroundColor: Colors.deepCyanBlue
         ]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
