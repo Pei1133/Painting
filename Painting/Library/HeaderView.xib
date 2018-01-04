@@ -16,13 +16,13 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="smd-n8-1gV">
-                    <rect key="frame" x="0.0" y="0.0" width="508" height="308"/>
+                    <rect key="frame" x="0.0" y="0.0" width="508" height="238"/>
                     <color key="backgroundColor" red="0.99999600649999998" green="1" blue="0.5236816406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </imageView>
             </subviews>
             <constraints>
                 <constraint firstItem="smd-n8-1gV" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="K5m-fL-FGZ"/>
-                <constraint firstItem="smd-n8-1gV" firstAttribute="bottom" secondItem="VXr-Tz-HHm" secondAttribute="bottom" constant="50" id="gyi-9d-DEd"/>
+                <constraint firstItem="smd-n8-1gV" firstAttribute="bottom" secondItem="VXr-Tz-HHm" secondAttribute="bottom" constant="-20" id="gyi-9d-DEd"/>
                 <constraint firstItem="smd-n8-1gV" firstAttribute="top" secondItem="VXr-Tz-HHm" secondAttribute="top" id="kLd-18-P1B"/>
                 <constraint firstItem="smd-n8-1gV" firstAttribute="trailing" secondItem="VXr-Tz-HHm" secondAttribute="trailing" id="tY7-ea-3Pp"/>
             </constraints>
