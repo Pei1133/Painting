@@ -60,6 +60,9 @@
                                     <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Zlw-5u-cO7" customClass="ColorSlider" customModule="Painting" customModuleProvider="target">
                                         <rect key="frame" x="87" y="45" width="200" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="tapColorSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="nNL-hz-maO"/>
+                                        </connections>
                                     </slider>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JbJ-D3-8sX" userLabel="colorPicker View" customClass="ColorPicker" customModule="Painting" customModuleProvider="target">
                                         <rect key="frame" x="10" y="76" width="355" height="25"/>

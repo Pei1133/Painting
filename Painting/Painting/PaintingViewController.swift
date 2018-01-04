@@ -21,6 +21,38 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @IBOutlet weak var selectColorView: UIView!
     @IBOutlet weak var colorSlider: ColorSlider!
     @IBOutlet weak var sliderView: UIView!
+    @IBAction func tapColorSlider(_ sender: ColorSlider) {
+
+        let percentage = CGFloat(colorSlider.value / colorSlider.maximumValue)
+        pickedColor = pickedColor.withAlphaComponent(percentage)
+//
+//        var red: CGFloat = 0.0
+//        var green: CGFloat = 0.0
+//        var blue: CGFloat = 0.0
+//        var alpha: CGFloat = 0.0
+//
+//        if pickedColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
+//
+//            self.pickedColor = UIColor(red: min(red + percentage, 1.0),
+//                                       green: min(green + percentage, 1.0),
+//                                       blue: min(blue + percentage, 1.0),
+//                                       alpha: alpha)
+//        }else{
+//            print("adjustedColor error")
+//        }
+
+//        var saturation: CGFloat = 0.0
+//        var brightness: CGFloat = 0.0
+//        var hue: CGFloat = 0.0
+//        var alpha: CGFloat = 0.0
+//
+//        if self.pickedColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
+//            self.pickedColor = UIColor(hue: hue, saturation: saturation, brightness: percentage, alpha: alpha)
+//        }else {
+//            print("adjustedColor error")
+//        }
+    }
+
     var isFill: Bool = true
 
     @IBAction func tapFillColor(_ sender: Any) {
@@ -79,12 +111,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         setUpColorPickerAndView()
         setUpButton()
         setUpColorSlider()
-        onSliderChange(sender: colorSlider, pickedColor)
-        colorSlider.addTarget(
-                    self,
-                    action:
-                    #selector(self.onSliderChange),
-                    for: UIControlEvents.valueChanged)
         setUpSliderView(pickedColor)
 //        showSVG()
 
@@ -281,7 +307,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         colorSlider.minimumValue = 0
         colorSlider.maximumValue = 1
         colorSlider.value = 0.85
-        colorSlider.isContinuous = true
+        colorSlider.isContinuous = false
 
         colorSlider.maximumTrackTintColor = UIColor.clear
         colorSlider.minimumTrackTintColor = UIColor.clear
@@ -298,35 +324,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         sliderView.layer.cornerRadius = 5.0
         sliderView.clipsToBounds = true
     }
-
-    @objc func onSliderChange(sender: UISlider, _ color: UIColor) {
-
-        let ratio = CGFloat(colorSlider.value / colorSlider.maximumValue)
-//        pickedColor = pickedColor.withAlphaComponent(ratio)
-
-        var saturation: CGFloat = 0.0
-        var brightness: CGFloat = 0.0
-        var hue: CGFloat = 0.0
-        var alpha: CGFloat = 0.0
-
-        color.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
-
-        pickedColor = UIColor(hue: hue, saturation: saturation, brightness: ratio, alpha: alpha)
-    }
-
-//    func adjustColor(_ color: UIColor, _ ratio: CGFloat) -> UIColor {
-//
-//        var saturation: CGFloat = 0.0
-//        var brightness: CGFloat = 0.0
-//        var hue: CGFloat = 0.0
-//        var alpha: CGFloat = 0.0
-//
-//        color.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
-//
-//        let adjustColor = UIColor(hue: hue, saturation: saturation, brightness: ratio, alpha: alpha)
-//
-//        return adjustColor
-//    }
 
 //    override func viewWillLayoutSubviews() {
 //        super.viewDidLayoutSubviews()
