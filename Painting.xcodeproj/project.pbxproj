@@ -20,6 +20,8 @@
 		AB9FA5981FE2A99300055C50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9FA5961FE2A99300055C50 /* LaunchScreen.storyboard */; };
 		ABBAF1C91FE90F7200676426 /* PictureGridCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABBAF1C81FE90F7200676426 /* PictureGridCollectionViewCell.xib */; };
 		ABBAF1CB1FE9186800676426 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBAF1CA1FE9186800676426 /* Picture.swift */; };
+		ABDE77161FFDCB1100BF95A6 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDE77141FFDCB1100BF95A6 /* HeaderView.swift */; };
+		ABDE77171FFDCB1100BF95A6 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABDE77151FFDCB1100BF95A6 /* HeaderView.xib */; };
 		ABE5AED41FF918CA007A96A4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5AED31FF918CA007A96A4 /* Colors.swift */; };
 		ABE5AED61FF927DE007A96A4 /* ColorSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5AED51FF927DE007A96A4 /* ColorSlider.swift */; };
 		ABE5AED81FF96577007A96A4 /* UIColor+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5AED71FF96577007A96A4 /* UIColor+Utilities.swift */; };
@@ -47,6 +49,8 @@
 		AB9FA5991FE2A99300055C50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABBAF1C81FE90F7200676426 /* PictureGridCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PictureGridCollectionViewCell.xib; sourceTree = "<group>"; };
 		ABBAF1CA1FE9186800676426 /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
+		ABDE77141FFDCB1100BF95A6 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		ABDE77151FFDCB1100BF95A6 /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		ABE5AED31FF918CA007A96A4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		ABE5AED51FF927DE007A96A4 /* ColorSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSlider.swift; sourceTree = "<group>"; };
 		ABE5AED71FF96577007A96A4 /* UIColor+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utilities.swift"; sourceTree = "<group>"; };
@@ -91,6 +95,8 @@
 				AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */,
 				AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */,
 				ABBAF1C81FE90F7200676426 /* PictureGridCollectionViewCell.xib */,
+				ABDE77141FFDCB1100BF95A6 /* HeaderView.swift */,
+				ABDE77151FFDCB1100BF95A6 /* HeaderView.xib */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -247,6 +253,7 @@
 				ABF8F5A71FE2AF4D00117AB8 /* chicken.svg in Resources */,
 				AB9A80A71FECF5D1000434E7 /* cabin.svg in Resources */,
 				AB9FA5931FE2A99300055C50 /* Main.storyboard in Resources */,
+				ABDE77171FFDCB1100BF95A6 /* HeaderView.xib in Resources */,
 				ABBAF1C91FE90F7200676426 /* PictureGridCollectionViewCell.xib in Resources */,
 				ABF8F5A91FE2AF5C00117AB8 /* cloud.svg in Resources */,
 			);
@@ -343,6 +350,7 @@
 				AB8EC82F1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift in Sources */,
 				ABE5AED81FF96577007A96A4 /* UIColor+Utilities.swift in Sources */,
 				AB9FA5901FE2A99300055C50 /* PaintingViewController.swift in Sources */,
+				ABDE77161FFDCB1100BF95A6 /* HeaderView.swift in Sources */,
 				ABE5AED61FF927DE007A96A4 /* ColorSlider.swift in Sources */,
 				AB8EC8321FE90D9B00C19F60 /* PictureGridCollectionViewController.swift in Sources */,
 				AB9FA58E1FE2A99300055C50 /* AppDelegate.swift in Sources */,

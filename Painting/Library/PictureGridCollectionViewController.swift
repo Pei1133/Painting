@@ -19,8 +19,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
     var flowLayout = UICollectionViewFlowLayout()
 
-    let headerView = UIView()
-
     var imageURLs: [URL] = [] {
 
         didSet {
@@ -37,7 +35,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
         setUpCollectionView()
         setUpGradientColor()
         setUpNavigationBar()
-//        setUpHeaderView()
 
     }
 
@@ -52,6 +49,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         self.collectionView?.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
 
+        self.collectionView?.register(UINib(nibName: "HeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header")
 //        self.collectionView?.register(
 //            UICollectionReusableView.self,
 //            forSupplementaryViewOfKind:
@@ -92,20 +90,43 @@ class PictureGridCollectionViewController: UICollectionViewController {
     }
 
     func downloadLibraryPictures() {
-
-        for i in 0...13 {
-            let libraryRef = Storage.storage().reference().child("libraryPictures").child("\(i).svg")
-
-                libraryRef.downloadURL { (url, err) in
-                    if let error = err {
-                        print(error)
-                    } else {
-                        guard let url = url else { return }
-                        print("\(i) : \(url)")
-                        self.imageURLs.append(url)
-                    }
-                }
+        
+        Firebase.storage().reference().child("libraryPictures").observerSingleEvent(.ch) { snapshot, error in
+            
+            let products = snapshot
+            
+            self.products = products
+            
+            self.collectionView?.reloadData()
+            
         }
+
+        
+        
+//        for i in 0...13 {
+//            let libraryRef = Storage.storage().reference().child("libraryPictures").child("\(i).svg")
+        
+//        for ref in Storage.storage().reference().child("libraryPictures") {
+//
+//            let url = libraryRef.downloadURL()
+//
+//            imageURLs.append(url)
+//
+//        }
+//
+//        collectionView?.reloadData()
+        
+//
+//                libraryRef.downloadURL { (url, err) in
+//                    if let error = err {
+//                        print(error)
+//                    } else {
+//                        guard let url = url else { return }
+//                        print("\(i) : \(url)")
+//                        self.imageURLs.append(url)
+//                    }
+//                }
+//        }
     }
 
     func setUpNavigationBar() {
@@ -113,28 +134,27 @@ class PictureGridCollectionViewController: UICollectionViewController {
         self.navigationItem.title = "Library"
         let font = UIFont(name: "BradleyHandITCTT-Bold", size: 22)
         let textAttributes = [
-            NSAttributedStringKey.font: font,
+            NSAttributedStringKey.font: font ?? UIFont.systemFont(ofSize: 20),
             NSAttributedStringKey.foregroundColor: Colors.deepCyanBlue
         ]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
 
-//    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//
-//        var reusableView = UICollectionReusableView()
-//        let label = UILabel(frame: CGRect(x: 0, y: 0,width: fullScreenSize.width, height: 40))
-//        label.textAlignment = .center
-//        label.text = "Header"
-//        label.textColor = UIColor.white
-//        reusableView.backgroundColor = UIColor.green
-//        reusableView.addSubview(label)
-//        return reusableView
-//    }
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
-    func setUpHeaderView() {
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as? HeaderView else {
+            print("Header is wrong!")
+            fatalError()
+        }
 
-        headerView.frame = CGRect(x: 0, y: 0, width: CGFloat(fullScreenSize.height)/3, height: CGFloat(fullScreenSize.height)/3)
-        headerView.backgroundColor = UIColor.blue
+        switch kind {
+        case UICollectionElementKindSectionHeader:
+            header.headerView.backgroundColor = UIColor.blue
+            return header
+        default:
+            assert(false, "Unexpexted element kind!")
+        }
+
     }
 
     // MARK: UICollectionViewDataSource
@@ -144,7 +164,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageURLs.count
+        return products.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -152,41 +172,41 @@ class PictureGridCollectionViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PictureGridCollectionViewCell else {
             fatalError() }
 
-        let imageURL = imageURLs[indexPath.row]
+//        let imageURL = imageURLs[indexPath.row]
+        
+        let product = products[indexPath.row]
 
-//        if let sublayers = cell.pictureImageView.layer.sublayers {
-//
-//            for sublayer in sublayers {
-//
-//                sublayer.removeFromSuperlayer()
-//            }
-//        }
+        if let sublayers = cell.pictureImageView.layer.sublayers {
 
-        let provider = PathProvider()
+            for sublayer in sublayers {
 
+                sublayer.removeFromSuperlayer()
+                
+            }
+        }
+        
+        product.imageUrl.download { url, error in
+            
+            let provider = PathProvider()
+            
             provider.renderCellPaths(
                 url: imageURL,
                 targetSize: cell.pictureImageView.bounds.size,
                 completionHandler: { (pathLayers: [CALayer]) -> Void in
-
-                    if let sublayers = cell.pictureImageView.layer.sublayers {
-
-                        for sublayer in sublayers {
-
-                            sublayer.removeFromSuperlayer()
-                        }
-                    }
-
+                    
                     for pathLayer in pathLayers {
-
-                        DispatchQueue.main.async {
-
-                            cell.pictureImageView.layer.addSublayer(pathLayer)
-
-                        }
+                        
+                        //                    DispatchQueue.main.async {
+                        
+                        cell.pictureImageView.layer.addSublayer(pathLayer)
+                        
+                        //                    }
                     }
                 }
             )
+            
+        }
+        
 
         return cell
     }

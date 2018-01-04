@@ -64,7 +64,12 @@ class PathProvider {
                 layer.fillColor = UIColor.white.cgColor
                 pathLayers.append(layer)
             }
-            completionHandler(pathLayers)
+            
+            DispatchQueue.main.async {
+            
+                completionHandler(pathLayers)
+                
+            }
         }
     }
 
