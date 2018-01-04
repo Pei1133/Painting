@@ -73,8 +73,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
         flowLayout.minimumLineSpacing = 20
 
         // 設置 header 及 footer 的尺寸
-        flowLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: 200)
-//        flowLayout.footerReferenceSize = CGSize(width: fullScreenSize.width, height: 20)
+        flowLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: CGFloat(fullScreenSize.height)/3)
 
     }
 
@@ -117,8 +116,12 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         switch kind {
         case UICollectionElementKindSectionHeader:
-            header.headerView.backgroundColor = UIColor.blue
+
+            header.headerView.backgroundColor = Colors.skyBlue
+            header.headerView.image = #imageLiteral(resourceName: "cloud")
+            header.headerView.contentMode = .scaleAspectFill
             return header
+
         default:
             assert(false, "Unexpexted element kind!")
         }
