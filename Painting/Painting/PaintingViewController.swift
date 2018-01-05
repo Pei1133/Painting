@@ -32,7 +32,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         if self.pickedColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
 
-            if percentage > 0.5 {
+            if percentage >= 0.5 {
 
                 self.sliderColor = UIColor(hue: hue, saturation: 1-percentage, brightness: percentage, alpha: alpha)
             }else {
@@ -89,7 +89,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     }
     var sliderColor = Colors.lightSkyBlue {
         didSet {
-    
+//            colorSlider.thumbTintColor = sliderColor
         }
     }
     var adjustColor = Colors.lightSkyBlue
