@@ -114,13 +114,20 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         colorPicker.delegate = self
 
-        let paths = SVGBezierPath.pathsFromSVG(at: url!)
-        self.paths = paths
+        if let url = url {
+            let paths = SVGBezierPath.pathsFromSVG(at: url)
+            self.paths = paths
 
-        let renderParameter = provider.renderPaths(url: url!, imageView: imageView)
-        self.imageView = renderParameter.imageView
-        self.pictureSize = renderParameter.pictureSize
+            let renderParameter = provider.renderPaths(url: url, imageView: imageView)
+            self.imageView = renderParameter.imageView
+            self.pictureSize = renderParameter.pictureSize
 
+        }else {
+            print("no URL")
+            isFill = false
+            self.pictureSize = CGSize(width: view.bounds.width, height: view.bounds.height - 200)
+        }
+        
         setUpNavigationBar()
         setUpScrollViewAndImageView()
         setUpColorPickerAndView()
@@ -222,7 +229,16 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @objc func goBack() {
         self.navigationController?.popViewController(animated: true)
     }
-
+    
+//    func setUpNewImageView(){
+//        imageView.contentMode = .center
+//        imageView.backgroundColor = .clear
+//        imageView.isUserInteractionEnabled = true
+//        imageView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
+//        imageView.delegate = self
+//        view.addSubview(imageView)
+//    }
+    
     func setUpScrollViewAndImageView() {
 
         // Set up ImageView
@@ -373,7 +389,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     func drawLines(fromPoint: CGPoint, toPoint: CGPoint) {
 
-        if isFill == true {
+        if isFill == false {
             UIGraphicsBeginImageContext(self.pictureView.frame.size)
 
     //        let drawingLayer = CAShapeLayer()

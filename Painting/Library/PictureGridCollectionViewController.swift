@@ -107,7 +107,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
     }
 
     func setUpNavigationBar() {
-
+        // title
         self.navigationItem.title = "Library"
         let font = UIFont(name: "BradleyHandITCTT-Bold", size: 24)
         let textAttributes = [
@@ -115,6 +115,20 @@ class PictureGridCollectionViewController: UICollectionViewController {
             NSAttributedStringKey.foregroundColor: Colors.deepCyanBlue
         ]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+
+        // right button
+        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "add"), style: .plain, target: self, action: #selector(addNew))
+        button.tintColor = Colors.deepCyanBlue
+        self.navigationItem.rightBarButtonItem = button
+    }
+
+    @objc func addNew() {
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let paintingViewController = storyboard.instantiateViewController(withIdentifier: "Painting") as? PaintingViewController else { return }
+
+        paintingViewController.url = URL(string: "")
+        self.navigationController?.pushViewController(paintingViewController, animated: true)
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
