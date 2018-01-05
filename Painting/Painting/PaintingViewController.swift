@@ -32,15 +32,41 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         if self.pickedColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
 
-            if percentage>0.5 {
-                self.adjustColor = UIColor(hue: hue, saturation: 1-percentage, brightness: percentage, alpha: alpha)
+            if percentage > 0.5 {
+
+                self.sliderColor = UIColor(hue: hue, saturation: 1-percentage, brightness: percentage, alpha: alpha)
             }else {
-                self.adjustColor = UIColor(hue: hue, saturation: 1-percentage, brightness: percentage, alpha: alpha)
+
+                self.sliderColor = UIColor(hue: hue, saturation: saturation, brightness: percentage, alpha: alpha)
+                print("pickedColor:\(pickedColor)", "sliderColor:\(sliderColor)")
             }
-        }else{
-            print("adjustedColor error")
+        }else {
+            print("sliderColor error")
         }
+
     }
+
+//        var r: CGFloat=0, g: CGFloat=0, b: CGFloat=0, a: CGFloat=0
+//
+//if(self.pickedColor.getRed(&r, green: &g, blue: &b, alpha: &a)) {
+//            let minV: CGFloat = CGFloat(min(r, g, b))
+//            let maxV: CGFloat = CGFloat(max(r, g, b))
+//            let saturation: CGFloat = 1-(minV/maxV)
+//
+//            if maxV == 0 {
+//
+//                self.sliderColor = UIColor(hue: hue, saturation: 0, brightness: percentage, alpha: alpha)
+//            }else {
+//                self.sliderColor = UIColor(red: min(r - percentage, 1.0),
+//                                           green: min(g - percentage, 1.0),
+//                                           blue: min(b - percentage, 1.0),
+//                                           alpha: a)
+//                print("pickedColor:\(pickedColor)","sliderColor:\(sliderColor)")
+//            }
+//        }else {
+//            print("sliderColor error")
+//        }
+//    }
 
     var isFill: Bool = true
 
@@ -59,16 +85,14 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     var pickedColor = Colors.lightSkyBlue {
         didSet {
             setUpSliderView(pickedColor)
-            self.selectColorView.backgroundColor = pickedColor
         }
     }
-    var adjustColor = Colors.lightSkyBlue {
+    var sliderColor = Colors.lightSkyBlue {
         didSet {
-            colorSlider.thumbTintColor = adjustColor
-//            setUpSliderView(pickedColor)
-//            self.selectColorView.backgroundColor = pickedColor
+    
         }
     }
+    var adjustColor = Colors.lightSkyBlue
 
     let provider = PathProvider()
     var paths = [SVGBezierPath]()
@@ -134,7 +158,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
                     layer.path = path.cgPath
                     layer.lineWidth = strokeWidth
                     layer.strokeColor = strokeColor
-                    layer.fillColor = adjustColor.cgColor
+                    layer.fillColor = sliderColor.cgColor
                     self.imageView.layer.addSublayer(layer)
 
                 } else {
@@ -301,7 +325,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         colorSlider.maximumValue = 1.0
         colorSlider.value = 0.5
         colorSlider.isContinuous = true
-        colorSlider.thumbTintColor = adjustColor
 
         colorSlider.maximumTrackTintColor = UIColor.clear
         colorSlider.minimumTrackTintColor = UIColor.clear
@@ -357,7 +380,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             context?.setBlendMode(CGBlendMode.normal)
             context?.setLineCap(CGLineCap.round)
             context?.setLineWidth(5)
-            context?.setStrokeColor(adjustColor.cgColor)
+            context?.setStrokeColor(sliderColor.cgColor)
             context?.strokePath()
 
             imageView.image = UIGraphicsGetImageFromCurrentImageContext()

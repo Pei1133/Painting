@@ -17,7 +17,7 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="smd-n8-1gV">
                     <rect key="frame" x="0.0" y="0.0" width="508" height="238"/>
-                    <color key="backgroundColor" red="0.99999600649999998" green="1" blue="0.5236816406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.99999600649999998" green="0.54706488715277779" blue="0.5236816406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </imageView>
             </subviews>
             <constraints>
