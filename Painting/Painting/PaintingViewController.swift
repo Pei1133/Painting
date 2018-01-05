@@ -48,7 +48,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
 //        var r: CGFloat=0, g: CGFloat=0, b: CGFloat=0, a: CGFloat=0
 //
-//if(self.pickedColor.getRed(&r, green: &g, blue: &b, alpha: &a)) {
+//        if(self.pickedColor.getRed(&r, green: &g, blue: &b, alpha: &a)) {
 //            let minV: CGFloat = CGFloat(min(r, g, b))
 //            let maxV: CGFloat = CGFloat(max(r, g, b))
 //            let saturation: CGFloat = 1-(minV/maxV)

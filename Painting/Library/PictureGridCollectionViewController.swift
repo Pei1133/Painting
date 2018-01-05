@@ -160,29 +160,32 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         let imageURL = imageURLs[indexPath.row]
 
-        if let sublayers = cell.pictureImageView.layer.sublayers {
+        let svgImageView = SVGImageView.init(contentsOf: imageURL)
+        cell.pictureImageView.image = nil
+        svgImageView.frame = cell.pictureImageView.bounds
+        cell.pictureImageView.addSubview(svgImageView)
 
-            for sublayer in sublayers {
-
-                sublayer.removeFromSuperlayer()
-
-            }
-        }
-
-        let provider = PathProvider()
-
-        provider.renderCellPaths(
-            url: imageURL,
-            targetSize: cell.pictureImageView.bounds.size,
-            completionHandler: { (pathLayers: [CALayer]) -> Void in
-
-                for pathLayer in pathLayers {
-
-                    cell.pictureImageView.layer.addSublayer(pathLayer)
-
-                }
-            }
-        )
+//    // remove sublayers & render New CellPaths
+//        if let sublayers = cell.pictureImageView.layer.sublayers {
+//
+//            for sublayer in sublayers {
+//                sublayer.removeFromSuperlayer()
+//            }
+//        }
+//        let provider = PathProvider()
+//
+//        provider.renderCellPaths(
+//            url: imageURL,
+//            targetSize: cell.pictureImageView.bounds.size,
+//            completionHandler: { (pathLayers: [CALayer]) -> Void in
+//
+//                for pathLayer in pathLayers {
+//
+//                    cell.pictureImageView.layer.addSublayer(pathLayer)
+//
+//                }
+//            }
+//        )
         return cell
     }
 
