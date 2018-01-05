@@ -88,22 +88,29 @@ class PictureGridCollectionViewController: UICollectionViewController {
     }
 
     func downloadLibraryPictures() {
+        
+        DispatchQueue.global().async {
 
-        Database.database().reference().child("libraryPictures").observe(.value, with: {(snapshot) in
+            Database.database().reference().child("libraryPictures").observe(.value, with: {(snapshot) in
 
-            for child in snapshot.children {
-                guard let child = child as? DataSnapshot
+                for child in snapshot.children {
+                    guard let child = child as? DataSnapshot
+                        else { return }
+
+                    guard let value = child.value as? [String: String],
+                        let url = value["imageURL"]
                     else { return }
 
-                guard let value = child.value as? [String: String],
-                    let url = value["imageURL"]
-                else { return }
-
-                let imageURL = URL(string: url)!
-                self.imageURLs.append(imageURL)
-                self.collectionView?.reloadData()
-            }
-        }, withCancel: nil)
+                    let imageURL = URL(string: url)!
+                    self.imageURLs.append(imageURL)
+                    
+                    DispatchQueue.main.async {
+                        self.collectionView?.reloadData()
+                    }
+                }
+            }, withCancel: nil)
+            
+        }
     }
 
     func setUpNavigationBar() {
@@ -184,7 +191,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
         svgImageView.frame = cell.pictureImageView.bounds
         cell.pictureImageView.contentMode = .scaleAspectFit
         cell.pictureImageView.addSubview(svgImageView)
-        
+
 //    // load JPG
 //        Nuke.loadImage(
 //            with: imageURL,
