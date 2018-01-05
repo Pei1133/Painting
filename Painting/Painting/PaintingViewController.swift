@@ -18,7 +18,9 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @IBOutlet weak var color0: UIButton!
     @IBOutlet weak var color1: UIButton!
     @IBOutlet weak var color2: UIButton!
-    @IBOutlet weak var selectColorView: UIView!
+    @IBOutlet weak var color3: UIButton!
+    @IBOutlet weak var color4: UIButton!
+//    @IBOutlet weak var selectColorView: UIView!
     @IBOutlet weak var colorSlider: ColorSlider!
     @IBOutlet weak var sliderView: UIView!
 
@@ -303,21 +305,27 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         colorPicker.layer.shadowOpacity = 0.3
         colorPicker.layer.shadowRadius = 2.0
 
-        selectColorView.backgroundColor = Colors.littleRed
-        selectColorView.layer.cornerRadius = selectColorView.frame.height * 0.5
-        selectColorView.clipsToBounds = true
+//        selectColorView.backgroundColor = Colors.littleRed
+//        selectColorView.layer.cornerRadius = selectColorView.frame.height * 0.5
+//        selectColorView.clipsToBounds = true
     }
 
     func setUpButton() {
-        color0.backgroundColor = Colors.cream
+        color0.backgroundColor = Colors.littleRed
         color0.layer.cornerRadius = color0.frame.height*0.5
         color0.clipsToBounds = true
-        color1.backgroundColor = Colors.lightSeeGreen
+        color1.backgroundColor = Colors.lightOrange
         color1.layer.cornerRadius = color0.frame.height*0.5
         color1.clipsToBounds = true
-        color2.backgroundColor = Colors.littleBlue
+        color2.backgroundColor = Colors.littleGreen
         color2.layer.cornerRadius = color0.frame.height*0.5
         color2.clipsToBounds = true
+        color3.backgroundColor = Colors.paleTurquoise
+        color3.layer.cornerRadius = color0.frame.height*0.5
+        color3.clipsToBounds = true
+        color4.backgroundColor = Colors.littleBlue
+        color4.layer.cornerRadius = color0.frame.height*0.5
+        color4.clipsToBounds = true
     }
 
     func setUpColorSlider() {
