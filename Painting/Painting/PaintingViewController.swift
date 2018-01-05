@@ -127,7 +127,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             isFill = false
             self.pictureSize = CGSize(width: view.bounds.width, height: view.bounds.height - 200)
         }
-        
+
         setUpNavigationBar()
         setUpScrollViewAndImageView()
         setUpColorPickerAndView()
@@ -229,7 +229,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @objc func goBack() {
         self.navigationController?.popViewController(animated: true)
     }
-    
+
 //    func setUpNewImageView(){
 //        imageView.contentMode = .center
 //        imageView.backgroundColor = .clear
@@ -238,7 +238,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 //        imageView.delegate = self
 //        view.addSubview(imageView)
 //    }
-    
+
     func setUpScrollViewAndImageView() {
 
         // Set up ImageView

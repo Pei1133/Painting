@@ -88,8 +88,8 @@ class PictureGridCollectionViewController: UICollectionViewController {
     }
 
     func downloadLibraryPictures() {
-        
-        Database.database().reference().child("JPGlibraryPictures").observe(.value, with: {(snapshot) in
+
+        Database.database().reference().child("libraryPictures").observe(.value, with: {(snapshot) in
 
             for child in snapshot.children {
                 guard let child = child as? DataSnapshot
@@ -173,20 +173,23 @@ class PictureGridCollectionViewController: UICollectionViewController {
             fatalError() }
 
         let imageURL = imageURLs[indexPath.row]
-        cell.pictureImageView.image = nil
-        cell.pictureImageView.contentMode = .scaleAspectFit
-        
-        // load JPG
-        Nuke.loadImage(
-            with: imageURL,
-            into: cell.pictureImageView
-        )
-        
-//        // load SVG
-//        let svgImageView = SVGImageView.init(contentsOf: imageURL)
-//        svgImageView.frame = cell.pictureImageView.bounds
-//        cell.pictureImageView.addSubview(svgImageView)
 
+        // remove subviews &load SVG
+        let subviews = cell.pictureImageView.subviews
+        for subview in subviews {
+            subview.removeFromSuperview()
+        }
+
+        let svgImageView = SVGImageView.init(contentsOf: imageURL)
+        svgImageView.frame = cell.pictureImageView.bounds
+        cell.pictureImageView.contentMode = .scaleAspectFit
+        cell.pictureImageView.addSubview(svgImageView)
+        
+//    // load JPG
+//        Nuke.loadImage(
+//            with: imageURL,
+//            into: cell.pictureImageView
+//        )
         
 //    // remove sublayers & render New CellPaths
 //        if let sublayers = cell.pictureImageView.layer.sublayers {
