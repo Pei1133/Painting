@@ -88,7 +88,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
     }
 
     func downloadLibraryPictures() {
-        
+
         DispatchQueue.global().async {
 
             Database.database().reference().child("libraryPictures").observe(.value, with: {(snapshot) in
@@ -103,13 +103,13 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
                     let imageURL = URL(string: url)!
                     self.imageURLs.append(imageURL)
-                    
+
                     DispatchQueue.main.async {
                         self.collectionView?.reloadData()
                     }
                 }
             }, withCancel: nil)
-            
+
         }
     }
 
@@ -197,7 +197,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
 //            with: imageURL,
 //            into: cell.pictureImageView
 //        )
-        
+
 //    // remove sublayers & render New CellPaths
 //        if let sublayers = cell.pictureImageView.layer.sublayers {
 //

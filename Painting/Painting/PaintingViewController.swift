@@ -72,9 +72,10 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     var isFill: Bool = true
 
-    @IBAction func tapColor0(_ sender: Any) {
+    @IBAction func tapColor(_ sender: UIButton) {
 
-//        fillColorButton.tintColor = Colors.littleBlue
+        pickedColor = sender.backgroundColor!
+
     }
 
 //    @IBAction func tapSave(_ sender: Any) {
@@ -159,7 +160,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
                 if path.contains(tapLocation) {
 
-                    print("I am in \(path.svgAttributes)")
+//                    print("I am in \(path.svgAttributes)")
                     let strokeWidth = CGFloat(2.0)
                     let strokeColor = UIColor.gray.cgColor
 
@@ -195,9 +196,14 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
 
         // left button
-        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-chervon"), style: .plain, target: self, action: #selector(goBack))
-        button.tintColor = Colors.deepCyanBlue
-        self.navigationItem.leftBarButtonItem = button
+        let leftButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-chervon"), style: .plain, target: self, action: #selector(goBack))
+        leftButton.tintColor = Colors.deepCyanBlue
+        self.navigationItem.leftBarButtonItem = leftButton
+
+        // right button
+        let rightButton = UIBarButtonItem(image: #imageLiteral(resourceName: "share"), style: .plain, target: self, action: #selector(share))
+        rightButton.tintColor = Colors.deepCyanBlue
+        self.navigationItem.rightBarButtonItem = rightButton
 
         // gradient
         let gradient = CAGradientLayer()
@@ -228,6 +234,17 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     @objc func goBack() {
         self.navigationController?.popViewController(animated: true)
+    }
+
+    @objc func share(_ sender: Any) {
+
+        let image = UIImage.init(view: imageView)
+
+        let imageToShare = [image]
+
+        let PaintingViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+
+        self.present(PaintingViewController, animated: true, completion: nil)
     }
 
 //    func setUpNewImageView(){
@@ -436,5 +453,21 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         if !swiped {
             drawLines(fromPoint: lastPoint, toPoint: lastPoint)
         }
+    }
+}
+
+extension UIImage {
+
+    convenience init(view: UIView) {
+
+        UIGraphicsBeginImageContext(view.bounds.size)
+
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+
+        UIGraphicsEndImageContext()
+
+        self.init(cgImage: image!.cgImage!)
     }
 }
