@@ -26,6 +26,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
 
         downloadLibraryPictures()
+        downloadNewLibraryPictures()
         setUpLayout()
         setUpCollectionView()
         setUpGradientColor()
@@ -89,28 +90,46 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
     func downloadLibraryPictures() {
 
-        DispatchQueue.global().async {
+        Database.database().reference().child("libraryPictures").observeSingleEvent(of: .value, with: {[weak self](snapshot) in
 
-            Database.database().reference().child("libraryPictures").observe(.value, with: {(snapshot) in
-
-                for child in snapshot.children {
-                    guard let child = child as? DataSnapshot
-                        else { return }
-
-                    guard let value = child.value as? [String: String],
-                        let url = value["imageURL"]
+            for child in snapshot.children {
+                guard let child = child as? DataSnapshot
                     else { return }
 
-                    let imageURL = URL(string: url)!
-                    self.imageURLs.append(imageURL)
+                guard let value = child.value as? [String: String],
+                    let url = value["imageURL"]
+                else { return }
 
-                    DispatchQueue.main.async {
-                        self.collectionView?.reloadData()
-                    }
-                }
+                let imageURL = URL(string: url)!
+                self?.imageURLs.append(imageURL)
+
+//                DispatchQueue.main.async {
+                    self?.collectionView?.reloadData()
+//                }
+            }
+        }, withCancel: nil)
+    }
+
+    func downloadNewLibraryPictures() {
+
+        Database.database().reference().child("libraryPictures").observe(.childAdded, with: {[weak self](snapshot) in
+
+            for child in snapshot.children {
+                guard let child = child as? DataSnapshot
+                    else { return }
+
+                guard let value = child.value as? [String: String],
+                    let url = value["imageURL"]
+                    else { return }
+
+                let imageURL = URL(string: url)!
+                self?.imageURLs.append(imageURL)
+
+//                DispatchQueue.main.async {
+                    self?.collectionView?.reloadData()
+//                }
+            }
             }, withCancel: nil)
-
-        }
     }
 
     func setUpNavigationBar() {
