@@ -188,7 +188,8 @@ class PictureGridCollectionViewController: UICollectionViewController {
             return header
 
         default:
-            assert(false, "Unexpexted element kind!")
+            return header
+//            assert(false, "Unexpexted element kind!")
         }
 
     }
