@@ -99,11 +99,14 @@ class PictureGridCollectionViewController: UICollectionViewController {
                     else { return }
 
                 guard let value = child.value as? [String: String],
-                    let url = value["imageURL"]
+                    let url = value["imageURL"],
+                    let jpgurl = value["jpgURL"]
                 else { return }
 
                 let imageURL = URL(string: url)!
+                let jpgURL = URL(string: jpgurl)!
                 self?.imageURLs.append(imageURL)
+                self?.jpgURLs.append(jpgURL)
 
 //                DispatchQueue.main.async {
                     self?.collectionView?.reloadData()
@@ -203,8 +206,21 @@ class PictureGridCollectionViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PictureGridCollectionViewCell else {
             fatalError() }
 
-        let imageURL = imageURLs[indexPath.row]
+        cell.pictureImageView.image = nil
 
+        if jpgURLs.count > indexPath.row {
+            
+            let jpgURL = jpgURLs[indexPath.row]
+            // remove image & load JPG
+            
+            Nuke.loadImage(
+                with: jpgURL,
+                into: cell.pictureImageView
+            )
+        }
+        
+//        let imageURL = imageURLs[indexPath.row]
+        
 //        // remove subviews & load SVG
 //        let subviews = cell.pictureImageView.subviews
 //        for subview in subviews {
@@ -216,13 +232,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
 //        cell.pictureImageView.contentMode = .scaleAspectFit
 //        cell.pictureImageView.addSubview(svgImageView)
 
-        // remove image & load JPG
-        cell.pictureImageView.image = nil
-        Nuke.loadImage(
-            with: imageURL,
-            into: cell.pictureImageView
-        )
-
+        
 //    // remove sublayers & render New CellPaths
 //        if let sublayers = cell.pictureImageView.layer.sublayers {
 //
