@@ -78,7 +78,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
         flowLayout.sectionInset = UIEdgeInsets(top: 25, left: 18, bottom: 5, right: 18)
 
         // 設置每個 cell 的尺寸
-        flowLayout.itemSize = CGSize(width: CGFloat(fullScreenSize.width)/2 - 25, height: CGFloat(fullScreenSize.width)/2 - 25)
+        flowLayout.itemSize = CGSize(width: CGFloat(fullScreenSize.width)/2 - 25, height: CGFloat(fullScreenSize.width)/2)
 
         // 設置每一行的間距
         flowLayout.minimumLineSpacing = 15
@@ -135,9 +135,9 @@ class PictureGridCollectionViewController: UICollectionViewController {
     func setUpNavigationBar() {
         // title
         self.navigationItem.title = "Library"
-        let font = UIFont(name: "BradleyHandITCTT-Bold", size: 24)
+        let font = UIFont(name: "BradleyHandITCTT-Bold", size: 25)
         let textAttributes = [
-            NSAttributedStringKey.font: font ?? UIFont.systemFont(ofSize: 24),
+            NSAttributedStringKey.font: font ?? UIFont.systemFont(ofSize: 25),
             NSAttributedStringKey.foregroundColor: Colors.deepCyanBlue
         ]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes

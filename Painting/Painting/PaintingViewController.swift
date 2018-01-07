@@ -14,7 +14,9 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     func pickedColor(color: UIColor) {
         self.pickedColor = color
     }
-
+    @IBOutlet weak var paintingView: UIView!
+    
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var color0: UIButton!
     @IBOutlet weak var color1: UIButton!
     @IBOutlet weak var color2: UIButton!
@@ -135,6 +137,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         setUpButton()
         setUpColorSlider()
         setUpSliderView(pickedColor)
+//        setupStackView()
 //        showSVG()
 
      // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
@@ -184,13 +187,15 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         view.addSubview(svgImageView)
     }
 
+    // MARK: - Set up
+
     func setUpNavigationBar() {
         // title
         self.navigationController?.navigationBar.barTintColor = UIColor.clear
         self.navigationItem.title = "Color Your Own"
-        let font = UIFont(name: "BradleyHandITCTT-Bold", size: 24)
+        let font = UIFont(name: "BradleyHandITCTT-Bold", size: 25)
         let textAttributes = [
-            NSAttributedStringKey.font: font ?? UIFont.systemFont(ofSize: 24),
+            NSAttributedStringKey.font: font ?? UIFont.systemFont(ofSize: 25),
             NSAttributedStringKey.foregroundColor: Colors.deepCyanBlue
         ]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
@@ -221,6 +226,16 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         navigationController?.navigationBar.layer.shadowRadius = 4
     }
+
+    func setupStackView() {
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.centerXAnchor.constraint(equalTo: paintingView.centerXAnchor).isActive = true
+        stackView.heightAnchor.constraint(equalTo: paintingView.heightAnchor, multiplier: 1/5).isActive = true
+        stackView.centerYAnchor.constraint(equalTo: paintingView.centerYAnchor, constant: (paintingView.frame.height) / 5).isActive = true
+        stackView.widthAnchor.constraint(equalTo: colorPicker.widthAnchor, multiplier: 3/4).isActive = true
+    }
+
+    // MARK: - Transform
 
     //讓layer轉型成UIImage
     func layerTransImage(fromLayer layer: CALayer) -> UIImage {
@@ -272,7 +287,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         pictureView.backgroundColor = UIColor.clear
 
         // Set up ScrollView
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 200))
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - paintingView.frame.height))
         scrollView.contentSize = imageView.frame.size
         scrollView.backgroundColor = UIColor.white
 //        scrollView.alwaysBounceVertical = true
