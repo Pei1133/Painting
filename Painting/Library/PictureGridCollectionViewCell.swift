@@ -37,7 +37,7 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
 
         imageView.clipsToBounds = true
 
-        imageView.contentMode = .center
+        imageView.contentMode = .scaleAspectFill
 
         imageView.layer.cornerRadius = 8.0
 

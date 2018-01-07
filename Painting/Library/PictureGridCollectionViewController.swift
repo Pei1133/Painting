@@ -20,6 +20,8 @@ class PictureGridCollectionViewController: UICollectionViewController {
     var flowLayout = UICollectionViewFlowLayout()
 
     var imageURLs: [URL] = []
+    
+    var jpgURLs: [URL] = []
 
     override func viewDidLoad() {
 
@@ -84,7 +86,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
         flowLayout.minimumLineSpacing = 15
 
         // 設置 header 及 footer 的尺寸
-        flowLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: CGFloat(fullScreenSize.height)/3)
+        flowLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: CGFloat(fullScreenSize.height)*2/7)
 
     }
 
@@ -119,11 +121,14 @@ class PictureGridCollectionViewController: UICollectionViewController {
                     else { return }
 
                 guard let value = child.value as? [String: String],
-                    let url = value["imageURL"]
+                    let url = value["imageURL"],
+                    let jpgurl = value["jpgURL"]
                     else { return }
 
                 let imageURL = URL(string: url)!
+                let jpgURL = URL(string: jpgurl)!
                 self?.imageURLs.append(imageURL)
+                self?.jpgURLs.append(jpgURL)
 
 //                DispatchQueue.main.async {
                     self?.collectionView?.reloadData()
@@ -200,22 +205,23 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         let imageURL = imageURLs[indexPath.row]
 
-        // remove subviews &load SVG
-        let subviews = cell.pictureImageView.subviews
-        for subview in subviews {
-            subview.removeFromSuperview()
-        }
+//        // remove subviews & load SVG
+//        let subviews = cell.pictureImageView.subviews
+//        for subview in subviews {
+//            subview.removeFromSuperview()
+//        }
+//
+//        let svgImageView = SVGImageView.init(contentsOf: imageURL)
+//        svgImageView.frame = cell.pictureImageView.bounds
+//        cell.pictureImageView.contentMode = .scaleAspectFit
+//        cell.pictureImageView.addSubview(svgImageView)
 
-        let svgImageView = SVGImageView.init(contentsOf: imageURL)
-        svgImageView.frame = cell.pictureImageView.bounds
-        cell.pictureImageView.contentMode = .scaleAspectFit
-        cell.pictureImageView.addSubview(svgImageView)
-
-//    // load JPG
-//        Nuke.loadImage(
-//            with: imageURL,
-//            into: cell.pictureImageView
-//        )
+        // remove image & load JPG
+        cell.pictureImageView.image = nil
+        Nuke.loadImage(
+            with: imageURL,
+            into: cell.pictureImageView
+        )
 
 //    // remove sublayers & render New CellPaths
 //        if let sublayers = cell.pictureImageView.layer.sublayers {
