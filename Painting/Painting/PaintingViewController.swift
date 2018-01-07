@@ -15,7 +15,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         self.pickedColor = color
     }
     @IBOutlet weak var paintingView: UIView!
-    
+
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var color0: UIButton!
     @IBOutlet weak var color1: UIButton!
@@ -191,8 +191,9 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     func setUpNavigationBar() {
         // title
+        let localTitle = NSLocalizedString("Color Your Own", comment: "")
+        self.navigationItem.title = localTitle
         self.navigationController?.navigationBar.barTintColor = UIColor.clear
-        self.navigationItem.title = "Color Your Own"
         let font = UIFont(name: "BradleyHandITCTT-Bold", size: 25)
         let textAttributes = [
             NSAttributedStringKey.font: font ?? UIFont.systemFont(ofSize: 25),
@@ -298,7 +299,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         view.addSubview(scrollView)
         scrollView.addSubview(pictureView)
         scrollView.addSubview(imageView)
-        
+
         // ZoomScale Setting
         scrollView.delegate = self
         scrollView.zoomScale = 0.8

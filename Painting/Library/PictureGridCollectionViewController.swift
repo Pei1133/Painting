@@ -20,7 +20,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
     var flowLayout = UICollectionViewFlowLayout()
 
     var imageURLs: [URL] = []
-    
+
     var jpgURLs: [URL] = []
 
     override func viewDidLoad() {
@@ -142,7 +142,9 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
     func setUpNavigationBar() {
         // title
-        self.navigationItem.title = "Library"
+
+        let localTitle = NSLocalizedString("Library", comment: "")
+        self.navigationItem.title = localTitle
         let font = UIFont(name: "BradleyHandITCTT-Bold", size: 25)
         let textAttributes = [
             NSAttributedStringKey.font: font ?? UIFont.systemFont(ofSize: 25),
@@ -151,9 +153,9 @@ class PictureGridCollectionViewController: UICollectionViewController {
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
 
         // right button
-        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "add"), style: .plain, target: self, action: #selector(addNew))
-        button.tintColor = Colors.deepCyanBlue
-        self.navigationItem.rightBarButtonItem = button
+//        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "add"), style: .plain, target: self, action: #selector(addNew))
+//        button.tintColor = Colors.deepCyanBlue
+//        self.navigationItem.rightBarButtonItem = button
     }
 
     @objc func addNew() {
@@ -209,18 +211,18 @@ class PictureGridCollectionViewController: UICollectionViewController {
         cell.pictureImageView.image = nil
 
         if jpgURLs.count > indexPath.row {
-            
+
             let jpgURL = jpgURLs[indexPath.row]
             // remove image & load JPG
-            
+
             Nuke.loadImage(
                 with: jpgURL,
                 into: cell.pictureImageView
             )
         }
-        
+
 //        let imageURL = imageURLs[indexPath.row]
-        
+
 //        // remove subviews & load SVG
 //        let subviews = cell.pictureImageView.subviews
 //        for subview in subviews {
@@ -232,7 +234,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
 //        cell.pictureImageView.contentMode = .scaleAspectFit
 //        cell.pictureImageView.addSubview(svgImageView)
 
-        
 //    // remove sublayers & render New CellPaths
 //        if let sublayers = cell.pictureImageView.layer.sublayers {
 //

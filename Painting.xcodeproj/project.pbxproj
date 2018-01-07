@@ -37,6 +37,8 @@
 		7C76A4F43C507D2665D62989 /* Pods-Painting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Painting.release.xcconfig"; path = "Pods/Target Support Files/Pods-Painting/Pods-Painting.release.xcconfig"; sourceTree = "<group>"; };
 		AB171D361FEB8E5B00CCFB7F /* PathProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathProvider.swift; sourceTree = "<group>"; };
 		AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
+		AB68407620026DB400FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		AB68407720026DB400FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGridCollectionViewCell.swift; sourceTree = "<group>"; };
 		AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGridCollectionViewController.swift; sourceTree = "<group>"; };
 		AB9A80A41FECF5D0000434E7 /* cabin.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cabin.svg; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				AB9FA5921FE2A99300055C50 /* Base */,
+				AB68407620026DB400FDBF04 /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				AB9FA5971FE2A99300055C50 /* Base */,
+				AB68407720026DB400FDBF04 /* zh-Hant */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -386,6 +390,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -443,6 +448,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
