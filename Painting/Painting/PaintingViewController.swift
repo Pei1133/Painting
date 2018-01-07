@@ -287,7 +287,8 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         pictureView.backgroundColor = UIColor.clear
 
         // Set up ScrollView
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - paintingView.frame.height))
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height * 0.7))
+
         scrollView.contentSize = imageView.frame.size
         scrollView.backgroundColor = UIColor.white
 //        scrollView.alwaysBounceVertical = true
@@ -297,7 +298,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         view.addSubview(scrollView)
         scrollView.addSubview(pictureView)
         scrollView.addSubview(imageView)
-
+        
         // ZoomScale Setting
         scrollView.delegate = self
         scrollView.zoomScale = 0.8
