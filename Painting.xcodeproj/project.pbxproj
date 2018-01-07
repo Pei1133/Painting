@@ -10,6 +10,8 @@
 		9247765BA685684EFFE5F75D /* Pods_Painting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76721B4B1CCB252FA8ED0565 /* Pods_Painting.framework */; };
 		AB171D371FEB8E5B00CCFB7F /* PathProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB171D361FEB8E5B00CCFB7F /* PathProvider.swift */; };
 		AB1E41CC1FE3CB7E00D3B4B8 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */; };
+		AB68407A2002708400FDBF04 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB68407C2002708400FDBF04 /* Localizable.strings */; };
+		AB68407F2002708500FDBF04 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB6840812002708500FDBF04 /* InfoPlist.strings */; };
 		AB8EC82F1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */; };
 		AB8EC8321FE90D9B00C19F60 /* PictureGridCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */; };
 		AB9A80A71FECF5D1000434E7 /* cabin.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80A41FECF5D0000434E7 /* cabin.svg */; };
@@ -39,6 +41,8 @@
 		AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		AB68407620026DB400FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		AB68407720026DB400FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		AB68407B2002708400FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		AB6840802002708500FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGridCollectionViewCell.swift; sourceTree = "<group>"; };
 		AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGridCollectionViewController.swift; sourceTree = "<group>"; };
 		AB9A80A41FECF5D0000434E7 /* cabin.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cabin.svg; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 		AB9FA58C1FE2A99300055C50 /* Painting */ = {
 			isa = PBXGroup;
 			children = (
+				AB6840812002708500FDBF04 /* InfoPlist.strings */,
+				AB68407C2002708400FDBF04 /* Localizable.strings */,
 				AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */,
 				AB1E41CD1FE3CC3200D3B4B8 /* Library */,
 				AB8EC8291FE90BAF00C19F60 /* Painting */,
@@ -254,9 +260,11 @@
 				AB9FA5951FE2A99300055C50 /* Assets.xcassets in Resources */,
 				ABF8F5A71FE2AF4D00117AB8 /* chicken.svg in Resources */,
 				AB9A80A71FECF5D1000434E7 /* cabin.svg in Resources */,
+				AB68407A2002708400FDBF04 /* Localizable.strings in Resources */,
 				AB9FA5931FE2A99300055C50 /* Main.storyboard in Resources */,
 				ABDE77171FFDCB1100BF95A6 /* HeaderView.xib in Resources */,
 				ABBAF1C91FE90F7200676426 /* PictureGridCollectionViewCell.xib in Resources */,
+				AB68407F2002708500FDBF04 /* InfoPlist.strings in Resources */,
 				ABF8F5A91FE2AF5C00117AB8 /* cloud.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,6 +373,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		AB68407C2002708400FDBF04 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB68407B2002708400FDBF04 /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		AB6840812002708500FDBF04 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB6840802002708500FDBF04 /* zh-Hant */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		AB9FA5911FE2A99300055C50 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
