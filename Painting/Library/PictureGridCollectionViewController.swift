@@ -10,6 +10,7 @@ import UIKit
 import PocketSVG
 import Firebase
 import Nuke
+import Crashlytics
 
 class PictureGridCollectionViewController: UICollectionViewController {
 
@@ -36,7 +37,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
         setUpBlurEffect()
 
     }
-
+    
     func setUpCollectionView() {
 
         self.collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: flowLayout)

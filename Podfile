@@ -13,6 +13,8 @@ target 'Painting' do
   pod 'Firebase/Database'
   pod 'SDWebImage', '~> 4.0'
   pod 'Nuke', '5.2'
+  pod 'Fabric'
+  pod 'Crashlytics'
 
 
 end
