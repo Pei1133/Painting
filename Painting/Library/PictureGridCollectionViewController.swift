@@ -37,6 +37,8 @@ class PictureGridCollectionViewController: UICollectionViewController {
         setUpBlurEffect()
     }
 
+    // MARK: - Set up
+    
     func setUpCollectionView() {
 
         self.collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: flowLayout)
@@ -88,56 +90,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
         // 設置 header 及 footer 的尺寸
         flowLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: CGFloat(fullScreenSize.height)*2/7)
 
-    }
-
-    func downloadLibraryPictures() {
-
-        Database.database().reference().child("libraryPictures").observeSingleEvent(of: .value, with: {[weak self](snapshot) in
-
-            for child in snapshot.children {
-                guard let child = child as? DataSnapshot
-                    else { return }
-
-                guard let value = child.value as? [String: String],
-                    let url = value["imageURL"],
-                    let jpgurl = value["jpgURL"]
-                else { return }
-
-                let imageURL = URL(string: url)!
-                let jpgURL = URL(string: jpgurl)!
-                self?.imageURLs.append(imageURL)
-                self?.jpgURLs.append(jpgURL)
-
-//                DispatchQueue.main.async {
-                    self?.collectionView?.reloadData()
-//                }
-            }
-        }, withCancel: nil)
-    }
-
-    func downloadNewLibraryPictures() {
-
-        Database.database().reference().child("libraryPictures").observe(.childAdded, with: {[weak self](snapshot) in
-
-            for child in snapshot.children {
-                guard let child = child as? DataSnapshot
-                    else { return }
-
-                guard let value = child.value as? [String: String],
-                    let url = value["imageURL"],
-                    let jpgurl = value["jpgURL"]
-                    else { return }
-
-                let imageURL = URL(string: url)!
-                let jpgURL = URL(string: jpgurl)!
-                self?.imageURLs.append(imageURL)
-                self?.jpgURLs.append(jpgURL)
-
-//                DispatchQueue.main.async {
-                    self?.collectionView?.reloadData()
-//                }
-            }
-            }, withCancel: nil)
     }
 
     func setUpNavigationBar() {
@@ -193,8 +145,55 @@ class PictureGridCollectionViewController: UICollectionViewController {
         }
 
     }
+    
+    // MARK: - Download
+    
+    func downloadLibraryPictures() {
+        
+        Database.database().reference().child("libraryPictures").observeSingleEvent(of: .value, with: {[weak self](snapshot) in
+            
+            for child in snapshot.children {
+                guard let child = child as? DataSnapshot
+                    else { return }
+                
+                guard let value = child.value as? [String: String],
+                    let url = value["imageURL"],
+                    let jpgurl = value["jpgURL"]
+                    else { return }
+                
+                let imageURL = URL(string: url)!
+                let jpgURL = URL(string: jpgurl)!
+                self?.imageURLs.append(imageURL)
+                self?.jpgURLs.append(jpgURL)
+                self?.collectionView?.reloadData()
+                
+            }
+            }, withCancel: nil)
+    }
+    
+    func downloadNewLibraryPictures() {
+        
+        Database.database().reference().child("libraryPictures").observe(.childAdded, with: {[weak self](snapshot) in
+            
+            for child in snapshot.children {
+                guard let child = child as? DataSnapshot
+                    else { return }
+                
+                guard let value = child.value as? [String: String],
+                    let url = value["imageURL"],
+                    let jpgurl = value["jpgURL"]
+                    else { return }
+                
+                let imageURL = URL(string: url)!
+                let jpgURL = URL(string: jpgurl)!
+                self?.imageURLs.append(imageURL)
+                self?.jpgURLs.append(jpgURL)
+                self?.collectionView?.reloadData()
+            }
+            }, withCancel: nil)
+    }
 
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
