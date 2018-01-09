@@ -75,6 +75,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         didSet {
             setUpSliderView(pickedColor)
             self.adjustColor = pickedColor
+
         }
     }
     var sliderColor = Colors.lightSkyBlue {
@@ -82,7 +83,17 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             self.adjustColor = sliderColor
         }
     }
-    var adjustColor = Colors.lightSkyBlue
+    var adjustColor = Colors.lightSkyBlue {
+        didSet {
+            if adjustColor != color0.backgroundColor && adjustColor != color1.backgroundColor && adjustColor != color2.backgroundColor && adjustColor != color3.backgroundColor && adjustColor != color4.backgroundColor {
+                    color4.backgroundColor = color3.backgroundColor
+                    color3.backgroundColor = color2.backgroundColor
+                    color2.backgroundColor = color1.backgroundColor
+                    color1.backgroundColor = color0.backgroundColor
+                    color0.backgroundColor = adjustColor
+            }
+        }
+    }
 
 //    @IBAction func tapSave(_ sender: Any) {
 //
@@ -217,10 +228,10 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         colorPicker.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         colorPicker.layer.shadowOpacity = 0.3
         colorPicker.layer.shadowRadius = 2.0
-
     }
 
     func setUpButton() {
+
         color0.backgroundColor = Colors.littleRed
         color0.layer.cornerRadius = color0.frame.height*0.5
         color0.clipsToBounds = true
@@ -239,10 +250,11 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     }
 
     func setUpColorSlider() {
+
         colorSlider.minimumValue = 0.0
         colorSlider.maximumValue = 1.0
         colorSlider.value = 0.5
-        colorSlider.isContinuous = true
+        colorSlider.isContinuous = false
 
         colorSlider.maximumTrackTintColor = UIColor.clear
         colorSlider.minimumTrackTintColor = UIColor.clear
