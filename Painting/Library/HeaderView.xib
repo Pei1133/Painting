@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,14 +17,16 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="smd-n8-1gV">
-                    <rect key="frame" x="0.0" y="0.0" width="508" height="238"/>
+                    <rect key="frame" x="0.0" y="-22.5" width="508" height="303"/>
                     <color key="backgroundColor" red="0.99999600649999998" green="0.54706488715277779" blue="0.5236816406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="smd-n8-1gV" secondAttribute="height" multiplier="742:443" id="NmY-PI-Dys"/>
+                    </constraints>
                 </imageView>
             </subviews>
             <constraints>
                 <constraint firstItem="smd-n8-1gV" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="K5m-fL-FGZ"/>
-                <constraint firstItem="smd-n8-1gV" firstAttribute="bottom" secondItem="VXr-Tz-HHm" secondAttribute="bottom" constant="-20" id="gyi-9d-DEd"/>
-                <constraint firstItem="smd-n8-1gV" firstAttribute="top" secondItem="VXr-Tz-HHm" secondAttribute="top" id="kLd-18-P1B"/>
+                <constraint firstItem="smd-n8-1gV" firstAttribute="centerY" secondItem="VXr-Tz-HHm" secondAttribute="centerY" id="QYk-Ev-ORV"/>
                 <constraint firstItem="smd-n8-1gV" firstAttribute="trailing" secondItem="VXr-Tz-HHm" secondAttribute="trailing" id="tY7-ea-3Pp"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>

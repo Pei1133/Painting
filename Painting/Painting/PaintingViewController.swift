@@ -53,10 +53,10 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
             if percentage >= 0.5 {
 
-                self.sliderColor = UIColor(hue: hue, saturation: saturation, brightness: 1-percentage, alpha: alpha)
+                self.sliderColor = UIColor(hue: hue, saturation: 1, brightness: 1 - ( 2 * percentage - 1), alpha: alpha)
             }else {
 
-                self.sliderColor = UIColor(hue: hue, saturation: percentage*2, brightness: 1-percentage, alpha: alpha)
+                self.sliderColor = UIColor(hue: hue, saturation: 2 * percentage, brightness: 1, alpha: alpha)
             }
         }else {
             print("sliderColor error")
@@ -81,6 +81,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     var sliderColor = Colors.lightSkyBlue {
         didSet {
             self.adjustColor = sliderColor
+            colorSlider.thumbTintColor = sliderColor
         }
     }
     var adjustColor = Colors.lightSkyBlue {
