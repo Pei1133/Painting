@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = pictureGridCollectionViewController
         window?.makeKeyAndVisible()
-        FirebaseApp.configure()        
+        FirebaseApp.configure()
         return true
     }
 

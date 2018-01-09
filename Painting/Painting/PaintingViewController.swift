@@ -149,7 +149,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         svgImageView.frame = self.view.bounds
         view.addSubview(svgImageView)
     }
-    
+
     // MARK: - Fill Color
     // Step 2 :- Make "tapDetected" method
     @objc public func tapDetected(tapRecognizer: UITapGestureRecognizer) {
@@ -221,13 +221,17 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         // shadow
         navigationController?.navigationBar.layer.shadowOpacity = 1
-        navigationController?.navigationBar.layer.shadowColor = UIColor(red: 53/255.0, green: 184/255.0, blue: 208/255.0, alpha: 0.85).cgColor
+//        navigationController?.navigationBar.layer.shadowColor = UIColor(red: 53/255.0, green: 184/255.0, blue: 208/255.0, alpha: 0.85).cgColor
+        navigationController?.navigationBar.layer.shadowColor = UIColor(red: 135.0 / 255.0, green: 206.0 / 255.0, blue: 235.0 / 255.0, alpha: 0.85).cgColor  //skyBlue
         navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         navigationController?.navigationBar.layer.shadowRadius = 4
+
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
 
     func setUpColorPicker() {
-        
+
         colorPicker.layer.cornerRadius = 5.0
         colorPicker.clipsToBounds = true
         colorPicker.layer.shadowColor = UIColor.black.cgColor
@@ -236,7 +240,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         colorPicker.layer.shadowRadius = 2.0
 
     }
-    
+
     func setUpButton() {
         color0.backgroundColor = Colors.littleRed
         color0.layer.cornerRadius = color0.frame.height*0.5
@@ -254,17 +258,17 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         color4.layer.cornerRadius = color0.frame.height*0.5
         color4.clipsToBounds = true
     }
-    
+
     func setUpColorSlider() {
         colorSlider.minimumValue = 0.0
         colorSlider.maximumValue = 1.0
         colorSlider.value = 0.5
         colorSlider.isContinuous = true
-        
+
         colorSlider.maximumTrackTintColor = UIColor.clear
         colorSlider.minimumTrackTintColor = UIColor.clear
     }
-    
+
     func setUpSliderView(_ pickedColor: UIColor) {
         let gradient = CAGradientLayer()
         gradient.frame = sliderView.bounds
@@ -272,11 +276,11 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
         gradient.colors = [UIColor.black.cgColor, pickedColor.cgColor, UIColor.white.cgColor]
         self.sliderView.layer.addSublayer(gradient)
-        
+
         sliderView.layer.cornerRadius = 5.0
         sliderView.clipsToBounds = true
     }
-    
+
     func setUpScrollViewAndImageView() {
 
         // Set up ImageView
@@ -314,7 +318,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     }
 
     // MARK: - ScrollView
-    
+
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
 
         return imageView
@@ -353,7 +357,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     }
 
-
 //    override func viewWillLayoutSubviews() {
 //        super.viewDidLayoutSubviews()
 //        scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -379,32 +382,32 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     //讓layer轉型成UIImage
     func layerTransImage(fromLayer layer: CALayer) -> UIImage {
         UIGraphicsBeginImageContext(layer.frame.size)
-        
+
         layer.render(in: UIGraphicsGetCurrentContext()!)
         let outputImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return outputImage!
     }
-    
+
     // MARK: - goBack
     @objc func goBack() {
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     // MARK: - Share
     @objc func share(_ sender: Any) {
-        
+
         let image = UIImage.init(view: imageView)
-        
+
         let imageToShare = [image]
-        
+
         let PaintingViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
-        
+
         self.present(PaintingViewController, animated: true, completion: nil)
     }
-    
+
     // MARK: - Painting Color
-    
+
     func drawLines(fromPoint: CGPoint, toPoint: CGPoint) {
 
         if isFill == false {

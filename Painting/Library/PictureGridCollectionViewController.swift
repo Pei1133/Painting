@@ -38,7 +38,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
     }
 
     // MARK: - Set up
-    
+
     func setUpCollectionView() {
 
         self.collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: flowLayout)
@@ -105,9 +105,9 @@ class PictureGridCollectionViewController: UICollectionViewController {
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
 
         // right button
-//        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "add"), style: .plain, target: self, action: #selector(addNew))
-//        button.tintColor = Colors.deepCyanBlue
-//        self.navigationItem.rightBarButtonItem = button
+        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "add"), style: .plain, target: self, action: #selector(addNew))
+        button.tintColor = Colors.deepCyanBlue
+        self.navigationItem.rightBarButtonItem = button
     }
 
     @objc func addNew() {
@@ -145,45 +145,45 @@ class PictureGridCollectionViewController: UICollectionViewController {
         }
 
     }
-    
+
     // MARK: - Download
-    
+
     func downloadLibraryPictures() {
-        
+
         Database.database().reference().child("libraryPictures").observeSingleEvent(of: .value, with: {[weak self](snapshot) in
-            
+
             for child in snapshot.children {
                 guard let child = child as? DataSnapshot
                     else { return }
-                
+
                 guard let value = child.value as? [String: String],
                     let url = value["imageURL"],
                     let jpgurl = value["jpgURL"]
                     else { return }
-                
+
                 let imageURL = URL(string: url)!
                 let jpgURL = URL(string: jpgurl)!
                 self?.imageURLs.append(imageURL)
                 self?.jpgURLs.append(jpgURL)
                 self?.collectionView?.reloadData()
-                
+
             }
             }, withCancel: nil)
     }
-    
+
     func downloadNewLibraryPictures() {
-        
+
         Database.database().reference().child("libraryPictures").observe(.childAdded, with: {[weak self](snapshot) in
-            
+
             for child in snapshot.children {
                 guard let child = child as? DataSnapshot
                     else { return }
-                
+
                 guard let value = child.value as? [String: String],
                     let url = value["imageURL"],
                     let jpgurl = value["jpgURL"]
                     else { return }
-                
+
                 let imageURL = URL(string: url)!
                 let jpgURL = URL(string: jpgurl)!
                 self?.imageURLs.append(imageURL)

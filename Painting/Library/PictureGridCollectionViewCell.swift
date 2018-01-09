@@ -37,7 +37,7 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
 
         imageView.clipsToBounds = true
 
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
 
         imageView.layer.cornerRadius = 8.0
 
@@ -57,7 +57,7 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
 
         view.layer.borderWidth = 0.5
 
-        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.layer.borderColor = UIColor.clear.cgColor
 
         view.layer.shadowColor = Colors.coolGray.cgColor
 
