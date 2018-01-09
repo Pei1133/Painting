@@ -63,10 +63,10 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="alK-cu-tou">
-                                        <rect key="frame" x="75" y="10" width="225" height="17"/>
+                                        <rect key="frame" x="37.5" y="10" width="300" height="17"/>
                                     </view>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Zlw-5u-cO7" customClass="ColorSlider" customModule="Painting" customModuleProvider="target">
-                                        <rect key="frame" x="73.5" y="10.5" width="228.5" height="18"/>
+                                        <rect key="frame" x="36" y="10.5" width="303.5" height="18"/>
                                         <connections>
                                             <action selector="tapColorSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="nNL-hz-maO"/>
                                         </connections>
@@ -110,7 +110,7 @@
                                     <constraint firstAttribute="trailing" secondItem="JbJ-D3-8sX" secondAttribute="trailing" constant="10" id="ns0-9v-A0k"/>
                                     <constraint firstItem="Ul5-b5-Sl7" firstAttribute="centerY" secondItem="EVU-Fk-zHv" secondAttribute="centerY" id="oYt-Fl-Dbz"/>
                                     <constraint firstItem="kVk-ci-Kea" firstAttribute="height" secondItem="EVU-Fk-zHv" secondAttribute="height" id="pUI-Es-Yof"/>
-                                    <constraint firstItem="alK-cu-tou" firstAttribute="width" secondItem="pbG-Dz-Vsn" secondAttribute="width" multiplier="3/5" id="qlJ-cC-Wb9"/>
+                                    <constraint firstItem="alK-cu-tou" firstAttribute="width" secondItem="pbG-Dz-Vsn" secondAttribute="width" multiplier="4/5" id="qlJ-cC-Wb9"/>
                                     <constraint firstItem="Ul5-b5-Sl7" firstAttribute="height" secondItem="EVU-Fk-zHv" secondAttribute="height" id="vtv-tR-ZIu"/>
                                     <constraint firstItem="alK-cu-tou" firstAttribute="top" secondItem="pbG-Dz-Vsn" secondAttribute="top" constant="10" id="wZu-Bm-Ade"/>
                                     <constraint firstItem="JbJ-D3-8sX" firstAttribute="leading" secondItem="pbG-Dz-Vsn" secondAttribute="leading" constant="10" id="zQH-9i-C2K"/>
