@@ -149,14 +149,13 @@
 		AB9FA58C1FE2A99300055C50 /* Painting */ = {
 			isa = PBXGroup;
 			children = (
-				AB6840812002708500FDBF04 /* InfoPlist.strings */,
-				AB68407C2002708400FDBF04 /* Localizable.strings */,
 				AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */,
 				AB1E41CD1FE3CC3200D3B4B8 /* Library */,
 				AB8EC8291FE90BAF00C19F60 /* Painting */,
 				AB171D351FEB8E2500CCFB7F /* Paths */,
 				ABE5AED01FF91805007A96A4 /* Colors */,
 				AB1E41CE1FE3CC6000D3B4B8 /* SVG */,
+				ABB526EA20045B350077025E /* Localization */,
 				AB9FA5941FE2A99300055C50 /* Assets.xcassets */,
 				AB9FA5911FE2A99300055C50 /* Main.storyboard */,
 				AB9FA5961FE2A99300055C50 /* LaunchScreen.storyboard */,
@@ -164,6 +163,15 @@
 				AB407AB720027CE800023A16 /* GoogleService-Info.plist */,
 			);
 			path = Painting;
+			sourceTree = "<group>";
+		};
+		ABB526EA20045B350077025E /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				AB6840812002708500FDBF04 /* InfoPlist.strings */,
+				AB68407C2002708400FDBF04 /* Localizable.strings */,
+			);
+			path = Localization;
 			sourceTree = "<group>";
 		};
 		ABE5AED01FF91805007A96A4 /* Colors */ = {
