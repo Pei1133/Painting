@@ -11,20 +11,38 @@ import PocketSVG
 
 class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDelegate, CustomImageViewTouchEventDelegate {
 
-    func pickedColor(color: UIColor) {
-        self.pickedColor = color
-    }
+    let provider = PathProvider()
+    var paths = [SVGBezierPath]()
+    var scrollView = UIScrollView()
+    var pictureView = UIView()
+    var imageView = CustomImageView()
+    var pictureSize = CGSize.zero
+
+    var url: URL?
+    var isFill: Bool = true
+    var lastPoint = CGPoint.zero
+    var swiped = false
+
+    // MARK: - color button
     @IBOutlet weak var paintingView: UIView!
     @IBOutlet weak var color0: UIButton!
     @IBOutlet weak var color1: UIButton!
     @IBOutlet weak var color2: UIButton!
     @IBOutlet weak var color3: UIButton!
     @IBOutlet weak var color4: UIButton!
+    @IBAction func tapColor(_ sender: UIButton) {
+
+        pickedColor = sender.backgroundColor!
+    }
+
+    // MARK: - colorSlider
+    var sliderPercentage: CGFloat = 0.5
     @IBOutlet weak var colorSlider: ColorSlider!
     @IBOutlet weak var sliderView: UIView!
-
     @IBAction func tapColorSlider(_ sender: ColorSlider) {
+
         let percentage = CGFloat(colorSlider.value / colorSlider.maximumValue)
+        self.sliderPercentage = percentage
 
         var saturation: CGFloat = 0.0
         var brightness: CGFloat = 0.0
@@ -34,10 +52,10 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         if self.pickedColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
 
             if percentage >= 0.5 {
-                
+
                 self.sliderColor = UIColor(hue: hue, saturation: saturation, brightness: 1-percentage, alpha: alpha)
             }else {
-                
+
                 self.sliderColor = UIColor(hue: hue, saturation: percentage*2, brightness: 1-percentage, alpha: alpha)
             }
         }else {
@@ -46,66 +64,30 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     }
 
-//        var r: CGFloat=0, g: CGFloat=0, b: CGFloat=0, a: CGFloat=0
-//
-//        if(self.pickedColor.getRed(&r, green: &g, blue: &b, alpha: &a)) {
-//            let minV: CGFloat = CGFloat(min(r, g, b))
-//            let maxV: CGFloat = CGFloat(max(r, g, b))
-//            let saturation: CGFloat = 1-(minV/maxV)
-//
-//            if maxV == 0 {
-//
-//                self.sliderColor = UIColor(hue: hue, saturation: 0, brightness: percentage, alpha: alpha)
-//            }else {
-//                self.sliderColor = UIColor(red: min(r - percentage, 1.0),
-//                                           green: min(g - percentage, 1.0),
-//                                           blue: min(b - percentage, 1.0),
-//                                           alpha: a)
-//                print("pickedColor:\(pickedColor)","sliderColor:\(sliderColor)")
-//            }
-//        }else {
-//            print("sliderColor error")
-//        }
-//    }
-
-    var isFill: Bool = true
-
-    @IBAction func tapColor(_ sender: UIButton) {
-
-        pickedColor = sender.backgroundColor!
-
-    }
-
-//    @IBAction func tapSave(_ sender: Any) {
-//        
-//        UIImageWriteToSavedPhotosAlbum(<#T##image: UIImage##UIImage#>, <#T##completionTarget: Any?##Any?#>, <#T##completionSelector: Selector?##Selector?#>, <#T##contextInfo: UnsafeMutableRawPointer?##UnsafeMutableRawPointer?#>)
-//    }
-
+    // MARK: - colorPicker
     @IBOutlet private(set) weak var colorPicker: ColorPicker!
+
+    func pickedColor(color: UIColor) {
+        self.pickedColor = color
+    }
 
     var pickedColor = Colors.lightSkyBlue {
         didSet {
             setUpSliderView(pickedColor)
+            self.adjustColor = pickedColor
         }
     }
     var sliderColor = Colors.lightSkyBlue {
         didSet {
-            colorSlider.thumbTintColor = sliderColor
+            self.adjustColor = sliderColor
         }
     }
     var adjustColor = Colors.lightSkyBlue
 
-    let provider = PathProvider()
-    var paths = [SVGBezierPath]()
-    var scrollView = UIScrollView()
-    var pictureView = UIView()
-    var imageView = CustomImageView()
-    var pictureSize = CGSize.zero
-
-    var url: URL?
-
-    var lastPoint = CGPoint.zero
-    var swiped = false
+//    @IBAction func tapSave(_ sender: Any) {
+//
+//        UIImageWriteToSavedPhotosAlbum(<#T##image: UIImage##UIImage#>, <#T##completionTarget: Any?##Any?#>, <#T##completionSelector: Selector?##Selector?#>, <#T##contextInfo: UnsafeMutableRawPointer?##UnsafeMutableRawPointer?#>)
+//    }
 
     override func viewDidLoad() {
 
@@ -173,7 +155,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
                     layer.path = path.cgPath
                     layer.lineWidth = strokeWidth
                     layer.strokeColor = strokeColor
-                    layer.fillColor = sliderColor.cgColor
+                    layer.fillColor = adjustColor.cgColor
                     self.imageView.layer.addSublayer(layer)
 
                 } else {
@@ -422,7 +404,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             context?.setBlendMode(CGBlendMode.normal)
             context?.setLineCap(CGLineCap.round)
             context?.setLineWidth(5)
-            context?.setStrokeColor(sliderColor.cgColor)
+            context?.setStrokeColor(adjustColor.cgColor)
             context?.strokePath()
 
             imageView.image = UIGraphicsGetImageFromCurrentImageContext()
