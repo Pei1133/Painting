@@ -93,8 +93,8 @@ class PictureGridCollectionViewController: UICollectionViewController {
     }
 
     func setUpNavigationBar() {
-        // title
 
+        // title
         let localTitle = NSLocalizedString("Library", comment: "")
         self.navigationItem.title = localTitle
         let font = UIFont(name: "BradleyHandITCTT-Bold", size: 25)
@@ -108,6 +108,15 @@ class PictureGridCollectionViewController: UICollectionViewController {
         let button = UIBarButtonItem(image: #imageLiteral(resourceName: "add"), style: .plain, target: self, action: #selector(addNew))
         button.tintColor = Colors.deepCyanBlue
         self.navigationItem.rightBarButtonItem = button
+
+        // shadow
+        navigationController?.navigationBar.layer.shadowOpacity = 1
+        navigationController?.navigationBar.layer.shadowColor = UIColor(red: 93.0 / 255.0, green: 151.0 / 255.0, blue: 175.0 / 255.0, alpha: 0.85).cgColor
+        navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        navigationController?.navigationBar.layer.shadowRadius = 4
+
+        // hide bottom line
+        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
 
     @objc func addNew() {
