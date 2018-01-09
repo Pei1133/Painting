@@ -20,7 +20,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @IBOutlet weak var color2: UIButton!
     @IBOutlet weak var color3: UIButton!
     @IBOutlet weak var color4: UIButton!
-//    @IBOutlet weak var selectColorView: UIView!
     @IBOutlet weak var colorSlider: ColorSlider!
     @IBOutlet weak var sliderView: UIView!
 
@@ -35,12 +34,11 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         if self.pickedColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
 
             if percentage >= 0.5 {
-
-                self.sliderColor = UIColor(hue: hue, saturation: 1-percentage, brightness: percentage, alpha: alpha)
+                
+                self.sliderColor = UIColor(hue: hue, saturation: saturation, brightness: 1-percentage, alpha: alpha)
             }else {
-
-                self.sliderColor = UIColor(hue: hue, saturation: saturation, brightness: percentage, alpha: alpha)
-                print("pickedColor:\(pickedColor)", "sliderColor:\(sliderColor)")
+                
+                self.sliderColor = UIColor(hue: hue, saturation: percentage*2, brightness: 1-percentage, alpha: alpha)
             }
         }else {
             print("sliderColor error")
@@ -92,7 +90,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     }
     var sliderColor = Colors.lightSkyBlue {
         didSet {
-//            colorSlider.thumbTintColor = sliderColor
+            colorSlider.thumbTintColor = sliderColor
         }
     }
     var adjustColor = Colors.lightSkyBlue
@@ -273,7 +271,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         gradient.frame = sliderView.bounds
         gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
-        gradient.colors = [UIColor.black.cgColor, pickedColor.cgColor, UIColor.white.cgColor]
+        gradient.colors = [UIColor.white.cgColor, pickedColor.cgColor, UIColor.black.cgColor]
         self.sliderView.layer.addSublayer(gradient)
 
         sliderView.layer.cornerRadius = 5.0
