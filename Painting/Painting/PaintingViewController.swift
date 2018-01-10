@@ -155,7 +155,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         let tapLocation: CGPoint = tapRecognizer.location(in: self.imageView)
         self.hitTest(tapLocation: CGPoint(x: (tapLocation.x), y: (tapLocation.y)))
-
     }
 
     // Step 3 :- Make "hitTest" final method
@@ -166,7 +165,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
                 if path.contains(tapLocation) {
 
-//                    print("I am in \(path.svgAttributes)")
+                    print("I am in \(path.svgAttributes)")
                     let strokeWidth = CGFloat(2.0)
                     let strokeColor = UIColor.gray.cgColor
 
@@ -175,15 +174,49 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
                     layer.lineWidth = strokeWidth
                     layer.strokeColor = strokeColor
                     layer.fillColor = sliderColor.cgColor
+                    print("1",imageView.layer.sublayers?.count)
                     self.imageView.layer.addSublayer(layer)
-
+                    print("2",imageView.layer.sublayers?.count)
                     saveToSelectedColors()
-
+                    return
                 } else {
-                    print("no color!")
+                    
                 }
             }
         }
+    }
+
+    @IBAction func tapUndo(_ sender: Any) {
+        
+        
+        self.imageView.layer.sublayers?.removeLast()
+        print("3",imageView.layer.sublayers?.count)
+//        guard let sublayers = imageView.layer.sublayers as? [CAShapeLayer] else { return }
+//
+//
+//
+//        for sublayer in sublayers {
+////            sublayer.removeFromSuperlayer()
+//            sublayer.lineWidth = CGFloat(2.0)
+//            sublayer.strokeColor = UIColor.black.cgColor
+//            sublayer.fillColor = UIColor.white.cgColor
+//            self.imageView.layer.addSublayer(sublayer)
+//        }
+
+//        self.tappedLayer.shadowColor = nil
+//        self.tappedLayer.shadowOffset = CGSize(width: 0, height: 0)
+//        self.tappedLayer.shadowOpacity = 0.0
+//        
+//        for tappedLayer in sublayers{
+//            if let path = tappedLayer.path, path.contains(CGPoint(x: tapLocation.x, y: tapLocation.y)) {
+//                print(tappedLayer)
+//                self.tappedLayer = tappedLayer
+//                self.tappedLayer.shadowColor = UIColor.black.cgColor
+//                self.tappedLayer.shadowOffset = CGSize(width: 0, height: 2.0)
+//                self.tappedLayer.shadowOpacity = 0.7
+//                
+//            }
+//        }
     }
 
     // MARK: - Set up

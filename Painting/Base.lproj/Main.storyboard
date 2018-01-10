@@ -85,6 +85,15 @@
                                             <action selector="tapColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gxh-fT-CVu"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7a-uO-EUp">
+                                        <rect key="frame" x="-2" y="95" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.99999600649999998" green="0.54706488720000002" blue="0.5236816406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="tapUndo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5A4-8t-si3"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="r61-oU-mn1" firstAttribute="leading" secondItem="kVk-ci-Kea" secondAttribute="trailing" constant="30" id="0jG-bQ-834"/>
