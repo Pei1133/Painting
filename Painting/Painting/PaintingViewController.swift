@@ -8,6 +8,7 @@
 
 import UIKit
 import PocketSVG
+import Crashlytics
 
 class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDelegate, CustomImageViewTouchEventDelegate {
 
@@ -131,7 +132,16 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(PaintingViewController.tapDetected(tapRecognizer:)))
         self.imageView.addGestureRecognizer(tapRecognizer)
 
+        // Test Crashlytics
+//        let button = UIButton(type: .roundedRect)
+//        button.frame = CGRect(x: 20, y: 50, width: 100, height: 30)
+//        button.setTitle("Crash", for: [])
+//        button.addTarget(self, action: #selector(self.crashButtonTapped(_:)), for: .touchUpInside)
+//        view.addSubview(button)
     }
+//    @IBAction func crashButtonTapped(_ sender: AnyObject) {
+//        Crashlytics.sharedInstance().crash()
+//    }
 
     func showSVG() {
         let svgImageView = SVGImageView.init(contentsOf: url!)

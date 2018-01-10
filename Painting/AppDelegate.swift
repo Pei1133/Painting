@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = pictureGridCollectionViewController
         window?.makeKeyAndVisible()
         FirebaseApp.configure()
+//        Fabric.sharedSDK().debug = true
         return true
     }
 
