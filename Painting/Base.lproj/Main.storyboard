@@ -90,9 +90,6 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="0.54706488720000002" blue="0.5236816406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="tapUndo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5A4-8t-si3"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

@@ -174,57 +174,25 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
                     layer.lineWidth = strokeWidth
                     layer.strokeColor = strokeColor
                     layer.fillColor = sliderColor.cgColor
-                    print("1",imageView.layer.sublayers?.count)
                     self.imageView.layer.addSublayer(layer)
-                    print("2",imageView.layer.sublayers?.count)
                     saveToSelectedColors()
                     return
-                } else {
-                    
                 }
             }
         }
     }
 
-    @IBAction func tapUndo(_ sender: Any) {
-        
-        
-        self.imageView.layer.sublayers?.removeLast()
-        print("3",imageView.layer.sublayers?.count)
-//        guard let sublayers = imageView.layer.sublayers as? [CAShapeLayer] else { return }
-//
-//
-//
-//        for sublayer in sublayers {
-////            sublayer.removeFromSuperlayer()
-//            sublayer.lineWidth = CGFloat(2.0)
-//            sublayer.strokeColor = UIColor.black.cgColor
-//            sublayer.fillColor = UIColor.white.cgColor
-//            self.imageView.layer.addSublayer(sublayer)
-//        }
+    @objc func tapUndoFill(_ sender: Any) {
 
-//        self.tappedLayer.shadowColor = nil
-//        self.tappedLayer.shadowOffset = CGSize(width: 0, height: 0)
-//        self.tappedLayer.shadowOpacity = 0.0
-//        
-//        for tappedLayer in sublayers{
-//            if let path = tappedLayer.path, path.contains(CGPoint(x: tapLocation.x, y: tapLocation.y)) {
-//                print(tappedLayer)
-//                self.tappedLayer = tappedLayer
-//                self.tappedLayer.shadowColor = UIColor.black.cgColor
-//                self.tappedLayer.shadowOffset = CGSize(width: 0, height: 2.0)
-//                self.tappedLayer.shadowOpacity = 0.7
-//                
-//            }
-//        }
+        self.imageView.layer.sublayers?.removeLast()
     }
 
     // MARK: - Set up
 
     func setUpNavigationBar() {
         // title
-        let localTitle = NSLocalizedString("Color Your Own", comment: "")
-        self.navigationItem.title = localTitle
+//        let localTitle = NSLocalizedString("Color Your Own", comment: "")
+//        self.navigationItem.title = localTitle
         self.navigationController?.navigationBar.barTintColor = UIColor.clear
         let font = UIFont(name: "BradleyHandITCTT-Bold", size: 25)
         let textAttributes = [
@@ -234,14 +202,18 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
 
         // left button
-        let leftButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-chervon"), style: .plain, target: self, action: #selector(goBack))
+        let leftButton = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: self, action: #selector(goBack))
+        let undoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "undo"), style: .plain, target: self, action: #selector(tapUndoFill))
         leftButton.tintColor = Colors.deepCyanBlue
-        self.navigationItem.leftBarButtonItem = leftButton
+        undoButton.tintColor = Colors.deepCyanBlue
+        self.navigationItem.leftBarButtonItems = [leftButton, undoButton]
 
         // right button
-        let rightButton = UIBarButtonItem(image: #imageLiteral(resourceName: "share"), style: .plain, target: self, action: #selector(share))
+        let rightButton = UIBarButtonItem(image: #imageLiteral(resourceName: "share1"), style: .plain, target: self, action: #selector(share))
+        let redoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "redo"), style: .plain, target: self, action: #selector(tapUndoFill))
         rightButton.tintColor = Colors.deepCyanBlue
-        self.navigationItem.rightBarButtonItem = rightButton
+        redoButton.tintColor = Colors.deepCyanBlue
+        self.navigationItem.rightBarButtonItems = [rightButton, redoButton]
 
         // gradient
         let gradient = CAGradientLayer()
