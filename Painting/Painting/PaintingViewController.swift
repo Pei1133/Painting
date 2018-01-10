@@ -74,27 +74,42 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     var pickedColor = Colors.lightSkyBlue {
         didSet {
             setUpSliderView(pickedColor)
-            self.adjustColor = pickedColor
+            colorSlider.value = 0.5
+            self.sliderColor = pickedColor
+//            self.adjustColor = pickedColor
 
         }
     }
     var sliderColor = Colors.lightSkyBlue {
         didSet {
-            self.adjustColor = sliderColor
+//            self.adjustColor = sliderColor
             colorSlider.thumbTintColor = sliderColor
+
         }
     }
-    var adjustColor = Colors.lightSkyBlue {
-        didSet {
-            if adjustColor != color0.backgroundColor && adjustColor != color1.backgroundColor && adjustColor != color2.backgroundColor && adjustColor != color3.backgroundColor && adjustColor != color4.backgroundColor {
-                    color4.backgroundColor = color3.backgroundColor
-                    color3.backgroundColor = color2.backgroundColor
-                    color2.backgroundColor = color1.backgroundColor
-                    color1.backgroundColor = color0.backgroundColor
-                    color0.backgroundColor = adjustColor
-            }
+    func saveToSelectedColors() {
+
+        if sliderColor != color0.backgroundColor && sliderColor != color1.backgroundColor && sliderColor != color2.backgroundColor && sliderColor != color3.backgroundColor && sliderColor != color4.backgroundColor {
+        color4.backgroundColor = color3.backgroundColor
+        color3.backgroundColor = color2.backgroundColor
+        color2.backgroundColor = color1.backgroundColor
+        color1.backgroundColor = color0.backgroundColor
+        color0.backgroundColor = sliderColor
         }
+
     }
+//    var adjustColor = Colors.lightSkyBlue {
+//        didSet {
+////            colorSlider.thumbTintColor = adjustColor
+//            if adjustColor != color0.backgroundColor && adjustColor != color1.backgroundColor && adjustColor != color2.backgroundColor && adjustColor != color3.backgroundColor && adjustColor != color4.backgroundColor {
+//                    color4.backgroundColor = color3.backgroundColor
+//                    color3.backgroundColor = color2.backgroundColor
+//                    color2.backgroundColor = color1.backgroundColor
+//                    color1.backgroundColor = color0.backgroundColor
+//                    color0.backgroundColor = adjustColor
+//            }
+//        }
+//    }
 
 //    @IBAction func tapSave(_ sender: Any) {
 //
@@ -167,8 +182,10 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
                     layer.path = path.cgPath
                     layer.lineWidth = strokeWidth
                     layer.strokeColor = strokeColor
-                    layer.fillColor = adjustColor.cgColor
+                    layer.fillColor = sliderColor.cgColor
                     self.imageView.layer.addSublayer(layer)
+
+                    saveToSelectedColors()
 
                 } else {
                     print("no color!")
@@ -256,6 +273,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         colorSlider.maximumValue = 1.0
         colorSlider.value = 0.5
         colorSlider.isContinuous = false
+        colorSlider.thumbTintColor = Colors.lightSkyBlue
 
         colorSlider.maximumTrackTintColor = UIColor.clear
         colorSlider.minimumTrackTintColor = UIColor.clear
@@ -417,7 +435,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             context?.setBlendMode(CGBlendMode.normal)
             context?.setLineCap(CGLineCap.round)
             context?.setLineWidth(5)
-            context?.setStrokeColor(adjustColor.cgColor)
+            context?.setStrokeColor(sliderColor.cgColor)
             context?.strokePath()
 
             imageView.image = UIGraphicsGetImageFromCurrentImageContext()
