@@ -61,7 +61,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         }else {
             print("sliderColor error")
         }
-
     }
 
     // MARK: - colorPicker
@@ -76,40 +75,23 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             setUpSliderView(pickedColor)
             colorSlider.value = 0.5
             self.sliderColor = pickedColor
-//            self.adjustColor = pickedColor
-
         }
     }
     var sliderColor = Colors.lightSkyBlue {
         didSet {
-//            self.adjustColor = sliderColor
             colorSlider.thumbTintColor = sliderColor
-
         }
     }
     func saveToSelectedColors() {
 
         if sliderColor != color0.backgroundColor && sliderColor != color1.backgroundColor && sliderColor != color2.backgroundColor && sliderColor != color3.backgroundColor && sliderColor != color4.backgroundColor {
-        color4.backgroundColor = color3.backgroundColor
-        color3.backgroundColor = color2.backgroundColor
-        color2.backgroundColor = color1.backgroundColor
-        color1.backgroundColor = color0.backgroundColor
-        color0.backgroundColor = sliderColor
+                color4.backgroundColor = color3.backgroundColor
+                color3.backgroundColor = color2.backgroundColor
+                color2.backgroundColor = color1.backgroundColor
+                color1.backgroundColor = color0.backgroundColor
+                color0.backgroundColor = sliderColor
         }
-
     }
-//    var adjustColor = Colors.lightSkyBlue {
-//        didSet {
-////            colorSlider.thumbTintColor = adjustColor
-//            if adjustColor != color0.backgroundColor && adjustColor != color1.backgroundColor && adjustColor != color2.backgroundColor && adjustColor != color3.backgroundColor && adjustColor != color4.backgroundColor {
-//                    color4.backgroundColor = color3.backgroundColor
-//                    color3.backgroundColor = color2.backgroundColor
-//                    color2.backgroundColor = color1.backgroundColor
-//                    color1.backgroundColor = color0.backgroundColor
-//                    color0.backgroundColor = adjustColor
-//            }
-//        }
-//    }
 
 //    @IBAction func tapSave(_ sender: Any) {
 //
@@ -324,7 +306,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         scrollView.zoomScale = 0.8
         scrollView.minimumZoomScale = 0.5
         scrollView.maximumZoomScale = 3.0
-
     }
 
     // MARK: - ScrollView
@@ -343,7 +324,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         let minScale = min(widthScale, heightScale)
         scrollView.minimumZoomScale = minScale
         scrollView.zoomScale = minScale
-
     }
 
     // 呼叫updateMinZoomScaleForSize
@@ -351,7 +331,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         super.viewDidLayoutSubviews()
         updateMinZoomScaleForSize(view.bounds.size)
-
     }
 
     // 讓圖片置中,每次縮放之後會被呼叫
