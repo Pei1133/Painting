@@ -197,22 +197,25 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     @objc func tapUndoFill(_ sender: Any) {
         
-        
-        guard let removeLastLayer = self.imageView.layer.sublayers?.last as? CAShapeLayer else {return}
-        redoLayers.append(removeLastLayer)
-
-        // redoButton appear
-        self.navigationItem.rightBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(1)
-
-        self.imageView.layer.sublayers?.removeLast()
-
-        // undoButton disappear
         guard let sublayers = self.imageView.layer.sublayers else {return}
-        let fillTotalLayerCount = sublayers.count
+       
+        if sublayers.count > pathCount {
+            guard let removeLastLayer = self.imageView.layer.sublayers?.last as? CAShapeLayer else {return}
+            redoLayers.append(removeLastLayer)
 
-        if fillTotalLayerCount <= pathCount {
-            self.navigationItem.leftBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(0.3)
+            // redoButton appear
+            self.navigationItem.rightBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(1)
 
+            self.imageView.layer.sublayers?.removeLast()
+
+            // undoButton disappear
+    //        guard let sublayers = self.imageView.layer.sublayers else {return}
+//            let afterRemoveLayerCount = sublayers.count
+
+            if sublayers.count <= pathCount {
+                self.navigationItem.leftBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(0.3)
+
+            }
         }
         
     }
