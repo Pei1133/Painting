@@ -165,7 +165,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
                 if path.contains(tapLocation) {
 
-                    print("I am in \(path.svgAttributes)")
+//                    print("I am in \(path.svgAttributes)")
                     let strokeWidth = CGFloat(2.0)
                     let strokeColor = UIColor.gray.cgColor
 
@@ -203,14 +203,14 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         // left button
         let leftButton = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: self, action: #selector(goBack))
-        let undoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "undo"), style: .plain, target: self, action: #selector(tapUndoFill))
+        let undoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "undo1"), style: .plain, target: self, action: #selector(tapUndoFill))
         leftButton.tintColor = Colors.deepCyanBlue
         undoButton.tintColor = Colors.deepCyanBlue
         self.navigationItem.leftBarButtonItems = [leftButton, undoButton]
 
         // right button
         let rightButton = UIBarButtonItem(image: #imageLiteral(resourceName: "share1"), style: .plain, target: self, action: #selector(share))
-        let redoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "redo"), style: .plain, target: self, action: #selector(tapUndoFill))
+        let redoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "redo1"), style: .plain, target: self, action: #selector(tapUndoFill))
         rightButton.tintColor = Colors.deepCyanBlue
         redoButton.tintColor = Colors.deepCyanBlue
         self.navigationItem.rightBarButtonItems = [rightButton, redoButton]
