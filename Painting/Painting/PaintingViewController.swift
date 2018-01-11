@@ -197,11 +197,11 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     @objc func tapUndoFill(_ sender: Any) {
 
-        // redoButton appear
-        self.navigationItem.rightBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(1)
-
         guard let sublayers = self.imageView.layer.sublayers else {return}
         if sublayers.count > pathCount {
+            
+            // redoButton appear
+            self.navigationItem.rightBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(1)
 
             guard let removeLastLayer = self.imageView.layer.sublayers?.last as? CAShapeLayer else {return}
             redoLayers.append(removeLastLayer)
@@ -218,6 +218,13 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     @objc func tapRedoFill(_ sender: Any) {
 
+        guard let sublayers = self.imageView.layer.sublayers else {return}
+        if sublayers.count > pathCount {
+            
+            // undoButton appear
+            self.navigationItem.leftBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(1)
+        }
+        
         let redoCount = redoLayers.count
         if redoCount > 0 {
             self.imageView.layer.addSublayer(redoLayers[redoCount - 1])
@@ -228,8 +235,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
                 self.navigationItem.rightBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(0.3)
             }
         }
-        // undoButton appear
-        self.navigationItem.leftBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(1)
     }
 
     // MARK: - Set up
