@@ -95,8 +95,9 @@ class PictureGridCollectionViewController: UICollectionViewController {
     func setUpNavigationBar() {
 
         // title
-        let localTitle = NSLocalizedString("Library", comment: "")
-        self.navigationItem.title = localTitle
+//        let localTitle = NSLocalizedString("Library", comment: "")
+//        self.navigationItem.title = localTitle
+        self.navigationItem.title = "Library"
         let font = UIFont(name: "BradleyHandITCTT-Bold", size: 25)
         let textAttributes = [
             NSAttributedStringKey.font: font ?? UIFont.systemFont(ofSize: 25),

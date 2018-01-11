@@ -238,6 +238,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         // title
 //        let localTitle = NSLocalizedString("Color Your Own", comment: "")
 //        self.navigationItem.title = localTitle
+        self.navigationItem.title = "ColorLife"
         self.navigationController?.navigationBar.barTintColor = UIColor.clear
         let font = UIFont(name: "BradleyHandITCTT-Bold", size: 25)
         let textAttributes = [
@@ -387,9 +388,8 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     }
 
     // 呼叫updateMinZoomScaleForSize
-    override func viewWillLayoutSubviews() {
-
-        super.viewDidLayoutSubviews()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         updateMinZoomScaleForSize(view.bounds.size)
     }
 
