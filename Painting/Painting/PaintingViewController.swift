@@ -12,6 +12,7 @@ import Crashlytics
 
 class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDelegate, CustomImageViewTouchEventDelegate {
 
+    var url: URL?
     let provider = PathProvider()
     var paths = [SVGBezierPath]()
     var scrollView = UIScrollView()
@@ -19,8 +20,8 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     var imageView = CustomImageView()
     var pictureSize = CGSize.zero
 
-    var url: URL?
     var isFill: Bool = true
+    var redoLayers: [CAShapeLayer] = []
     var lastPoint = CGPoint.zero
     var swiped = false
 
@@ -175,7 +176,13 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
                     layer.strokeColor = strokeColor
                     layer.fillColor = sliderColor.cgColor
                     self.imageView.layer.addSublayer(layer)
+
                     saveToSelectedColors()
+
+                    // undoButton appear
+                    self.navigationItem.leftBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(1)
+                    redoLayers = []
+
                     return
                 }
             }
@@ -184,7 +191,31 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     @objc func tapUndoFill(_ sender: Any) {
 
+        guard let removeLastLayer = self.imageView.layer.sublayers?.last as? CAShapeLayer else {return}
+        redoLayers.append(removeLastLayer)
+
+        // redoButton appear
+        self.navigationItem.rightBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(1)
+
+        // undoButton disappear
+        if redoLayers.count - 1 == 0 {
+            self.navigationItem.leftBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(0.3)
+        }
         self.imageView.layer.sublayers?.removeLast()
+    }
+
+    @objc func tapRedoFill(_ sender: Any) {
+
+        let redoCount = redoLayers.count
+        if redoCount > 0 {
+            self.imageView.layer.addSublayer(redoLayers[redoCount - 1])
+            redoLayers.remove(at: redoCount - 1)
+
+            // redoButton disappear
+            if redoCount - 1 == 0 {
+                self.navigationItem.rightBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(0.3)
+            }
+        }
     }
 
     // MARK: - Set up
@@ -205,14 +236,14 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         let leftButton = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: self, action: #selector(goBack))
         let undoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "undo1"), style: .plain, target: self, action: #selector(tapUndoFill))
         leftButton.tintColor = Colors.deepCyanBlue
-        undoButton.tintColor = Colors.deepCyanBlue
+        undoButton.tintColor = Colors.deepCyanBlue.withAlphaComponent(0.3)
         self.navigationItem.leftBarButtonItems = [leftButton, undoButton]
 
         // right button
         let rightButton = UIBarButtonItem(image: #imageLiteral(resourceName: "share1"), style: .plain, target: self, action: #selector(share))
-        let redoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "redo1"), style: .plain, target: self, action: #selector(tapUndoFill))
+        let redoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "redo1"), style: .plain, target: self, action: #selector(tapRedoFill))
         rightButton.tintColor = Colors.deepCyanBlue
-        redoButton.tintColor = Colors.deepCyanBlue
+        redoButton.tintColor = Colors.deepCyanBlue.withAlphaComponent(0.3)
         self.navigationItem.rightBarButtonItems = [rightButton, redoButton]
 
         // gradient
