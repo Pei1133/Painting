@@ -222,7 +222,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
         if jpgURLs.count > indexPath.row {
 
             let jpgURL = jpgURLs[indexPath.row]
-            
+
             // load JPG
             Nuke.loadImage(
                 with: jpgURL,
