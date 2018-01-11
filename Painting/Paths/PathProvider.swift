@@ -11,11 +11,12 @@ import PocketSVG
 
 class PathProvider {
 
-    func renderPaths(url: URL, imageView: CustomImageView) -> (pictureSize: CGSize, imageView: CustomImageView) {
+    func renderPaths(url: URL, imageView: CustomImageView) -> (pictureSize: CGSize, imageView: CustomImageView, pathCount: Int) {
 
         var pictureSize = CGSize.zero
         let strokeWidth = CGFloat(2.0)
         let strokeColor = UIColor.black.cgColor
+        var pathCount = 0
 
         let paths = SVGBezierPath.pathsFromSVG(at: url)
 
@@ -28,9 +29,10 @@ class PathProvider {
             layer.strokeColor = strokeColor
             layer.fillColor = UIColor.clear.cgColor
             imageView.layer.addSublayer(layer)
+            pathCount += 1
         }
 
-        return (pictureSize: pictureSize, imageView: imageView)
+        return (pictureSize: pictureSize, imageView: imageView, pathCount: pathCount)
     }
 
     func renderCellPaths(

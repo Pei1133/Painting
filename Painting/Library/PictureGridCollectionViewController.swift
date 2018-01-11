@@ -222,8 +222,8 @@ class PictureGridCollectionViewController: UICollectionViewController {
         if jpgURLs.count > indexPath.row {
 
             let jpgURL = jpgURLs[indexPath.row]
-            // remove image & load JPG
-
+            
+            // load JPG
             Nuke.loadImage(
                 with: jpgURL,
                 into: cell.pictureImageView
@@ -232,7 +232,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
 //        let imageURL = imageURLs[indexPath.row]
 
-//        // remove subviews & load SVG
+//    // remove subviews & load SVG
 //        let subviews = cell.pictureImageView.subviews
 //        for subview in subviews {
 //            subview.removeFromSuperview()
@@ -260,7 +260,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
 //                for pathLayer in pathLayers {
 //
 //                    cell.pictureImageView.layer.addSublayer(pathLayer)
-//
 //                }
 //            }
 //        )

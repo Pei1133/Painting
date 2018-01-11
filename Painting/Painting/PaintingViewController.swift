@@ -19,6 +19,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     var pictureView = UIView()
     var imageView = CustomImageView()
     var pictureSize = CGSize.zero
+    var pathCount = 0
 
     var isFill: Bool = true
     var redoLayers: [CAShapeLayer] = []
@@ -113,6 +114,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             let renderParameter = provider.renderPaths(url: url, imageView: imageView)
             self.imageView = renderParameter.imageView
             self.pictureSize = renderParameter.pictureSize
+            self.pathCount = renderParameter.pathCount
 
         }else {
             print("no URL")
@@ -181,6 +183,10 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
                     // undoButton appear
                     self.navigationItem.leftBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(1)
+                    
+                    // redoButton disappear
+                    self.navigationItem.rightBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(0.3)
+
                     redoLayers = []
 
                     return
@@ -190,18 +196,25 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     }
 
     @objc func tapUndoFill(_ sender: Any) {
-
+        
+        
         guard let removeLastLayer = self.imageView.layer.sublayers?.last as? CAShapeLayer else {return}
         redoLayers.append(removeLastLayer)
 
         // redoButton appear
         self.navigationItem.rightBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(1)
 
-        // undoButton disappear
-        if redoLayers.count - 1 == 0 {
-            self.navigationItem.leftBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(0.3)
-        }
         self.imageView.layer.sublayers?.removeLast()
+
+        // undoButton disappear
+        guard let sublayers = self.imageView.layer.sublayers else {return}
+        let fillTotalLayerCount = sublayers.count
+
+        if fillTotalLayerCount <= pathCount {
+            self.navigationItem.leftBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(0.3)
+
+        }
+        
     }
 
     @objc func tapRedoFill(_ sender: Any) {
@@ -216,6 +229,8 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
                 self.navigationItem.rightBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(0.3)
             }
         }
+        // undoButton appear
+        self.navigationItem.leftBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(1)
     }
 
     // MARK: - Set up
