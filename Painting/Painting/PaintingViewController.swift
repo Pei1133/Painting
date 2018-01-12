@@ -9,9 +9,22 @@
 import UIKit
 import PocketSVG
 import Crashlytics
+import Sharaku
 
 class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDelegate, CustomImageViewTouchEventDelegate {
 
+    @IBAction func tapTestButton(_ sender: Any) {
+
+        // UIImageView -> JPG, PNG (quality, size)
+        // -> UIImageView.image = newImage
+
+        let image = UIImage.init(view: imageView)
+        let vc = SHViewController(image: image)
+        vc.delegate = self
+        self.present(vc, animated: true, completion: nil)
+    }
+
+    @IBOutlet weak var testImageView: UIImageView!
     var url: URL?
     let provider = PathProvider()
     var paths = [SVGBezierPath]()
@@ -128,6 +141,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         setUpButton()
         setUpColorSlider()
         setUpSliderView(pickedColor)
+        setUpTestImageView()
 //        showSVG()
 
      // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
@@ -374,6 +388,17 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         scrollView.maximumZoomScale = 3.0
     }
 
+    func setUpTestImageView() {
+
+        // Set up ImageView
+        testImageView.frame = CGRect(x: 0, y: 0, width: 200, height: 150)
+        //        imageView.layer.borderColor = UIColor.red.cgColor
+        //        imageView.layer.borderWidth = 3.0
+
+        // Add subviews
+        imageView.addSubview(testImageView)
+    }
+    
     // MARK: - ScrollView
 
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -458,6 +483,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         let PaintingViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
 
         self.present(PaintingViewController, animated: true, completion: nil)
+
     }
 
     // MARK: - Painting Color
@@ -527,5 +553,28 @@ extension UIImage {
         UIGraphicsEndImageContext()
 
         self.init(cgImage: image!.cgImage!)
+        
+//        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 200, height: 200))
+//
+//        let image = renderer.image { (context) in
+//            UIColor.darkGray.setStroke()
+//            context.stroke(renderer.format.bounds)
+////            UIColor(colorLiteralRed: 158/255, green: 215/255, blue: 245/255, alpha: 1).setFill()
+//            context.fill(CGRect(x: 1, y: 1, width: 140, height: 140))
+//        }
+//
+//        self.init(cgImage: image.cgImage!)
     }
 }
+
+extension PaintingViewController: SHViewControllerDelegate {
+    func shViewControllerImageDidFilter(image: UIImage) {
+        // Filtered image will be returned here.
+        testImageView.image = image
+    }
+
+    func shViewControllerDidCancel() {
+        // This will be called when you cancel filtering the image.
+    }
+}
+

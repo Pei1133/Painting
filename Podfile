@@ -15,6 +15,7 @@ target 'Painting' do
   pod 'Nuke', '5.2'
   pod 'Fabric', '~> 1.7.2'
   pod 'Crashlytics', '~> 3.9.3'
+  pod "Sharaku"
 
 
 end
