@@ -220,11 +220,11 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         guard let sublayers = self.imageView.layer.sublayers else {return}
         if sublayers.count > pathCount {
-            
+
             // undoButton appear
             self.navigationItem.leftBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(1)
         }
-        
+
         let redoCount = redoLayers.count
         if redoCount > 0 {
             self.imageView.layer.addSublayer(redoLayers[redoCount - 1])
