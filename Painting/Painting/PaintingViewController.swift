@@ -477,13 +477,16 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @objc func share(_ sender: Any) {
 
         let image = UIImage.init(view: imageView)
+        
+        let recalculateImage = resizeImage(image: image, targetSize: CGSize(width: 1024, height: 1024))
+        
+        let imageToShare = [recalculateImage]
 
-        let imageToShare = [image]
+        if !imageToShare.isEmpty {
+            let PaintingViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
 
-        let PaintingViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
-
-        self.present(PaintingViewController, animated: true, completion: nil)
-
+            self.present(PaintingViewController, animated: true, completion: nil)
+        }
     }
 
     // MARK: - Painting Color
@@ -538,32 +541,48 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             drawLines(fromPoint: lastPoint, toPoint: lastPoint)
         }
     }
+    
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+        
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
+        }
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
 }
 
 extension UIImage {
 
     convenience init(view: UIView) {
 
-        UIGraphicsBeginImageContext(view.bounds.size)
+        UIGraphicsBeginImageContext(view.frame.size)
 
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
 
         let image = UIGraphicsGetImageFromCurrentImageContext()
 
         UIGraphicsEndImageContext()
-
-        self.init(cgImage: image!.cgImage!)
+        let compressImageData = UIImageJPEGRepresentation(image!, 0.0)
+        self.init(data: compressImageData!)!
         
-//        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 200, height: 200))
-//
-//        let image = renderer.image { (context) in
-//            UIColor.darkGray.setStroke()
-//            context.stroke(renderer.format.bounds)
-////            UIColor(colorLiteralRed: 158/255, green: 215/255, blue: 245/255, alpha: 1).setFill()
-//            context.fill(CGRect(x: 1, y: 1, width: 140, height: 140))
-//        }
-//
-//        self.init(cgImage: image.cgImage!)
     }
 }
 
