@@ -213,7 +213,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         guard let sublayers = self.imageView.layer.sublayers else {return}
         if sublayers.count > pathCount {
-            
+
             // redoButton appear
             self.navigationItem.rightBarButtonItems![1].tintColor = Colors.deepCyanBlue.withAlphaComponent(1)
 
@@ -314,19 +314,38 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         color0.backgroundColor = Colors.littleRed
         color0.layer.cornerRadius = color0.frame.height*0.5
-        color0.clipsToBounds = true
+        color0.layer.shadowColor = Colors.coolGray.cgColor
+        color0.layer.shadowRadius = 2.0
+        color0.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        color0.layer.shadowOpacity = 1.0
+        
         color1.backgroundColor = Colors.lightOrange
-        color1.layer.cornerRadius = color0.frame.height*0.5
-        color1.clipsToBounds = true
+        color1.layer.cornerRadius = color1.frame.height*0.5
+        color1.layer.shadowColor = Colors.coolGray.cgColor
+        color1.layer.shadowRadius = 2.0
+        color1.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        color1.layer.shadowOpacity = 1.0
+        
         color2.backgroundColor = Colors.littleGreen
-        color2.layer.cornerRadius = color0.frame.height*0.5
-        color2.clipsToBounds = true
+        color2.layer.cornerRadius = color2.frame.height*0.5
+        color2.layer.shadowColor = Colors.coolGray.cgColor
+        color2.layer.shadowRadius = 2.0
+        color2.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        color2.layer.shadowOpacity = 1.0
+        
         color3.backgroundColor = Colors.paleTurquoise
-        color3.layer.cornerRadius = color0.frame.height*0.5
-        color3.clipsToBounds = true
+        color3.layer.cornerRadius = color3.frame.height*0.5
+        color3.layer.shadowColor = Colors.coolGray.cgColor
+        color3.layer.shadowRadius = 2.0
+        color3.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        color3.layer.shadowOpacity = 1.0
+        
         color4.backgroundColor = Colors.littleBlue
-        color4.layer.cornerRadius = color0.frame.height*0.5
-        color4.clipsToBounds = true
+        color4.layer.cornerRadius = color4.frame.height*0.5
+        color4.layer.shadowColor = Colors.coolGray.cgColor
+        color4.layer.shadowRadius = 2.0
+        color4.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        color4.layer.shadowOpacity = 1.0
     }
 
     func setUpColorSlider() {
@@ -334,7 +353,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         colorSlider.minimumValue = 0.0
         colorSlider.maximumValue = 1.0
         colorSlider.value = 0.5
-        colorSlider.isContinuous = false
+        colorSlider.isContinuous = true
         colorSlider.thumbTintColor = Colors.lightSkyBlue
 
         colorSlider.maximumTrackTintColor = UIColor.clear
@@ -398,7 +417,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         // Add subviews
         imageView.addSubview(testImageView)
     }
-    
+
     // MARK: - ScrollView
 
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -477,12 +496,13 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @objc func share(_ sender: Any) {
 
         let image = UIImage.init(view: imageView)
-        
+
         let recalculateImage = resizeImage(image: image, targetSize: CGSize(width: 1024, height: 1024))
-        
+
         let imageToShare = [recalculateImage]
 
         if !imageToShare.isEmpty {
+            
             let PaintingViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
 
             self.present(PaintingViewController, animated: true, completion: nil)
@@ -541,13 +561,13 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             drawLines(fromPoint: lastPoint, toPoint: lastPoint)
         }
     }
-    
+
     func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
         let size = image.size
-        
+
         let widthRatio  = targetSize.width  / size.width
         let heightRatio = targetSize.height / size.height
-        
+
         // Figure out what our orientation is, and use that to form the rectangle
         var newSize: CGSize
         if(widthRatio > heightRatio) {
@@ -555,16 +575,16 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         } else {
             newSize = CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
         }
-        
+
         // This is the rect that we've calculated out and this is what is actually used below
         let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-        
+
         // Actually do the resizing to the rect using the ImageContext stuff
         UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
         image.draw(in: rect)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
+
         return newImage!
     }
 }
@@ -573,16 +593,18 @@ extension UIImage {
 
     convenience init(view: UIView) {
 
-        UIGraphicsBeginImageContext(view.frame.size)
+        UIGraphicsBeginImageContext(view.bounds.size)
 
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
 
         let image = UIGraphicsGetImageFromCurrentImageContext()
 
         UIGraphicsEndImageContext()
-        let compressImageData = UIImageJPEGRepresentation(image!, 0.0)
-        self.init(data: compressImageData!)!
         
+        let compressImageData = UIImageJPEGRepresentation(image!, 1.0)
+        
+        self.init(data: compressImageData!)!
+
     }
 }
 
@@ -596,4 +618,3 @@ extension PaintingViewController: SHViewControllerDelegate {
         // This will be called when you cancel filtering the image.
     }
 }
-
