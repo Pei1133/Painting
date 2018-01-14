@@ -10,6 +10,7 @@
 		9247765BA685684EFFE5F75D /* Pods_Painting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76721B4B1CCB252FA8ED0565 /* Pods_Painting.framework */; };
 		AB171D371FEB8E5B00CCFB7F /* PathProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB171D361FEB8E5B00CCFB7F /* PathProvider.swift */; };
 		AB1E41CC1FE3CB7E00D3B4B8 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */; };
+		AB40093B200B769900AF68DB /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40093A200B769900AF68DB /* ColorButton.swift */; };
 		AB407AB820027CE800023A16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB407AB720027CE800023A16 /* GoogleService-Info.plist */; };
 		AB68407A2002708400FDBF04 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB68407C2002708400FDBF04 /* Localizable.strings */; };
 		AB68407F2002708500FDBF04 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB6840812002708500FDBF04 /* InfoPlist.strings */; };
@@ -39,6 +40,7 @@
 		7C76A4F43C507D2665D62989 /* Pods-Painting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Painting.release.xcconfig"; path = "Pods/Target Support Files/Pods-Painting/Pods-Painting.release.xcconfig"; sourceTree = "<group>"; };
 		AB171D361FEB8E5B00CCFB7F /* PathProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathProvider.swift; sourceTree = "<group>"; };
 		AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
+		AB40093A200B769900AF68DB /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
 		AB407AB720027CE800023A16 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AB68407620026DB400FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		AB68407720026DB400FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				AB9FA58F1FE2A99300055C50 /* PaintingViewController.swift */,
 				AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */,
 				ABE5AED51FF927DE007A96A4 /* ColorSlider.swift */,
+				AB40093A200B769900AF68DB /* ColorButton.swift */,
 			);
 			path = Painting;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				ABE5AED81FF96577007A96A4 /* UIColor+Utilities.swift in Sources */,
 				AB9FA5901FE2A99300055C50 /* PaintingViewController.swift in Sources */,
 				ABDE77161FFDCB1100BF95A6 /* HeaderView.swift in Sources */,
+				AB40093B200B769900AF68DB /* ColorButton.swift in Sources */,
 				ABE5AED61FF927DE007A96A4 /* ColorSlider.swift in Sources */,
 				AB8EC8321FE90D9B00C19F60 /* PictureGridCollectionViewController.swift in Sources */,
 				AB9FA58E1FE2A99300055C50 /* AppDelegate.swift in Sources */,

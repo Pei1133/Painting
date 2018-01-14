@@ -19,7 +19,8 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         // -> UIImageView.image = newImage
 
         let image = UIImage.init(view: imageView)
-        let vc = SHViewController(image: image)
+        let recalculateImage = resizeImage(image: image, targetSize: CGSize(width: 1024, height: 1024))
+        let vc = SHViewController(image: recalculateImage)
         vc.delegate = self
         self.present(vc, animated: true, completion: nil)
     }
@@ -41,16 +42,16 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     // MARK: - color button
     @IBOutlet weak var paintingView: UIView!
-    @IBOutlet weak var color0: UIButton!
-    @IBOutlet weak var color1: UIButton!
-    @IBOutlet weak var color2: UIButton!
-    @IBOutlet weak var color3: UIButton!
-    @IBOutlet weak var color4: UIButton!
-    @IBAction func tapColor(_ sender: UIButton) {
-
+    @IBOutlet weak var color0: ColorButton!
+    @IBOutlet weak var color1: ColorButton!
+    @IBOutlet weak var color2: ColorButton!
+    @IBOutlet weak var color3: ColorButton!
+    @IBOutlet weak var color4: ColorButton!
+    
+    @IBAction func tapColor(_ sender: ColorButton) {
         pickedColor = sender.backgroundColor!
     }
-
+    
     // MARK: - colorSlider
     var sliderPercentage: CGFloat = 0.5
     @IBOutlet weak var colorSlider: ColorSlider!
@@ -313,39 +314,10 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     func setUpButton() {
 
         color0.backgroundColor = Colors.littleRed
-        color0.layer.cornerRadius = color0.frame.height*0.5
-        color0.layer.shadowColor = Colors.coolGray.cgColor
-        color0.layer.shadowRadius = 2.0
-        color0.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        color0.layer.shadowOpacity = 1.0
-        
         color1.backgroundColor = Colors.lightOrange
-        color1.layer.cornerRadius = color1.frame.height*0.5
-        color1.layer.shadowColor = Colors.coolGray.cgColor
-        color1.layer.shadowRadius = 2.0
-        color1.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        color1.layer.shadowOpacity = 1.0
-        
         color2.backgroundColor = Colors.littleGreen
-        color2.layer.cornerRadius = color2.frame.height*0.5
-        color2.layer.shadowColor = Colors.coolGray.cgColor
-        color2.layer.shadowRadius = 2.0
-        color2.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        color2.layer.shadowOpacity = 1.0
-        
         color3.backgroundColor = Colors.paleTurquoise
-        color3.layer.cornerRadius = color3.frame.height*0.5
-        color3.layer.shadowColor = Colors.coolGray.cgColor
-        color3.layer.shadowRadius = 2.0
-        color3.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        color3.layer.shadowOpacity = 1.0
-        
         color4.backgroundColor = Colors.littleBlue
-        color4.layer.cornerRadius = color4.frame.height*0.5
-        color4.layer.shadowColor = Colors.coolGray.cgColor
-        color4.layer.shadowRadius = 2.0
-        color4.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        color4.layer.shadowOpacity = 1.0
     }
 
     func setUpColorSlider() {
@@ -499,14 +471,18 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         let recalculateImage = resizeImage(image: image, targetSize: CGSize(width: 1024, height: 1024))
 
-        let imageToShare = [recalculateImage]
-
-        if !imageToShare.isEmpty {
-            
-            let PaintingViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
-
-            self.present(PaintingViewController, animated: true, completion: nil)
-        }
+        let vc = SHViewController(image: recalculateImage)
+        vc.delegate = self
+        self.present(vc, animated: true, completion: nil)
+        
+//        let imageToShare = [recalculateImage]
+//
+//        if !imageToShare.isEmpty {
+//
+//            let PaintingViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+//
+//            self.present(PaintingViewController, animated: true, completion: nil)
+//        }
     }
 
     // MARK: - Painting Color
@@ -600,9 +576,9 @@ extension UIImage {
         let image = UIGraphicsGetImageFromCurrentImageContext()
 
         UIGraphicsEndImageContext()
-        
-        let compressImageData = UIImageJPEGRepresentation(image!, 1.0)
-        
+
+        let compressImageData = UIImageJPEGRepresentation(image!, 0.5)
+
         self.init(data: compressImageData!)!
 
     }
@@ -611,7 +587,15 @@ extension UIImage {
 extension PaintingViewController: SHViewControllerDelegate {
     func shViewControllerImageDidFilter(image: UIImage) {
         // Filtered image will be returned here.
-        testImageView.image = image
+//        testImageView.image = image
+        let imageToShare = [image]
+        
+        if !imageToShare.isEmpty {
+            
+            let PaintingViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+            
+            self.present(PaintingViewController, animated: true, completion: nil)
+        }
     }
 
     func shViewControllerDidCancel() {
