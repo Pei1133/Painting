@@ -36,7 +36,18 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @IBOutlet weak var color4: ColorButton!
 
     @IBAction func tapColor(_ sender: ColorButton) {
+
         pickedColor = sender.backgroundColor!
+//        var saturation: CGFloat = 0.0
+//        var brightness: CGFloat = 0.0
+//        var hue: CGFloat = 0.0
+//        var alpha: CGFloat = 0.0
+//
+//        let selectedColor = sender.backgroundColor!
+//        if selectedColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
+//
+//            self.pickedColor = UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: alpha)
+//        }
     }
 
     // MARK: - colorSlider
@@ -79,6 +90,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             setUpSliderView(pickedColor)
             colorSlider.value = 0.5
             self.sliderColor = pickedColor
+            print("aaa,\(pickedColor)")
         }
     }
     var sliderColor = Colors.lightSkyBlue {
@@ -286,11 +298,11 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     func setUpButton() {
 
-        color0.backgroundColor = Colors.littleRed
-        color1.backgroundColor = Colors.lightOrange
-        color2.backgroundColor = Colors.littleGreen
-        color3.backgroundColor = Colors.paleTurquoise
-        color4.backgroundColor = Colors.littleBlue
+        color0.backgroundColor = UIColor.red
+        color1.backgroundColor = UIColor.orange
+        color2.backgroundColor = UIColor.yellow
+        color3.backgroundColor = UIColor.green
+        color4.backgroundColor = UIColor.blue
     }
 
     func setUpColorSlider() {
