@@ -158,7 +158,7 @@ public class SHViewController: UIViewController {
         if let delegate = self.delegate {
             delegate.shViewControllerImageDidFilter(image: (imageView?.image)!)
         }
-        dismiss(animated: true, completion: nil)
+//        dismiss(animated: true, completion: nil)
     }
 }
 

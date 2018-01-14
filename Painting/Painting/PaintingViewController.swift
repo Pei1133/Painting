@@ -13,19 +13,6 @@ import Sharaku
 
 class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDelegate, CustomImageViewTouchEventDelegate {
 
-    @IBAction func tapTestButton(_ sender: Any) {
-
-        // UIImageView -> JPG, PNG (quality, size)
-        // -> UIImageView.image = newImage
-
-        let image = UIImage.init(view: imageView)
-        let recalculateImage = resizeImage(image: image, targetSize: CGSize(width: 1024, height: 1024))
-        let vc = SHViewController(image: recalculateImage)
-        vc.delegate = self
-        self.present(vc, animated: true, completion: nil)
-    }
-
-    @IBOutlet weak var testImageView: UIImageView!
     var url: URL?
     let provider = PathProvider()
     var paths = [SVGBezierPath]()
@@ -47,11 +34,11 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @IBOutlet weak var color2: ColorButton!
     @IBOutlet weak var color3: ColorButton!
     @IBOutlet weak var color4: ColorButton!
-    
+
     @IBAction func tapColor(_ sender: ColorButton) {
         pickedColor = sender.backgroundColor!
     }
-    
+
     // MARK: - colorSlider
     var sliderPercentage: CGFloat = 0.5
     @IBOutlet weak var colorSlider: ColorSlider!
@@ -142,7 +129,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         setUpButton()
         setUpColorSlider()
         setUpSliderView(pickedColor)
-        setUpTestImageView()
 //        showSVG()
 
      // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
@@ -150,16 +136,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(PaintingViewController.tapDetected(tapRecognizer:)))
         self.imageView.addGestureRecognizer(tapRecognizer)
 
-        // Test Crashlytics
-//        let button = UIButton(type: .roundedRect)
-//        button.frame = CGRect(x: 20, y: 50, width: 100, height: 30)
-//        button.setTitle("Crash", for: [])
-//        button.addTarget(self, action: #selector(self.crashButtonTapped(_:)), for: .touchUpInside)
-//        view.addSubview(button)
     }
-//    @IBAction func crashButtonTapped(_ sender: AnyObject) {
-//        Crashlytics.sharedInstance().crash()
-//    }
 
     func showSVG() {
         let svgImageView = SVGImageView.init(contentsOf: url!)
@@ -305,10 +282,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         colorPicker.layer.cornerRadius = 5.0
         colorPicker.clipsToBounds = true
-        colorPicker.layer.shadowColor = UIColor.black.cgColor
-        colorPicker.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        colorPicker.layer.shadowOpacity = 0.3
-        colorPicker.layer.shadowRadius = 2.0
     }
 
     func setUpButton() {
@@ -377,17 +350,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         scrollView.zoomScale = 0.8
         scrollView.minimumZoomScale = 0.5
         scrollView.maximumZoomScale = 3.0
-    }
-
-    func setUpTestImageView() {
-
-        // Set up ImageView
-        testImageView.frame = CGRect(x: 0, y: 0, width: 200, height: 150)
-        //        imageView.layer.borderColor = UIColor.red.cgColor
-        //        imageView.layer.borderWidth = 3.0
-
-        // Add subviews
-        imageView.addSubview(testImageView)
     }
 
     // MARK: - ScrollView
@@ -469,20 +431,15 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         let image = UIImage.init(view: imageView)
 
-        let recalculateImage = resizeImage(image: image, targetSize: CGSize(width: 1024, height: 1024))
+        let recalculateImage = resizeImage(image: image, targetSize: CGSize(width: 800, height: 800))
 
-        let vc = SHViewController(image: recalculateImage)
-        vc.delegate = self
-        self.present(vc, animated: true, completion: nil)
-        
-//        let imageToShare = [recalculateImage]
-//
-//        if !imageToShare.isEmpty {
-//
-//            let PaintingViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
-//
-//            self.present(PaintingViewController, animated: true, completion: nil)
-//        }
+        // choose filter
+        let filterController = SHViewController(image: recalculateImage)
+
+        filterController.delegate = self
+
+        self.present(filterController, animated: true, completion: nil)
+
     }
 
     // MARK: - Painting Color
@@ -585,16 +542,21 @@ extension UIImage {
 }
 
 extension PaintingViewController: SHViewControllerDelegate {
+
     func shViewControllerImageDidFilter(image: UIImage) {
         // Filtered image will be returned here.
-//        testImageView.image = image
+
+        // filterController dismiss
+        dismiss(animated: true, completion: nil)
+
+        // ShareController appear
         let imageToShare = [image]
-        
+
         if !imageToShare.isEmpty {
-            
-            let PaintingViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
-            
-            self.present(PaintingViewController, animated: true, completion: nil)
+
+            let shareViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+
+            self.present(shareViewController, animated: true, completion: nil)
         }
     }
 
