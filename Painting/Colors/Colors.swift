@@ -25,5 +25,9 @@ struct Colors {
     static let littleBlue = UIColor(red: 84.0 / 255.0, green: 122.0 / 255.0, blue: 165.0 / 255.0, alpha: 1.0)
     static let lightRed = UIColor(red: 252.0 / 255.0, green: 236.0 / 255.0, blue: 236.0 / 255.0, alpha: 1.0)
     static let littleRed = UIColor(red: 245.0 / 255.0, green: 193.0 / 255.0, blue: 192.0 / 255.0, alpha: 1.0)
-    static let blue = UIColor(red: 0.0 / 255.0, green: 0.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+    static let orange = UIColor(red: 255.0 / 255.0, green: 193.0 / 255.0, blue: 7.0 / 255.0, alpha: 1.0)
+    static let yellow = UIColor(red: 255.0 / 255.0, green: 235.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
+    static let green = UIColor(red: 31.0 / 255.0, green: 255.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0)
+    static let darkBlue = UIColor(red: 4.0 / 255.0, green: 0.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+
 }
