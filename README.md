@@ -1,4 +1,4 @@
-# ColorLife
+# ColorLife <kbd><img src="https://github.com/Pei1133/Painting/blob/fun8/Screenshot/ICON.png" width="40"></kbd>
 
 由你來創造屬於自己的繽紛多彩世界
 
