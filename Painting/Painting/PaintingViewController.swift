@@ -435,10 +435,10 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
         let size = image.size
-        
+
         let widthRatio  = targetSize.width  / size.width
         let heightRatio = targetSize.height / size.height
-        
+
         // Figure out what our orientation is, and use that to form the rectangle
         var newSize: CGSize
         if(widthRatio > heightRatio) {
@@ -446,16 +446,16 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         } else {
             newSize = CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
         }
-        
+
         // This is the rect that we've calculated out and this is what is actually used below
         let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-        
+
         // Actually do the resizing to the rect using the ImageContext stuff
         UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
         image.draw(in: rect)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
+
         return newImage!
     }
 
@@ -469,7 +469,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         let image = UIImage.init(view: imageView)
 
-        let recalculateImage = resizeImage(image: image, targetSize: CGSize(width: 800, height: 800))
+        let recalculateImage = resizeImage(image: image, targetSize: CGSize(width: 1000, height: 1000))
 
         // choose filter
         let filterController = SHViewController(image: recalculateImage)
@@ -538,7 +538,7 @@ extension UIImage {
 
     convenience init(view: UIView) {
 
-        UIGraphicsBeginImageContext(view.bounds.size)
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 0.1)
 
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
 
@@ -546,7 +546,7 @@ extension UIImage {
 
         UIGraphicsEndImageContext()
 
-        let compressImageData = UIImageJPEGRepresentation(image!, 0.5)
+        let compressImageData = UIImageJPEGRepresentation(image!, 1)
 
         self.init(data: compressImageData!)!
 
