@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = pictureGridCollectionViewController
         window?.makeKeyAndVisible()
         FirebaseApp.configure()
+        let queue = DispatchQueue.global()
+        Database.database().callbackQueue = queue
         Fabric.sharedSDK().debug = true
         return true
     }

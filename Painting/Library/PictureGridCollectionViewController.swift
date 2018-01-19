@@ -175,8 +175,9 @@ class PictureGridCollectionViewController: UICollectionViewController {
                 let jpgURL = URL(string: jpgurl)!
                 self?.imageURLs.append(imageURL)
                 self?.jpgURLs.append(jpgURL)
-                self?.collectionView?.reloadData()
-
+                DispatchQueue.main.async {
+                    self?.collectionView?.reloadData()
+                }
             }
             }, withCancel: nil)
     }
@@ -198,7 +199,9 @@ class PictureGridCollectionViewController: UICollectionViewController {
                 let jpgURL = URL(string: jpgurl)!
                 self?.imageURLs.append(imageURL)
                 self?.jpgURLs.append(jpgURL)
-                self?.collectionView?.reloadData()
+                DispatchQueue.main.async {
+                    self?.collectionView?.reloadData()
+                }
             }
             }, withCancel: nil)
     }
