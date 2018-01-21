@@ -11,11 +11,11 @@ import UIKit
 class LandingViewController: UIViewController {
 
     @IBOutlet weak var landingImageView: UIImageView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Colors.backgroundGreen
-        
+
         // An animated UIImage
 //        self.landingImageView.image = UIImage.gif(name: "landing")
         self.landingImageView.image = #imageLiteral(resourceName: "notebook")
@@ -28,7 +28,6 @@ class LandingViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation

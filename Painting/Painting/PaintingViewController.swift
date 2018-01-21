@@ -150,11 +150,11 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         self.imageView.addGestureRecognizer(tapRecognizer)
 
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
 //        SVProgressHUD.dismiss()
     }
-    
+
     func showSVG() {
         let svgImageView = SVGImageView.init(contentsOf: url!)
         svgImageView.frame = self.view.bounds
