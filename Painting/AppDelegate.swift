@@ -20,13 +20,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let layout = UICollectionViewLayout()
         let vc = PictureGridCollectionViewController(collectionViewLayout: layout)
         let pictureGridCollectionViewController = UINavigationController(rootViewController: vc)
+        
+        let storyboard = UIStoryboard(name: "Landing", bundle: nil)
+        let landingViewController = storyboard.instantiateViewController(withIdentifier: "Landing") as? LandingViewController
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = pictureGridCollectionViewController
+//        window?.rootViewController = pictureGridCollectionViewController
+        window?.rootViewController = landingViewController
         window?.makeKeyAndVisible()
+        
         FirebaseApp.configure()
+        
         let queue = DispatchQueue.global()
         Database.database().callbackQueue = queue
+        
         Fabric.sharedSDK().debug = true
         return true
     }

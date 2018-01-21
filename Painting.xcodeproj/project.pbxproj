@@ -12,6 +12,8 @@
 		AB1E41CC1FE3CB7E00D3B4B8 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */; };
 		AB40093B200B769900AF68DB /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40093A200B769900AF68DB /* ColorButton.swift */; };
 		AB407AB820027CE800023A16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB407AB720027CE800023A16 /* GoogleService-Info.plist */; };
+		AB4532142014D8B1004361FD /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4532132014D8B0004361FD /* LandingViewController.swift */; };
+		AB4532162014DA30004361FD /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB4532152014DA30004361FD /* Landing.storyboard */; };
 		AB68407A2002708400FDBF04 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB68407C2002708400FDBF04 /* Localizable.strings */; };
 		AB68407F2002708500FDBF04 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB6840812002708500FDBF04 /* InfoPlist.strings */; };
 		AB8EC82F1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */; };
@@ -42,6 +44,8 @@
 		AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		AB40093A200B769900AF68DB /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
 		AB407AB720027CE800023A16 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AB4532132014D8B0004361FD /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		AB4532152014DA30004361FD /* Landing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Landing.storyboard; sourceTree = "<group>"; };
 		AB68407620026DB400FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		AB68407720026DB400FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		AB68407B2002708400FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -119,6 +123,15 @@
 			path = SVG;
 			sourceTree = "<group>";
 		};
+		AB4532122014D800004361FD /* Landing */ = {
+			isa = PBXGroup;
+			children = (
+				AB4532132014D8B0004361FD /* LandingViewController.swift */,
+				AB4532152014DA30004361FD /* Landing.storyboard */,
+			);
+			path = Landing;
+			sourceTree = "<group>";
+		};
 		AB8EC8291FE90BAF00C19F60 /* Painting */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */,
+				AB4532122014D800004361FD /* Landing */,
 				AB1E41CD1FE3CC3200D3B4B8 /* Library */,
 				AB8EC8291FE90BAF00C19F60 /* Painting */,
 				AB171D351FEB8E2500CCFB7F /* Paths */,
@@ -273,6 +287,7 @@
 				AB9A80A71FECF5D1000434E7 /* cabin.svg in Resources */,
 				AB68407A2002708400FDBF04 /* Localizable.strings in Resources */,
 				AB9FA5931FE2A99300055C50 /* Main.storyboard in Resources */,
+				AB4532162014DA30004361FD /* Landing.storyboard in Resources */,
 				ABDE77171FFDCB1100BF95A6 /* HeaderView.xib in Resources */,
 				ABBAF1C91FE90F7200676426 /* PictureGridCollectionViewCell.xib in Resources */,
 				AB407AB820027CE800023A16 /* GoogleService-Info.plist in Resources */,
@@ -394,6 +409,7 @@
 				ABE5AED81FF96577007A96A4 /* UIColor+Utilities.swift in Sources */,
 				AB9FA5901FE2A99300055C50 /* PaintingViewController.swift in Sources */,
 				ABDE77161FFDCB1100BF95A6 /* HeaderView.swift in Sources */,
+				AB4532142014D8B1004361FD /* LandingViewController.swift in Sources */,
 				AB40093B200B769900AF68DB /* ColorButton.swift in Sources */,
 				ABE5AED61FF927DE007A96A4 /* ColorSlider.swift in Sources */,
 				AB8EC8321FE90D9B00C19F60 /* PictureGridCollectionViewController.swift in Sources */,
