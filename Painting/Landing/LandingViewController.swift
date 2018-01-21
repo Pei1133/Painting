@@ -17,8 +17,11 @@ class LandingViewController: UIViewController {
         view.backgroundColor = Colors.backgroundGreen
 
         // An animated UIImage
-//        self.landingImageView.image = UIImage.gif(name: "landing")
-        self.landingImageView.image = #imageLiteral(resourceName: "notebook")
+        self.landingImageView.image = UIImage.gif(name: "landing")
+
+//        let imageData = try! Data(contentsOf: Bundle.main.url(forResource: "landing", withExtension: "gif")!)
+//        self.landingImageView.image = UIImage.gif(data: imageData)
+//        self.landingImageView.image = #imageLiteral(resourceName: "notebook")
 //        // A UIImageView with async loading
 //        let imageView = UIImageView()
 //        imageView.loadGif(name: "landing")
