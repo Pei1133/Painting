@@ -18,6 +18,7 @@ struct Colors {
     static let coolGray = UIColor(red: 171.0 / 255.0, green: 179.0 / 255.0, blue: 176.0 / 255.0, alpha: 1.0)
 
     static let backgroundGreen = UIColor(red: 78.0 / 255.0, green: 130.0 / 255.0, blue: 144.0 / 255.0, alpha: 1.0)
+    static let darkBackgroundGreen = UIColor(red: 36.0 / 255.0, green: 60.0 / 255.0, blue: 67.0 / 255.0, alpha: 1.0)
     static let lightOrange = UIColor(red: 237.0 / 255.0, green: 164.0 / 255.0, blue: 142.0 / 255.0, alpha: 1.0)
     static let littleGreen = UIColor(red: 149.0 / 255.0, green: 215.0 / 255.0, blue: 174.0 / 255.0, alpha: 1.0)
     static let lightGreen = UIColor(red: 197.0 / 255.0, green: 231.0 / 255.0, blue: 226.0 / 255.0, alpha: 1.0)

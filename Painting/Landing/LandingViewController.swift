@@ -15,31 +15,24 @@ class LandingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Colors.backgroundGreen
+//        setUpGradientColor()
 
         // An animated UIImage
         self.landingImageView.image = UIImage.gif(name: "landing")
+        view.bringSubview(toFront: landingImageView)
+    }
 
-//        let imageData = try! Data(contentsOf: Bundle.main.url(forResource: "landing", withExtension: "gif")!)
-//        self.landingImageView.image = UIImage.gif(data: imageData)
-//        self.landingImageView.image = #imageLiteral(resourceName: "notebook")
-//        // A UIImageView with async loading
-//        let imageView = UIImageView()
-//        imageView.loadGif(name: "landing")
+    func setUpGradientColor() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = UIScreen.main.bounds
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
+        gradientLayer.colors = [Colors.backgroundGreen.cgColor, Colors.darkBackgroundGreen.cgColor]
+        self.view.layer.addSublayer(gradientLayer)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
