@@ -10,6 +10,7 @@ import UIKit
 import PocketSVG
 import Crashlytics
 import Sharaku
+import SVProgressHUD
 
 class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDelegate, CustomImageViewTouchEventDelegate {
 
@@ -128,7 +129,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             self.imageView = renderParameter.imageView
             self.pictureSize = renderParameter.pictureSize
             self.pathCount = renderParameter.pathCount
-
+            SVProgressHUD.dismiss()
         }else {
             print("no URL")
             isFill = false
@@ -149,7 +150,11 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         self.imageView.addGestureRecognizer(tapRecognizer)
 
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+//        SVProgressHUD.dismiss()
+    }
+    
     func showSVG() {
         let svgImageView = SVGImageView.init(contentsOf: url!)
         svgImageView.frame = self.view.bounds

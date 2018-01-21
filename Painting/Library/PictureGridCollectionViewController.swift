@@ -11,6 +11,7 @@ import PocketSVG
 import Firebase
 import Nuke
 import Crashlytics
+import SVProgressHUD
 
 class PictureGridCollectionViewController: UICollectionViewController {
 
@@ -272,13 +273,16 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        let imageURL = imageURLs[indexPath.row]
+        SVProgressHUD.showInfo(withStatus: "Loading")
+//        DispatchQueue.global().async {
+            let imageURL = self.imageURLs[indexPath.row]
 
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let paintingViewController = storyboard.instantiateViewController(withIdentifier: "Painting") as? PaintingViewController else { return }
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let paintingViewController = storyboard.instantiateViewController(withIdentifier: "Painting") as? PaintingViewController else { return }
 
-        paintingViewController.url = imageURL
-        self.navigationController?.pushViewController(paintingViewController, animated: true)
+            paintingViewController.url = imageURL
+            self.navigationController?.pushViewController(paintingViewController, animated: true)
+//        }
 
         // Present next viewcontroller
 //        let name = picture.name
