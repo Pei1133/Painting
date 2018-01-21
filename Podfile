@@ -17,6 +17,7 @@ target 'Painting' do
   pod 'Crashlytics', '~> 3.9.3'
   pod "Sharaku"
   pod 'SVProgressHUD'
+  pod 'SwiftGifOrigin'
 
 
 end
