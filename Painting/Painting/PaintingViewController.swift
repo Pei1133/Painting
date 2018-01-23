@@ -15,7 +15,7 @@ import SVProgressHUD
 class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDelegate, CustomImageViewTouchEventDelegate {
 
     var url: URL? {
-        didSet {
+        didSet{
             showBlankSVG()
         }
     }
@@ -125,12 +125,13 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         colorPicker.delegate = self
 
-        SVProgressHUD.showInfo(withStatus: "Loading")
-
-        DispatchQueue.global().async {
-            self.showBlankSVG()
-            SVProgressHUD.dismiss()
-        }
+//        SVProgressHUD.showInfo(withStatus: "Loading")
+//
+//        DispatchQueue.global().async {
+//            self.showBlankSVG()
+//            SVProgressHUD.dismiss()
+//        }
+        showBlankSVGTry()
 
         setUpNavigationBar()
         setUpScrollViewAndImageView()
@@ -159,11 +160,38 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             let renderParameter = provider.renderPaths(url: url, imageView: imageView)
             self.pictureSize = renderParameter.pictureSize
             self.pathCount = renderParameter.pathCount
-            
+
 //            DispatchQueue.main.async {
                 self.imageView = renderParameter.imageView
 //            }
-            
+
+        }
+//        else {
+//            print("no URL")
+//            isFill = false
+//            self.pictureSize = CGSize(width: view.bounds.width, height: view.bounds.height - 200)
+//        }
+    }
+
+    func showBlankSVGTry() {
+
+        if let url = url {
+
+            provider.renderPathsTry(
+                url: url,
+                targetSize: self.imageView.bounds.size,
+                completionHandler: { (pathLayers: [CALayer], pictureSize: CGSize, _ pathCount: Int) -> Void in
+
+                    self.pictureSize = pictureSize
+                    self.pathCount = pathCount
+
+                    for pathLayer in pathLayers {
+
+                        self.imageView.layer.addSublayer(pathLayer)
+                    }
+                }
+            )
+
         }else {
             print("no URL")
             isFill = false

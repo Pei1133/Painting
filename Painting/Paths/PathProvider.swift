@@ -35,6 +35,44 @@ class PathProvider {
         return (pictureSize: pictureSize, imageView: imageView, pathCount: pathCount)
     }
 
+    func renderPathsTry(
+        url: URL,
+        targetSize: CGSize,
+        completionHandler: @escaping (_ pathLayers: [CALayer], _ pictureSize: CGSize, _ pathCount: Int) -> Void
+        ) {
+
+        var pictureSize = CGSize.zero
+        let strokeWidth = CGFloat(2.0)
+        let strokeColor = UIColor.black.cgColor
+
+        DispatchQueue.global().async {
+
+            let paths = SVGBezierPath.pathsFromSVG(at: url)
+
+            var pathLayers = [CALayer]()
+
+            var pathCount = 0
+
+            for path in paths {
+
+                let layer = CAShapeLayer()
+
+                pictureSize = self.calculatePictureBounds(pictureSize: pictureSize, rect: path.cgPath.boundingBox)
+                layer.path = path.cgPath
+                layer.lineWidth = strokeWidth
+                layer.strokeColor = strokeColor
+                layer.fillColor = UIColor.clear.cgColor
+                pathLayers.append(layer)
+                pathCount += 1
+            }
+
+            DispatchQueue.main.async {
+
+                completionHandler(pathLayers, pictureSize, pathCount)
+
+            }
+        }
+    }
     func renderCellPaths(
         url: URL,
         targetSize: CGSize,
