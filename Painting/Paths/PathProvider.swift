@@ -11,31 +11,7 @@ import PocketSVG
 
 class PathProvider {
 
-    func renderPaths(url: URL, imageView: CustomImageView) -> (pictureSize: CGSize, imageView: CustomImageView, pathCount: Int) {
-
-        var pictureSize = CGSize.zero
-        let strokeWidth = CGFloat(2.0)
-        let strokeColor = UIColor.black.cgColor
-        var pathCount = 0
-
-        let paths = SVGBezierPath.pathsFromSVG(at: url)
-
-        for path in paths {
-
-            let layer = CAShapeLayer()
-            pictureSize = calculatePictureBounds(pictureSize: pictureSize, rect: path.cgPath.boundingBox)
-            layer.path = path.cgPath
-            layer.lineWidth = strokeWidth
-            layer.strokeColor = strokeColor
-            layer.fillColor = UIColor.clear.cgColor
-            imageView.layer.addSublayer(layer)
-            pathCount += 1
-        }
-
-        return (pictureSize: pictureSize, imageView: imageView, pathCount: pathCount)
-    }
-
-    func renderPathsTry(
+    func renderPaths(
         url: URL,
         targetSize: CGSize,
         completionHandler: @escaping (_ pathLayers: [CALayer], _ pictureSize: CGSize, _ pathCount: Int) -> Void

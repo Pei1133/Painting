@@ -14,23 +14,16 @@ import SVProgressHUD
 
 class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDelegate, CustomImageViewTouchEventDelegate {
 
-    var url: URL? {
-        didSet {
-//            showBlankSVGTry()
-//            setUpScrollViewAndImageView()
-        }
-    }
+    var url: URL?
+    var pathLayers: [CALayer]?
+    var pictureSize: CGSize?
+    var pathCount: Int?
+    
     let provider = PathProvider()
     var paths = [SVGBezierPath]()
     var scrollView = UIScrollView()
     var pictureView = UIView()
     var imageView = CustomImageView()
-//    var pictureSize = CGSize.zero
-//    var pathCount = 0
-
-    var pathLayers: [CALayer]?
-    var pictureSize: CGSize?
-    var pathCount: Int?
 
     var isFill: Bool = true
     var redoLayers: [CAShapeLayer] = []
@@ -128,17 +121,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         super.viewDidLoad()
 
         colorPicker.delegate = self
-
-//        SVProgressHUD.showInfo(withStatus: "Loading")
-//
-//        DispatchQueue.global().async {
-//            self.showBlankSVG()
-//            SVProgressHUD.dismiss()
-//        }
-//        showBlankSVGTry()
-
         renderSVGLayer()
-
         setUpNavigationBar()
         setUpScrollViewAndImageView()
         setUpColorPicker()
@@ -153,10 +136,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-//        SVProgressHUD.showInfo(withStatus: "Loading")
-    }
-
     func renderSVGLayer() {
 
         guard let pathLayers = self.pathLayers else {return}
@@ -166,35 +145,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             imageView.layer.addSublayer(pathLayer)
         }
         SVProgressHUD.dismiss()
-    }
-
-    func showBlankSVGTry() {
-
-        SVProgressHUD.showInfo(withStatus: "Loading")
-        if let url = url {
-
-            provider.renderPathsTry(
-                url: url,
-                targetSize: self.imageView.bounds.size,
-                completionHandler: { (pathLayers: [CALayer], _: CGSize, _ pathCount: Int) -> Void in
-
-//                    self.pictureSize = pictureSize
-//                    self.pathCount = pathCount
-
-                    for pathLayer in pathLayers {
-
-                        self.imageView.layer.addSublayer(pathLayer)
-                    }
-                    SVProgressHUD.dismiss()
-                }
-            )
-
-        }
-//        else {
-//            print("no URL")
-//            isFill = false
-//            self.pictureSize = CGSize(width: view.bounds.width, height: view.bounds.height - 200)
-//        }
     }
 
     // MARK: - Fill Color
@@ -375,6 +325,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     func setUpScrollViewAndImageView() {
 
         guard let pictureSize = self.pictureSize else {return}
+        
         // Set up ImageView
         imageView.contentMode = .center
         imageView.backgroundColor = .clear
@@ -430,7 +381,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateMinZoomScaleForSize(view.bounds.size)
-//        SVProgressHUD.showInfo(withStatus: "Loading")
     }
 
     // 讓圖片置中,每次縮放之後會被呼叫

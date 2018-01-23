@@ -280,7 +280,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
         let provider = PathProvider()
 
-        provider.renderPathsTry(
+        provider.renderPaths(
             url: imageURL,
             targetSize: self.view.bounds.size,
             completionHandler: { (pathLayers: [CALayer], pictureSize: CGSize, _ pathCount: Int) -> Void in
@@ -290,7 +290,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
                 paintingViewController.pictureSize = pictureSize
                 paintingViewController.pathCount = pathCount
                 paintingViewController.pathLayers = pathLayers
-//                paintingViewController.url = imageURL
                 self.navigationController?.pushViewController(paintingViewController, animated: true)
             }
         )
