@@ -12,6 +12,14 @@ class LandingViewController: UIViewController {
 
     @IBOutlet weak var landingImageView: UIImageView!
 
+    @IBAction func testButton(_ sender: Any) {
+    
+        let layout = UICollectionViewLayout()
+        let vc = PictureGridCollectionViewController(collectionViewLayout: layout)
+        let pictureGridCollectionViewController = UINavigationController(rootViewController: vc)
+        self.present(pictureGridCollectionViewController, animated: true, completion: nil)
+    
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Colors.backgroundGreen

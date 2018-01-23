@@ -152,7 +152,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     }
 
     override func viewDidAppear(_ animated: Bool) {
-//        SVProgressHUD.dismiss()
+        SVProgressHUD.showInfo(withStatus: "Loading")
     }
 
     func showSVG() {
