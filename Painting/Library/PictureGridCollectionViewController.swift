@@ -273,7 +273,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.gradient)
         SVProgressHUD.setDefaultAnimationType(.native)

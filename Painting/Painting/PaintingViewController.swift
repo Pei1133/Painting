@@ -18,7 +18,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     var pathLayers: [CALayer]?
     var pictureSize: CGSize?
     var pathCount: Int?
-    
+
     var paths = [SVGBezierPath]()
     var scrollView = UIScrollView()
     var pictureView = UIView()
@@ -143,11 +143,11 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
             imageView.layer.addSublayer(pathLayer)
         }
-        
-        guard let url = self.url else{return}
+
+        guard let url = self.url else { return }
         let paths = SVGBezierPath.pathsFromSVG(at: url)
         self.paths = paths
-        
+
         SVProgressHUD.dismiss()
     }
 
@@ -159,7 +159,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         self.hitTest(tapLocation: CGPoint(x: (tapLocation.x), y: (tapLocation.y)))
 
     }
-    
+
     // Step 3 :- Make "hitTest" final method
     private func hitTest(tapLocation: CGPoint) {
 
@@ -330,7 +330,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     func setUpScrollViewAndImageView() {
 
         guard let pictureSize = self.pictureSize else {return}
-        
+
         // Set up ImageView
         imageView.contentMode = .center
         imageView.backgroundColor = .clear
