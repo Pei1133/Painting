@@ -120,29 +120,16 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         super.viewDidLoad()
 
         colorPicker.delegate = self
-
-        if let url = url {
-            let paths = SVGBezierPath.pathsFromSVG(at: url)
-            self.paths = paths
-
-            let renderParameter = provider.renderPaths(url: url, imageView: imageView)
-            self.imageView = renderParameter.imageView
-            self.pictureSize = renderParameter.pictureSize
-            self.pathCount = renderParameter.pathCount
-            SVProgressHUD.dismiss()
-        }else {
-            print("no URL")
-            isFill = false
-            self.pictureSize = CGSize(width: view.bounds.width, height: view.bounds.height - 200)
-        }
-
+        
+        showBlankSVG()
+//        SVProgressHUD.dismiss()
+        
         setUpNavigationBar()
         setUpScrollViewAndImageView()
         setUpColorPicker()
         setUpButton()
         setUpColorSlider()
         setUpSliderView(pickedColor)
-//        showSVG()
 
      // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
         // Catch layer by tap detection
@@ -152,13 +139,25 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        SVProgressHUD.showInfo(withStatus: "Loading")
+//        SVProgressHUD.showInfo(withStatus: "Loading")
     }
 
-    func showSVG() {
-        let svgImageView = SVGImageView.init(contentsOf: url!)
-        svgImageView.frame = self.view.bounds
-        view.addSubview(svgImageView)
+    func showBlankSVG() {
+
+        if let url = url {
+            let paths = SVGBezierPath.pathsFromSVG(at: url)
+            self.paths = paths
+
+            let renderParameter = provider.renderPaths(url: url, imageView: imageView)
+            self.imageView = renderParameter.imageView
+            self.pictureSize = renderParameter.pictureSize
+            self.pathCount = renderParameter.pathCount
+
+        }else {
+            print("no URL")
+            isFill = false
+            self.pictureSize = CGSize(width: view.bounds.width, height: view.bounds.height - 200)
+        }
     }
 
     // MARK: - Fill Color
@@ -391,6 +390,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateMinZoomScaleForSize(view.bounds.size)
+        SVProgressHUD.showInfo(withStatus: "Loading")
     }
 
     // 讓圖片置中,每次縮放之後會被呼叫
