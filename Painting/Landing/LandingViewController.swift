@@ -23,19 +23,12 @@ class LandingViewController: UIViewController {
 
     }
 
+    // MARK: - Set up
     func setUpGif() {
 
         // An animated UIImage
         self.landingImageView.image = UIImage.gif(name: "landing")
         view.bringSubview(toFront: landingImageView)
-    }
-
-    @objc func enterLibrary() {
-
-        let layout = UICollectionViewLayout()
-        let vc = PictureGridCollectionViewController(collectionViewLayout: layout)
-        let pictureGridCollectionViewController = UINavigationController(rootViewController: vc)
-        self.present(pictureGridCollectionViewController, animated: true, completion: nil)
     }
 
     func setUpBackgroundColor() {
@@ -49,13 +42,19 @@ class LandingViewController: UIViewController {
 //        self.view.layer.addSublayer(gradientLayer)
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        timer.invalidate()
+    @objc func enterLibrary() {
+        
+        let layout = UICollectionViewLayout()
+        let vc = PictureGridCollectionViewController(collectionViewLayout: layout)
+        let pictureGridCollectionViewController = UINavigationController(rootViewController: vc)
+        self.present(pictureGridCollectionViewController, animated: true, completion: nil)
     }
-
+    
     deinit {
+        timer.invalidate()
         print("dead")
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
