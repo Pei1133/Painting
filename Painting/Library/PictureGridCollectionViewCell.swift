@@ -43,6 +43,8 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
 
         imageView.backgroundColor = UIColor.white
 
+//        imageView.image = #imageLiteral(resourceName: "iconCircle")
+
     }
 
     private func setUpPictureView() {
