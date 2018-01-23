@@ -274,13 +274,26 @@ class PictureGridCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         SVProgressHUD.showInfo(withStatus: "Loading")
-            let imageURL = self.imageURLs[indexPath.row]
+        let imageURL = self.imageURLs[indexPath.row]
 
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            guard let paintingViewController = storyboard.instantiateViewController(withIdentifier: "Painting") as? PaintingViewController else { return }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
-            paintingViewController.url = imageURL
-            self.navigationController?.pushViewController(paintingViewController, animated: true)
+        let provider = PathProvider()
+
+        provider.renderPathsTry(
+            url: imageURL,
+            targetSize: self.view.bounds.size,
+            completionHandler: { (pathLayers: [CALayer], pictureSize: CGSize, _ pathCount: Int) -> Void in
+
+                guard let paintingViewController = storyboard.instantiateViewController(withIdentifier: "Painting") as? PaintingViewController else { return }
+
+                paintingViewController.pictureSize = pictureSize
+                paintingViewController.pathCount = pathCount
+                paintingViewController.pathLayers = pathLayers
+//                paintingViewController.url = imageURL
+                self.navigationController?.pushViewController(paintingViewController, animated: true)
+            }
+        )
 
         // Present next viewcontroller
 //        let name = picture.name

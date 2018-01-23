@@ -15,8 +15,9 @@ import SVProgressHUD
 class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDelegate, CustomImageViewTouchEventDelegate {
 
     var url: URL? {
-        didSet{
-            showBlankSVG()
+        didSet {
+//            showBlankSVGTry()
+//            setUpScrollViewAndImageView()
         }
     }
     let provider = PathProvider()
@@ -24,8 +25,12 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     var scrollView = UIScrollView()
     var pictureView = UIView()
     var imageView = CustomImageView()
-    var pictureSize = CGSize.zero
-    var pathCount = 0
+//    var pictureSize = CGSize.zero
+//    var pathCount = 0
+
+    var pathLayers: [CALayer]?
+    var pictureSize: CGSize?
+    var pathCount: Int?
 
     var isFill: Bool = true
     var redoLayers: [CAShapeLayer] = []
@@ -95,7 +100,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             setUpSliderView(pickedColor)
             colorSlider.value = 0.5
             self.sliderColor = pickedColor
-            print("aaa,\(pickedColor)")
         }
     }
     var sliderColor = Colors.lightSkyBlue {
@@ -131,7 +135,9 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 //            self.showBlankSVG()
 //            SVProgressHUD.dismiss()
 //        }
-        showBlankSVGTry()
+//        showBlankSVGTry()
+
+        renderSVGLayer()
 
         setUpNavigationBar()
         setUpScrollViewAndImageView()
@@ -151,19 +157,37 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 //        SVProgressHUD.showInfo(withStatus: "Loading")
     }
 
-    func showBlankSVG() {
+    func renderSVGLayer() {
 
+        guard let pathLayers = self.pathLayers else {return}
+
+        for pathLayer in pathLayers {
+
+            imageView.layer.addSublayer(pathLayer)
+        }
+        SVProgressHUD.dismiss()
+    }
+
+    func showBlankSVGTry() {
+
+        SVProgressHUD.showInfo(withStatus: "Loading")
         if let url = url {
-            let paths = SVGBezierPath.pathsFromSVG(at: url)
-            self.paths = paths
 
-            let renderParameter = provider.renderPaths(url: url, imageView: imageView)
-            self.pictureSize = renderParameter.pictureSize
-            self.pathCount = renderParameter.pathCount
+            provider.renderPathsTry(
+                url: url,
+                targetSize: self.imageView.bounds.size,
+                completionHandler: { (pathLayers: [CALayer], _: CGSize, _ pathCount: Int) -> Void in
 
-//            DispatchQueue.main.async {
-                self.imageView = renderParameter.imageView
-//            }
+//                    self.pictureSize = pictureSize
+//                    self.pathCount = pathCount
+
+                    for pathLayer in pathLayers {
+
+                        self.imageView.layer.addSublayer(pathLayer)
+                    }
+                    SVProgressHUD.dismiss()
+                }
+            )
 
         }
 //        else {
@@ -171,32 +195,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 //            isFill = false
 //            self.pictureSize = CGSize(width: view.bounds.width, height: view.bounds.height - 200)
 //        }
-    }
-
-    func showBlankSVGTry() {
-
-        if let url = url {
-
-            provider.renderPathsTry(
-                url: url,
-                targetSize: self.imageView.bounds.size,
-                completionHandler: { (pathLayers: [CALayer], pictureSize: CGSize, _ pathCount: Int) -> Void in
-
-                    self.pictureSize = pictureSize
-                    self.pathCount = pathCount
-
-                    for pathLayer in pathLayers {
-
-                        self.imageView.layer.addSublayer(pathLayer)
-                    }
-                }
-            )
-
-        }else {
-            print("no URL")
-            isFill = false
-            self.pictureSize = CGSize(width: view.bounds.width, height: view.bounds.height - 200)
-        }
     }
 
     // MARK: - Fill Color
@@ -245,6 +243,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @objc func tapUndoFill(_ sender: Any) {
 
         guard let sublayers = self.imageView.layer.sublayers else {return}
+        guard let pathCount = self.pathCount else {return}
         if sublayers.count > pathCount {
 
             // redoButton appear
@@ -266,6 +265,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @objc func tapRedoFill(_ sender: Any) {
 
         guard let sublayers = self.imageView.layer.sublayers else {return}
+        guard let pathCount = self.pathCount else {return}
         if sublayers.count > pathCount {
 
             // undoButton appear
@@ -374,6 +374,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     func setUpScrollViewAndImageView() {
 
+        guard let pictureSize = self.pictureSize else {return}
         // Set up ImageView
         imageView.contentMode = .center
         imageView.backgroundColor = .clear
