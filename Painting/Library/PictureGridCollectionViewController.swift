@@ -273,7 +273,10 @@ class PictureGridCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        SVProgressHUD.showInfo(withStatus: "Loading")
+        
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.gradient)
+        SVProgressHUD.setDefaultAnimationType(.native)
         let imageURL = self.imageURLs[indexPath.row]
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -290,6 +293,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
                 paintingViewController.pictureSize = pictureSize
                 paintingViewController.pathCount = pathCount
                 paintingViewController.pathLayers = pathLayers
+                paintingViewController.url = imageURL
                 self.navigationController?.pushViewController(paintingViewController, animated: true)
             }
         )
