@@ -10,35 +10,52 @@ import UIKit
 
 class LandingViewController: UIViewController {
 
+    var timer: Timer!
     @IBOutlet weak var landingImageView: UIImageView!
 
-    @IBAction func testButton(_ sender: Any) {
-
-        let layout = UICollectionViewLayout()
-        let vc = PictureGridCollectionViewController(collectionViewLayout: layout)
-        let pictureGridCollectionViewController = UINavigationController(rootViewController: vc)
-        self.present(pictureGridCollectionViewController, animated: true, completion: nil)
-
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Colors.backgroundGreen
-//        setUpGradientColor()
+
+        setUpGif()
+        setUpBackgroundColor()
+
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(LandingViewController.enterLibrary), userInfo: nil, repeats: true)
+
+    }
+
+    func setUpGif() {
 
         // An animated UIImage
         self.landingImageView.image = UIImage.gif(name: "landing")
         view.bringSubview(toFront: landingImageView)
     }
 
-    func setUpGradientColor() {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = UIScreen.main.bounds
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
-        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
-        gradientLayer.colors = [Colors.backgroundGreen.cgColor, Colors.darkBackgroundGreen.cgColor]
-        self.view.layer.addSublayer(gradientLayer)
+    @objc func enterLibrary() {
+
+        let layout = UICollectionViewLayout()
+        let vc = PictureGridCollectionViewController(collectionViewLayout: layout)
+        let pictureGridCollectionViewController = UINavigationController(rootViewController: vc)
+        self.present(pictureGridCollectionViewController, animated: true, completion: nil)
     }
 
+    func setUpBackgroundColor() {
+        view.backgroundColor = Colors.backgroundGreen
+
+//        let gradientLayer = CAGradientLayer()
+//        gradientLayer.frame = UIScreen.main.bounds
+//        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+//        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
+//        gradientLayer.colors = [Colors.backgroundGreen.cgColor, Colors.darkBackgroundGreen.cgColor]
+//        self.view.layer.addSublayer(gradientLayer)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        timer.invalidate()
+    }
+
+    deinit {
+        print("dead")
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
