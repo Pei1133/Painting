@@ -14,7 +14,11 @@ import SVProgressHUD
 
 class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDelegate, CustomImageViewTouchEventDelegate {
 
-    var url: URL?
+    var url: URL? {
+        didSet {
+            showBlankSVG()
+        }
+    }
     let provider = PathProvider()
     var paths = [SVGBezierPath]()
     var scrollView = UIScrollView()
@@ -120,10 +124,14 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         super.viewDidLoad()
 
         colorPicker.delegate = self
-        
-        showBlankSVG()
-//        SVProgressHUD.dismiss()
-        
+
+        SVProgressHUD.showInfo(withStatus: "Loading")
+
+        DispatchQueue.global().async {
+            self.showBlankSVG()
+            SVProgressHUD.dismiss()
+        }
+
         setUpNavigationBar()
         setUpScrollViewAndImageView()
         setUpColorPicker()
@@ -149,10 +157,13 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             self.paths = paths
 
             let renderParameter = provider.renderPaths(url: url, imageView: imageView)
-            self.imageView = renderParameter.imageView
             self.pictureSize = renderParameter.pictureSize
             self.pathCount = renderParameter.pathCount
-
+            
+//            DispatchQueue.main.async {
+                self.imageView = renderParameter.imageView
+//            }
+            
         }else {
             print("no URL")
             isFill = false
@@ -390,7 +401,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateMinZoomScaleForSize(view.bounds.size)
-        SVProgressHUD.showInfo(withStatus: "Loading")
+//        SVProgressHUD.showInfo(withStatus: "Loading")
     }
 
     // 讓圖片置中,每次縮放之後會被呼叫
