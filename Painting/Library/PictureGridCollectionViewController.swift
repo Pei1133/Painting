@@ -222,7 +222,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PictureGridCollectionViewCell else {
             fatalError() }
 
-        cell.pictureImageView.image = #imageLiteral(resourceName: "iconCircle")
+        cell.pictureImageView.image = #imageLiteral(resourceName: "loading")
 
         if jpgURLs.count > indexPath.row {
 

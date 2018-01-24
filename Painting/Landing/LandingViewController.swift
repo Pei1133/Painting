@@ -19,8 +19,13 @@ class LandingViewController: UIViewController {
         setUpGif()
         setUpBackgroundColor()
 
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(LandingViewController.enterLibrary), userInfo: nil, repeats: true)
-
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            // present to LibraryPage
+            let layout = UICollectionViewLayout()
+            let vc = PictureGridCollectionViewController(collectionViewLayout: layout)
+            let pictureGridCollectionViewController = UINavigationController(rootViewController: vc)
+            self.present(pictureGridCollectionViewController, animated: true, completion: nil)
+        }
     }
 
     // MARK: - Set up
@@ -42,21 +47,8 @@ class LandingViewController: UIViewController {
 //        self.view.layer.addSublayer(gradientLayer)
     }
 
-    @objc func enterLibrary() {
-        
-        let layout = UICollectionViewLayout()
-        let vc = PictureGridCollectionViewController(collectionViewLayout: layout)
-        let pictureGridCollectionViewController = UINavigationController(rootViewController: vc)
-        self.present(pictureGridCollectionViewController, animated: true, completion: nil)
-    }
-    
-    deinit {
-        timer.invalidate()
-        print("dead")
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+//         Dispose of any resources that can be recreated.
     }
 }
