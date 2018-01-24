@@ -222,12 +222,11 @@ class PictureGridCollectionViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PictureGridCollectionViewCell else {
             fatalError() }
 
-        cell.pictureImageView.image = #imageLiteral(resourceName: "loading")
+        cell.pictureImageView.image = #imageLiteral(resourceName: "dinosaur")
 
         if jpgURLs.count > indexPath.row {
 
             let jpgURL = jpgURLs[indexPath.row]
-
             // load JPG
             Nuke.loadImage(
                 with: jpgURL,

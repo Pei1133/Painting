@@ -10,7 +10,6 @@ import UIKit
 
 class LandingViewController: UIViewController {
 
-    var timer: Timer!
     @IBOutlet weak var landingImageView: UIImageView!
 
     override func viewDidLoad() {
