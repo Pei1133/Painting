@@ -14,17 +14,17 @@ import SVProgressHUD
 
 class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDelegate, CustomImageViewTouchEventDelegate {
 
-    var url: URL?
-    var pathLayers: [CALayer]?
-    var pictureSize: CGSize?
-    var pathCount: Int?
+    var url = URL(string: "")
+    var pathLayers: [CALayer] = []
+    var pictureSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.7)
+    var pathCount: Int = 0
+    var isFill: Bool?
 
     var paths = [SVGBezierPath]()
     var scrollView = UIScrollView()
     var pictureView = UIView()
     var imageView = CustomImageView()
 
-    var isFill: Bool = true
     var redoLayers: [CAShapeLayer] = []
     var lastPoint = CGPoint.zero
     var swiped = false
@@ -137,8 +137,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     func renderSVGLayer() {
 
-        guard let pathLayers = self.pathLayers else {return}
-
         for pathLayer in pathLayers {
 
             imageView.layer.addSublayer(pathLayer)
@@ -198,7 +196,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @objc func tapUndoFill(_ sender: Any) {
 
         guard let sublayers = self.imageView.layer.sublayers else {return}
-        guard let pathCount = self.pathCount else {return}
+
         if sublayers.count > pathCount {
 
             // redoButton appear
@@ -220,7 +218,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @objc func tapRedoFill(_ sender: Any) {
 
         guard let sublayers = self.imageView.layer.sublayers else {return}
-        guard let pathCount = self.pathCount else {return}
+
         if sublayers.count > pathCount {
 
             // undoButton appear
@@ -329,39 +327,41 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     func setUpScrollViewAndImageView() {
 
-        guard let pictureSize = self.pictureSize else {return}
-
         // Set up ImageView
         imageView.contentMode = .center
         imageView.backgroundColor = .clear
         imageView.isUserInteractionEnabled = true
         imageView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
-//        imageView.layer.borderColor = UIColor.red.cgColor
-//        imageView.layer.borderWidth = 3.0
         imageView.delegate = self
 
         // Set up View
         pictureView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
         pictureView.backgroundColor = UIColor.clear
 
-        // Set up ScrollView
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height * 0.7))
+        // close scrollView when Draw
+        if isFill == true {
 
-        scrollView.contentSize = imageView.frame.size
-        scrollView.backgroundColor = UIColor.white
-//        scrollView.alwaysBounceVertical = true
-//        scrollView.alwaysBounceHorizontal = true
+            // Set up ScrollView
+            scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height * 0.7))
+            scrollView.contentSize = imageView.frame.size
+            scrollView.backgroundColor = UIColor.white
+            scrollView.showsVerticalScrollIndicator = false
 
-        // Add subviews
-        view.addSubview(scrollView)
-        scrollView.addSubview(pictureView)
-        scrollView.addSubview(imageView)
+            // Add subviews
+            view.addSubview(scrollView)
+            scrollView.addSubview(pictureView)
+            scrollView.addSubview(imageView)
 
-        // ZoomScale Setting
-        scrollView.delegate = self
-        scrollView.zoomScale = 0.8
-        scrollView.minimumZoomScale = 0.5
-        scrollView.maximumZoomScale = 3.0
+            // ZoomScale Setting
+            scrollView.delegate = self
+            scrollView.zoomScale = 0.8
+            scrollView.minimumZoomScale = 0.5
+            scrollView.maximumZoomScale = 3.0
+
+        }else {
+            view.addSubview(pictureView)
+            view.addSubview(imageView)
+        }
     }
 
     // MARK: - ScrollView
@@ -373,13 +373,14 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     // 為了讓圖片縮小填滿且有Aspect Fit
     fileprivate func updateMinZoomScaleForSize(_ size: CGSize) {
-
+        
         let widthScale = size.width / imageView.bounds.width
         let heightScale = size.height / imageView.bounds.height
 
         let minScale = min(widthScale, heightScale)
         scrollView.minimumZoomScale = minScale
         scrollView.zoomScale = minScale
+
     }
 
     // 呼叫updateMinZoomScaleForSize

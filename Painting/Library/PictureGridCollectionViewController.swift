@@ -107,9 +107,9 @@ class PictureGridCollectionViewController: UICollectionViewController {
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
 
         // right button
-//        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "add"), style: .plain, target: self, action: #selector(addNew))
-//        button.tintColor = Colors.deepCyanBlue
-//        self.navigationItem.rightBarButtonItem = button
+        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "add"), style: .plain, target: self, action: #selector(addNew))
+        button.tintColor = Colors.deepCyanBlue
+        self.navigationItem.rightBarButtonItem = button
 
         // shadow
         navigationController?.navigationBar.layer.shadowOpacity = 1
@@ -126,7 +126,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let paintingViewController = storyboard.instantiateViewController(withIdentifier: "Painting") as? PaintingViewController else { return }
 
-        paintingViewController.url = URL(string: "")
+        paintingViewController.isFill = false
         self.navigationController?.pushViewController(paintingViewController, animated: true)
     }
 
@@ -292,6 +292,7 @@ class PictureGridCollectionViewController: UICollectionViewController {
                 paintingViewController.pathCount = pathCount
                 paintingViewController.pathLayers = pathLayers
                 paintingViewController.url = imageURL
+                paintingViewController.isFill = true
                 self.navigationController?.pushViewController(paintingViewController, animated: true)
             }
         )
