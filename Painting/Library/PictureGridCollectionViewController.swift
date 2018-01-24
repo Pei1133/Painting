@@ -14,6 +14,8 @@ import Crashlytics
 import SVProgressHUD
 
 class PictureGridCollectionViewController: UICollectionViewController {
+    
+    private let provider = PathProvider()
 
     private let reuseIdentifier = "Cell"
 
@@ -36,6 +38,8 @@ class PictureGridCollectionViewController: UICollectionViewController {
         setUpGradientColor()
         setUpNavigationBar()
         setUpBlurEffect()
+        
+        self.collectionView?.addObserver(self, forKeyPath: "frame", options: .new, context: nil)
     }
 
     // MARK: - Set up
@@ -275,37 +279,30 @@ class PictureGridCollectionViewController: UICollectionViewController {
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.gradient)
         SVProgressHUD.setDefaultAnimationType(.native)
-        let imageURL = self.imageURLs[indexPath.row]
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        self.renderPathWithIndex(indexPath.row)
 
+    }
+    
+    private func renderPathWithIndex(_ index: Int) {
+        let imageURL = self.imageURLs[index]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
-        let provider = PathProvider()
-
+        
         provider.renderPaths(
             url: imageURL,
             targetSize: self.view.bounds.size,
             completionHandler: { (pathLayers: [CALayer], pictureSize: CGSize, _ pathCount: Int) -> Void in
-
+                
                 guard let paintingViewController = storyboard.instantiateViewController(withIdentifier: "Painting") as? PaintingViewController else { return }
-
+                
                 paintingViewController.pictureSize = pictureSize
                 paintingViewController.pathCount = pathCount
                 paintingViewController.pathLayers = pathLayers
                 paintingViewController.url = imageURL
                 paintingViewController.isFill = true
-                self.navigationController?.pushViewController(paintingViewController, animated: true)
-            }
+                self.navigationController?.pushViewController(paintingViewController, animated: false)
+        }
         )
-
-        // Present next viewcontroller
-//        let name = picture.name
-//        let url = picture.imageURL
-//        let paintingViewController = PaintingViewController(name: name, url: url)
-//        self.present(paintingViewController, animated: true, completion: nil)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
 }

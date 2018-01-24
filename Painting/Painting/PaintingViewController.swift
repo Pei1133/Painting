@@ -120,6 +120,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         super.viewDidLoad()
 
         colorPicker.delegate = self
+        
         renderSVGLayer()
         setUpNavigationBar()
         setUpScrollViewAndImageView()
@@ -132,6 +133,8 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         // Catch layer by tap detection
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(PaintingViewController.tapDetected(tapRecognizer:)))
         self.imageView.addGestureRecognizer(tapRecognizer)
+        
+        UIApplication.shared.endIgnoringInteractionEvents()
 
     }
 
