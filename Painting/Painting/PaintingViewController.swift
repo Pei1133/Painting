@@ -120,7 +120,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         super.viewDidLoad()
 
         colorPicker.delegate = self
-        
+
         renderSVGLayer()
         setUpNavigationBar()
         setUpScrollViewAndImageView()
@@ -133,7 +133,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         // Catch layer by tap detection
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(PaintingViewController.tapDetected(tapRecognizer:)))
         self.imageView.addGestureRecognizer(tapRecognizer)
-        
+
         UIApplication.shared.endIgnoringInteractionEvents()
 
     }
@@ -377,7 +377,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     // 為了讓圖片縮小填滿且有Aspect Fit
     fileprivate func updateMinZoomScaleForSize(_ size: CGSize) {
-        
+
         let widthScale = size.width / imageView.bounds.width
         let heightScale = size.height / imageView.bounds.height
 
@@ -472,8 +472,8 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     // MARK: - Share
     @objc func share(_ sender: Any) {
 
-        guard let isFill = self.isFill else{ return }
-        
+        guard let isFill = self.isFill else { return }
+
         let image = UIImage.init(view: imageView, isFill: isFill)
 
         let recalculateImage = resizeImage(image: image, targetSize: CGSize(width: 1000, height: 1000))
