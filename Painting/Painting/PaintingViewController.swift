@@ -346,6 +346,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             scrollView.contentSize = imageView.frame.size
             scrollView.backgroundColor = UIColor.white
             scrollView.showsVerticalScrollIndicator = false
+            scrollView.showsHorizontalScrollIndicator = false
 
             // Add subviews
             view.addSubview(scrollView)
