@@ -469,7 +469,9 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     // MARK: - Share
     @objc func share(_ sender: Any) {
 
-        let image = UIImage.init(view: imageView)
+        guard let isFill = self.isFill else{ return }
+        
+        let image = UIImage.init(view: imageView, isFill: isFill)
 
         let recalculateImage = resizeImage(image: image, targetSize: CGSize(width: 1000, height: 1000))
 
@@ -538,9 +540,13 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
 extension UIImage {
 
-    convenience init(view: UIView) {
+    convenience init(view: UIView, isFill: Bool?) {
 
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 0.1)
+        if isFill == false {
+            UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 1)
+        } else {
+            UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 0.1)
+        }
 
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
 
