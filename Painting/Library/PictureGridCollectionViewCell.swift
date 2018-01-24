@@ -43,8 +43,6 @@ class PictureGridCollectionViewCell: UICollectionViewCell {
 
         imageView.backgroundColor = UIColor.white
 
-//        imageView.image = #imageLiteral(resourceName: "dinosaur")
-
     }
 
     private func setUpPictureView() {
