@@ -39,7 +39,6 @@ class PictureGridCollectionViewController: UICollectionViewController {
         setUpNavigationBar()
         setUpBlurEffect()
 
-        self.collectionView?.addObserver(self, forKeyPath: "frame", options: .new, context: nil)
     }
 
     // MARK: - Set up
