@@ -4,7 +4,9 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,16 +19,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="designColor" translatesAutoresizingMaskIntoConstraints="NO" id="2FV-hE-uYO">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="landing0" translatesAutoresizingMaskIntoConstraints="NO" id="4T4-JH-9PD">
+                                <rect key="frame" x="87.5" y="243.5" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="2cQ-fj-vzO"/>
+                                    <constraint firstAttribute="width" secondItem="4T4-JH-9PD" secondAttribute="height" multiplier="1:1" id="hqD-Qm-MdG"/>
+                                </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.30588235294117649" green="0.50980392156862742" blue="0.56470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="2FV-hE-uYO" secondAttribute="bottom" id="3hR-pX-qbL"/>
-                            <constraint firstItem="2FV-hE-uYO" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="INr-x7-Zlj"/>
-                            <constraint firstAttribute="trailing" secondItem="2FV-hE-uYO" secondAttribute="trailing" id="L7r-pJ-L4W"/>
-                            <constraint firstItem="2FV-hE-uYO" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="qEY-30-e1P"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="centerX" secondItem="4T4-JH-9PD" secondAttribute="centerX" id="9Fo-Md-WyH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="centerY" secondItem="4T4-JH-9PD" secondAttribute="centerY" id="Nn5-UZ-0Om"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -37,6 +41,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="designColor" width="443" height="664"/>
+        <image name="landing0" width="2620" height="2620"/>
     </resources>
 </document>

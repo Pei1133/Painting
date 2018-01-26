@@ -18,7 +18,7 @@ class LandingViewController: UIViewController {
         setUpGif()
         setUpBackgroundColor()
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.4) {
             // present to LibraryPage
             let layout = UICollectionViewLayout()
             let vc = PictureGridCollectionViewController(collectionViewLayout: layout)

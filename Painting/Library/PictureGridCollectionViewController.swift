@@ -110,9 +110,9 @@ class PictureGridCollectionViewController: UICollectionViewController {
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
 
         // right button
-        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "add"), style: .plain, target: self, action: #selector(addNew))
-        button.tintColor = Colors.deepCyanBlue
-        self.navigationItem.rightBarButtonItem = button
+//        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "add"), style: .plain, target: self, action: #selector(addNew))
+//        button.tintColor = Colors.deepCyanBlue
+//        self.navigationItem.rightBarButtonItem = button
 
         // shadow
         navigationController?.navigationBar.layer.shadowOpacity = 1

@@ -14,10 +14,10 @@
 		AB407AB820027CE800023A16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB407AB720027CE800023A16 /* GoogleService-Info.plist */; };
 		AB4532142014D8B1004361FD /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4532132014D8B0004361FD /* LandingViewController.swift */; };
 		AB4532162014DA30004361FD /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB4532152014DA30004361FD /* Landing.storyboard */; };
-		AB4532182014FCA5004361FD /* landing.gif in Resources */ = {isa = PBXBuildFile; fileRef = AB4532172014FCA5004361FD /* landing.gif */; };
 		AB45321A2014FEDC004361FD /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4532192014FEDC004361FD /* UIImage+Gif.swift */; };
 		AB68407A2002708400FDBF04 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB68407C2002708400FDBF04 /* Localizable.strings */; };
 		AB68407F2002708500FDBF04 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB6840812002708500FDBF04 /* InfoPlist.strings */; };
+		AB81242D201AD18500AA3946 /* landing.gif in Resources */ = {isa = PBXBuildFile; fileRef = AB81242C201AD18500AA3946 /* landing.gif */; };
 		AB8EC82F1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */; };
 		AB8EC8321FE90D9B00C19F60 /* PictureGridCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */; };
 		AB9A80A71FECF5D1000434E7 /* cabin.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80A41FECF5D0000434E7 /* cabin.svg */; };
@@ -48,12 +48,12 @@
 		AB407AB720027CE800023A16 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AB4532132014D8B0004361FD /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		AB4532152014DA30004361FD /* Landing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Landing.storyboard; sourceTree = "<group>"; };
-		AB4532172014FCA5004361FD /* landing.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = landing.gif; sourceTree = "<group>"; };
 		AB4532192014FEDC004361FD /* UIImage+Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		AB68407620026DB400FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		AB68407720026DB400FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		AB68407B2002708400FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		AB6840802002708500FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		AB81242C201AD18500AA3946 /* landing.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = landing.gif; sourceTree = "<group>"; };
 		AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGridCollectionViewCell.swift; sourceTree = "<group>"; };
 		AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGridCollectionViewController.swift; sourceTree = "<group>"; };
 		AB9A80A41FECF5D0000434E7 /* cabin.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cabin.svg; sourceTree = "<group>"; };
@@ -132,7 +132,7 @@
 			children = (
 				AB4532132014D8B0004361FD /* LandingViewController.swift */,
 				AB4532152014DA30004361FD /* Landing.storyboard */,
-				AB4532172014FCA5004361FD /* landing.gif */,
+				AB81242C201AD18500AA3946 /* landing.gif */,
 			);
 			path = Landing;
 			sourceTree = "<group>";
@@ -300,7 +300,7 @@
 				ABF8F5A71FE2AF4D00117AB8 /* chicken.svg in Resources */,
 				AB9A80A71FECF5D1000434E7 /* cabin.svg in Resources */,
 				AB68407A2002708400FDBF04 /* Localizable.strings in Resources */,
-				AB4532182014FCA5004361FD /* landing.gif in Resources */,
+				AB81242D201AD18500AA3946 /* landing.gif in Resources */,
 				AB9FA5931FE2A99300055C50 /* Main.storyboard in Resources */,
 				AB4532162014DA30004361FD /* Landing.storyboard in Resources */,
 				ABDE77171FFDCB1100BF95A6 /* HeaderView.xib in Resources */,
