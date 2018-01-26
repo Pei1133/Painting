@@ -7,15 +7,34 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+//        let layout = UICollectionViewLayout()
+//        let vc = PictureGridCollectionViewController(collectionViewLayout: layout)
+//        let pictureGridCollectionViewController = UINavigationController(rootViewController: vc)
+
+        let storyboard = UIStoryboard(name: "Landing", bundle: nil)
+        let landingViewController = storyboard.instantiateViewController(withIdentifier: "Landing") as? LandingViewController
+
+        window = UIWindow(frame: UIScreen.main.bounds)
+//        window?.rootViewController = pictureGridCollectionViewController
+        window?.rootViewController = landingViewController
+        window?.makeKeyAndVisible()
+
+        FirebaseApp.configure()
+
+        let queue = DispatchQueue.global()
+        Database.database().callbackQueue = queue
+
+        Fabric.sharedSDK().debug = true
         return true
     }
 
@@ -41,6 +60,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
-

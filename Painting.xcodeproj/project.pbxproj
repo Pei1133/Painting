@@ -8,30 +8,72 @@
 
 /* Begin PBXBuildFile section */
 		9247765BA685684EFFE5F75D /* Pods_Painting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76721B4B1CCB252FA8ED0565 /* Pods_Painting.framework */; };
+		AB171D371FEB8E5B00CCFB7F /* PathProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB171D361FEB8E5B00CCFB7F /* PathProvider.swift */; };
+		AB1E41CC1FE3CB7E00D3B4B8 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */; };
+		AB40093B200B769900AF68DB /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40093A200B769900AF68DB /* ColorButton.swift */; };
+		AB407AB820027CE800023A16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB407AB720027CE800023A16 /* GoogleService-Info.plist */; };
+		AB4532142014D8B1004361FD /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4532132014D8B0004361FD /* LandingViewController.swift */; };
+		AB4532162014DA30004361FD /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB4532152014DA30004361FD /* Landing.storyboard */; };
+		AB45321A2014FEDC004361FD /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4532192014FEDC004361FD /* UIImage+Gif.swift */; };
+		AB68407A2002708400FDBF04 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB68407C2002708400FDBF04 /* Localizable.strings */; };
+		AB68407F2002708500FDBF04 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB6840812002708500FDBF04 /* InfoPlist.strings */; };
+		AB81242D201AD18500AA3946 /* landing.gif in Resources */ = {isa = PBXBuildFile; fileRef = AB81242C201AD18500AA3946 /* landing.gif */; };
+		AB8EC82F1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */; };
+		AB8EC8321FE90D9B00C19F60 /* PictureGridCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */; };
+		AB9A80A71FECF5D1000434E7 /* cabin.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB9A80A41FECF5D0000434E7 /* cabin.svg */; };
 		AB9FA58E1FE2A99300055C50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */; };
-		AB9FA5901FE2A99300055C50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9FA58F1FE2A99300055C50 /* ViewController.swift */; };
+		AB9FA5901FE2A99300055C50 /* PaintingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9FA58F1FE2A99300055C50 /* PaintingViewController.swift */; };
 		AB9FA5931FE2A99300055C50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9FA5911FE2A99300055C50 /* Main.storyboard */; };
 		AB9FA5951FE2A99300055C50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9FA5941FE2A99300055C50 /* Assets.xcassets */; };
 		AB9FA5981FE2A99300055C50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9FA5961FE2A99300055C50 /* LaunchScreen.storyboard */; };
+		ABBAF1C91FE90F7200676426 /* PictureGridCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABBAF1C81FE90F7200676426 /* PictureGridCollectionViewCell.xib */; };
+		ABBAF1CB1FE9186800676426 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBAF1CA1FE9186800676426 /* Picture.swift */; };
+		ABDE77161FFDCB1100BF95A6 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDE77141FFDCB1100BF95A6 /* HeaderView.swift */; };
+		ABDE77171FFDCB1100BF95A6 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABDE77151FFDCB1100BF95A6 /* HeaderView.xib */; };
+		ABE5AED41FF918CA007A96A4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5AED31FF918CA007A96A4 /* Colors.swift */; };
+		ABE5AED61FF927DE007A96A4 /* ColorSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5AED51FF927DE007A96A4 /* ColorSlider.swift */; };
+		ABE5AED81FF96577007A96A4 /* UIColor+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5AED71FF96577007A96A4 /* UIColor+Utilities.swift */; };
 		ABF8F5A71FE2AF4D00117AB8 /* chicken.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */; };
 		ABF8F5A91FE2AF5C00117AB8 /* cloud.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */; };
-		ABF8F5AB1FE2AF6800117AB8 /* hat.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5AA1FE2AF6800117AB8 /* hat.svg */; };
+		B815BC301FF66E5B00EDA8C3 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B815BC2F1FF66E5B00EDA8C3 /* UIImageView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		658F10F122611DE34251DC66 /* Pods-Painting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Painting.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Painting/Pods-Painting.debug.xcconfig"; sourceTree = "<group>"; };
 		76721B4B1CCB252FA8ED0565 /* Pods_Painting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Painting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C76A4F43C507D2665D62989 /* Pods-Painting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Painting.release.xcconfig"; path = "Pods/Target Support Files/Pods-Painting/Pods-Painting.release.xcconfig"; sourceTree = "<group>"; };
+		AB171D361FEB8E5B00CCFB7F /* PathProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathProvider.swift; sourceTree = "<group>"; };
+		AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
+		AB40093A200B769900AF68DB /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
+		AB407AB720027CE800023A16 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AB4532132014D8B0004361FD /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		AB4532152014DA30004361FD /* Landing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Landing.storyboard; sourceTree = "<group>"; };
+		AB4532192014FEDC004361FD /* UIImage+Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
+		AB68407620026DB400FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		AB68407720026DB400FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		AB68407B2002708400FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		AB6840802002708500FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		AB81242C201AD18500AA3946 /* landing.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = landing.gif; sourceTree = "<group>"; };
+		AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGridCollectionViewCell.swift; sourceTree = "<group>"; };
+		AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGridCollectionViewController.swift; sourceTree = "<group>"; };
+		AB9A80A41FECF5D0000434E7 /* cabin.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cabin.svg; sourceTree = "<group>"; };
 		AB9FA58A1FE2A99300055C50 /* Painting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Painting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AB9FA58F1FE2A99300055C50 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AB9FA58F1FE2A99300055C50 /* PaintingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintingViewController.swift; sourceTree = "<group>"; };
 		AB9FA5921FE2A99300055C50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB9FA5941FE2A99300055C50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB9FA5971FE2A99300055C50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB9FA5991FE2A99300055C50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABBAF1C81FE90F7200676426 /* PictureGridCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PictureGridCollectionViewCell.xib; sourceTree = "<group>"; };
+		ABBAF1CA1FE9186800676426 /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
+		ABDE77141FFDCB1100BF95A6 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		ABDE77151FFDCB1100BF95A6 /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		ABE5AED31FF918CA007A96A4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		ABE5AED51FF927DE007A96A4 /* ColorSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSlider.swift; sourceTree = "<group>"; };
+		ABE5AED71FF96577007A96A4 /* UIColor+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utilities.swift"; sourceTree = "<group>"; };
 		ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = chicken.svg; sourceTree = "<group>"; };
 		ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cloud.svg; sourceTree = "<group>"; };
-		ABF8F5AA1FE2AF6800117AB8 /* hat.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = hat.svg; sourceTree = "<group>"; };
+		B815BC2F1FF66E5B00EDA8C3 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,9 +96,69 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AB171D351FEB8E2500CCFB7F /* Paths */ = {
+			isa = PBXGroup;
+			children = (
+				AB171D361FEB8E5B00CCFB7F /* PathProvider.swift */,
+			);
+			path = Paths;
+			sourceTree = "<group>";
+		};
+		AB1E41CD1FE3CC3200D3B4B8 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				ABBAF1CA1FE9186800676426 /* Picture.swift */,
+				AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */,
+				AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */,
+				ABBAF1C81FE90F7200676426 /* PictureGridCollectionViewCell.xib */,
+				ABDE77141FFDCB1100BF95A6 /* HeaderView.swift */,
+				ABDE77151FFDCB1100BF95A6 /* HeaderView.xib */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		AB1E41CE1FE3CC6000D3B4B8 /* SVG */ = {
+			isa = PBXGroup;
+			children = (
+				ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */,
+				AB9A80A41FECF5D0000434E7 /* cabin.svg */,
+				ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */,
+			);
+			path = SVG;
+			sourceTree = "<group>";
+		};
+		AB4532122014D800004361FD /* Landing */ = {
+			isa = PBXGroup;
+			children = (
+				AB4532132014D8B0004361FD /* LandingViewController.swift */,
+				AB4532152014DA30004361FD /* Landing.storyboard */,
+				AB81242C201AD18500AA3946 /* landing.gif */,
+			);
+			path = Landing;
+			sourceTree = "<group>";
+		};
+		AB6FC1B6201879F600A09021 /* Draw */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Draw;
+			sourceTree = "<group>";
+		};
+		AB8EC8291FE90BAF00C19F60 /* Painting */ = {
+			isa = PBXGroup;
+			children = (
+				AB9FA58F1FE2A99300055C50 /* PaintingViewController.swift */,
+				AB1E41CB1FE3CB7E00D3B4B8 /* ColorPicker.swift */,
+				ABE5AED51FF927DE007A96A4 /* ColorSlider.swift */,
+				AB40093A200B769900AF68DB /* ColorButton.swift */,
+			);
+			path = Painting;
+			sourceTree = "<group>";
+		};
 		AB9FA5811FE2A99300055C50 = {
 			isa = PBXGroup;
 			children = (
+				B815BC2E1FF66E3B00EDA8C3 /* Extension */,
 				AB9FA58C1FE2A99300055C50 /* Painting */,
 				AB9FA58B1FE2A99300055C50 /* Products */,
 				EFFD386721E880C0C1748A65 /* Pods */,
@@ -76,16 +178,48 @@
 			isa = PBXGroup;
 			children = (
 				AB9FA58D1FE2A99300055C50 /* AppDelegate.swift */,
-				AB9FA58F1FE2A99300055C50 /* ViewController.swift */,
-				AB9FA5911FE2A99300055C50 /* Main.storyboard */,
+				AB4532122014D800004361FD /* Landing */,
+				AB1E41CD1FE3CC3200D3B4B8 /* Library */,
+				AB8EC8291FE90BAF00C19F60 /* Painting */,
+				AB6FC1B6201879F600A09021 /* Draw */,
+				AB171D351FEB8E2500CCFB7F /* Paths */,
+				ABE5AED01FF91805007A96A4 /* Colors */,
+				AB1E41CE1FE3CC6000D3B4B8 /* SVG */,
+				ABB526EA20045B350077025E /* Localization */,
 				AB9FA5941FE2A99300055C50 /* Assets.xcassets */,
+				AB9FA5911FE2A99300055C50 /* Main.storyboard */,
 				AB9FA5961FE2A99300055C50 /* LaunchScreen.storyboard */,
 				AB9FA5991FE2A99300055C50 /* Info.plist */,
-				ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */,
-				ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */,
-				ABF8F5AA1FE2AF6800117AB8 /* hat.svg */,
+				AB407AB720027CE800023A16 /* GoogleService-Info.plist */,
 			);
 			path = Painting;
+			sourceTree = "<group>";
+		};
+		ABB526EA20045B350077025E /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				AB6840812002708500FDBF04 /* InfoPlist.strings */,
+				AB68407C2002708400FDBF04 /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		ABE5AED01FF91805007A96A4 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				ABE5AED31FF918CA007A96A4 /* Colors.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		B815BC2E1FF66E3B00EDA8C3 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B815BC2F1FF66E5B00EDA8C3 /* UIImageView+Extension.swift */,
+				ABE5AED71FF96577007A96A4 /* UIColor+Utilities.swift */,
+				AB4532192014FEDC004361FD /* UIImage+Gif.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		EFFD386721E880C0C1748A65 /* Pods */ = {
@@ -110,6 +244,8 @@
 				AB9FA5881FE2A99300055C50 /* Resources */,
 				4AF39D15654B397B42F40FD7 /* [CP] Embed Pods Frameworks */,
 				DB487EE90E1A5F3C3A5E2460 /* [CP] Copy Pods Resources */,
+				ABF8F5AC1FE2B33400117AB8 /* ShellScript */,
+				AB407AB620027B8A00023A16 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -159,11 +295,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABF8F5AB1FE2AF6800117AB8 /* hat.svg in Resources */,
 				AB9FA5981FE2A99300055C50 /* LaunchScreen.storyboard in Resources */,
 				AB9FA5951FE2A99300055C50 /* Assets.xcassets in Resources */,
 				ABF8F5A71FE2AF4D00117AB8 /* chicken.svg in Resources */,
+				AB9A80A71FECF5D1000434E7 /* cabin.svg in Resources */,
+				AB68407A2002708400FDBF04 /* Localizable.strings in Resources */,
+				AB81242D201AD18500AA3946 /* landing.gif in Resources */,
 				AB9FA5931FE2A99300055C50 /* Main.storyboard in Resources */,
+				AB4532162014DA30004361FD /* Landing.storyboard in Resources */,
+				ABDE77171FFDCB1100BF95A6 /* HeaderView.xib in Resources */,
+				ABBAF1C91FE90F7200676426 /* PictureGridCollectionViewCell.xib in Resources */,
+				AB407AB820027CE800023A16 /* GoogleService-Info.plist in Resources */,
+				AB68407F2002708500FDBF04 /* InfoPlist.strings in Resources */,
 				ABF8F5A91FE2AF5C00117AB8 /* cloud.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,11 +321,29 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Painting/Pods-Painting-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
 				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Sharaku/Sharaku.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftGifOrigin/SwiftGifOrigin.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sharaku.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGifOrigin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -207,6 +368,32 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		AB407AB620027B8A00023A16 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
+		};
+		ABF8F5AC1FE2B33400117AB8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 		DB487EE90E1A5F3C3A5E2460 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -229,18 +416,48 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB9FA5901FE2A99300055C50 /* ViewController.swift in Sources */,
+				ABBAF1CB1FE9186800676426 /* Picture.swift in Sources */,
+				ABE5AED41FF918CA007A96A4 /* Colors.swift in Sources */,
+				AB171D371FEB8E5B00CCFB7F /* PathProvider.swift in Sources */,
+				AB45321A2014FEDC004361FD /* UIImage+Gif.swift in Sources */,
+				B815BC301FF66E5B00EDA8C3 /* UIImageView+Extension.swift in Sources */,
+				AB8EC82F1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift in Sources */,
+				ABE5AED81FF96577007A96A4 /* UIColor+Utilities.swift in Sources */,
+				AB9FA5901FE2A99300055C50 /* PaintingViewController.swift in Sources */,
+				ABDE77161FFDCB1100BF95A6 /* HeaderView.swift in Sources */,
+				AB4532142014D8B1004361FD /* LandingViewController.swift in Sources */,
+				AB40093B200B769900AF68DB /* ColorButton.swift in Sources */,
+				ABE5AED61FF927DE007A96A4 /* ColorSlider.swift in Sources */,
+				AB8EC8321FE90D9B00C19F60 /* PictureGridCollectionViewController.swift in Sources */,
 				AB9FA58E1FE2A99300055C50 /* AppDelegate.swift in Sources */,
+				AB1E41CC1FE3CB7E00D3B4B8 /* ColorPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		AB68407C2002708400FDBF04 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB68407B2002708400FDBF04 /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		AB6840812002708500FDBF04 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB6840802002708500FDBF04 /* zh-Hant */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		AB9FA5911FE2A99300055C50 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				AB9FA5921FE2A99300055C50 /* Base */,
+				AB68407620026DB400FDBF04 /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -249,6 +466,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				AB9FA5971FE2A99300055C50 /* Base */,
+				AB68407720026DB400FDBF04 /* zh-Hant */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -260,6 +478,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -317,6 +536,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -368,14 +588,18 @@
 			baseConfigurationReference = 658F10F122611DE34251DC66 /* Pods-Painting.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 927RF5FP2C;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 6DVP493TGC;
 				INFOPLIST_FILE = Painting/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Huang.Painting;
+				PRODUCT_BUNDLE_IDENTIFIER = HuangPei.Painting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -384,14 +608,17 @@
 			baseConfigurationReference = 7C76A4F43C507D2665D62989 /* Pods-Painting.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 927RF5FP2C;
+				DEVELOPMENT_TEAM = 6DVP493TGC;
 				INFOPLIST_FILE = Painting/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Huang.Painting;
+				PRODUCT_BUNDLE_IDENTIFIER = HuangPei.Painting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

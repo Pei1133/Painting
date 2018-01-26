@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="HzV-Ef-f47" userLabel="PictureGridCollectionViewCell" customClass="PictureGridCollectionViewCell" customModule="Painting" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="154" height="160"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="154" height="160"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jba-m6-yZ6" userLabel="PictureView">
+                        <rect key="frame" x="10" y="10" width="134" height="140"/>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hz1-fo-7HY">
+                        <rect key="frame" x="13" y="13" width="128" height="134"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="jba-m6-yZ6" firstAttribute="bottom" secondItem="hz1-fo-7HY" secondAttribute="bottom" constant="3" id="3Gi-5B-pUE"/>
+                <constraint firstAttribute="trailing" secondItem="jba-m6-yZ6" secondAttribute="trailing" constant="10" id="8QJ-p3-yP5"/>
+                <constraint firstItem="jba-m6-yZ6" firstAttribute="trailing" secondItem="hz1-fo-7HY" secondAttribute="trailing" constant="3" id="Bje-LI-QfC"/>
+                <constraint firstAttribute="bottom" secondItem="jba-m6-yZ6" secondAttribute="bottom" constant="10" id="J9U-zs-C5n"/>
+                <constraint firstItem="jba-m6-yZ6" firstAttribute="leading" secondItem="HzV-Ef-f47" secondAttribute="leading" constant="10" id="P9S-6a-2uE"/>
+                <constraint firstItem="jba-m6-yZ6" firstAttribute="top" secondItem="HzV-Ef-f47" secondAttribute="top" constant="10" id="eJF-wA-AZ0"/>
+                <constraint firstItem="hz1-fo-7HY" firstAttribute="leading" secondItem="jba-m6-yZ6" secondAttribute="leading" constant="3" id="reK-hW-5Ia"/>
+                <constraint firstItem="hz1-fo-7HY" firstAttribute="top" secondItem="jba-m6-yZ6" secondAttribute="top" constant="3" id="sXu-i2-Dmx"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Mf9-Qz-PFU"/>
+            <size key="customSize" width="95" height="89"/>
+            <connections>
+                <outlet property="pictureImageView" destination="hz1-fo-7HY" id="cBY-oe-dGU"/>
+                <outlet property="pictureView" destination="jba-m6-yZ6" id="UyX-ep-W0L"/>
+            </connections>
+            <point key="canvasLocation" x="-141" y="-22"/>
+        </collectionViewCell>
+    </objects>
+</document>

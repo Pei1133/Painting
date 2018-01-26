@@ -8,5 +8,16 @@ target 'Painting' do
   # Pods for Painting
 
   pod 'PocketSVG'
+  pod 'Firebase/Core'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Database'
+  pod 'SDWebImage', '~> 4.0'
+  pod 'Nuke', '5.2'
+  pod 'Fabric', '~> 1.7.2'
+  pod 'Crashlytics', '~> 3.9.3'
+  pod "Sharaku"
+  pod 'SVProgressHUD'
+  pod 'SwiftGifOrigin'
+
 
 end
