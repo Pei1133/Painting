@@ -17,6 +17,7 @@
 		AB45321A2014FEDC004361FD /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4532192014FEDC004361FD /* UIImage+Gif.swift */; };
 		AB68407A2002708400FDBF04 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB68407C2002708400FDBF04 /* Localizable.strings */; };
 		AB68407F2002708500FDBF04 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB6840812002708500FDBF04 /* InfoPlist.strings */; };
+		AB810BA1201BB0FE00D10CB7 /* DrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB810BA0201BB0FE00D10CB7 /* DrawViewController.swift */; };
 		AB81242D201AD18500AA3946 /* landing.gif in Resources */ = {isa = PBXBuildFile; fileRef = AB81242C201AD18500AA3946 /* landing.gif */; };
 		AB8EC82F1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */; };
 		AB8EC8321FE90D9B00C19F60 /* PictureGridCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */; };
@@ -53,6 +54,7 @@
 		AB68407720026DB400FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		AB68407B2002708400FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		AB6840802002708500FDBF04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		AB810BA0201BB0FE00D10CB7 /* DrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawViewController.swift; sourceTree = "<group>"; };
 		AB81242C201AD18500AA3946 /* landing.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = landing.gif; sourceTree = "<group>"; };
 		AB8EC82E1FE90D4C00C19F60 /* PictureGridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGridCollectionViewCell.swift; sourceTree = "<group>"; };
 		AB8EC8311FE90D9B00C19F60 /* PictureGridCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGridCollectionViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 		AB6FC1B6201879F600A09021 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				AB810BA0201BB0FE00D10CB7 /* DrawViewController.swift */,
 			);
 			path = Draw;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB810BA1201BB0FE00D10CB7 /* DrawViewController.swift in Sources */,
 				ABBAF1CB1FE9186800676426 /* Picture.swift in Sources */,
 				ABE5AED41FF918CA007A96A4 /* Colors.swift in Sources */,
 				AB171D371FEB8E5B00CCFB7F /* PathProvider.swift in Sources */,

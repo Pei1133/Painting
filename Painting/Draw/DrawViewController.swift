@@ -1,9 +1,9 @@
 //
-//  PaintingViewController.swift
+//  DrawViewController.swift
 //  Painting
 //
-//  Created by 黃珮鈞 on 2017/12/14.
-//  Copyright © 2017年 黃珮鈞. All rights reserved.
+//  Created by 黃珮鈞 on 2018/1/27.
+//  Copyright © 2018年 黃珮鈞. All rights reserved.
 //
 
 import UIKit
@@ -12,18 +12,16 @@ import Crashlytics
 import Sharaku
 import SVProgressHUD
 
-class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDelegate, CustomImageViewTouchEventDelegate {
+class DrawViewController: UIViewController, ColorDelegate {
 
-    var url = URL(string: "")
     var pathLayers: [CALayer] = []
     var pictureSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.7)
     var pathCount: Int = 0
-    var isFill: Bool?
+    var isFill = false
 
     var paths = [SVGBezierPath]()
-    var scrollView = UIScrollView()
     var pictureView = UIView()
-    var imageView = CustomImageView()
+    var imageView = UIImageView()
 
     var redoLayers: [CAShapeLayer] = []
     var lastPoint = CGPoint.zero
@@ -40,16 +38,16 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     @IBAction func tapColor(_ sender: ColorButton) {
 
         pickedColor = sender.backgroundColor!
-//        var saturation: CGFloat = 0.0
-//        var brightness: CGFloat = 0.0
-//        var hue: CGFloat = 0.0
-//        var alpha: CGFloat = 0.0
-//
-//        let selectedColor = sender.backgroundColor!
-//        if selectedColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
-//
-//            self.pickedColor = UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: alpha)
-//        }
+        //        var saturation: CGFloat = 0.0
+        //        var brightness: CGFloat = 0.0
+        //        var hue: CGFloat = 0.0
+        //        var alpha: CGFloat = 0.0
+        //
+        //        let selectedColor = sender.backgroundColor!
+        //        if selectedColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
+        //
+        //            self.pickedColor = UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: alpha)
+        //        }
     }
 
     // MARK: - colorSlider
@@ -102,18 +100,18 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     func saveToSelectedColors() {
 
         if sliderColor != color0.backgroundColor && sliderColor != color1.backgroundColor && sliderColor != color2.backgroundColor && sliderColor != color3.backgroundColor && sliderColor != color4.backgroundColor {
-                color4.backgroundColor = color3.backgroundColor
-                color3.backgroundColor = color2.backgroundColor
-                color2.backgroundColor = color1.backgroundColor
-                color1.backgroundColor = color0.backgroundColor
-                color0.backgroundColor = sliderColor
+            color4.backgroundColor = color3.backgroundColor
+            color3.backgroundColor = color2.backgroundColor
+            color2.backgroundColor = color1.backgroundColor
+            color1.backgroundColor = color0.backgroundColor
+            color0.backgroundColor = sliderColor
         }
     }
 
-//    @IBAction func tapSave(_ sender: Any) {
-//
-//        UIImageWriteToSavedPhotosAlbum(<#T##image: UIImage##UIImage#>, <#T##completionTarget: Any?##Any?#>, <#T##completionSelector: Selector?##Selector?#>, <#T##contextInfo: UnsafeMutableRawPointer?##UnsafeMutableRawPointer?#>)
-//    }
+    //    @IBAction func tapSave(_ sender: Any) {
+    //
+    //        UIImageWriteToSavedPhotosAlbum(<#T##image: UIImage##UIImage#>, <#T##completionTarget: Any?##Any?#>, <#T##completionSelector: Selector?##Selector?#>, <#T##contextInfo: UnsafeMutableRawPointer?##UnsafeMutableRawPointer?#>)
+    //    }
 
     override func viewDidLoad() {
 
@@ -121,35 +119,20 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
         colorPicker.delegate = self
 
-        renderSVGLayer()
         setUpNavigationBar()
-        setUpScrollViewAndImageView()
+        setUpImageView()
         setUpColorPicker()
         setUpButton()
         setUpColorSlider()
         setUpSliderView(pickedColor)
 
-     // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
+        // Step1 :- Initialize Tap Event on view where your UIBeizerPath Added.
         // Catch layer by tap detection
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(PaintingViewController.tapDetected(tapRecognizer:)))
         self.imageView.addGestureRecognizer(tapRecognizer)
 
         UIApplication.shared.endIgnoringInteractionEvents()
 
-    }
-
-    func renderSVGLayer() {
-
-        for pathLayer in pathLayers {
-
-            imageView.layer.addSublayer(pathLayer)
-        }
-
-        guard let url = self.url else { return }
-        let paths = SVGBezierPath.pathsFromSVG(at: url)
-        self.paths = paths
-
-        SVProgressHUD.dismiss()
     }
 
     // MARK: - Fill Color
@@ -243,7 +226,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     // MARK: - Set up
 
     func setUpNavigationBar() {
-        // title
+// title
 //        let localTitle = NSLocalizedString("Color Your Own", comment: "")
 //        self.navigationItem.title = localTitle
         self.navigationItem.title = "ColorLife"
@@ -261,6 +244,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         leftButton.tintColor = Colors.deepCyanBlue
         undoButton.tintColor = Colors.deepCyanBlue.withAlphaComponent(0.3)
         self.navigationItem.leftBarButtonItems = [leftButton, undoButton]
+        undoButton.isEnabled = false
 
         // right button
         let rightButton = UIBarButtonItem(image: #imageLiteral(resourceName: "share1"), style: .plain, target: self, action: #selector(share))
@@ -268,6 +252,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         rightButton.tintColor = Colors.deepCyanBlue
         redoButton.tintColor = Colors.deepCyanBlue.withAlphaComponent(0.3)
         self.navigationItem.rightBarButtonItems = [rightButton, redoButton]
+        redoButton.isEnabled = false
 
         // gradient
         let gradient = CAGradientLayer()
@@ -328,104 +313,21 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         sliderView.clipsToBounds = true
     }
 
-    func setUpScrollViewAndImageView() {
+    func setUpImageView() {
 
         // Set up ImageView
         imageView.contentMode = .center
         imageView.backgroundColor = .clear
         imageView.isUserInteractionEnabled = true
         imageView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
-        imageView.delegate = self
 
         // Set up View
         pictureView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
         pictureView.backgroundColor = UIColor.clear
 
-        // close scrollView when Draw
-        if isFill == true {
-
-            // Set up ScrollView
-            scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height * 0.7))
-            scrollView.contentSize = imageView.frame.size
-            scrollView.backgroundColor = UIColor.white
-            scrollView.showsVerticalScrollIndicator = false
-            scrollView.showsHorizontalScrollIndicator = false
-
-            // Add subviews
-            view.addSubview(scrollView)
-            scrollView.addSubview(pictureView)
-            scrollView.addSubview(imageView)
-
-            // ZoomScale Setting
-            scrollView.delegate = self
-            scrollView.zoomScale = 0.8
-            scrollView.minimumZoomScale = 0.5
-            scrollView.maximumZoomScale = 3.0
-
-        }else {
-            view.addSubview(pictureView)
-            view.addSubview(imageView)
-        }
+        view.addSubview(pictureView)
+        view.addSubview(imageView)
     }
-
-    // MARK: - ScrollView
-
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-
-        return imageView
-    }
-
-    // 為了讓圖片縮小填滿且有Aspect Fit
-    fileprivate func updateMinZoomScaleForSize(_ size: CGSize) {
-
-        let widthScale = size.width / imageView.bounds.width
-        let heightScale = size.height / imageView.bounds.height
-
-        let minScale = min(widthScale, heightScale)
-        scrollView.minimumZoomScale = minScale
-        scrollView.zoomScale = minScale
-
-    }
-
-    // 呼叫updateMinZoomScaleForSize
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        updateMinZoomScaleForSize(view.bounds.size)
-    }
-
-    // 讓圖片置中,每次縮放之後會被呼叫
-    func scrollViewDidZoom(_ scrollView: UIScrollView) {
-
-        let imageViewSize = imageView.frame.size
-        let scrollViewSize = scrollView.bounds.size
-
-        let verticalPadding = imageViewSize.height < scrollViewSize.height ? (scrollViewSize.height - imageViewSize.height) / 2 : 0
-        let horizontalPadding = imageViewSize.width < scrollViewSize.width ? (scrollViewSize.width - imageViewSize.width) / 2 : 0
-
-        scrollView.contentInset = UIEdgeInsets(top: verticalPadding, left: horizontalPadding, bottom: verticalPadding, right: horizontalPadding)
-
-    }
-
-//    override func viewWillLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        scrollView.translatesAutoresizingMaskIntoConstraints = false
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//
-//        // ScrollView
-//        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-//        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-//        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-//        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150.0).isActive = true
-//
-//        // ImageView
-//        imageView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-//        imageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-//        imageView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
-//        imageView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-//        imageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-//        imageView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor).isActive = true
-//
-//    }
 
     // MARK: - Transform
     //讓layer轉型成UIImage
@@ -472,8 +374,6 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     // MARK: - Share
     @objc func share(_ sender: Any) {
 
-        guard let isFill = self.isFill else { return }
-
         let image = UIImage.init(view: imageView, isFill: isFill)
 
         let recalculateImage = resizeImage(image: image, targetSize: CGSize(width: 1000, height: 1000))
@@ -494,7 +394,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
         if isFill == false {
             UIGraphicsBeginImageContext(self.pictureView.frame.size)
 
-    //        let drawingLayer = CAShapeLayer()
+            //        let drawingLayer = CAShapeLayer()
 
             imageView.image?.draw(in: CGRect(x: 0, y: 0, width: self.pictureView.frame.width, height: self.pictureView.frame.height))
 
@@ -510,10 +410,10 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             context?.strokePath()
 
             imageView.image = UIGraphicsGetImageFromCurrentImageContext()
-    //        drawingLayer.contents = imageView.image?.cgImage
-    //        imageView.layer.contents = imageView.image?.cgImage
-    //        drawingLayer.contents = UIGraphicsGetImageFromCurrentImageContext()
-    //        imageView.layer.addSublayer(drawingLayer)
+            //        drawingLayer.contents = imageView.image?.cgImage
+            //        imageView.layer.contents = imageView.image?.cgImage
+            //        drawingLayer.contents = UIGraphicsGetImageFromCurrentImageContext()
+            //        imageView.layer.addSublayer(drawingLayer)
             UIGraphicsEndImageContext()
         }
     }
@@ -543,7 +443,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
 extension UIImage {
 
-    convenience init(view: UIView, isFill: Bool) {
+    convenience init(view: UIView, isFill: Bool?) {
 
         if isFill == false {
             UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 1)
@@ -564,7 +464,7 @@ extension UIImage {
     }
 }
 
-extension PaintingViewController: SHViewControllerDelegate {
+extension DrawViewController: SHViewControllerDelegate {
 
     func shViewControllerImageDidFilter(image: UIImage) {
         // Filtered image will be returned here.

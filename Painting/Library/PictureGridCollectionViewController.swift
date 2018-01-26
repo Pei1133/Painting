@@ -110,9 +110,9 @@ class PictureGridCollectionViewController: UICollectionViewController {
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
 
         // right button
-//        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "add"), style: .plain, target: self, action: #selector(addNew))
-//        button.tintColor = Colors.deepCyanBlue
-//        self.navigationItem.rightBarButtonItem = button
+        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "add"), style: .plain, target: self, action: #selector(addNew))
+        button.tintColor = Colors.deepCyanBlue
+        self.navigationItem.rightBarButtonItem = button
 
         // shadow
         navigationController?.navigationBar.layer.shadowOpacity = 1
@@ -127,10 +127,10 @@ class PictureGridCollectionViewController: UICollectionViewController {
     @objc func addNew() {
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let paintingViewController = storyboard.instantiateViewController(withIdentifier: "Painting") as? PaintingViewController else { return }
+        guard let drawViewController = storyboard.instantiateViewController(withIdentifier: "Painting") as? DrawViewController else { return }
 
-        paintingViewController.isFill = false
-        self.navigationController?.pushViewController(paintingViewController, animated: true)
+//        paintingViewController.isFill = false
+        self.navigationController?.pushViewController(drawViewController, animated: true)
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
