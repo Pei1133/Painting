@@ -24,6 +24,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     var scrollView = UIScrollView()
     var pictureView = UIView()
     var imageView = CustomImageView()
+    let drawImageView = UIImageView()
 
     var redoLayers: [CAShapeLayer] = []
     var lastPoint = CGPoint.zero
@@ -330,20 +331,20 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     func setUpScrollViewAndImageView() {
 
-        // Set up ImageView
-        imageView.contentMode = .center
-        imageView.backgroundColor = .clear
-        imageView.isUserInteractionEnabled = true
-        imageView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
-        imageView.delegate = self
-
         // Set up View
         pictureView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
         pictureView.backgroundColor = UIColor.clear
-
-        // close scrollView when Draw
+        
+        // Fill: Use Custom ImageView & Add ScrollView
         if isFill == true {
 
+            // Set up ImageView
+            imageView.contentMode = .center
+            imageView.backgroundColor = .clear
+            imageView.isUserInteractionEnabled = true
+            imageView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
+            imageView.delegate = self
+            
             // Set up ScrollView
             scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height * 0.7))
             scrollView.contentSize = imageView.frame.size
@@ -363,8 +364,14 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             scrollView.maximumZoomScale = 3.0
 
         }else {
+            // Set up drawImageView
+            drawImageView.contentMode = .center
+            drawImageView.backgroundColor = .clear
+            drawImageView.isUserInteractionEnabled = true
+            drawImageView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
+            
             view.addSubview(pictureView)
-            view.addSubview(imageView)
+            view.addSubview(drawImageView)
         }
     }
 
