@@ -371,7 +371,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             drawImageView.frame = CGRect(x: 0, y: 0, width: pictureSize.width, height: pictureSize.height)
             
             view.addSubview(pictureView)
-            view.addSubview(drawImageView)
+            pictureView.addSubview(drawImageView)
         }
     }
 
@@ -503,7 +503,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
 
     //        let drawingLayer = CAShapeLayer()
 
-            imageView.image?.draw(in: CGRect(x: 0, y: 0, width: self.pictureView.frame.width, height: self.pictureView.frame.height))
+            drawImageView.image?.draw(in: CGRect(x: 0, y: 0, width: self.pictureView.frame.width, height: self.pictureView.frame.height))
 
             //        let context = CGLayerGetContext(drawingLayer)
             let context = UIGraphicsGetCurrentContext()
@@ -516,7 +516,7 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
             context?.setStrokeColor(sliderColor.cgColor)
             context?.strokePath()
 
-            imageView.image = UIGraphicsGetImageFromCurrentImageContext()
+            drawImageView.image = UIGraphicsGetImageFromCurrentImageContext()
     //        drawingLayer.contents = imageView.image?.cgImage
     //        imageView.layer.contents = imageView.image?.cgImage
     //        drawingLayer.contents = UIGraphicsGetImageFromCurrentImageContext()
@@ -528,14 +528,14 @@ class PaintingViewController: UIViewController, UIScrollViewDelegate, ColorDeleg
     func didTouchesBegan(touches: Set<UITouch>) {
         swiped = false
         if let touch = touches.first {
-            lastPoint = touch.location(in: self.imageView)
+            lastPoint = touch.location(in: self.drawImageView)
         }
     }
 
     func didTouchesMoved(touches: Set<UITouch>) {
         swiped = true
         if let touch = touches.first {
-            let currentPoint = touch.location(in: self.imageView)
+            let currentPoint = touch.location(in: self.drawImageView)
             drawLines(fromPoint: lastPoint, toPoint: currentPoint)
             self.lastPoint = currentPoint
         }
