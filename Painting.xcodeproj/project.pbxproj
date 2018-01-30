@@ -34,6 +34,7 @@
 		ABE5AED41FF918CA007A96A4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5AED31FF918CA007A96A4 /* Colors.swift */; };
 		ABE5AED61FF927DE007A96A4 /* ColorSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5AED51FF927DE007A96A4 /* ColorSlider.swift */; };
 		ABE5AED81FF96577007A96A4 /* UIColor+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5AED71FF96577007A96A4 /* UIColor+Utilities.swift */; };
+		ABEB47FD202061A900679F9B /* Draw.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABEB47FC202061A900679F9B /* Draw.storyboard */; };
 		ABF8F5A71FE2AF4D00117AB8 /* chicken.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */; };
 		ABF8F5A91FE2AF5C00117AB8 /* cloud.svg in Resources */ = {isa = PBXBuildFile; fileRef = ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */; };
 		B815BC301FF66E5B00EDA8C3 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B815BC2F1FF66E5B00EDA8C3 /* UIImageView+Extension.swift */; };
@@ -73,6 +74,7 @@
 		ABE5AED31FF918CA007A96A4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		ABE5AED51FF927DE007A96A4 /* ColorSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSlider.swift; sourceTree = "<group>"; };
 		ABE5AED71FF96577007A96A4 /* UIColor+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utilities.swift"; sourceTree = "<group>"; };
+		ABEB47FC202061A900679F9B /* Draw.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Draw.storyboard; sourceTree = "<group>"; };
 		ABF8F5A61FE2AF4D00117AB8 /* chicken.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = chicken.svg; sourceTree = "<group>"; };
 		ABF8F5A81FE2AF5C00117AB8 /* cloud.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cloud.svg; sourceTree = "<group>"; };
 		B815BC2F1FF66E5B00EDA8C3 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				ABB526EA20045B350077025E /* Localization */,
 				AB9FA5941FE2A99300055C50 /* Assets.xcassets */,
 				AB9FA5911FE2A99300055C50 /* Main.storyboard */,
+				ABEB47FC202061A900679F9B /* Draw.storyboard */,
 				AB9FA5961FE2A99300055C50 /* LaunchScreen.storyboard */,
 				AB9FA5991FE2A99300055C50 /* Info.plist */,
 				AB407AB720027CE800023A16 /* GoogleService-Info.plist */,
@@ -306,6 +309,7 @@
 				AB81242D201AD18500AA3946 /* landing.gif in Resources */,
 				AB9FA5931FE2A99300055C50 /* Main.storyboard in Resources */,
 				AB4532162014DA30004361FD /* Landing.storyboard in Resources */,
+				ABEB47FD202061A900679F9B /* Draw.storyboard in Resources */,
 				ABDE77171FFDCB1100BF95A6 /* HeaderView.xib in Resources */,
 				ABBAF1C91FE90F7200676426 /* PictureGridCollectionViewCell.xib in Resources */,
 				AB407AB820027CE800023A16 /* GoogleService-Info.plist in Resources */,
