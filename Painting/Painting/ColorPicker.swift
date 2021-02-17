@@ -34,9 +34,9 @@ class ColorPicker: UIView {
 
         //draw central bar over it
         let width = Int(self.frame.size.width)
-        for i in 0 ..< width {
-            UIColor(hue: CGFloat (i)/self.frame.size.width, saturation: 1.0, brightness: 1.0, alpha: 1.0).set()
-            let temp = CGRect(x: CGFloat(i), y: 0, width: 1.0, height: self.frame.size.height)
+        for paraI in 0 ..< width {
+            UIColor(hue: CGFloat (paraI)/self.frame.size.width, saturation: 1.0, brightness: 1.0, alpha: 1.0).set()
+            let temp = CGRect(x: CGFloat(paraI), y: 0, width: 1.0, height: self.frame.size.height)
             UIRectFill(temp)
         }
     }

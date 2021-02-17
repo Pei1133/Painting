@@ -33,27 +33,27 @@ public extension UIColor {
             amountToBlend = 0
         }
 
-        var r, g, b, alpha: CGFloat
-        r = 0
-        g = 0
-        b = 0
-        alpha = 0
-        color.getRed(&r, green: &g, blue: &b, alpha: &alpha) //gets the rgba values (0-1)
+        var blendR, blendG, blendB, blendAlpha: CGFloat
+        blendR = 0
+        blendG = 0
+        blendB = 0
+        blendAlpha = 0
+        color.getRed(&blendR, green: &blendG, blue: &blendB, alpha: &blendAlpha) //gets the rgba values (0-1)
 
         //Get the destination rgba values
-        var dest_r, dest_g, dest_b, dest_alpha: CGFloat
-        dest_r = 0
-        dest_g = 0
-        dest_b = 0
-        dest_alpha = 0
-        destinationColor.getRed(&dest_r, green: &dest_g, blue: &dest_b, alpha: &dest_alpha)
+        var destR, destG, destB, destAlpha: CGFloat
+        destR = 0
+        destG = 0
+        destB = 0
+        destAlpha = 0
+        destinationColor.getRed(&destR, green: &destG, blue: &destB, alpha: &destAlpha)
 
-        r = amountToBlend * (dest_r * 255) + (1 - amountToBlend) * (r * 255)
-        g = amountToBlend * (dest_g * 255) + (1 - amountToBlend) * (g * 255)
-        b = amountToBlend * (dest_b * 255) + (1 - amountToBlend) * (b * 255)
-        alpha = fabs(alpha / dest_alpha)
+        blendR = amountToBlend * (destR * 255) + (1 - amountToBlend) * (blendR * 255)
+        blendG = amountToBlend * (destG * 255) + (1 - amountToBlend) * (blendG * 255)
+        blendB = amountToBlend * (destB * 255) + (1 - amountToBlend) * (blendB * 255)
+        blendAlpha = fabs(blendAlpha / destAlpha)
 
-        return UIColor(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: alpha)
+        return UIColor(red: blendR/255.0, green: blendG/255.0, blue: blendB/255.0, alpha: blendAlpha)
     }
 
 }
