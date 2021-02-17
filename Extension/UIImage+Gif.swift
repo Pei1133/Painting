@@ -99,36 +99,36 @@ extension UIImage {
     }
 
     internal class func gcdForPair(_ parameterA: Int?, _ parameterB: Int?) -> Int {
-        var a = parameterA
-        var b = parameterB
+        var paraA = parameterA
+        var paraB = parameterB
         // Check if one of them is nil
-        if b == nil || a == nil {
-            if b != nil {
-                return b!
-            } else if a != nil {
-                return a!
+        if paraB == nil || paraA == nil {
+            if paraB != nil {
+                return paraB!
+            } else if paraA != nil {
+                return paraA!
             } else {
                 return 0
             }
         }
 
         // Swap for modulo
-        if a! < b! {
-            let c = a
-            a = b
-            b = c
+        if paraA! < paraB! {
+            let paraC = paraA
+            paraA = paraB
+            paraB = paraC
         }
 
         // Get greatest common divisor
         var rest: Int
         while true {
-            rest = a! % b!
+            rest = paraA! % paraB!
 
             if rest == 0 {
-                return b! // Found it
+                return paraB! // Found it
             } else {
-                a = b
-                b = rest
+                paraA = paraB
+                paraB = rest
             }
         }
     }
@@ -153,14 +153,14 @@ extension UIImage {
         var delays = [Int]()
 
         // Fill arrays
-        for i in 0..<count {
+        for paraI in 0..<count {
             // Add image
-            if let image = CGImageSourceCreateImageAtIndex(source, i, nil) {
+            if let image = CGImageSourceCreateImageAtIndex(source, paraI, nil) {
                 images.append(image)
             }
 
             // At it's delay in cs
-            let delaySeconds = UIImage.delayForImageAtIndex(Int(i),
+            let delaySeconds = UIImage.delayForImageAtIndex(Int(paraI),
                                                             source: source)
             delays.append(Int(delaySeconds * 1000.0)) // Seconds to ms
         }
@@ -182,9 +182,9 @@ extension UIImage {
 
         var frame: UIImage
         var frameCount: Int
-        for i in 0..<count {
-            frame = UIImage(cgImage: images[Int(i)])
-            frameCount = Int(delays[Int(i)] / gcd)
+        for paraI in 0..<count {
+            frame = UIImage(cgImage: images[Int(paraI)])
+            frameCount = Int(delays[Int(paraI)] / gcd)
 
             for _ in 0..<frameCount {
                 frames.append(frame)
